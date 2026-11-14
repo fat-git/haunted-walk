@@ -1,0 +1,48 @@
+# --- Credentials: never commit these. Enforced by gitleaks in CI and by
+# --- GitHub push protection server-side. See CONTRIBUTING.md.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+id_rsa
+id_ed25519
+.netrc
+.npmrc
+secrets.json
+
+# --- Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# --- Build output
+dist/
+dist-ssr/
+build/
+.vite/
+
+# --- Test / coverage
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# --- Editors, agent tooling, and OS
+.claude/settings.local.json
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+.vscode/*
+!.vscode/extensions.json
+
+# --- Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
