@@ -1129,3 +1129,44 @@ h1 {
     --ink-faint: #999;
   }
 }
+
+/* Narration problem banner (FAT-43): visible audio failures with retry */
+.narration-problem {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--danger);
+  border-radius: 0.6rem;
+  background: var(--bg-raised);
+}
+
+.narration-problem-message {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.narration-problem-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Audio check (FAT-43): pre-walk speech verification on the start screen */
+.audio-check {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.audio-check-button {
+  width: 100%;
+}
+
+.audio-check-result,
+.audio-check-hint {
+  margin: 0;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--ink-muted);
+}

@@ -1,9 +1,14 @@
 /**
  * Start screen shown before tour begins.
+ *
+ * Includes the FAT-43 "Test audio" button so the walker can verify speech
+ * output with a single tap before starting the walk.
  */
 
+import { useState } from 'react'
 import type { Tour } from '../types/tour'
 import { appleMapsDirectionsUrl, googleMapsDirectionsUrl } from '../lib/mapsLinks'
+import { formatAudioCheck, runAudioCheck, type AudioCheckResult } from '../lib/narration'
 
 interface StartScreenProps {
   tour: Tour
@@ -18,6 +23,19 @@ export function StartScreen({
   wakeLockSupported,
   speechSupported,
 }: StartScreenProps) {
+  const [audioCheck, setAudioCheck] = useState<AudioCheckResult | null>(null)
+  const [checkingAudio, setCheckingAudio] = useState(false)
+
+  const handleTestAudio = async () => {
+    setCheckingAudio(true)
+    setAudioCheck(null)
+    try {
+      setAudioCheck(await runAudioCheck())
+    } finally {
+      setCheckingAudio(false)
+    }
+  }
+
   return (
     <div className="start-screen">
       <header className="tour-header">
@@ -140,6 +158,27 @@ export function StartScreen({
       <button className="btn btn-primary btn-start" onClick={onStartTour} type="button">
         Start Tour
       </button>
+
+      <div className="audio-check">
+        <button
+          className="btn btn-secondary audio-check-button"
+          onClick={handleTestAudio}
+          disabled={!speechSupported || checkingAudio}
+          type="button"
+        >
+          {checkingAudio ? 'Testing audio…' : 'Test audio'}
+        </button>
+        {audioCheck && (
+          <p className="audio-check-result" role="status" aria-live="polite">
+            {formatAudioCheck(audioCheck)}
+          </p>
+        )}
+        {!speechSupported && (
+          <p className="audio-check-hint">
+            This browser cannot speak. Narration needs Safari (iOS) or Chrome (Android).
+          </p>
+        )}
+      </div>
 
       <p className="footer-note">
         Map data ©{' '}
