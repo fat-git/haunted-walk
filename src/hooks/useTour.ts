@@ -1,16 +1,47 @@
 /**
- * Main tour hook combining GPS, geofence, narration, and wake lock.
+ * Main tour hook combining GPS, geofence, narration, wake lock, and the
+ * committed route's maneuver list.
  *
  * This is the central orchestrator for the tour experience.
+ *
+ * Onboarding order: safety notice (idle) → GPS explainer (ready) → active.
+ * The browser permission prompt only fires once the walker has read the
+ * explainer and tapped through it, because `gps.start()` is not called until
+ * then.
  */
 
 import { useEffect, useRef, useState, useCallback } from 'react'
-import type { Tour, TourStop } from '../types/tour'
+import type { Maneuver, RouteFile, Tour, TourStop } from '../types/tour'
 import type { GeoPoint } from '../lib/geofence'
 import { createStopGeofence, updateGeofence, resetGeofence } from '../lib/geofence'
 import { NarrationEngine } from '../lib/narration'
-import { useGPS } from './useGPS'
-import { useWakeLock } from './useWakeLock'
+import {
+  distanceToRouteM as measureDistanceToRouteM,
+  getNextManeuver,
+  isOffRoutePoint,
+} from '../lib/route'
+import { routeUrl } from '../lib/tourPaths'
+import { useGPS, type GeolocationPermissionState } from './useGPS'
+import { useWakeLock, type WakeLockState } from './useWakeLock'
+
+const SAFETY_NOTICE_STORAGE_KEY = 'haunted-walk:safety-notice-seen'
+
+function readSafetyNoticeSeen(): boolean {
+  try {
+    return window.localStorage.getItem(SAFETY_NOTICE_STORAGE_KEY) === '1'
+  } catch {
+    // Storage blocked (private mode): the notice simply returns on reload.
+    return false
+  }
+}
+
+function persistSafetyNoticeSeen(): void {
+  try {
+    window.localStorage.setItem(SAFETY_NOTICE_STORAGE_KEY, '1')
+  } catch {
+    // Storage blocked: not fatal, the notice returns next launch.
+  }
+}
 
 export type TourPhase = 'idle' | 'ready' | 'active' | 'paused' | 'completed'
 
@@ -18,17 +49,34 @@ export interface TourState {
   phase: TourPhase
   currentStopIndex: number
   currentStop: TourStop | null
+  nextManeuver: Maneuver | null
   distanceToCurrentStop: number | null
+  distanceToRouteM: number | null
   isAtStop: boolean
+  isOffRoute: boolean
+  routeLoaded: boolean
+  routeError: string | null
   narration: NarrationEngine | null
   safetyNoticeSeen: boolean
   userPosition: GeoPoint | null
   userAccuracyM: number | null
   audioUnlocked: boolean
+  gpsSupported: boolean
+  gpsPermission: GeolocationPermissionState
+  gpsWatching: boolean
+  gpsError: GeolocationPositionError | null
+  wakeLock: WakeLockState
 }
 
 export interface TourControls {
-  startTour: () => Promise<void>
+  /** Leave idle: show the GPS explainer before any permission prompt. */
+  startTour: () => void
+  /** From the GPS explainer: ask for location and go active. */
+  startWithLocation: () => void
+  /** From the GPS explainer: go active without location (manual playback). */
+  startWithoutLocation: () => void
+  /** Re-ask for location while the tour is running. */
+  enableLocation: () => void
   pauseTour: () => void
   resumeTour: () => void
   stopTour: () => void
@@ -46,9 +94,14 @@ export function useTour(tour: Tour): TourState & TourControls {
   const [currentStopIndex, setCurrentStopIndex] = useState(0)
   const [distanceToCurrentStop, setDistanceToCurrentStop] = useState<number | null>(null)
   const [isAtStop, setIsAtStop] = useState(false)
-  const [safetyNoticeSeen, setSafetyNoticeSeen] = useState(false)
+  const [safetyNoticeSeen, setSafetyNoticeSeen] = useState<boolean>(readSafetyNoticeSeen)
   const [audioUnlocked, setAudioUnlocked] = useState(false)
   const [narrationEngine, setNarrationEngine] = useState<NarrationEngine | null>(null)
+
+  // The committed, build-time route. Its maneuver list drives the next-maneuver
+  // display and its geometry the off-route check. Never re-routed.
+  const [route, setRoute] = useState<RouteFile | null>(null)
+  const [routeError, setRouteError] = useState<string | null>(null)
 
   const gps = useGPS()
   const wakeLock = useWakeLock()
@@ -77,7 +130,42 @@ export function useTour(tour: Tour): TourState & TourControls {
     }
   }, [tour.stops])
 
-  // Initialize narration engine for current stop
+  // Load the committed route. On failure the map falls back to straight
+  // stop-to-stop lines and the guidance panel says directions are unavailable.
+  useEffect(() => {
+    let cancelled = false
+    fetch(routeUrl(tour.city))
+      .then((res) => {
+        if (!res.ok) throw new Error(`Failed to load route: ${res.status}`)
+        return res.json() as Promise<RouteFile>
+      })
+      .then((data: RouteFile) => {
+        if (!cancelled) {
+          setRoute(data)
+          setRouteError(null)
+        }
+      })
+      .catch((error: unknown) => {
+        if (!cancelled) {
+          setRouteError(error instanceof Error ? error.message : String(error))
+        }
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [tour.city])
+
+  // Off-route verdict against the committed geometry, derived per render.
+  // The app never re-routes; this only drives the "you are off route" warning.
+  const routeCoordinates = route?.features[0]?.geometry.coordinates ?? null
+  const distanceToRouteM =
+    phase === 'active' && gps.position && routeCoordinates && routeCoordinates.length > 0
+      ? measureDistanceToRouteM(gps.position, routeCoordinates)
+      : null
+  const isOffRoute =
+    distanceToRouteM !== null && isOffRoutePoint(distanceToRouteM, gps.accuracyM)
+
+  // Initialize narration for current stop
   const initializeNarration = useCallback(
     (stopIndex: number) => {
       const stop = tour.stops[stopIndex]
@@ -118,7 +206,6 @@ export function useTour(tour: Tour): TourState & TourControls {
   // Start GPS and wake lock when tour becomes active
   useEffect(() => {
     if (phase === 'active') {
-      gps.start()
       wakeLock.request()
     } else if (phase === 'idle' || phase === 'completed') {
       gps.stop()
@@ -174,24 +261,38 @@ export function useTour(tour: Tour): TourState & TourControls {
     }
   }, [audioUnlocked])
 
-  const startTour = useCallback(async () => {
+  const startTour = useCallback(() => {
     unlockAudio()
     if (!safetyNoticeSeen) {
       setSafetyNoticeSeen(true)
-      // Show safety notice first, then start
-      return
+      persistSafetyNoticeSeen()
     }
+    // Show the GPS explainer; no permission prompt fires until the walker
+    // taps through it.
+    setPhase('ready')
+  }, [unlockAudio, safetyNoticeSeen])
 
-    // Initialize narration for first stop
+  const activateTour = useCallback(() => {
     initializeNarration(0)
-    setPhase('active')
     setCurrentStopIndex(0)
     setIsAtStop(false)
+    setDistanceToCurrentStop(null)
+    setPhase('active')
+    wakeLock.request()
+  }, [initializeNarration, wakeLock])
 
-    // Request wake lock
-    await wakeLock.request()
+  const startWithLocation = useCallback(() => {
     gps.start()
-  }, [unlockAudio, safetyNoticeSeen, initializeNarration, wakeLock, gps])
+    activateTour()
+  }, [gps, activateTour])
+
+  const startWithoutLocation = useCallback(() => {
+    activateTour()
+  }, [activateTour])
+
+  const enableLocation = useCallback(() => {
+    gps.start()
+  }, [gps])
 
   const pauseTour = useCallback(() => {
     narrationEngine?.pause()
@@ -239,7 +340,6 @@ export function useTour(tour: Tour): TourState & TourControls {
   const previousStop = useCallback(() => {
     if (currentStopIndex > 0) {
       const prevIndex = currentStopIndex - 1
-      setCurrentStopIndex(prevIndex)
       const prevStop = tour.stops[prevIndex]
       const geofence = geofencesRef.current.get(prevStop.id)
       if (geofence) resetGeofence(geofence)
@@ -266,6 +366,7 @@ export function useTour(tour: Tour): TourState & TourControls {
 
   const dismissSafetyNotice = useCallback(() => {
     setSafetyNoticeSeen(true)
+    persistSafetyNoticeSeen()
   }, [])
 
   const currentStop = tour.stops[currentStopIndex] ?? null
@@ -274,14 +375,27 @@ export function useTour(tour: Tour): TourState & TourControls {
     phase,
     currentStopIndex,
     currentStop,
+    nextManeuver: getNextManeuver(route, tour.stops, currentStopIndex),
     distanceToCurrentStop,
+    distanceToRouteM,
     isAtStop,
+    isOffRoute,
+    routeLoaded: route !== null,
+    routeError,
     narration: narrationEngine,
     safetyNoticeSeen,
     userPosition: gps.position,
     userAccuracyM: gps.accuracyM,
     audioUnlocked,
+    gpsSupported: gps.isSupported,
+    gpsPermission: gps.permission,
+    gpsWatching: gps.isWatching,
+    gpsError: gps.error,
+    wakeLock,
     startTour,
+    startWithLocation,
+    startWithoutLocation,
+    enableLocation,
     pauseTour,
     resumeTour,
     stopTour,

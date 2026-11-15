@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { TourHeader } from './components/TourHeader'
 import { Map } from './components/Map'
+import { NavigationPanel } from './components/NavigationPanel'
 import { PlaybackControls } from './components/PlaybackControls'
 import { Transcript } from './components/Transcript'
 import { SafetyNotice } from './components/SafetyNotice'
+import { GpsOnboarding } from './components/GpsOnboarding'
 import { StartScreen } from './components/StartScreen'
 import { CompletedScreen } from './components/CompletedScreen'
 import { useTour } from './hooks/useTour'
@@ -93,21 +95,32 @@ function LoadingScreen() {
 }
 
 function TourApp({ tour }: { tour: Tour }) {
-  const wakeLockSupported = 'wakeLock' in navigator
   const speechSupported = NarrationEngine.isSupported()
 
   const {
     phase,
     currentStopIndex,
     currentStop,
+    nextManeuver,
     distanceToCurrentStop,
     isAtStop,
+    isOffRoute,
+    routeLoaded,
+    routeError,
     narration,
     safetyNoticeSeen,
     userPosition,
     userAccuracyM,
     audioUnlocked,
+    gpsSupported,
+    gpsPermission,
+    gpsWatching,
+    gpsError,
+    wakeLock,
     startTour,
+    startWithLocation,
+    startWithoutLocation,
+    enableLocation,
     pauseTour,
     resumeTour,
     stopTour,
@@ -150,12 +163,19 @@ function TourApp({ tour }: { tour: Tour }) {
           onStartTour={handleStartTour}
         />
 
+        {/* GPS permission onboarding, before any browser prompt */}
+        <GpsOnboarding
+          isOpen={phase === 'ready'}
+          onEnableLocation={startWithLocation}
+          onStartWithoutGps={startWithoutLocation}
+        />
+
         {/* Start Screen */}
         {phase === 'idle' && !showSafetyNotice && (
           <StartScreen
             tour={tour}
             onStartTour={handleStartTour}
-            wakeLockSupported={wakeLockSupported}
+            wakeLockSupported={wakeLock.isSupported}
             speechSupported={speechSupported}
           />
         )}
@@ -173,6 +193,27 @@ function TourApp({ tour }: { tour: Tour }) {
               isAtStop={isAtStop}
               distanceToCurrentStop={distanceToCurrentStop}
             />
+
+            {currentStop && (
+              <NavigationPanel
+                tour={tour}
+                currentStopIndex={currentStopIndex}
+                currentStop={currentStop}
+                nextManeuver={nextManeuver}
+                distanceToNextStopM={distanceToCurrentStop}
+                isAtStop={isAtStop}
+                isOffRoute={isOffRoute}
+                routeLoaded={routeLoaded}
+                routeError={routeError}
+                gpsSupported={gpsSupported}
+                gpsPermission={gpsPermission}
+                gpsWatching={gpsWatching}
+                gpsAccuracyM={userAccuracyM}
+                gpsError={gpsError}
+                wakeLock={wakeLock}
+                onEnableLocation={enableLocation}
+              />
+            )}
 
             <PlaybackControls
               narration={narration}
@@ -196,16 +237,6 @@ function TourApp({ tour }: { tour: Tour }) {
                 currentSentenceIndex={narration.getState().currentSentenceIndex}
                 isPlaying={narration.getState().isPlaying}
               />
-            )}
-
-            {/* Wake lock status indicator */}
-            {!wakeLockSupported && (
-              <div className="card card-quiet" role="status">
-                <p style={{ fontSize: '0.85rem', color: 'var(--ink-faint)' }}>
-                  ⚠ Wake Lock not supported in this browser. Screen may dim and GPS may
-                  pause.
-                </p>
-              </div>
             )}
           </>
         )}

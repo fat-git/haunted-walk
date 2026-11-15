@@ -7,12 +7,16 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import type { GeoPoint } from '../lib/geofence'
 
+export type GeolocationPermissionState = 'granted' | 'denied' | 'prompt' | 'unknown'
+
 export interface GPSState {
   position: GeoPoint | null
   accuracyM: number | null
   error: GeolocationPositionError | null
   isSupported: boolean
   isWatching: boolean
+  /** Live geolocation permission state, where the Permissions API offers it. */
+  permission: GeolocationPermissionState
 }
 
 export interface GPSOptions {
@@ -39,9 +43,37 @@ export function useGPS(
     error: null,
     isSupported: 'geolocation' in navigator,
     isWatching: false,
+    permission: 'unknown',
   })
   const watchIdRef = useRef<number | null>(null)
   const isMountedRef = useRef(true)
+
+  // Track the geolocation permission state where the Permissions API offers
+  // it (Android Chrome; iOS Safari throws and we stay 'unknown').
+  useEffect(() => {
+    if (!('permissions' in navigator)) return
+
+    let status: PermissionStatus | null = null
+    navigator.permissions
+      .query({ name: 'geolocation' })
+      .then((result) => {
+        if (!isMountedRef.current) return
+        status = result
+        setState((s) => ({ ...s, permission: result.state }))
+        result.onchange = () => {
+          if (isMountedRef.current) {
+            setState((s) => ({ ...s, permission: result.state }))
+          }
+        }
+      })
+      .catch(() => {
+        // Permissions API unavailable for geolocation: leave 'unknown'.
+      })
+
+    return () => {
+      if (status) status.onchange = null
+    }
+  }, [])
 
   const start = useCallback(() => {
     if (!state.isSupported || watchIdRef.current !== null) return
