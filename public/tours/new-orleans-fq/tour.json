@@ -8,8 +8,8 @@
     {
       "id": "st-louis-cemetery-no-1",
       "name": "St. Louis Cemetery No. 1",
-      "lat": 29.9594151,
-      "lon": -90.0715037,
+      "lat": 29.95898,
+      "lon": -90.07065,
       "address": "425 Basin St, New Orleans, LA 70112",
       "viewpoint": {
         "lat": 29.95898,
@@ -18,7 +18,7 @@
         "description": "Public sidewalk on Basin Street beside the cemetery's east wall, just outside the 425 Basin St entrance."
       },
       "geofenceRadiusM": 30,
-      "narration": "You are standing outside St. Louis Cemetery No. 1, the oldest surviving cemetery in New Orleans. It opened in 1789, just beyond the walls of the old French city, after the previous burial ground on St. Peter Street had filled and officials worried about disease. The tombs beyond this wall are above-ground vaults, a burial form associated with the city's French and Spanish heritage and its high water table. The cemetery is still in use, and it is also the resting place of Marie Laveau, the nineteenth-century Vodou practitioner often called the Voodoo Queen. Legend says that Laveau's spirit still answers petitions at her family tomb, and visitors once marked the tomb with Xs, knocked, and made wishes. Those marks damaged the brick, and today the cemetery is open only to approved guided tours. We are not going inside. From this public sidewalk you can see the whitewashed tombs and the wall vaults without crossing the gate. Treat what follows as legend, not verified fact: some tour guides say the cemetery's dead walk among the tombs at night. The historical record tells us the cemetery is real, Laveau was buried here, and the above-ground tombs were built for a wet, low-lying city. The ghost stories belong to the city's folklore.",
+      "narration": "You are standing outside St. Louis Cemetery No. 1, the oldest surviving cemetery in New Orleans. It opened in 1789, then outside the city limits, replacing the older St. Peter burial ground after the city was redesigned following the fire of 1788. The tombs beyond this wall are above-ground vaults, a burial form associated with the city's French and Spanish heritage and its high water table. The cemetery is still in use, and it is also the resting place of Marie Laveau, the nineteenth-century Vodou practitioner often called the Voodoo Queen. Legend says that Laveau's spirit still answers petitions at her family tomb, and visitors once marked the tomb with Xs, knocked, and made wishes. Those marks damaged the brick, and today the cemetery is open only to approved guided tours. We are not going inside. From this public sidewalk you can see the whitewashed tombs and the wall vaults without crossing the gate. Treat what follows as legend, not verified fact: some tour guides say the cemetery's dead walk among the tombs at night. The historical record tells us the cemetery is real, Laveau was buried here, and the above-ground tombs were built for a wet, low-lying city. The ghost stories belong to the city's folklore.",
       "legendLabel": "Legend",
       "sources": [
         "https://nolacatholiccemeteries.org/st-louis-cemetery-1",
@@ -27,10 +27,131 @@
       ]
     },
     {
+      "id": "marie-laveau-house-site",
+      "name": "Marie Laveau's House Site",
+      "lat": 29.9609227,
+      "lon": -90.0671533,
+      "address": "1020 St Ann St, New Orleans, LA 70116",
+      "viewpoint": {
+        "lat": 29.96094,
+        "lon": -90.06715,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on St. Ann Street at the 1000 block, where the Laveau cottage stood."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on St. Ann Street, near the ground where Marie Laveau's house once stood. Marie Catherine Laveau was born a free woman of color in New Orleans in 1801, and in time she became the most famous Voodoo practitioner in the city. The documentary record shows a working woman: a hairdresser to wealthy families, an herbalist who nursed the sick during the yellow-fever epidemic of 1878, a midwife, and a Catholic who visited condemned prisoners in their last days. According to that record, her home here on St. Ann Street was one of the three places where she received people, alongside Congo Square and the shore of Lake Pontchartrain. The cottage on this lot was demolished in 1903. Legend says she won this house through a courtroom favor: a wealthy man promised her a home on St. Ann Street if she could free his son, who was on trial. She prayed for weeks with hot guinea peppers held in her mouth, then slipped the peppers beneath the judge's seat, and the young man was cleared. Treat that as folklore: it is a story told about her, not a verified record. What is documented is her life, her death in 1881, and her tomb in St. Louis Cemetery No. 1, where this tour began. Stay on the public sidewalk — the lot holds newer buildings now, and the legend outlived the house.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://neworleanshistorical.org/items/show/1610",
+        "https://en.wikipedia.org/wiki/Marie_Laveau"
+      ]
+    },
+    {
+      "id": "lalaurie-mansion",
+      "name": "LaLaurie Mansion",
+      "lat": 29.9618451,
+      "lon": -90.061212,
+      "address": "1140 Royal St, New Orleans, LA 70116",
+      "viewpoint": {
+        "lat": 29.96186,
+        "lon": -90.06121,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Royal Street in front of 1140."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "The tall house at 1140 Royal Street is the most famous haunted address in New Orleans, and its true history is grim enough that the truth needs no decoration. In April of 1834, a fire broke out in the mansion of Delphine LaLaurie, a wealthy society woman at the center of Creole high life. Rescuers who came to fight the fire found enslaved people locked in the attic, bound and showing signs of long abuse — a contemporary newspaper account describes seven of them, horribly mutilated. The city answered with fury: a crowd of thousands gathered, and the mansion was ransacked. Delphine LaLaurie escaped, and is believed to have fled to Paris. The house standing today was built in 1838. That is the documented history, and it is well documented. Everything above it is folklore. Legend says screams still echo on Royal Street and that the ghosts of the abused pace the balconies. Writers and films have added details over the years, which is exactly why the legend label on this stop matters. The mansion is a private residence today. We stop on the public sidewalk of Royal Street, look up at the ironwork, and keep the line between the fire of 1834 and everything the storytellers built on top of it.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://neworleanshistorical.org/items/show/1492",
+        "https://64parishes.org/entry/delphine-lalaurie",
+        "https://en.wikipedia.org/wiki/Delphine_LaLaurie"
+      ]
+    },
+    {
+      "id": "lafittes-blacksmith-shop",
+      "name": "Lafitte's Blacksmith Shop",
+      "lat": 29.9610508,
+      "lon": -90.0635754,
+      "address": "941 Bourbon St, New Orleans, LA 70116",
+      "viewpoint": {
+        "lat": 29.96103,
+        "lon": -90.06358,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Bourbon Street in front of 941, at the bar's entrance."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "This low slate-roofed building at 941 Bourbon Street is one of the oldest surviving structures in the French Quarter. The documentary record dates it between 1772 and 1791, which makes it older than the American flag over New Orleans, and in 1970 the federal government listed it as a National Historic Landmark. Today it is a bar called Lafitte's Blacksmith Shop. Legend says the name is literal: that Jean Lafitte, the privateer and smuggler whose name is all over this city's stories, kept this shop as a front — hammering iron by day, running contraband by night. It is a wonderful story, and it is folklore. A historian who searched the property records of the period found no Lafitte connected to this building at all. What the record gives us is an exceptionally old building that picked up a pirate's name somewhere along the way and kept it, because the name fits the candlelight and the shadowed corners. People tell ghost stories about the bar too, and a place with this much legend attached was always going to collect them. The documented facts are the building's age and the legend's persistence; the rest belongs to folklore. We stay on the public sidewalk. The bar is a business — go in if you choose, but listen from the street.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://neworleanshistorical.org/items/show/616",
+        "https://en.wikipedia.org/wiki/Lafitte%27s_Blacksmith_Shop"
+      ]
+    },
+    {
+      "id": "andrew-jackson-hotel",
+      "name": "The Andrew Jackson Hotel",
+      "lat": 29.9598944,
+      "lon": -90.0631532,
+      "address": "919 Royal St, New Orleans, LA 70116",
+      "viewpoint": {
+        "lat": 29.95989,
+        "lon": -90.06318,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Royal Street in front of 919."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "Across Royal Street, at number 919, stands the Andrew Jackson Hotel, and the ground behind its wrought-iron gallery has stacked up more than one hard history. In 1792, under the Spanish colonial government, the site opened as a boarding school and orphanage for boys whose parents had died in the yellow-fever epidemics. In the great fire of 1794 that consumed much of the Quarter, the orphanage burned with five young boys inside. Afterward, the law took over: a United States federal courthouse stood on this site, and this is the courthouse that fined General Andrew Jackson one thousand dollars for contempt of court in 1815. Jackson had put the city under martial law during the British invasion, kept it standing after his victory at the Battle of New Orleans, arrested a state legislator who objected, and jailed the judge who ordered the man freed. When the general finally lifted martial law, the judge fined him, and Jackson paid. The courthouse later came down, and the hotel building went up in 1890; it is listed on the National Register of Historic Places. Then the ghosts — and these the hotel tells you itself, inviting you to decide: a young ghost called Armand who wakes guests with laughter or pushes them out of bed; the orphanage's caretaker, still smoothing pillows; and the general himself, striding the hallways. That is the hotel's own legend, told by the hotel. We stay on the public sidewalk.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://www.andrewjacksonhotel.com/about-us",
+        "https://en.wikipedia.org/wiki/Legal_affairs_of_Andrew_Jackson"
+      ]
+    },
+    {
+      "id": "pirates-alley",
+      "name": "Pirate's Alley",
+      "lat": 29.9576172,
+      "lon": -90.0645451,
+      "address": "Pirate's Alley (near 615 St Peter St), New Orleans, LA 70116",
+      "viewpoint": {
+        "lat": 29.95762,
+        "lon": -90.06454,
+        "access": "public-sidewalk",
+        "description": "Public way of Pirate's Alley at its Royal Street end, beside the Arsenal block."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "This narrow brick channel between St. Louis Cathedral and the Cabildo has carried more than one name. On the old maps it is Orleans Alley; the name Pirate's Alley came later, and it is built on legend. The story says pirates rowed up from the river and slipped down this passage into town, and that smugglers and criminals were marched along it to the Spanish prison that once stood behind the Cabildo. There is real history braided into that tale: a prison — the Calabozo — did stand on this block, and in 1814 it held Pierre Lafitte, brother of the famous Jean, in chains. He escaped on the sixth of September, 1814, and later served with the American forces at the Battle of New Orleans. The prison was demolished in 1837, and the Arsenal standing behind the Cabildo today took its place. The pirate part — the midnight rowboats, the smugglers' shortcut — is folklore, the kind that ends up naming streets. The alley's documented fame is literary: in 1925 the novelist William Faulkner lived in a first-floor apartment at number 624, halfway down this passage, during a short stay in New Orleans that shaped his later work. Walk its single block from Chartres to Royal — it is a public way — and enjoy what it really is: an ordinary alley wearing a pirate's name, because a good story beat the paperwork.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://neworleanshistorical.org/items/show/516",
+        "https://neworleanshistorical.org/items/show/1396"
+      ]
+    },
+    {
+      "id": "napoleon-house",
+      "name": "The Napoleon House",
+      "lat": 29.9558596,
+      "lon": -90.0650706,
+      "address": "500 Chartres St, New Orleans, LA 70130",
+      "viewpoint": {
+        "lat": 29.95586,
+        "lon": -90.0651,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Chartres Street in front of 500, facing the stucco facade."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "This pale stucco house at 500 Chartres Street is called the Napoleon House, and it carries one of the Quarter's favorite legends. The building dates to the 1790s, and its best-remembered owner is Nicholas Girod, an early mayor of New Orleans. Legend says Girod meant the house as a refuge for Napoleon Bonaparte: that after the emperor's defeat and exile, the mayor offered this residence to him, and that New Orleans privateers — the Lafitte brothers among them, so the story goes — would sail south and bring the emperor home to Chartres Street. It never happened. Napoleon died on the remote island of Saint Helena in 1821, and no emperor ever crossed this threshold. Historians treat the rescue plot as exactly that — a plot, a story told and retold until it stuck to the walls. The name stuck too, and the house has served drinks under it for generations. What is documented is the house's age, Girod's ownership, and the emperor's death in 1821; the rescue belongs to folklore. You are on the public sidewalk of Chartres Street. The front room glows warmly at dusk. Napoleon never sat there — the legend is the only part of him that ever arrived.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://neworleanshistorical.org/items/show/263",
+        "https://en.wikipedia.org/wiki/Napoleon_House"
+      ]
+    },
+    {
       "id": "french-opera-house-site",
       "name": "The French Opera House Site",
-      "lat": 29.9577497,
-      "lon": -90.066653,
+      "lat": 29.95784,
+      "lon": -90.0663,
       "address": "541 Bourbon St, New Orleans, LA 70130",
       "viewpoint": {
         "lat": 29.95784,
@@ -39,12 +160,52 @@
         "description": "Public sidewalk at the northeast corner of Bourbon and Toulouse Streets, across from the hotel that now occupies the site."
       },
       "geofenceRadiusM": 30,
-      "narration": "This corner of Bourbon and Toulouse Streets was once the site of the French Opera House, for sixty years one of the cultural centers of New Orleans. The building opened in 1859, designed by James Gallier Jr., and it hosted opera, Carnival balls, and society events. For many Creole families it was the heart of the Quarter's social life. On the night of December 3, 1919, after a rehearsal of Carmen, a fire broke out. By morning the opera house was in ruins. The Times-Picayune wrote that the heart of the old French Quarter had stopped beating. The site stayed empty for decades, and a hotel now stands here. Legend says the music never entirely left. Some tour guides claim that on quiet nights you can still hear an aria, or see a woman in nineteenth-century evening dress waiting for a carriage that never comes. Those stories are folklore, not documented history. What is documented is the fire, the loss, and the role the opera house played in the life of the city. We are viewing the corner from the public sidewalk, so please do not go inside the hotel. Look at the ordinary corner and imagine the grand hall that once filled it, lit for a performance, with the whole Quarter arriving in evening dress.",
+      "narration": "This corner of Bourbon and Toulouse Streets was once the site of the French Opera House, for sixty years one of the cultural centers of New Orleans. The building opened in 1859, designed by James Gallier Jr., and it hosted opera, Carnival balls, and society events. For many Creole families it was the heart of the Quarter's social life. On the night of December 3, 1919, after a rehearsal of Carmen, a fire broke out. By morning the opera house was in ruins. The Times-Picayune wrote that the heart of the old French Quarter had stopped beating. A hotel stands on the corner now. We have found no documented haunting for this spot, so we leave the ghosts out and keep what is on the record: the fire, the loss, and the role the opera house played in the life of the city. We are viewing the corner from the public sidewalk, so please do not go inside the hotel. Look at the ordinary corner and imagine the grand hall that once filled it, lit for a performance, with the whole Quarter arriving in evening dress.",
       "legendLabel": "Legend",
       "sources": [
         "https://neworleanshistorical.org/items/show/260",
         "https://hgghh.org/exhibitions/french-opera-house",
         "https://acloserwalknola.com/places/french-opera-house"
+      ]
+    },
+    {
+      "id": "rising-sun-hotel-site",
+      "name": "The Rising Sun Hotel Site",
+      "lat": 29.9549056,
+      "lon": -90.0655314,
+      "address": "535 Conti St, New Orleans, LA 70130",
+      "viewpoint": {
+        "lat": 29.95491,
+        "lon": -90.06553,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Conti Street in front of 535."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "This stretch of Conti Street hides the address behind one of the most famous songs in American music. In 1821, an advertisement in the Louisiana Gazette announced the Rising Sun Hotel here at 535 Conti, promising the best entertainment the house had enjoyed for twenty years past. The hotel burned to the ground in 1822, and a later building on the lot suffered another fire late in the century. In 2005, archaeologists excavated the site — the parking garage then occupying it — and pulled burned glassware, jewelry, and a striking number of small rouge pots out of the 1822 fire layer. The rouge pots suggested a brothel, and the story caught on. Here is the honest state of the evidence: the Rising Sun Hotel on Conti Street is real and documented, but the claim that it inspired the song 'The House of the Rising Sun' is legend. The song is far older than any New Orleans story about it — musicologists trace it to English and Appalachian folk traditions, its authorship is unknown, and 'Rising Sun' was simply a common name for taverns on both sides of the Atlantic. The Animals carried their version to number one in 1964, and the Conti Street hotel is one of several places the legend names. So: a documented hotel, a documented fire, a documented excavation — and a legend wearing the melody. Stand on the public sidewalk of Conti Street and let the chorus do the rest.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://neworleanshistorical.org/items/show/1281",
+        "https://en.wikipedia.org/wiki/The_House_of_the_Rising_Sun"
+      ]
+    },
+    {
+      "id": "old-absinthe-house",
+      "name": "The Old Absinthe House",
+      "lat": 29.9553574,
+      "lon": -90.0684677,
+      "address": "240 Bourbon St, New Orleans, LA 70130",
+      "viewpoint": {
+        "lat": 29.95537,
+        "lon": -90.06848,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk at the Bourbon and Bienville corner, outside 240 Bourbon."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "On the corner of Bourbon and Bienville stands a plain two-story stucco building that carries one of the great legends of the Battle of New Orleans. The building itself is genuinely old: it was completed around 1806, first used as a grocery, with the ground floor running as a bar by the 1830s. By 1869 it advertised itself as the Absinthe House, and around 1870 its bartender, Cayetano Ferrer, helped make it famous for a single drink — the absinthe frappe, absinthe and sugar water, which regulars called the green monster. In 1912 the United States government banned the importation and sale of absinthe, and newspapers called the ban the house's death knell. The legend, though, is older than all of that: that in the weeks before the Battle of New Orleans, General Andrew Jackson met the privateer Jean Lafitte in a secret chamber on the second floor of this building to plan the city's defense. In 1950 the bar installed a plaque saying so. In 1951 a rival saloon on Chartres Street went to court over the right to claim the same meeting, and a Civil District Court judge dismissed the case with a line worth keeping: 'Legend means nothing more than hearsay or a story handed down from the past.' That is exactly how we tell it here — the meeting is legend, the drinking history is documented. You are on the public sidewalk; the plaque and the bar are inside.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://neworleanshistorical.org/items/show/619",
+        "https://en.wikipedia.org/wiki/Old_Absinthe_House"
       ]
     }
   ]

@@ -7,10 +7,15 @@
         "type": "LineString",
         "coordinates": [
           [-90.07065, 29.95898],
-          [-90.0706282, 29.9594187],
-          [-90.0670708, 29.957019],
-          [-90.0663576, 29.9578122],
-          [-90.0663, 29.95784]
+          [-90.06715, 29.96094],
+          [-90.06121, 29.96186],
+          [-90.06358, 29.96103],
+          [-90.06318, 29.95989],
+          [-90.06454, 29.95762],
+          [-90.0651, 29.95586],
+          [-90.0663, 29.95784],
+          [-90.06553, 29.95491],
+          [-90.06848, 29.95537]
         ]
       },
       "properties": {
@@ -24,16 +29,83 @@
     "city": "new-orleans-fq",
     "tour": "french-quarter-ghosts",
     "status": "placeholder",
-    "note": "Hand-authored scaffolding geometry between the two sample stops. T2.2 replaces this with a walking route computed at build time.",
-    "generatedAt": "2026-11-15T01:46:19Z",
-    "stops": ["st-louis-cemetery-no-1", "french-opera-house-site"],
+    "note": "Placeholder straight-line geometry between stop viewpoints. T2.2 (FAT-21) replaces this with a walking route computed at build time.",
+    "generatedAt": "2026-11-15T17:10:00Z",
+    "stops": [
+      "st-louis-cemetery-no-1",
+      "marie-laveau-house-site",
+      "lalaurie-mansion",
+      "lafittes-blacksmith-shop",
+      "andrew-jackson-hotel",
+      "pirates-alley",
+      "napoleon-house",
+      "french-opera-house-site",
+      "rising-sun-hotel-site",
+      "old-absinthe-house"
+    ],
     "maneuvers": [
       {
         "from": "st-louis-cemetery-no-1",
+        "to": "marie-laveau-house-site",
+        "instruction": "Head to Marie Laveau's House Site. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 401,
+        "durationS": 308
+      },
+      {
+        "from": "marie-laveau-house-site",
+        "to": "lalaurie-mansion",
+        "instruction": "Head to LaLaurie Mansion. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 581,
+        "durationS": 447
+      },
+      {
+        "from": "lalaurie-mansion",
+        "to": "lafittes-blacksmith-shop",
+        "instruction": "Head to Lafitte's Blacksmith Shop. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 246,
+        "durationS": 189
+      },
+      {
+        "from": "lafittes-blacksmith-shop",
+        "to": "andrew-jackson-hotel",
+        "instruction": "Head to The Andrew Jackson Hotel. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 132,
+        "durationS": 102
+      },
+      {
+        "from": "andrew-jackson-hotel",
+        "to": "pirates-alley",
+        "instruction": "Head to Pirate's Alley. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 284,
+        "durationS": 218
+      },
+      {
+        "from": "pirates-alley",
+        "to": "napoleon-house",
+        "instruction": "Head to The Napoleon House. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 203,
+        "durationS": 156
+      },
+      {
+        "from": "napoleon-house",
         "to": "french-opera-house-site",
-        "instruction": "Walk north to St. Louis Street, turn right and continue east to Bourbon Street, then turn left and walk north to Toulouse Street.",
-        "distanceM": 480,
-        "durationS": 350
+        "instruction": "Head to The French Opera House Site. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 249,
+        "durationS": 192
+      },
+      {
+        "from": "french-opera-house-site",
+        "to": "rising-sun-hotel-site",
+        "instruction": "Head to The Rising Sun Hotel Site. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 334,
+        "durationS": 257
+      },
+      {
+        "from": "rising-sun-hotel-site",
+        "to": "old-absinthe-house",
+        "instruction": "Head to The Old Absinthe House. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 289,
+        "durationS": 222
       }
     ]
   }
