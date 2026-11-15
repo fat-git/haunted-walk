@@ -4,10 +4,11 @@
  * Displays the tour route, stops, user position, and geofence circles.
  */
 
-import { useEffect, useRef, useMemo } from 'react'
+import { useEffect, useRef, useMemo, useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import type { Tour } from '../types/tour'
+import { withBase } from '../lib/url'
+import type { Tour, RouteFile } from '../types/tour'
 import type { GeoPoint } from '../lib/geofence'
 
 // Fix Leaflet default icon paths
@@ -44,6 +45,24 @@ export function Map({
   const userMarkerRef = useRef<L.CircleMarker | null>(null)
   const accuracyCircleRef = useRef<L.Circle | null>(null)
   const geofenceCircleRef = useRef<L.Circle | null>(null)
+  const routeLayerRef = useRef<L.LayerGroup | null>(null)
+  const [routeData, setRouteData] = useState<RouteFile | null>(null)
+
+  // Load route.geojson
+  useEffect(() => {
+    const routeUrl = withBase(`tours/${tour.city}/${tour.id}/route.geojson`)
+    fetch(routeUrl)
+      .then((res) => {
+        if (!res.ok) throw new Error(`Failed to load route: ${res.status}`)
+        return res.json()
+      })
+      .then((data: RouteFile) => {
+        setRouteData(data)
+      })
+      .catch(() => {
+        // Silently fail - will fall back to stop-to-stop lines
+      })
+  }, [tour.city, tour.id])
 
   // Initialize map
   const initialLat = tour.stops[0]?.lat
@@ -73,6 +92,9 @@ export function Map({
     // Add markers layer
     markersRef.current.addTo(map)
 
+    // Add route layer
+    routeLayerRef.current = L.layerGroup().addTo(map)
+
     // Add zoom control in bottom right
     L.control.zoom({ position: 'bottomright' }).addTo(map)
 
@@ -83,7 +105,35 @@ export function Map({
     }
   }, [initialLat, initialLon])
 
-  // Render stops and route when map is ready
+  // Render route when route data is loaded
+  useEffect(() => {
+    const map = mapInstanceRef.current
+    const routeLayer = routeLayerRef.current
+    if (!map || !routeLayer || !routeData) return
+
+    routeLayer.clearLayers()
+
+    const isPlaceholder = routeData.metadata.status === 'placeholder'
+    const routeFeature = routeData.features[0]
+    if (!routeFeature) return
+
+    const coordinates = routeFeature.geometry.coordinates
+    // GeoJSON is [lon, lat], Leaflet expects [lat, lon]
+    const latLngs = coordinates.map(([lon, lat]) => [lat, lon] as [number, number])
+
+    const routeLine = L.polyline(latLngs, {
+      color: isPlaceholder ? '#f0b45c' : '#26262f',
+      weight: 3,
+      opacity: 0.8,
+      dashArray: isPlaceholder ? '8, 6' : undefined,
+      lineCap: 'round',
+      lineJoin: 'round',
+      className: isPlaceholder ? 'route-placeholder' : 'route-computed',
+    })
+    routeLayer.addLayer(routeLine)
+  }, [routeData])
+
+  // Render stops when map is ready
   useEffect(() => {
     const map = mapInstanceRef.current
     if (!map) return
@@ -92,25 +142,6 @@ export function Map({
     layerGroup.clearLayers()
 
     const currentStop = tour.stops[currentStopIndex]
-
-    // Add route line if we have multiple stops
-    if (tour.stops.length > 1) {
-      const coordinates = tour.stops.map(
-        (stop) => [stop.lon, stop.lat] as [number, number],
-      )
-      const routeLine = L.polyline(
-        coordinates.map(([lon, lat]) => [lat, lon]),
-        {
-          color: '#f0b45c',
-          weight: 3,
-          opacity: 0.8,
-          dashArray: '8, 6',
-          lineCap: 'round',
-          lineJoin: 'round',
-        },
-      )
-      layerGroup.addLayer(routeLine)
-    }
 
     // Add stop markers
     tour.stops.forEach((stop, index) => {

@@ -8,19 +8,30 @@ import { StartScreen } from './components/StartScreen'
 import { CompletedScreen } from './components/CompletedScreen'
 import { useTour } from './hooks/useTour'
 import { NarrationEngine } from './lib/narration'
-import type { Tour } from './types/tour'
+import { withBase } from './lib/url'
+import type { Tour, CityRegistry, CityEntry } from './types/tour'
 import './App.css'
 
-const PILOT_CITY = 'New Orleans French Quarter'
-
-/** Load the tour data from the public folder. */
+/** Load the tour data from the registry, resolving the default tour for the first city. */
 async function loadTour(): Promise<Tour> {
-  const basePath = '/haunted-walk/'
-  const response = await fetch(`${basePath}tours/new-orleans-fq/tour.json`)
-  if (!response.ok) {
-    throw new Error(`Failed to load tour: ${response.status}`)
+  const registryUrl = withBase('tours/index.json')
+  const registryResponse = await fetch(registryUrl)
+  if (!registryResponse.ok) {
+    throw new Error(`Failed to load tour registry: ${registryResponse.status}`)
   }
-  return response.json()
+  const registry: CityRegistry = await registryResponse.json()
+
+  const city: CityEntry | undefined = registry.cities[0]
+  if (!city) {
+    throw new Error('No cities found in tour registry')
+  }
+
+  const tourUrl = withBase(`tours/${city.id}/${city.defaultTour}/tour.json`)
+  const tourResponse = await fetch(tourUrl)
+  if (!tourResponse.ok) {
+    throw new Error(`Failed to load tour: ${tourResponse.status}`)
+  }
+  return tourResponse.json()
 }
 
 function ErrorScreen({ message }: { message: string }) {
@@ -38,9 +49,7 @@ function ErrorScreen({ message }: { message: string }) {
         </section>
       </main>
       <footer className="footer">
-        <p>
-          {PILOT_CITY}. No accounts, no analytics. Your location never leaves your device.
-        </p>
+        <p>No accounts, no analytics. Your location never leaves your device.</p>
         <p>
           Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>{' '}
           contributors, available under the Open Database License.
@@ -66,9 +75,7 @@ function LoadingScreen() {
         </section>
       </main>
       <footer className="footer">
-        <p>
-          {PILOT_CITY}. No accounts, no analytics. Your location never leaves your device.
-        </p>
+        <p>No accounts, no analytics. Your location never leaves your device.</p>
         <p>
           Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>{' '}
           contributors, available under the Open Database License.
@@ -202,9 +209,7 @@ function TourApp({ tour }: { tour: Tour }) {
       </main>
 
       <footer className="footer">
-        <p>
-          {PILOT_CITY}. No accounts, no analytics. Your location never leaves your device.
-        </p>
+        <p>No accounts, no analytics. Your location never leaves your device.</p>
         <p>
           Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>{' '}
           contributors, available under the Open Database License.
