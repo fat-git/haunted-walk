@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
 interface Props {
-  error: string | null;
-  onStart: () => void;
+  error: string | null
+  onStart: () => void
 }
 
 export default function StartScreen({ error, onStart }: Props) {
-  const [agreed, setAgreed] = useState(false);
+  const [agreed, setAgreed] = useState(false)
 
   return (
     <div className="screen start-screen">
@@ -31,7 +31,8 @@ export default function StartScreen({ error, onStart }: Props) {
           <li>The screen stays awake during the tour so GPS keeps working.</li>
         </ul>
         <p className="hint">
-          Audio cannot play until you tap below. Your first tap unlocks speech on this device.
+          Audio cannot play until you tap below. Your first tap unlocks speech on this
+          device.
         </p>
       </section>
 
@@ -44,16 +45,11 @@ export default function StartScreen({ error, onStart }: Props) {
         I have read the safety notice and I agree to use this app responsibly.
       </label>
 
-      <button
-        className="start-button"
-        disabled={!agreed}
-        onClick={onStart}
-        type="button"
-      >
+      <button className="start-button" disabled={!agreed} onClick={onStart} type="button">
         Start Tour
       </button>
 
       {error && <p className="error">{error}</p>}
     </div>
-  );
+  )
 }
