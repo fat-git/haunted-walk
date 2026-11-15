@@ -16,11 +16,14 @@ const OSM_TILE_ORIGINS = 'https://tile.openstreetmap.org https://*.tile.openstre
  * index.html because Vite's dev server and React Fast Refresh use inline
  * scripts that a strict `script-src 'self'` would block. Production output,
  * which is what GitHub Pages serves, never contains those inline scripts.
+ * Leaflet and React both set styles through the DOM API or a stylesheet
+ * file, so no `style-src 'unsafe-inline'` is needed; scripts/check-dist-secrets.mjs
+ * fails the build if 'unsafe-inline' sneaks back in.
  */
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
   "script-src 'self'",
-  "style-src 'self' 'unsafe-inline'",
+  "style-src 'self'",
   `img-src 'self' data: ${OSM_TILE_ORIGINS}`,
   `connect-src 'self' ${OSM_TILE_ORIGINS}`,
   "font-src 'self' data:",
@@ -65,7 +68,11 @@ export default defineConfig({
       // Registration is explicit in src/main.tsx so the scope is obvious and
       // testable. The plugin still generates sw.js and manifest.webmanifest.
       injectRegister: false,
-      includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
+      includeManifestIcons: false,
+      // The manifest icons are precached by the globPatterns below, so
+      // `includeManifestIcons` must be false or the plugin would inject them
+      // a second time. `includeAssets` stays unset for the same reason, and
+      // the generated manifest.webmanifest is added to precache by the plugin.
       manifest: {
         id: BASE_PATH,
         name: 'Haunted Walk',
@@ -102,7 +109,10 @@ export default defineConfig({
       workbox: {
         // Precache the app shell and every shipped tour file so the tour
         // survives a dead spot. Tour data lives under /tours/.
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2,json,geojson,webmanifest}'],
+        // `webmanifest` is deliberately absent: the plugin adds the generated
+        // manifest.webmanifest to precache itself (above), and a glob match
+        // here would duplicate it. README.md is not precached on purpose.
+        globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2,json,geojson}'],
         navigateFallback: `${BASE_PATH}index.html`,
         navigateFallbackAllowlist: [/^\/haunted-walk\//],
         cleanupOutdatedCaches: true,

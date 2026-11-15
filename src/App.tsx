@@ -59,7 +59,10 @@ function ErrorScreen({ message }: { message: string }) {
         </section>
       </main>
       <footer className="footer">
-        <p>No accounts, no analytics. Your location never leaves your device.</p>
+        <p>
+          No accounts, no analytics. Your position stays on your device; map tiles come
+          from OpenStreetMap, which sees the area you view.
+        </p>
         <p>
           Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>{' '}
           contributors, available under the Open Database License.
@@ -85,7 +88,10 @@ function LoadingScreen() {
         </section>
       </main>
       <footer className="footer">
-        <p>No accounts, no analytics. Your location never leaves your device.</p>
+        <p>
+          No accounts, no analytics. Your position stays on your device; map tiles come
+          from OpenStreetMap, which sees the area you view.
+        </p>
         <p>
           Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>{' '}
           contributors, available under the Open Database License.
@@ -296,7 +302,10 @@ function TourApp({ tour }: { tour: Tour }) {
       </main>
 
       <footer className="footer">
-        <p>No accounts, no analytics. Your location never leaves your device.</p>
+        <p>
+          No accounts, no analytics. Your position stays on your device; map tiles come
+          from OpenStreetMap, which sees the area you view.
+        </p>
         <p>
           Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>{' '}
           contributors, available under the Open Database License.

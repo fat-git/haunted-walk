@@ -2,7 +2,7 @@
  * GPS permission onboarding.
  *
  * Shown before the browser's permission prompt is allowed to fire: the walker
- * reads why the tour needs location, that it never leaves the device, and then
+ * reads why the tour needs location, that it stays on the device, and then
  * chooses to enable it or start without it. `gps.start()` is only called after
  * the "Enable location access" tap.
  */
@@ -77,8 +77,9 @@ export function GpsOnboarding({
           </p>
 
           <p>
-            <strong>Your position never leaves your device.</strong> No accounts, no
-            analytics, nothing is uploaded or shared.
+            <strong>Your position stays on your device.</strong> No accounts, no
+            analytics, nothing is uploaded or shared. The only network traffic is the map
+            tiles you view, fetched from OpenStreetMap.
           </p>
 
           <p>
