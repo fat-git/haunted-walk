@@ -3,15 +3,13 @@ import { MapContainer, TileLayer, Marker, Popup, Polyline, Circle } from 'react-
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { TourMetadata, TourStop } from '../types/tour';
-import { loadRoute, mapDeepLink } from '../services/tourLoader';
+import { loadRoute, mapDeepLink, TILE_URL, TILE_ATTRIBUTION, TILE_SUBDOMAINS } from '../services/tourLoader';
 import { useGeofence } from '../hooks/useGeofence';
 import { useNarration } from '../hooks/useNarration';
 import { useWakeLock } from '../hooks/useWakeLock';
 
 const DEFAULT_CENTER: [number, number] = [29.9511, -90.064];
 const DEFAULT_ZOOM = 16;
-
-const OSM_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
 function CustomMarker({ stop, isCurrent }: { stop: TourStop; isCurrent: boolean }) {
   return (
@@ -111,8 +109,9 @@ export default function MapScreen({ tour }: { tour: TourMetadata }) {
           style={{ width: '100%', height: '100%' }}
         >
           <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution={OSM_ATTRIBUTION}
+            url={TILE_URL}
+            attribution={TILE_ATTRIBUTION}
+            subdomains={TILE_SUBDOMAINS}
             maxZoom={19}
           />
           {route && route.features[0]?.geometry?.type === 'LineString' && (
