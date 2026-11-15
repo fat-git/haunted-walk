@@ -1,0 +1,10 @@
+{
+  "cities": [
+    {
+      "id": "new-orleans-fq",
+      "name": "New Orleans French Quarter",
+      "defaultTour": "french-quarter-ghosts",
+      "description": "A self-guided walking ghost tour through the historic French Quarter"
+    }
+  ]
+}

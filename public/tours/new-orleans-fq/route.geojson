@@ -1,0 +1,42 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-90.0625, 29.9578],
+          [-90.0620, 29.9575],
+          [-90.0610, 29.9565],
+          [-90.0600, 29.9555],
+          [-90.0590, 29.9545],
+          [-90.0587, 29.9535],
+          [-90.0586, 29.9520],
+          [-90.0585, 29.9505],
+          [-90.0586, 29.9490],
+          [-90.0587, 29.9486]
+        ]
+      },
+      "properties": {
+        "name": "French Quarter walking route",
+        "mode": "walking"
+      }
+    }
+  ],
+  "metadata": {
+    "city": "new-orleans-fq",
+    "tour": "french-quarter-ghosts",
+    "generatedAt": "2026-11-15T00:00:00Z",
+    "stops": ["royal-street-ghosts", "st-louis-cemetery-view"],
+    "maneuvers": [
+      {
+        "from": "royal-street-ghosts",
+        "to": "st-louis-cemetery-view",
+        "instruction": "Walk southwest on Royal Street toward St. Louis Street",
+        "distanceM": 350,
+        "durationS": 280
+      }
+    ]
+  }
+}
