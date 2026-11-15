@@ -8,8 +8,16 @@ on your phone, it shows the route, walks you to the next stop, and when you get 
 
 **Live site:** https://fat-git.github.io/haunted-walk/
 
-> Status: the application shell is scaffolded (React + TypeScript + Vite, PWA, CI, and
-> Pages deploy). The map, route, tour data, and narration land in the following tasks.
+> Status (2026-11-15): the pilot is live. The French Quarter tour has 10
+> narrated stops with a computed, committed walking route (4.1 km, ~53 min),
+> deployed from `main`. QA (T3.1) verdict: PASS WITH NOTES — but no real-device
+> testing was possible in the sandbox, so the board owes the pilot one personal
+> walk ([docs/RUNBOOK.md](docs/RUNBOOK.md) has the checklist). Security (T3.2)
+> confirmed no secrets, no runtime egress beyond OSM tiles, strict CSP, and
+> tap-gated permissions; its route-data findings are open: viewpoint connectors
+> at 2 stops cross private lots and 4–5 viewpoints sit off the public sidewalk
+> — an owned follow-up data fix. Operations: [docs/RUNBOOK.md](docs/RUNBOOK.md).
+> Adding a city: [docs/ADD_A_CITY.md](docs/ADD_A_CITY.md).
 
 ## What it does
 

@@ -119,6 +119,27 @@ If the only way to see something is from inside a paid or closed site, do not
 make it a stop. Write the narration so the story works from the public
 sidewalk, and say so in the script when access is restricted.
 
+### Placement rules reviewers enforce
+
+The T3.2 security review measured every pilot viewpoint against the committed
+OSM snapshot. Lessons that now count as review criteria:
+
+- **On the sidewalk, not in the roadway.** A marker that lands in the street
+  (the Basin St roadway beside the cemetery, the Bourbon roadway at the opera
+  site) satisfies "outside the site" but not "public sidewalk". Place the
+  marker on the paved sidewalk itself.
+- **Not mid-block.** A marker beyond the sidewalk edge or inside a block
+  (the pilot's `pirates-alley` and `rising-sun-hotel-site` markers sit 9–16 m
+  from any public way) walks people across private lots. Rule of thumb: keep
+  the viewpoint within the public right-of-way, within ~10 m of a public way.
+- **The connector counts too.** The route's short connector from the nearest
+  public way to the viewpoint must stay inside the right-of-way. Tooling does
+  not yet validate connector corridors (known gap, T3.2/F1), so verify by eye
+  against `data/osm/<city-id>.json` before committing.
+- **Wording must match placement.** Don't write "from this public sidewalk"
+  when the viewpoint is in a roadway, and don't place a mid-block marker while
+  the script says "between X and Y". Narration and marker must agree.
+
 ### Legends stay legends
 
 The narration may retell ghost stories, but it must frame them as stories. Use
@@ -223,3 +244,10 @@ Tour data validation failed with 1 problem(s):
 To prove a failure locally, temporarily delete a stop's `sources` or its `lat`
 and `lon`, run `npm run build`, and confirm it stops before Vite builds. Restore
 the data afterwards.
+
+## 6. Deploy and verify
+
+Merge through the normal PR gate. After the Pages deploy, run the post-deploy
+checks in [RUNBOOK.md](RUNBOOK.md): the four tour URLs plus `sw.js` must be
+HTTP 200, and the new city's `route.geojson` must report
+`metadata.status: "computed"`.
