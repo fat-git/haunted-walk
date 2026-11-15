@@ -169,6 +169,11 @@ Before leaving:
 
 - [ ] Open <https://fat-git.github.io/haunted-walk/> (install to home screen
       optional) — the page loads under `/haunted-walk/`, no blank screen.
+- [ ] **Audio check (FAT-43):** on the start screen, tap **Test audio** and
+      confirm you hear "Audio check. If you can hear this, narration will
+      work." The result line shows the voice count, chosen voice name, and
+      started/ended/error. If it fails, fix volume/silent mode here — do not
+      start the walk with unverified audio.
 - [ ] Accept the safety notice; tap Start Tour; allow location when asked (the
       GPS explainer appears before the permission prompt).
 - [ ] Headphones optional; volume follows media volume.

@@ -14,7 +14,7 @@ import { useEffect, useRef, useState, useCallback } from 'react'
 import type { Maneuver, RouteFile, Tour, TourStop } from '../types/tour'
 import type { GeoPoint } from '../lib/geofence'
 import { createStopGeofence, updateGeofence, resetGeofence } from '../lib/geofence'
-import { NarrationEngine } from '../lib/narration'
+import { NarrationEngine, type NarrationProblem } from '../lib/narration'
 import {
   distanceToRouteM as measureDistanceToRouteM,
   getNextManeuver,
@@ -57,6 +57,10 @@ export interface TourState {
   routeLoaded: boolean
   routeError: string | null
   narration: NarrationEngine | null
+  /** Bumped on every sentence change so transcript highlights re-render. */
+  sentenceTick: number
+  /** Visible narration failure (error, audio never started, no voices). */
+  narrationProblem: NarrationProblem | null
   safetyNoticeSeen: boolean
   userPosition: GeoPoint | null
   userAccuracyM: number | null
@@ -85,6 +89,10 @@ export interface TourControls {
   playCurrentStop: () => void
   replayCurrentSentence: () => void
   restartCurrentStop: () => void
+  /** Retry narration after a visible problem. */
+  retryNarration: () => void
+  /** Hide the problem banner without retrying. */
+  dismissNarrationProblem: () => void
   dismissSafetyNotice: () => void
   unlockAudio: () => void
 }
@@ -97,6 +105,8 @@ export function useTour(tour: Tour): TourState & TourControls {
   const [safetyNoticeSeen, setSafetyNoticeSeen] = useState<boolean>(readSafetyNoticeSeen)
   const [audioUnlocked, setAudioUnlocked] = useState(false)
   const [narrationEngine, setNarrationEngine] = useState<NarrationEngine | null>(null)
+  const [sentenceTick, setSentenceTick] = useState(0)
+  const [narrationProblem, setNarrationProblem] = useState<NarrationProblem | null>(null)
 
   // The committed, build-time route. Its maneuver list drives the next-maneuver
   // display and its geometry the off-route check. Never re-routed.
@@ -178,10 +188,15 @@ export function useTour(tour: Tour): TourState & TourControls {
 
       const engine = new NarrationEngine(stop.narration)
       setNarrationEngine(engine)
+      setNarrationProblem(null)
 
       engine.setOnSentenceChange(() => {
-        // Force re-render for transcript highlighting
-        setCurrentStopIndex((prev) => prev)
+        // Real state tick so the transcript highlight re-renders (FAT-43).
+        setSentenceTick((tick) => tick + 1)
+      })
+
+      engine.setOnProblem((problem) => {
+        setNarrationProblem(problem)
       })
 
       engine.setOnEnd(() => {
@@ -252,11 +267,12 @@ export function useTour(tour: Tour): TourState & TourControls {
   // Audio unlock - must be called from user gesture
   const unlockAudio = useCallback(() => {
     if (!audioUnlocked) {
-      // Play a silent utterance to unlock audio context
-      const silentUtterance = new SpeechSynthesisUtterance(' ')
-      silentUtterance.volume = 0
-      silentUtterance.rate = 10
-      speechSynthesis.speak(silentUtterance)
+      // Speak a real (near-silent) word: some engines ignore empty or
+      // zero-volume utterances, which fails to unlock audio (FAT-43).
+      const unlockUtterance = new SpeechSynthesisUtterance('ghost')
+      unlockUtterance.volume = 0.01
+      unlockUtterance.rate = 10
+      speechSynthesis.speak(unlockUtterance)
       setAudioUnlocked(true)
     }
   }, [audioUnlocked])
@@ -369,6 +385,17 @@ export function useTour(tour: Tour): TourState & TourControls {
     persistSafetyNoticeSeen()
   }, [])
 
+  const retryNarration = useCallback(() => {
+    unlockAudio()
+    narrationEngine?.retry()
+    setNarrationProblem(null)
+  }, [unlockAudio, narrationEngine])
+
+  const dismissNarrationProblem = useCallback(() => {
+    narrationEngine?.clearProblem()
+    setNarrationProblem(null)
+  }, [narrationEngine])
+
   const currentStop = tour.stops[currentStopIndex] ?? null
 
   return {
@@ -383,6 +410,8 @@ export function useTour(tour: Tour): TourState & TourControls {
     routeLoaded: route !== null,
     routeError,
     narration: narrationEngine,
+    sentenceTick,
+    narrationProblem,
     safetyNoticeSeen,
     userPosition: gps.position,
     userAccuracyM: gps.accuracyM,
@@ -404,6 +433,8 @@ export function useTour(tour: Tour): TourState & TourControls {
     playCurrentStop,
     replayCurrentSentence,
     restartCurrentStop,
+    retryNarration,
+    dismissNarrationProblem,
     dismissSafetyNotice,
     unlockAudio,
   }

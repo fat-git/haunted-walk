@@ -5,7 +5,7 @@
  */
 
 import { useMemo } from 'react'
-import type { NarrationEngine } from '../lib/narration'
+import type { NarrationEngine, NarrationProblem } from '../lib/narration'
 import type { TourStop } from '../types/tour'
 
 interface PlaybackControlsProps {
@@ -22,6 +22,9 @@ interface PlaybackControlsProps {
   hasNextStop: boolean
   hasPreviousStop: boolean
   audioUnlocked: boolean
+  narrationProblem: NarrationProblem | null
+  onRetryNarration: () => void
+  onDismissNarrationProblem: () => void
 }
 
 export function PlaybackControls({
@@ -38,6 +41,9 @@ export function PlaybackControls({
   hasNextStop,
   hasPreviousStop,
   audioUnlocked,
+  narrationProblem,
+  onRetryNarration,
+  onDismissNarrationProblem,
 }: PlaybackControlsProps) {
   const state = useMemo(() => narration?.getState(), [narration])
   const isPlaying = state?.isPlaying ?? false
@@ -173,6 +179,28 @@ export function PlaybackControls({
           <span>Play Stop</span>
         </button>
       </div>
+
+      {narrationProblem && (
+        <div className="narration-problem" role="alert">
+          <p className="narration-problem-message">{narrationProblem.message}</p>
+          <div className="narration-problem-actions">
+            <button
+              className="control-btn tertiary"
+              onClick={onRetryNarration}
+              type="button"
+            >
+              Retry audio
+            </button>
+            <button
+              className="control-btn tertiary"
+              onClick={onDismissNarrationProblem}
+              type="button"
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      )}
 
       {!audioUnlocked && (
         <p className="audio-locked-notice" role="alert">

@@ -278,6 +278,8 @@ describe('FAT-34 narration engine and transcript highlights', () => {
       getVoices() {
         return [{ name: 'QA Mock', lang: 'en-US' }] as unknown as SpeechSynthesisVoice[]
       },
+      pause() {},
+      resume() {},
       onvoiceschanged: null,
     })
   })
@@ -298,7 +300,10 @@ describe('FAT-34 narration engine and transcript highlights', () => {
       engine.setOnEnd(onEnd)
       await engine.init()
       engine.play()
-      for (let i = 0; i < sentences.length; i++) {
+      // FAT-43: sentences over ~180 chars are split into several utterances
+      // for speech, so advance until the engine finishes, not once per
+      // transcript sentence.
+      for (let i = 0; i < sentences.length * 6 && engine.getState().isPlaying; i++) {
         advanceCurrent()
       }
 
@@ -337,8 +342,12 @@ describe('FAT-34 narration engine and transcript highlights', () => {
     engine.play() // resume from the tracked index, not from the start
     expect(engine.getState().isPlaying).toBe(true)
 
+    // FAT-43: speak() runs ~60 ms after the pause()'s cancel() (Chrome drops
+    // an immediate speak), so flush that delay before driving events.
+    await new Promise((resolve) => setTimeout(resolve, 80))
+
     const total = splitIntoSentences(stop.narration).length
-    for (let i = 0; i < total - 2; i++) {
+    for (let i = 0; i < total * 6 && engine.getState().isPlaying; i++) {
       advanceCurrent()
     }
     // Resume finished the script: onEnd fired once for the whole stop.

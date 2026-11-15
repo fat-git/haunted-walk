@@ -129,6 +129,9 @@ function TourApp({ tour }: { tour: Tour }) {
     playCurrentStop,
     replayCurrentSentence,
     restartCurrentStop,
+    narrationProblem,
+    retryNarration,
+    dismissNarrationProblem,
     dismissSafetyNotice,
     unlockAudio,
   } = useTour(tour)
@@ -229,6 +232,9 @@ function TourApp({ tour }: { tour: Tour }) {
               hasNextStop={currentStopIndex < tour.stops.length - 1}
               hasPreviousStop={currentStopIndex > 0}
               audioUnlocked={audioUnlocked}
+              narrationProblem={narrationProblem}
+              onRetryNarration={retryNarration}
+              onDismissNarrationProblem={dismissNarrationProblem}
             />
 
             {narration && (
