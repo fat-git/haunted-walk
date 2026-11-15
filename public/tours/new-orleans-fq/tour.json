@@ -27,6 +27,66 @@
       ]
     },
     {
+      "id": "marie-laveau-house-site",
+      "name": "Marie Laveau's House Site",
+      "lat": 29.9609227,
+      "lon": -90.0671533,
+      "address": "1020 St Ann St, New Orleans, LA 70116",
+      "viewpoint": {
+        "lat": 29.96094,
+        "lon": -90.06715,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on St. Ann Street at the 1000 block, where the Laveau cottage stood."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on St. Ann Street, near the ground where Marie Laveau's house once stood. Marie Catherine Laveau was born a free woman of color in New Orleans in 1801, and in time she became the most famous Voodoo practitioner in the city. The documentary record shows a working woman: a hairdresser to wealthy families, an herbalist who nursed the sick through the yellow-fever epidemics, a midwife, and a Catholic who visited condemned prisoners in their last days. According to that record, her home here on St. Ann Street was one of the three places where she received people, alongside Congo Square and the shore of Lake Pontchartrain. The cottage on this lot was demolished in 1903. Legend says that when the workers tore it down, they found bundles of guinea peppers hidden in the house — the kind of thing folk magic uses for charms — and neighbors took it as proof that the Voodoo Queen's power had been real. Treat that as folklore: the peppers live in the story, not in any verified record. What is documented is her life, her death in 1881, and her tomb in St. Louis Cemetery No. 1, where this tour began. Stay on the public sidewalk — the lot holds newer buildings now, and the legend outlived the house.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://neworleanshistorical.org/items/show/1610",
+        "https://en.wikipedia.org/wiki/Marie_Laveau"
+      ]
+    },
+    {
+      "id": "lafittes-blacksmith-shop",
+      "name": "Lafitte's Blacksmith Shop",
+      "lat": 29.9610508,
+      "lon": -90.0635754,
+      "address": "941 Bourbon St, New Orleans, LA 70116",
+      "viewpoint": {
+        "lat": 29.96103,
+        "lon": -90.06358,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Bourbon Street in front of 941, at the bar's entrance."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "This low slate-roofed building at 941 Bourbon Street is one of the oldest surviving structures in the French Quarter. The documentary record dates it between 1772 and 1791, which makes it older than the American flag over New Orleans, and in 1970 the federal government listed it as a National Historic Landmark. Today it is a bar called Lafitte's Blacksmith Shop. Legend says the name is literal: that Jean Lafitte, the privateer and smuggler whose name is all over this city's stories, kept this shop as a front — hammering iron by day, running contraband by night. It is a wonderful story, and it is folklore. A historian who searched the property records of the period found no Lafitte connected to this building at all. What the record gives us is an exceptionally old building that picked up a pirate's name somewhere along the way and kept it, because the name fits the candlelight and the shadowed corners. People tell ghost stories about the bar too, and a place with this much legend attached was always going to collect them. The documented facts are the building's age and the legend's persistence; the rest belongs to folklore. We stay on the public sidewalk. The bar is a business — go in if you choose, but listen from the street.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://neworleanshistorical.org/items/show/616",
+        "https://en.wikipedia.org/wiki/Lafitte%27s_Blacksmith_Shop"
+      ]
+    },
+    {
+      "id": "napoleon-house",
+      "name": "The Napoleon House",
+      "lat": 29.9558596,
+      "lon": -90.0650706,
+      "address": "500 Chartres St, New Orleans, LA 70130",
+      "viewpoint": {
+        "lat": 29.95586,
+        "lon": -90.0651,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Chartres Street in front of 500, facing the stucco facade."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "This pale stucco house at 500 Chartres Street is called the Napoleon House, and it carries one of the Quarter's favorite legends. The building dates to the 1790s, and its best-remembered owner is Nicholas Girod, an early mayor of New Orleans. Legend says Girod meant the house as a refuge for Napoleon Bonaparte: that after the emperor's defeat and exile, the mayor offered this residence to him, and that New Orleans privateers — the Lafitte brothers among them, so the story goes — would sail south and bring the emperor home to Chartres Street. It never happened. Napoleon died on the remote island of Saint Helena in 1821, and no emperor ever crossed this threshold. Historians treat the rescue plot as exactly that — a plot, a story told and retold until it stuck to the walls. The name stuck too, and the house has served drinks under it for generations. What is documented is the house's age, Girod's ownership, and the emperor's death in 1821; the rescue belongs to folklore. You are on the public sidewalk of Chartres Street. The front room glows warmly at dusk. Napoleon never sat there — the legend is the only part of him that ever arrived.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://neworleanshistorical.org/items/show/263",
+        "https://en.wikipedia.org/wiki/Napoleon_House"
+      ]
+    },
+    {
       "id": "french-opera-house-site",
       "name": "The French Opera House Site",
       "lat": 29.9577497,

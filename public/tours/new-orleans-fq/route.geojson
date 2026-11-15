@@ -24,16 +24,37 @@
     "city": "new-orleans-fq",
     "tour": "french-quarter-ghosts",
     "status": "placeholder",
-    "note": "Hand-authored scaffolding geometry between the two sample stops. T2.2 replaces this with a walking route computed at build time.",
-    "generatedAt": "2026-11-15T01:46:19Z",
-    "stops": ["st-louis-cemetery-no-1", "french-opera-house-site"],
+    "note": "Hand-authored scaffolding geometry between the tour stops. T2.2 (FAT-21) replaces this with a walking route computed at build time.",
+    "generatedAt": "2026-11-15T16:40:00Z",
+    "stops": ["st-louis-cemetery-no-1", "marie-laveau-house-site", "lafittes-blacksmith-shop", "napoleon-house", "french-opera-house-site"],
     "maneuvers": [
       {
         "from": "st-louis-cemetery-no-1",
+        "to": "marie-laveau-house-site",
+        "instruction": "Walk south on Basin Street, turn right onto St. Ann Street, and continue to the 1000 block of St. Ann.",
+        "distanceM": 460,
+        "durationS": 330
+      },
+      {
+        "from": "marie-laveau-house-site",
+        "to": "lafittes-blacksmith-shop",
+        "instruction": "Walk east on St. Ann Street to Bourbon Street, then turn left and walk north to 941 Bourbon.",
+        "distanceM": 350,
+        "durationS": 250
+      },
+      {
+        "from": "lafittes-blacksmith-shop",
+        "to": "napoleon-house",
+        "instruction": "Walk south on Bourbon Street to St. Peter Street, turn right and walk to Chartres Street, then turn left; 500 Chartres is on the right.",
+        "distanceM": 595,
+        "durationS": 425
+      },
+      {
+        "from": "napoleon-house",
         "to": "french-opera-house-site",
-        "instruction": "Walk north to St. Louis Street, turn right and continue east to Bourbon Street, then turn left and walk north to Toulouse Street.",
-        "distanceM": 480,
-        "durationS": 350
+        "instruction": "Walk north on Chartres Street to Toulouse Street, turn left and walk to Bourbon Street; the site is at 541 Bourbon.",
+        "distanceM": 240,
+        "durationS": 170
       }
     ]
   }
