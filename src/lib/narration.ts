@@ -319,14 +319,13 @@ export function pickBestVoice(
 ): SpeechSynthesisVoice | null {
   if (voices.length === 0) return null
   const tourPrefix = tourLang.toLowerCase().replace('_', '-').split('-')[0]
-  const inTourLanguage = voices.filter((v) =>
-    v.lang.toLowerCase().replace('_', '-').split('-')[0] === tourPrefix,
+  const inTourLanguage = voices.filter(
+    (v) => v.lang.toLowerCase().replace('_', '-').split('-')[0] === tourPrefix,
   )
   const pool = inTourLanguage.length > 0 ? inTourLanguage : voices
   return [...pool].sort(
     (a, b) =>
-      voiceRank(b, tourLang) - voiceRank(a, tourLang) ||
-      a.name.localeCompare(b.name),
+      voiceRank(b, tourLang) - voiceRank(a, tourLang) || a.name.localeCompare(b.name),
   )[0]
 }
 
@@ -360,7 +359,8 @@ export function loadSpeechRate(): number {
   const raw = storageGet(SPEECH_RATE_KEY)
   if (raw === null) return DEFAULT_NARRATION_CONFIG.rate
   const rate = Number(raw)
-  if (!Number.isFinite(rate) || rate <= 0 || rate > 2) return DEFAULT_NARRATION_CONFIG.rate
+  if (!Number.isFinite(rate) || rate <= 0 || rate > 2)
+    return DEFAULT_NARRATION_CONFIG.rate
   return rate
 }
 
@@ -539,7 +539,9 @@ export class NarrationEngine {
     const voices = await getVoices()
     // A voice picked on the start screen wins; otherwise the ranked choice.
     const preferred = loadVoicePreference()
-    const saved = preferred ? (voices.find((v) => v.voiceURI === preferred) ?? null) : null
+    const saved = preferred
+      ? (voices.find((v) => v.voiceURI === preferred) ?? null)
+      : null
     this.voice = saved ?? pickBestVoice(voices, this.config.lang)
     if (voices.length === 0) {
       this.reportProblem({

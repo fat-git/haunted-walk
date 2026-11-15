@@ -61,12 +61,15 @@ export function StartScreen({
       const tourLang = DEFAULT_NARRATION_CONFIG.lang
       const tourPrefix = tourLang.split('-')[0]
       const options: VoiceOption[] = voices
-        .filter((v) => v.lang.toLowerCase().replace('_', '-').split('-')[0] === tourPrefix)
+        .filter(
+          (v) => v.lang.toLowerCase().replace('_', '-').split('-')[0] === tourPrefix,
+        )
         .sort((a, b) => voiceRank(b, tourLang) - voiceRank(a, tourLang))
         .map((v) => ({ voice: v, name: v.name, lang: v.lang }))
       setVoiceOptions(options)
       const saved = loadVoicePreference()
-      const initial = options.find((o) => o.voice.voiceURI === saved)?.voice ??
+      const initial =
+        options.find((o) => o.voice.voiceURI === saved)?.voice ??
         pickBestVoice(voices, tourLang)
       if (initial && options.some((o) => o.voice.voiceURI === initial.voiceURI)) {
         setSelectedVoiceURI(initial.voiceURI)
@@ -81,7 +84,8 @@ export function StartScreen({
     setCheckingAudio(true)
     setAudioCheck(null)
     try {
-      const selected = voiceOptions?.find((o) => o.voice.voiceURI === selectedVoiceURI) ?? null
+      const selected =
+        voiceOptions?.find((o) => o.voice.voiceURI === selectedVoiceURI) ?? null
       setAudioCheck(await runAudioCheck(selected?.voice ?? null))
     } finally {
       setCheckingAudio(false)
@@ -273,11 +277,7 @@ export function StartScreen({
             <span className="voice-settings-label" id="speed-label">
               Speed
             </span>
-            <div
-              className="speed-control"
-              role="group"
-              aria-labelledby="speed-label"
-            >
+            <div className="speed-control" role="group" aria-labelledby="speed-label">
               {SPEED_OPTIONS.map((option) => (
                 <button
                   key={option}

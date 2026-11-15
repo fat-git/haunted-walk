@@ -385,7 +385,13 @@ const fixtureVoice = (
   lang: string,
   voiceURI = name,
 ): SpeechSynthesisVoice =>
-  ({ name, lang, voiceURI, default: false, localService: true }) as unknown as SpeechSynthesisVoice
+  ({
+    name,
+    lang,
+    voiceURI,
+    default: false,
+    localService: true,
+  }) as unknown as SpeechSynthesisVoice
 
 describe('FAT-49 voice ranking (fixture voice lists per platform)', () => {
   it('iOS Safari: prefers a Premium/Enhanced voice over the compact default', () => {
@@ -408,10 +414,7 @@ describe('FAT-49 voice ranking (fixture voice lists per platform)', () => {
   })
 
   it('iOS Safari: compact Samantha still wins when it is the only en-US voice', () => {
-    const ios = [
-      fixtureVoice('Amélie', 'fr-CA'),
-      fixtureVoice('Samantha', 'en-US'),
-    ]
+    const ios = [fixtureVoice('Amélie', 'fr-CA'), fixtureVoice('Samantha', 'en-US')]
     expect(pickBestVoice(ios)?.name).toBe('Samantha')
   })
 
@@ -443,18 +446,12 @@ describe('FAT-49 voice ranking (fixture voice lists per platform)', () => {
   })
 
   it('exact tour language beats a same-primary-subtag voice', () => {
-    const mixed = [
-      fixtureVoice('Daniel', 'en-GB'),
-      fixtureVoice('Fred', 'en-US'),
-    ]
+    const mixed = [fixtureVoice('Daniel', 'en-GB'), fixtureVoice('Fred', 'en-US')]
     expect(pickBestVoice(mixed, 'en-US')?.name).toBe('Fred')
   })
 
   it('falls back to the best-scoring voice of any language when the tour language is missing', () => {
-    const onlyFrench = [
-      fixtureVoice('Thomas', 'fr-FR'),
-      fixtureVoice('Amélie', 'fr-CA'),
-    ]
+    const onlyFrench = [fixtureVoice('Thomas', 'fr-FR'), fixtureVoice('Amélie', 'fr-CA')]
     expect(pickBestVoice(onlyFrench, 'en-US')?.name).toBe('Amélie')
     expect(pickBestVoice([], 'en-US')).toBeNull()
   })
@@ -512,7 +509,11 @@ describe('FAT-49 engine delivery', () => {
     stubLocalStorage({ [VOICE_PREFERENCE_KEY]: 'com.apple.tts.siri' })
     voices = [
       { name: 'Samantha', lang: 'en-US' },
-      { name: 'Siri (English (United States))', lang: 'en-US', voiceURI: 'com.apple.tts.siri' },
+      {
+        name: 'Siri (English (United States))',
+        lang: 'en-US',
+        voiceURI: 'com.apple.tts.siri',
+      },
     ] as unknown as FakeVoice[]
     const engine = new NarrationEngine('One.')
     const init = engine.init()
