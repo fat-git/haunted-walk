@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
+  CONNECTOR_CORRIDOR_M,
+  MAX_CONNECTOR_LENGTH_M,
   MAX_SNAP_DISTANCE_M,
   buildRouteDocument,
   buildWalkGraph,
@@ -254,6 +256,20 @@ describe('composeInstruction', () => {
     const distanceM = steps.reduce((sum, step) => sum + step.distanceM, 0)
     expect(composeInstruction(steps, 'The Stop', distanceM)).toContain('the sidewalk')
   })
+
+  it('describes an unnamed public service way as the alley, not a service lane', () => {
+    const graph = buildWalkGraph([
+      way(1, { highway: 'service' }, [
+        [29.95, -90.0],
+        [29.95, -90.001],
+      ]),
+    ])
+    const steps = pathSteps(graph, shortestPath(graph, '29.95,-90', '29.95,-90.001'))
+    const distanceM = steps.reduce((sum, step) => sum + step.distanceM, 0)
+    const instruction = composeInstruction(steps, 'The Stop', distanceM)
+    expect(instruction).toContain('the alley')
+    expect(instruction).not.toContain('service lane')
+  })
 })
 
 describe('computeTourRoute', () => {
@@ -276,9 +292,13 @@ describe('computeTourRoute', () => {
   ]
 
   it('routes each leg in tour order over walkable ways', () => {
-    const { legs, unroutableLegs, snapFailures } = computeTourRoute(gridGraph(), stops)
+    const { legs, unroutableLegs, snapFailures, connectorFailures } = computeTourRoute(
+      gridGraph(),
+      stops,
+    )
     expect(snapFailures).toHaveLength(0)
     expect(unroutableLegs).toHaveLength(0)
+    expect(connectorFailures).toHaveLength(0)
     expect(legs.map((leg) => `${leg.from}->${leg.to}`)).toEqual(['a->b', 'b->c'])
     expect(legs[0].coordinates[0]).toEqual([-90.0, 29.95])
     expect(legs[0].coordinates[legs[0].coordinates.length - 1]).toEqual([-90.001, 29.95])
@@ -297,6 +317,68 @@ describe('computeTourRoute', () => {
     expect(legs).toHaveLength(0)
     expect(snapFailures).toHaveLength(1)
     expect(snapFailures[0]).toContain('far')
+  })
+})
+
+describe('viewpoint connector validation (Security F1)', () => {
+  // A 200 m east-west street whose only graph nodes are its endpoints, plus a
+  // side arm hanging off the east endpoint (40 m north, reaching back west).
+  const corridorGraph = () =>
+    buildWalkGraph([
+      way(1, { highway: 'residential', name: 'F Street' }, [
+        [0, 0],
+        [0, 0.0018],
+      ]),
+      way(2, { highway: 'residential', name: 'Side Arm' }, [
+        [0, 0.0018],
+        [0.00036, 0.0018],
+        [0.00036, 0.0009],
+      ]),
+    ])
+
+  it('accepts a viewpoint sitting on a public way', () => {
+    const stops = [
+      { id: 'a', name: 'Stop A', viewpoint: { lat: 0, lon: 0.0002 } },
+      // Near F Street's east endpoint, so the snap and the drawn connector
+      // both stay on the street itself.
+      { id: 'b', name: 'Stop B', viewpoint: { lat: 0, lon: 0.0017 } },
+    ]
+    const { connectorFailures, unroutableLegs, snapFailures } = computeTourRoute(
+      corridorGraph(),
+      stops,
+    )
+    expect(snapFailures).toHaveLength(0)
+    expect(unroutableLegs).toHaveLength(0)
+    expect(connectorFailures).toHaveLength(0)
+  })
+
+  it('fails when the straight connector to the nearest public way exceeds the length bound', () => {
+    const stops = [
+      { id: 'a', name: 'Stop A', viewpoint: { lat: 0, lon: 0.0002 } },
+      // ~17 m north of F Street's midpoint: over MAX_CONNECTOR_LENGTH_M.
+      { id: 'b', name: 'Stop B', viewpoint: { lat: 0.00015, lon: 0.0005 } },
+    ]
+    const { connectorFailures } = computeTourRoute(corridorGraph(), stops)
+    expect(connectorFailures).toHaveLength(1)
+    expect(connectorFailures[0]).toContain('a -> b')
+    expect(connectorFailures[0]).toContain('b')
+    expect(connectorFailures[0]).toContain('nearest public walkable way')
+    expect(Number(MAX_CONNECTOR_LENGTH_M)).toBeLessThan(16.7)
+  })
+
+  it('fails when the drawn connector leaves the walkable-way corridor', () => {
+    const stops = [
+      { id: 'a', name: 'Stop A', viewpoint: { lat: 0, lon: 0.0002 } },
+      // Only 5 m off F Street (within the length bound), but the nearest graph
+      // node is 35 m away on the side arm, so the straight drawn connector
+      // crosses ground ~20 m from every public way.
+      { id: 'b', name: 'Stop B', viewpoint: { lat: 0.000045, lon: 0.0009 } },
+    ]
+    const { connectorFailures } = computeTourRoute(corridorGraph(), stops)
+    expect(connectorFailures).toHaveLength(1)
+    expect(connectorFailures[0]).toContain('a -> b')
+    expect(connectorFailures[0]).toContain('b')
+    expect(connectorFailures[0]).toContain('corridor')
   })
 })
 
