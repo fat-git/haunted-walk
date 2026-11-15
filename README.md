@@ -8,8 +8,8 @@ on your phone, it shows the route, walks you to the next stop, and when you get 
 
 **Live site:** https://fat-git.github.io/haunted-walk/
 
-> Status: the repository is being set up. The application scaffold lands in the Vite +
-> React + TypeScript task; until then this repo holds the working rules only.
+> Status: the application shell is scaffolded (React + TypeScript + Vite, PWA, CI, and
+> Pages deploy). The map, route, tour data, and narration land in the following tasks.
 
 ## What it does
 
@@ -26,14 +26,14 @@ on your phone, it shows the route, walks you to the next stop, and when you get 
 The hard constraint is **$0 recurring cost and no API keys in the browser**. Every
 technology choice below follows from it:
 
-| Concern | Choice | Why |
-| --- | --- | --- |
-| Hosting | GitHub Pages from a public repo | Free; Pages only serves from public repos on the Free plan |
-| Map | Leaflet + OpenStreetMap tiles | No key, no account; attribution required and included |
-| Walking directions | GeoJSON precomputed at build time and committed | No live routing API, so no key and no per-request cost |
-| Narration | Browser `speechSynthesis` | No TTS vendor; chunked by sentence to survive iOS Safari |
-| Screen | Screen Wake Lock API | The phone must not sleep mid-tour |
-| Build | React + TypeScript + Vite → static `dist/` | Static output is all Pages can serve |
+| Concern            | Choice                                          | Why                                                        |
+| ------------------ | ----------------------------------------------- | ---------------------------------------------------------- |
+| Hosting            | GitHub Pages from a public repo                 | Free; Pages only serves from public repos on the Free plan |
+| Map                | Leaflet + OpenStreetMap tiles                   | No key, no account; attribution required and included      |
+| Walking directions | GeoJSON precomputed at build time and committed | No live routing API, so no key and no per-request cost     |
+| Narration          | Browser `speechSynthesis`                       | No TTS vendor; chunked by sentence to survive iOS Safari   |
+| Screen             | Screen Wake Lock API                            | The phone must not sleep mid-tour                          |
+| Build              | React + TypeScript + Vite → static `dist/`      | Static output is all Pages can serve                       |
 
 Because the app has no keys by design, **any key-shaped string in the bundle is a bug**,
 and that is something CI can test for.
@@ -41,6 +41,26 @@ and that is something CI can test for.
 Pages serves a project repo from a subpath, so Vite's `base`, the service-worker scope,
 and the manifest `start_url` must all be `/haunted-walk/`. If they don't match, the
 installed PWA 404s the first time someone reloads it on the street.
+
+## Local development
+
+Requires Node 22.12 or newer (see `.nvmrc`).
+
+| Command                | What it does                                                      |
+| ---------------------- | ----------------------------------------------------------------- |
+| `npm ci`               | Install from the lockfile                                         |
+| `npm run dev`          | Vite dev server (CSP is injected only into production builds)     |
+| `npm run build`        | Typecheck and build the static site into `dist/`                  |
+| `npm run preview`      | Serve the built `dist/` locally, under `/haunted-walk/`           |
+| `npm run typecheck`    | TypeScript project build, no emit                                 |
+| `npm run lint`         | ESLint, zero warnings allowed                                     |
+| `npm run format:check` | Prettier check                                                    |
+| `npm test`             | Vitest unit tests                                                 |
+| `npm run check:dist`   | Post-build guard: CSP, base path, manifest, no key-shaped strings |
+
+CI (`.github/workflows/ci.yml`) runs all of these plus a `gitleaks` secret scan on every
+PR. The secret scan is a required check: a finding fails the build and blocks the merge.
+`.github/workflows/deploy.yml` publishes `dist/` to GitHub Pages from `main`.
 
 ## Working rules
 

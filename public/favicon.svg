@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Haunted Walk">
+  <rect width="64" height="64" rx="14" fill="#0b0b0f" />
+  <path
+    d="M32 9c-9.2 0-15.5 6.3-15.5 16.2V47l5.2-4.3 5.2 4.3 5.1-4.3 5.1 4.3 5.2-4.3 5.2 4.3V25.2C47.5 15.3 41.2 9 32 9z"
+    fill="#f2eee8"
+  />
+  <circle cx="26" cy="27" r="2.6" fill="#0b0b0f" />
+  <circle cx="38" cy="27" r="2.6" fill="#0b0b0f" />
+  <path d="M29 35c1.8 2.2 4.2 2.2 6 0" fill="none" stroke="#0b0b0f" stroke-width="2.2" stroke-linecap="round" />
+</svg>
