@@ -25,8 +25,8 @@
     "tour": "french-quarter-ghosts",
     "status": "placeholder",
     "note": "Hand-authored scaffolding geometry between the tour stops. T2.2 (FAT-21) replaces this with a walking route computed at build time.",
-    "generatedAt": "2026-11-15T16:52:00Z",
-    "stops": ["st-louis-cemetery-no-1", "marie-laveau-house-site", "lafittes-blacksmith-shop", "napoleon-house", "old-absinthe-house", "pirates-alley", "lalaurie-mansion", "french-opera-house-site"],
+    "generatedAt": "2026-11-15T17:05:00Z",
+    "stops": ["st-louis-cemetery-no-1", "marie-laveau-house-site", "lafittes-blacksmith-shop", "napoleon-house", "old-absinthe-house", "pirates-alley", "lalaurie-mansion", "andrew-jackson-hotel", "rising-sun-hotel-site", "french-opera-house-site"],
     "maneuvers": [
       {
         "from": "st-louis-cemetery-no-1",
@@ -72,10 +72,24 @@
       },
       {
         "from": "lalaurie-mansion",
+        "to": "andrew-jackson-hotel",
+        "instruction": "Walk down Royal Street from 1140 to the 900 block, staying on the same side of the street.",
+        "distanceM": 285,
+        "durationS": 205
+      },
+      {
+        "from": "andrew-jackson-hotel",
+        "to": "rising-sun-hotel-site",
+        "instruction": "Walk down Royal Street to St. Philip Street, turn right, then turn left onto Conti Street and continue to 535 Conti.",
+        "distanceM": 600,
+        "durationS": 430
+      },
+      {
+        "from": "rising-sun-hotel-site",
         "to": "french-opera-house-site",
-        "instruction": "Continue down Royal Street to Toulouse Street, turn left, and walk to 541 Bourbon.",
-        "distanceM": 655,
-        "durationS": 470
+        "instruction": "Walk up Conti Street to Bourbon Street, turn right, and continue north to Toulouse Street; the site is at 541 Bourbon.",
+        "distanceM": 332,
+        "durationS": 240
       }
     ]
   }

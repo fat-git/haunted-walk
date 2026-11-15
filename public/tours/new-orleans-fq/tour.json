@@ -148,6 +148,46 @@
       ]
     },
     {
+      "id": "andrew-jackson-hotel",
+      "name": "The Andrew Jackson Hotel",
+      "lat": 29.9598944,
+      "lon": -90.0631532,
+      "address": "919 Royal St, New Orleans, LA 70116",
+      "viewpoint": {
+        "lat": 29.95989,
+        "lon": -90.06318,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Royal Street in front of 919."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "Across Royal Street, at number 919, stands the Andrew Jackson Hotel, and the ground behind its wrought-iron gallery has stacked up more than one hard history. In 1792, under the Spanish colonial government, the site opened as a boarding school and orphanage for boys whose parents had died in the yellow-fever epidemics. In the great fire of 1794 that consumed much of the Quarter, the orphanage burned with five young boys inside. Afterward, the law took over: a United States federal courthouse stood on this site, and this is the courthouse that fined General Andrew Jackson one thousand dollars for contempt of court in 1815. Jackson had put the city under martial law during the British invasion, kept it standing after his victory at the Battle of New Orleans, arrested a senator who objected, and jailed the judge who ordered the man freed. When the general finally lifted martial law, the judge fined him, and Jackson paid. The courthouse later came down, and the hotel building went up in 1890; it is listed on the National Register of Historic Places. Then the ghosts — and these the hotel tells you itself, inviting you to decide: a young ghost called Armand who wakes guests with laughter or pushes them out of bed; the orphanage's caretaker, still smoothing pillows; and the general himself, striding the hallways. That is the hotel's own legend, told by the hotel. We stay on the public sidewalk.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://www.andrewjacksonhotel.com/about-us",
+        "https://en.wikipedia.org/wiki/Legal_affairs_of_Andrew_Jackson"
+      ]
+    },
+    {
+      "id": "rising-sun-hotel-site",
+      "name": "The Rising Sun Hotel Site",
+      "lat": 29.9549056,
+      "lon": -90.0655314,
+      "address": "535 Conti St, New Orleans, LA 70130",
+      "viewpoint": {
+        "lat": 29.95491,
+        "lon": -90.06553,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Conti Street in front of 535."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "This stretch of Conti Street hides the address behind one of the most famous songs in American music. In 1821, an advertisement in the Louisiana Gazette announced the Rising Sun Hotel here at 535 Conti, promising the best entertainment the house had enjoyed for twenty years past. The hotel burned to the ground in 1822, and later buildings on the lot rose and fell in more fires. In 2005, archaeologists excavated the site — the parking garage then occupying it — and pulled burned glassware, jewelry, and a striking number of small rouge pots out of the 1822 fire layer. The rouge pots suggested a brothel, and the story caught on. Here is the honest state of the evidence: the Rising Sun Hotel on Conti Street is real and documented, but the claim that it inspired the song 'The House of the Rising Sun' is legend. The song is far older than any New Orleans story about it — musicologists trace it to English and Appalachian folk traditions, its authorship is unknown, and 'Rising Sun' was simply a common name for taverns on both sides of the Atlantic. The Animals carried their version to number one in 1964, and the Conti Street hotel is one of several places the legend names. So: a documented hotel, a documented fire, a documented excavation — and a legend wearing the melody. The site is part of the Historic New Orleans Collection today. Stand on the public sidewalk of Conti Street and let the chorus do the rest.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://neworleanshistorical.org/items/show/1281",
+        "https://en.wikipedia.org/wiki/The_House_of_the_Rising_Sun"
+      ]
+    },
+    {
       "id": "french-opera-house-site",
       "name": "The French Opera House Site",
       "lat": 29.9577497,
