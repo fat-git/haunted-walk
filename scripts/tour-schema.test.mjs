@@ -33,9 +33,10 @@ describe('shipped tour data', () => {
     expect(validateCityRegistry(registry)).toEqual([])
   })
 
-  it('has a valid tour with two sample stops', () => {
+  it('has a valid tour with 8-12 stops', () => {
     expect(validateTour(tour, tourOptions)).toEqual([])
-    expect(tour.stops).toHaveLength(2)
+    expect(tour.stops.length).toBeGreaterThanOrEqual(8)
+    expect(tour.stops.length).toBeLessThanOrEqual(12)
   })
 
   it('has a valid route shape whose stops match the tour order', () => {
