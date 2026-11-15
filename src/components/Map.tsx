@@ -7,7 +7,7 @@
 import { useEffect, useRef, useMemo, useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { withBase } from '../lib/url'
+import { routeUrl } from '../lib/tourPaths'
 import type { Tour, RouteFile } from '../types/tour'
 import type { GeoPoint } from '../lib/geofence'
 
@@ -48,10 +48,10 @@ export function Map({
   const routeLayerRef = useRef<L.LayerGroup | null>(null)
   const [routeData, setRouteData] = useState<RouteFile | null>(null)
 
-  // Load route.geojson
+  // Load the precomputed route. On failure we keep `routeData` null and the
+  // render effect below draws straight stop-to-stop lines instead.
   useEffect(() => {
-    const routeUrl = withBase(`tours/${tour.city}/${tour.id}/route.geojson`)
-    fetch(routeUrl)
+    fetch(routeUrl(tour.city))
       .then((res) => {
         if (!res.ok) throw new Error(`Failed to load route: ${res.status}`)
         return res.json()
@@ -59,10 +59,10 @@ export function Map({
       .then((data: RouteFile) => {
         setRouteData(data)
       })
-      .catch(() => {
-        // Silently fail - will fall back to stop-to-stop lines
+      .catch((error: unknown) => {
+        console.warn('Falling back to straight stop-to-stop lines:', error)
       })
-  }, [tour.city, tour.id])
+  }, [tour.city])
 
   // Initialize map
   const initialLat = tour.stops[0]?.lat
@@ -105,21 +105,24 @@ export function Map({
     }
   }, [initialLat, initialLon])
 
-  // Render route when route data is loaded
+  // Render the route: the precomputed geometry once it loads, and straight
+  // stop-to-stop lines until then, so the map is never left without a route.
   useEffect(() => {
     const map = mapInstanceRef.current
     const routeLayer = routeLayerRef.current
-    if (!map || !routeLayer || !routeData) return
+    if (!map || !routeLayer) return
 
     routeLayer.clearLayers()
 
-    const isPlaceholder = routeData.metadata.status === 'placeholder'
-    const routeFeature = routeData.features[0]
-    if (!routeFeature) return
+    const routeFeature = routeData?.features[0]
+    const isPlaceholder = !routeData || routeData.metadata.status === 'placeholder'
 
-    const coordinates = routeFeature.geometry.coordinates
     // GeoJSON is [lon, lat], Leaflet expects [lat, lon]
-    const latLngs = coordinates.map(([lon, lat]) => [lat, lon] as [number, number])
+    const latLngs: [number, number][] = routeFeature
+      ? routeFeature.geometry.coordinates.map(([lon, lat]) => [lat, lon])
+      : tour.stops.map((stop) => [stop.lat, stop.lon])
+
+    if (latLngs.length < 2) return
 
     const routeLine = L.polyline(latLngs, {
       color: isPlaceholder ? '#f0b45c' : '#26262f',
@@ -131,7 +134,7 @@ export function Map({
       className: isPlaceholder ? 'route-placeholder' : 'route-computed',
     })
     routeLayer.addLayer(routeLine)
-  }, [routeData])
+  }, [routeData, tour.stops])
 
   // Render stops when map is ready
   useEffect(() => {

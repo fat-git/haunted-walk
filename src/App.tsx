@@ -8,14 +8,13 @@ import { StartScreen } from './components/StartScreen'
 import { CompletedScreen } from './components/CompletedScreen'
 import { useTour } from './hooks/useTour'
 import { NarrationEngine } from './lib/narration'
-import { withBase } from './lib/url'
+import { registryUrl, tourUrl } from './lib/tourPaths'
 import type { Tour, CityRegistry, CityEntry } from './types/tour'
 import './App.css'
 
 /** Load the tour data from the registry, resolving the default tour for the first city. */
 async function loadTour(): Promise<Tour> {
-  const registryUrl = withBase('tours/index.json')
-  const registryResponse = await fetch(registryUrl)
+  const registryResponse = await fetch(registryUrl())
   if (!registryResponse.ok) {
     throw new Error(`Failed to load tour registry: ${registryResponse.status}`)
   }
@@ -26,12 +25,20 @@ async function loadTour(): Promise<Tour> {
     throw new Error('No cities found in tour registry')
   }
 
-  const tourUrl = withBase(`tours/${city.id}/${city.defaultTour}/tour.json`)
-  const tourResponse = await fetch(tourUrl)
+  const tourResponse = await fetch(tourUrl(city.id))
   if (!tourResponse.ok) {
     throw new Error(`Failed to load tour: ${tourResponse.status}`)
   }
-  return tourResponse.json()
+  const tour: Tour = await tourResponse.json()
+
+  // `defaultTour` is a tour id, not a directory. Check it rather than ignore it,
+  // so a registry that names a tour the city folder does not hold fails loudly.
+  if (tour.id !== city.defaultTour) {
+    throw new Error(
+      `Registry names tour "${city.defaultTour}" for ${city.id} but its tour.json is "${tour.id}"`,
+    )
+  }
+  return tour
 }
 
 function ErrorScreen({ message }: { message: string }) {
