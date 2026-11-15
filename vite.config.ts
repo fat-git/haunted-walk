@@ -102,7 +102,7 @@ export default defineConfig({
       workbox: {
         // Precache the app shell and every shipped tour file so the tour
         // survives a dead spot. Tour data lives under /tours/.
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2,json,webmanifest}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2,json,geojson,webmanifest}'],
         navigateFallback: `${BASE_PATH}index.html`,
         navigateFallbackAllowlist: [/^\/haunted-walk\//],
         cleanupOutdatedCaches: true,
