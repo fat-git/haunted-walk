@@ -1,0 +1,44 @@
+{
+  "id": "french-quarter-ghosts",
+  "city": "new-orleans-fq",
+  "name": "French Quarter Ghosts",
+  "description": "A self-guided walking ghost tour through the historic New Orleans French Quarter",
+  "stops": [
+    {
+      "id": "st-louis-cemetery-view",
+      "name": "St. Louis Cemetery No. 1 (View from Outside)",
+      "lat": 29.9486,
+      "lon": -90.0587,
+      "address": "425 St. Louis St, New Orleans, LA 70112",
+      "viewpoint": {
+        "lat": 29.9484,
+        "lon": -90.0586
+      },
+      "geofenceRadiusM": 30,
+      "narration": "This is St. Louis Cemetery No. 1, the oldest surviving cemetery in New Orleans, opened in 1789 when the city was still under Spanish rule. It is the final resting place of many famous figures, including the Voodoo queen Marie Laveau, whose tomb draws visitors leaving offerings and marking X's in hopes of favors from beyond. Legend says that on certain nights, the spirits of the dead can be seen walking among the crowded above-ground tombs, and some claim to hear whispers in the narrow aisles. Please note: this cemetery requires a licensed guide for entry. We are viewing it from the public sidewalk on Basin Street only. The above-ground tombs, called Creole mausoleums, are a signature feature of New Orleans burial culture, built because the city sits below sea level and traditional burials are often flooded. These oven-like vaults can hold multiple generations of a family, with remains pushed to the back to make room for the newly departed.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://nola.gov/departments-files/cemetery/",
+        "https://www.nps.gov/jela/learn/historyculture/st-louis-cemetery.htm"
+      ]
+    },
+    {
+      "id": "royal-street-ghosts",
+      "name": "Royal Street Hauntings",
+      "lat": 29.9578,
+      "lon": -90.0625,
+      "address": "Royal St at St. Peter St, New Orleans, LA 70116",
+      "viewpoint": {
+        "lat": 29.9577,
+        "lon": -90.0624
+      },
+      "geofenceRadiusM": 30,
+      "narration": "Welcome to Royal Street, one of the oldest and most elegant thoroughfares in the French Quarter, laid out in the early 1700s as the city's premier address for wealthy Creole families. This area has been home to the city's most prominent families for centuries, and some of them, according to local legend, have never truly left. Reports of apparitions in 19th-century dress have been made along this very block, particularly near the site of the old French Opera House that once stood at the corner of Royal and Toulouse. The French Opera was a cultural heart of the Quarter until it burned down in 1919, and some say the sound of phantom music can still be heard on quiet nights drifting from the empty lot. These are stories, not documented history, but they have been part of New Orleans folklore for generations, passed down by shopkeepers and residents who swear they have felt cold spots and seen shadows move in the gaslight.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://www.nola.gov/departments-files/",
+        "https://www.frenchquarter.org/"
+      ]
+    }
+  ]
+}

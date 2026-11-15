@@ -1,0 +1,12 @@
+[rules]
+[path:]
+allow = [
+  '.github/workflows/deploy.yml',
+  '.github/workflows/ci.yml',
+]
+
+[[rules]]
+id = 'general-key'
+description = 'Generic API key or token'
+regex = '(?i)(?:sk|gh[pous]|AKIA|eyJ)[a-z0-9]{16,}'
+tags = ['secret']

@@ -1,0 +1,27 @@
+{
+  "name": "Haunted Walk",
+  "short_name": "Haunted Walk",
+  "description": "Self-guided ghost tour of the New Orleans French Quarter",
+  "theme_color": "#1a1a1a",
+  "background_color": "#1a1a1a",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/haunted-walk/",
+  "scope": "/haunted-walk/",
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
