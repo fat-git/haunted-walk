@@ -8,8 +8,8 @@
     {
       "id": "st-louis-cemetery-no-1",
       "name": "St. Louis Cemetery No. 1",
-      "lat": 29.9594151,
-      "lon": -90.0715037,
+      "lat": 29.95898,
+      "lon": -90.07065,
       "address": "425 Basin St, New Orleans, LA 70112",
       "viewpoint": {
         "lat": 29.95898,
@@ -150,8 +150,8 @@
     {
       "id": "french-opera-house-site",
       "name": "The French Opera House Site",
-      "lat": 29.9577497,
-      "lon": -90.066653,
+      "lat": 29.95784,
+      "lon": -90.0663,
       "address": "541 Bourbon St, New Orleans, LA 70130",
       "viewpoint": {
         "lat": 29.95784,
