@@ -29,6 +29,22 @@ export const WALKABLE_HIGHWAYS = new Set([
 
 export const MAX_SNAP_DISTANCE_M = 80
 
+/**
+ * Viewpoint-connector safety bounds (Security finding F1). The route geometry
+ * is `[viewpoint, ...path, viewpoint]`: the straight lines bridging each
+ * viewpoint to the routed path are the only parts not matched against the
+ * snapshot, so they are validated explicitly:
+ *
+ * - MAX_CONNECTOR_LENGTH_M caps the straight connector from the nearest
+ *   public walkable way to the viewpoint — a viewpoint deeper than this into
+ *   a block cannot be reached without crossing non-public ground.
+ * - CONNECTOR_CORRIDOR_M caps how far any point of the drawn connector may
+ *   stray from every public walkable way, so the line can never cut across a
+ *   private lot between the path and the viewpoint.
+ */
+export const MAX_CONNECTOR_LENGTH_M = 10
+export const CONNECTOR_CORRIDOR_M = 12
+
 /** Walking pace used for duration estimates: 1.3 m/s ≈ 4.7 km/h. */
 export const WALKING_SPEED_MPS = 1.3
 
@@ -84,16 +100,9 @@ function keyToCoordinate(key) {
  * snapshot order and parallel edges keep the shortest distance, breaking ties
  * by street name.
  */
-const WAY_LABELS = new Map([
-  ['footway', 'the sidewalk'],
-  ['steps', 'the steps'],
-  ['pedestrian', 'the pedestrian way'],
-  ['path', 'the path'],
-  ['service', 'the service lane'],
-])
-
 export function buildWalkGraph(ways) {
   const adjacency = new Map()
+  const segments = []
 
   function addEdge(fromKey, toKey, distanceM, streetName, wayKind) {
     if (fromKey === toKey || !(distanceM > 0)) return
@@ -139,10 +148,14 @@ export function buildWalkGraph(ways) {
         name,
         kind,
       )
+      segments.push([
+        { lat: from.lat, lon: from.lon },
+        { lat: to.lat, lon: to.lon },
+      ])
     }
   }
 
-  return { adjacency }
+  return { adjacency, segments }
 }
 
 /** Nearest graph node to the point, or null when nothing is within the limit. */
@@ -263,6 +276,72 @@ function edgeBetween(graph, fromKey, toKey) {
   return graph.adjacency.get(fromKey)?.get(toKey) ?? null
 }
 
+/**
+ * Distance from a point to a segment, in meters, using a local equirectangular
+ * projection (accurate at tour-block scales).
+ */
+export function pointToSegmentDistanceM(point, a, b) {
+  const toRadians = (degrees) => (degrees * Math.PI) / 180
+  const cosLat = Math.cos(
+    (toRadians(point.lat) + toRadians(a.lat) + toRadians(b.lat)) / 3,
+  )
+  const px = point.lon * cosLat
+  const py = point.lat
+  const ax = a.lon * cosLat
+  const ay = a.lat
+  const bx = b.lon * cosLat
+  const by = b.lat
+  const dx = bx - ax
+  const dy = by - ay
+  const lengthSquared = dx * dx + dy * dy
+  let t = lengthSquared > 0 ? ((px - ax) * dx + (py - ay) * dy) / lengthSquared : 0
+  t = Math.max(0, Math.min(1, t))
+  const cx = ax + t * dx
+  const cy = ay + t * dy
+  const earthRadiusM = 6_371_000
+  const centralAngle = Math.hypot(px - cx, py - cy) * (Math.PI / 180)
+  return earthRadiusM * centralAngle
+}
+
+function distanceToSegmentsM(point, segments) {
+  let best = Infinity
+  for (const [a, b] of segments) {
+    const distance = pointToSegmentDistanceM(point, a, b)
+    if (distance < best) best = distance
+  }
+  return best
+}
+
+/**
+ * Validate one viewpoint connector: the straight line the route draws between
+ * the viewpoint and its snapped node on the routed path (Security finding F1).
+ * Returns null when the connector is safe, otherwise the failure message body.
+ */
+export function validateViewpointConnector(graph, viewpoint, snap) {
+  const { segments } = graph
+  const gapM = distanceToSegmentsM(viewpoint, segments)
+  if (gapM > MAX_CONNECTOR_LENGTH_M) {
+    return `is ${gapM.toFixed(1)} m from the nearest public walkable way — the straight connector is longer than the ${MAX_CONNECTOR_LENGTH_M} m bound`
+  }
+
+  const node = keyToCoordinate(snap.key)
+  const lengthM = pointDistanceMeters(viewpoint, node)
+  const sampleCount = Math.max(1, Math.ceil(lengthM))
+  let worstOffM = 0
+  for (let i = 0; i <= sampleCount; i++) {
+    const t = i / sampleCount
+    const point = {
+      lat: viewpoint.lat + (node.lat - viewpoint.lat) * t,
+      lon: viewpoint.lon + (node.lon - viewpoint.lon) * t,
+    }
+    worstOffM = Math.max(worstOffM, distanceToSegmentsM(point, segments))
+  }
+  if (worstOffM > CONNECTOR_CORRIDOR_M) {
+    return `connector leaves the walkable-way corridor (${worstOffM.toFixed(1)} m off the nearest public way at worst, limit ${CONNECTOR_CORRIDOR_M} m)`
+  }
+  return null
+}
+
 const COMPASS_POINTS = [
   [22.5, 'north'],
   [67.5, 'northeast'],
@@ -349,7 +428,10 @@ function describeStreet(steps, index) {
     steps: 'the steps',
     pedestrian: 'the pedestrian way',
     path: 'the path',
-    service: 'the service lane',
+    // Unnamed public service ways in the Quarter read as alleys to a walker;
+    // "service lane" sounded like a driveway and named nothing the OSM way
+    // actually carries (QA note D2).
+    service: 'the alley',
   }
   return labels[step.kind] ?? 'the street'
 }
@@ -383,12 +465,15 @@ function formatDistance(distanceM) {
 /**
  * Compute the walking route for a tour: one leg per stop pair, in tour order.
  * Legs that cannot be reached on public walkable ways are reported (returned
- * in `unroutableLegs`) rather than silently routed through private property.
+ * in `unroutableLegs`) rather than silently routed through private property,
+ * and unsafe viewpoint connectors (Security finding F1) are reported in
+ * `connectorFailures`.
  */
 export function computeTourRoute(graph, stops) {
   const legs = []
   const unroutableLegs = []
   const snapFailures = []
+  const connectorFailures = []
 
   for (let i = 0; i < stops.length - 1; i++) {
     const fromStop = stops[i]
@@ -407,6 +492,19 @@ export function computeTourRoute(graph, stops) {
         `${toStop.id}: viewpoint is more than ${MAX_SNAP_DISTANCE_M} m from any public walkable way`,
       )
       continue
+    }
+
+    const fromConnector = validateViewpointConnector(graph, fromStop.viewpoint, fromSnap)
+    if (fromConnector) {
+      connectorFailures.push(
+        `${fromStop.id} -> ${toStop.id}: viewpoint connector for ${fromStop.id} ${fromConnector}`,
+      )
+    }
+    const toConnector = validateViewpointConnector(graph, toStop.viewpoint, toSnap)
+    if (toConnector) {
+      connectorFailures.push(
+        `${fromStop.id} -> ${toStop.id}: viewpoint connector for ${toStop.id} ${toConnector}`,
+      )
     }
 
     const nodePath = shortestPath(graph, fromSnap.key, toSnap.key)
@@ -444,7 +542,7 @@ export function computeTourRoute(graph, stops) {
     })
   }
 
-  return { legs, unroutableLegs, snapFailures }
+  return { legs, unroutableLegs, snapFailures, connectorFailures }
 }
 
 function roundCoordinate(value) {

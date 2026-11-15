@@ -426,15 +426,13 @@ describe('FAT-34 committed maneuver audit (route.geojson)', () => {
       expect(maneuver.distanceM).toBeGreaterThan(0)
     })
 
-    // QA finding pinned so a wording fix updates this list deliberately.
+    // QA note D2 pinned the three "service lane" maneuvers; the FAT-38 fix
+    // reworded them (and the recomputed route avoids the service lanes), so
+    // the audit now requires zero non-public-path wording.
     const flagged = maneuvers.filter((m) =>
       /service lane|private|gated/i.test(m.instruction),
     )
-    expect(flagged.map((m) => `${m.from} → ${m.to}`)).toEqual([
-      'pirates-alley → napoleon-house',
-      'french-opera-house-site → rising-sun-hotel-site',
-      'rising-sun-hotel-site → old-absinthe-house',
-    ])
+    expect(flagged).toEqual([])
   })
 
   it('geofence centers sit on the viewpoints so arrival is inside 30 m', () => {

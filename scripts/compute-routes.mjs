@@ -83,9 +83,15 @@ async function main() {
   }
 
   const graph = buildWalkGraph(snapshot.elements ?? [])
-  const { legs, unroutableLegs, snapFailures } = computeTourRoute(graph, tour.stops)
+  const { legs, unroutableLegs, snapFailures, connectorFailures } = computeTourRoute(
+    graph,
+    tour.stops,
+  )
 
   for (const failure of snapFailures) {
+    console.error(`  ! ${failure}`)
+  }
+  for (const failure of connectorFailures) {
     console.error(`  ! ${failure}`)
   }
   for (const failure of unroutableLegs) {
@@ -93,11 +99,12 @@ async function main() {
   }
   if (
     snapFailures.length > 0 ||
+    connectorFailures.length > 0 ||
     unroutableLegs.length > 0 ||
     legs.length !== tour.stops.length - 1
   ) {
     console.error(
-      `Routing failed for public/tours/${cityId}/tour.json: ${unroutableLegs.length + snapFailures.length} of ${tour.stops.length - 1} legs cannot be routed on public walkable ways. Fix the stop order or viewpoint — never route through private property.`,
+      `Routing failed for public/tours/${cityId}/tour.json: ${unroutableLegs.length + snapFailures.length + connectorFailures.length} of ${tour.stops.length - 1} legs cannot be routed on public walkable ways. Fix the stop order or viewpoint — never route through private property.`,
     )
     process.exitCode = 1
     return

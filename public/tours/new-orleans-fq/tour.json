@@ -8,14 +8,14 @@
     {
       "id": "st-louis-cemetery-no-1",
       "name": "St. Louis Cemetery No. 1",
-      "lat": 29.95898,
-      "lon": -90.07065,
+      "lat": 29.95894,
+      "lon": -90.0706,
       "address": "425 Basin St, New Orleans, LA 70112",
       "viewpoint": {
-        "lat": 29.95898,
-        "lon": -90.07065,
+        "lat": 29.95894,
+        "lon": -90.0706,
         "access": "public-sidewalk",
-        "description": "Public sidewalk on Basin Street beside the cemetery's east wall, just outside the 425 Basin St entrance."
+        "description": "Public sidewalk on the Basin Street frontage across from the cemetery wall; view-from-outside only, the walker never crosses Basin Street."
       },
       "geofenceRadiusM": 30,
       "narration": "You are standing outside St. Louis Cemetery No. 1, the oldest surviving cemetery in New Orleans. It opened in 1789, then outside the city limits, replacing the older St. Peter burial ground after the city was redesigned following the fire of 1788. The tombs beyond this wall are above-ground vaults, a burial form associated with the city's French and Spanish heritage and its high water table. The cemetery is still in use, and it is also the resting place of Marie Laveau, the nineteenth-century Vodou practitioner often called the Voodoo Queen. Legend says that Laveau's spirit still answers petitions at her family tomb, and visitors once marked the tomb with Xs, knocked, and made wishes. Those marks damaged the brick, and today the cemetery is open only to approved guided tours. We are not going inside. From this public sidewalk you can see the whitewashed tombs and the wall vaults without crossing the gate. Treat what follows as legend, not verified fact: some tour guides say the cemetery's dead walk among the tombs at night. The historical record tells us the cemetery is real, Laveau was buried here, and the above-ground tombs were built for a wet, low-lying city. The ghost stories belong to the city's folklore.",
@@ -110,14 +110,14 @@
     {
       "id": "pirates-alley",
       "name": "Pirate's Alley",
-      "lat": 29.9576172,
-      "lon": -90.0645451,
+      "lat": 29.95799,
+      "lon": -90.06405,
       "address": "Pirate's Alley (near 615 St Peter St), New Orleans, LA 70116",
       "viewpoint": {
-        "lat": 29.95762,
-        "lon": -90.06454,
+        "lat": 29.95799,
+        "lon": -90.06405,
         "access": "public-sidewalk",
-        "description": "Public way of Pirate's Alley at its Royal Street end, beside the Arsenal block."
+        "description": "Midway along Pirate's Alley itself, the public pedestrian way between the St. Louis Cathedral and the Cabildo."
       },
       "geofenceRadiusM": 30,
       "narration": "This narrow brick channel between St. Louis Cathedral and the Cabildo has carried more than one name. On the old maps it is Orleans Alley; the name Pirate's Alley came later, and it is built on legend. The story says pirates rowed up from the river and slipped down this passage into town, and that smugglers and criminals were marched along it to the Spanish prison that once stood behind the Cabildo. There is real history braided into that tale: a prison — the Calabozo — did stand on this block, and in 1814 it held Pierre Lafitte, brother of the famous Jean, in chains. He escaped on the sixth of September, 1814, and later served with the American forces at the Battle of New Orleans. The prison was demolished in 1837, and the Arsenal standing behind the Cabildo today took its place. The pirate part — the midnight rowboats, the smugglers' shortcut — is folklore, the kind that ends up naming streets. The alley's documented fame is literary: in 1925 the novelist William Faulkner lived in a first-floor apartment at number 624, halfway down this passage, during a short stay in New Orleans that shaped his later work. Walk its single block from Chartres to Royal — it is a public way — and enjoy what it really is: an ordinary alley wearing a pirate's name, because a good story beat the paperwork.",
@@ -130,12 +130,12 @@
     {
       "id": "napoleon-house",
       "name": "The Napoleon House",
-      "lat": 29.9558596,
-      "lon": -90.0650706,
+      "lat": 29.95589,
+      "lon": -90.06519,
       "address": "500 Chartres St, New Orleans, LA 70130",
       "viewpoint": {
-        "lat": 29.95586,
-        "lon": -90.0651,
+        "lat": 29.95589,
+        "lon": -90.06519,
         "access": "public-sidewalk",
         "description": "Public sidewalk on Chartres Street in front of 500, facing the stucco facade."
       },
@@ -150,14 +150,14 @@
     {
       "id": "french-opera-house-site",
       "name": "The French Opera House Site",
-      "lat": 29.95784,
-      "lon": -90.0663,
+      "lat": 29.95782,
+      "lon": -90.06628,
       "address": "541 Bourbon St, New Orleans, LA 70130",
       "viewpoint": {
-        "lat": 29.95784,
-        "lon": -90.0663,
+        "lat": 29.95782,
+        "lon": -90.06628,
         "access": "public-sidewalk",
-        "description": "Public sidewalk at the northeast corner of Bourbon and Toulouse Streets, across from the hotel that now occupies the site."
+        "description": "Public sidewalk on Bourbon Street at the Toulouse Street corner, across from the hotel that now occupies the former opera house site."
       },
       "geofenceRadiusM": 30,
       "narration": "This corner of Bourbon and Toulouse Streets was once the site of the French Opera House, for sixty years one of the cultural centers of New Orleans. The building opened in 1859, designed by James Gallier Jr., and it hosted opera, Carnival balls, and society events. For many Creole families it was the heart of the Quarter's social life. On the night of December 3, 1919, after a rehearsal of Carmen, a fire broke out. By morning the opera house was in ruins. The Times-Picayune wrote that the heart of the old French Quarter had stopped beating. A hotel stands on the corner now. We have found no documented haunting for this spot, so we leave the ghosts out and keep what is on the record: the fire, the loss, and the role the opera house played in the life of the city. We are viewing the corner from the public sidewalk, so please do not go inside the hotel. Look at the ordinary corner and imagine the grand hall that once filled it, lit for a performance, with the whole Quarter arriving in evening dress.",
@@ -171,12 +171,12 @@
     {
       "id": "rising-sun-hotel-site",
       "name": "The Rising Sun Hotel Site",
-      "lat": 29.9549056,
-      "lon": -90.0655314,
+      "lat": 29.95484,
+      "lon": -90.06559,
       "address": "535 Conti St, New Orleans, LA 70130",
       "viewpoint": {
-        "lat": 29.95491,
-        "lon": -90.06553,
+        "lat": 29.95484,
+        "lon": -90.06559,
         "access": "public-sidewalk",
         "description": "Public sidewalk on Conti Street in front of 535."
       },
