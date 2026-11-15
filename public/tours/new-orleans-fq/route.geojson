@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-90.07065, 29.95898],
+          [-90.0706282, 29.9594187],
+          [-90.0670708, 29.957019],
+          [-90.0663576, 29.9578122],
+          [-90.0663, 29.95784]
+        ]
+      },
+      "properties": {
+        "name": "French Quarter Ghosts walking route",
+        "mode": "walking"
+      }
+    }
+  ],
+  "metadata": {
+    "schemaVersion": 1,
+    "city": "new-orleans-fq",
+    "tour": "french-quarter-ghosts",
+    "status": "placeholder",
+    "note": "Hand-authored scaffolding geometry between the two sample stops. T2.2 replaces this with a walking route computed at build time.",
+    "generatedAt": "2026-11-15T01:46:19Z",
+    "stops": ["st-louis-cemetery-no-1", "french-opera-house-site"],
+    "maneuvers": [
+      {
+        "from": "st-louis-cemetery-no-1",
+        "to": "french-opera-house-site",
+        "instruction": "Walk north to St. Louis Street, turn right and continue east to Bourbon Street, then turn left and walk north to Toulouse Street.",
+        "distanceM": 480,
+        "durationS": 350
+      }
+    ]
+  }
+}
