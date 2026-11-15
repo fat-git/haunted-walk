@@ -1,0 +1,97 @@
+/**
+ * The tour data contract.
+ *
+ * These types mirror the JSON files under `public/tours/`. The build-time
+ * validator in `scripts/tour-schema.mjs` enforces the same rules for data that
+ * is added without a code change. Keep the two in step.
+ */
+
+export type LegendLabel = 'Legend' | 'Local legend'
+
+export type ViewpointAccess = 'public-sidewalk'
+
+export type RouteStatus = 'placeholder' | 'computed'
+
+export interface GeoPoint {
+  lat: number
+  lon: number
+}
+
+/**
+ * The public spot the app routes to and geofences. It is never the private
+ * address itself: the walker stays on the sidewalk outside.
+ */
+export interface Viewpoint extends GeoPoint {
+  access: ViewpointAccess
+  description: string
+}
+
+export interface TourStop extends GeoPoint {
+  id: string
+  name: string
+  address: string
+  viewpoint: Viewpoint
+  geofenceRadiusM: number
+  narration: string
+  legendLabel: LegendLabel
+  sources: string[]
+}
+
+export interface Tour {
+  schemaVersion: 1
+  id: string
+  city: string
+  name: string
+  description: string
+  stops: TourStop[]
+}
+
+/** Backwards-compatible name for the tour file as a whole. */
+export type TourMetadata = Tour
+
+export interface CityEntry {
+  id: string
+  name: string
+  defaultTour: string
+  description: string
+}
+
+export interface CityRegistry {
+  schemaVersion: 1
+  cities: CityEntry[]
+}
+
+export interface Maneuver {
+  from: string
+  to: string
+  instruction: string
+  distanceM: number
+  durationS: number
+}
+
+export interface RouteFeature {
+  type: 'Feature'
+  geometry: {
+    type: 'LineString'
+    /** GeoJSON order: [longitude, latitude]. */
+    coordinates: Array<[number, number]>
+  }
+  properties: Record<string, unknown>
+}
+
+export interface RouteMetadata {
+  schemaVersion: 1
+  city: string
+  tour: string
+  status: RouteStatus
+  note?: string
+  generatedAt: string
+  stops: string[]
+  maneuvers: Maneuver[]
+}
+
+export interface RouteFile {
+  type: 'FeatureCollection'
+  features: RouteFeature[]
+  metadata: RouteMetadata
+}
