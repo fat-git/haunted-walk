@@ -3,6 +3,7 @@
  */
 
 import type { Tour } from '../types/tour'
+import { appleMapsDirectionsUrl, googleMapsDirectionsUrl } from '../lib/mapsLinks'
 
 interface StartScreenProps {
   tour: Tour
@@ -38,6 +39,24 @@ export function StartScreen({
               <div className="stop-details">
                 <strong>{stop.name}</strong>
                 <span>{stop.address}</span>
+              </div>
+              <div className="stop-directions">
+                <a
+                  href={googleMapsDirectionsUrl(stop.viewpoint.lat, stop.viewpoint.lon)}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={`Open ${stop.name} in Google Maps`}
+                >
+                  Google Maps
+                </a>
+                <a
+                  href={appleMapsDirectionsUrl(stop.viewpoint.lat, stop.viewpoint.lon)}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={`Open ${stop.name} in Apple Maps`}
+                >
+                  Apple Maps
+                </a>
               </div>
             </li>
           ))}

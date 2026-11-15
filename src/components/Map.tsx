@@ -4,10 +4,11 @@
  * Displays the tour route, stops, user position, and geofence circles.
  */
 
-import { useEffect, useRef, useMemo, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { routeUrl } from '../lib/tourPaths'
+import { formatDistanceM } from '../lib/format'
 import type { Tour, RouteFile } from '../types/tour'
 import type { GeoPoint } from '../lib/geofence'
 
@@ -258,14 +259,8 @@ export function Map({
     }
   }, [userPosition, userAccuracyM, isAtStop])
 
-  // Distance display helper
-  const formatDistance = useMemo(() => {
-    if (distanceToCurrentStop === null) return null
-    if (distanceToCurrentStop < 1000) {
-      return `${Math.round(distanceToCurrentStop)} m`
-    }
-    return `${(distanceToCurrentStop / 1000).toFixed(1)} km`
-  }, [distanceToCurrentStop])
+  const formatDistance =
+    distanceToCurrentStop === null ? null : formatDistanceM(distanceToCurrentStop)
 
   return (
     <div
