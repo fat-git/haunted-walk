@@ -13,10 +13,12 @@ public sidewalk fails `npm run build`.
 public/tours/<city-id>/
   tour.json
   route.geojson
+data/osm/<city-id>.json
 ```
 
 `<city-id>` is kebab-case and must match the registry id, for example
-`new-orleans-fq`. The folder name and the registry id are the same value.
+`new-orleans-fq`. The folder name and the registry id are the same value. The
+`data/osm/` snapshot is described in step 4.
 
 ## 2. Add one registry line
 
@@ -132,11 +134,36 @@ park service, a historical society, a university, or a reputable local archive.
 A source URL is not decoration; a reviewer will check that it supports the
 script.
 
-## 4. Write `route.geojson`
+## 4. Commit an OSM way snapshot and compute `route.geojson`
 
 Routing happens at build time and its output is committed. The app never calls
-a routing API at runtime and never needs a key. Until T2.2 computes real routes,
-the pilot file is explicitly a placeholder:
+a routing API at runtime and never needs a key.
+
+The routing input is a **committed OSM way snapshot** at `data/osm/<city-id>.json`
+— the raw Overpass API response (`way["highway"](bbox); out body geom;`) for a
+bounding box that covers every stop with margin. The snapshot is the routing
+source of record: recomputing the route is offline, keyless, and deterministic.
+Refresh it only deliberately, since a new snapshot can change the committed
+route bytes.
+
+Then compute the route:
+
+```sh
+npm run routes:compute          # writes public/tours/<city>/route.geojson
+npm run routes:check            # proves the committed file matches a fresh computation
+```
+
+`scripts/compute-routes.mjs` walks each leg between consecutive stops' viewpoints
+over public walkable ways only (sidewalks, footways, pedestrian ways, steps, and
+public streets; ways tagged `access=private`, `foot=no`, indoor corridors, and
+motorway-class roads are dropped before routing). A leg that cannot be routed on
+public ways **fails the command with a message naming the leg** — it is never
+silently routed through private property. If that happens, fix the stop order or
+move the viewpoint to a public sidewalk.
+
+Each leg becomes one maneuver (`from`, `to`, an instruction composed from the
+streets the path actually follows, `distanceM`, `durationS` at ~4.7 km/h). The
+committed document looks like:
 
 ```json
 {
@@ -146,10 +173,7 @@ the pilot file is explicitly a placeholder:
       "type": "Feature",
       "geometry": {
         "type": "LineString",
-        "coordinates": [
-          [-90.07065, 29.95898],
-          [-90.0663, 29.95784]
-        ]
+        "coordinates": [["…longitude…", "…latitude…"]]
       },
       "properties": { "name": "Walking route", "mode": "walking" }
     }
@@ -158,19 +182,11 @@ the pilot file is explicitly a placeholder:
     "schemaVersion": 1,
     "city": "new-orleans-fq",
     "tour": "french-quarter-ghosts",
-    "status": "placeholder",
-    "note": "Hand-authored scaffolding; replaced by build-time routing in T2.2.",
-    "generatedAt": "2026-11-15T00:00:00Z",
-    "stops": ["st-louis-cemetery-no-1", "french-opera-house-site"],
-    "maneuvers": [
-      {
-        "from": "st-louis-cemetery-no-1",
-        "to": "french-opera-house-site",
-        "instruction": "Walk east on St. Louis Street to Bourbon Street.",
-        "distanceM": 480,
-        "durationS": 350
-      }
-    ]
+    "status": "computed",
+    "note": "Walking route computed at build time from the committed OSM way snapshot…",
+    "generatedAt": "…snapshot base timestamp…",
+    "stops": ["…stop ids in tour order…"],
+    "maneuvers": ["…one per leg…"]
   }
 }
 ```
@@ -184,9 +200,11 @@ Rules the validator enforces:
 - `metadata.status` is `placeholder` or `computed`. A placeholder must include a
   `note` saying what will replace it.
 
-Do not commit a live API key or a client-side routing call. If a routing source
-needs a key, the key belongs in the build environment or local tooling, never in
-the repo or the bundle.
+`npm run build` runs `routes:check` first, so a stale or hand-edited route file
+fails the build until it is recomputed and committed. Do not commit a live API
+key or a client-side routing call. If a routing source needs a key, the key
+belongs in the build environment or local tooling, never in the repo or the
+bundle.
 
 ## 5. Validate and build
 

@@ -2,5 +2,7 @@ Tour data lives here, one directory per city: `public/tours/<city>/tour.json` pl
 committed `route.geojson`. The registry in `index.json` is the only list of cities.
 
 The build validator (`npm run validate:tours`, run first by `npm run build`) rejects a
-malformed, uncited, or incomplete stop. See [docs/adding-a-city.md](../../docs/adding-a-city.md)
-for the data-only path and the content rules.
+malformed, uncited, or incomplete stop. `npm run routes:check` (also run by the build)
+proves the committed route still matches a fresh computation over the committed OSM way
+snapshot in `data/osm/`. See [docs/adding-a-city.md](../../docs/adding-a-city.md) for the
+data-only path and the content rules.
