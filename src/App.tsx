@@ -8,6 +8,7 @@ import { SafetyNotice } from './components/SafetyNotice'
 import { GpsOnboarding } from './components/GpsOnboarding'
 import { StartScreen } from './components/StartScreen'
 import { CompletedScreen } from './components/CompletedScreen'
+import { StopsSheet } from './components/StopsSheet'
 import { useTour } from './hooks/useTour'
 import { NarrationEngine } from './lib/narration'
 import { registryUrl, tourUrl } from './lib/tourPaths'
@@ -101,7 +102,7 @@ function TourApp({ tour }: { tour: Tour }) {
     phase,
     currentStopIndex,
     currentStop,
-    nextManeuver,
+    guidance,
     distanceToCurrentStop,
     isAtStop,
     isOffRoute,
@@ -118,6 +119,7 @@ function TourApp({ tour }: { tour: Tour }) {
     gpsError,
     wakeLock,
     startTour,
+    startTourAtStop,
     startWithLocation,
     startWithoutLocation,
     enableLocation,
@@ -126,6 +128,7 @@ function TourApp({ tour }: { tour: Tour }) {
     stopTour,
     nextStop,
     previousStop,
+    jumpToStop,
     playCurrentStop,
     replayCurrentSentence,
     restartCurrentStop,
@@ -136,9 +139,27 @@ function TourApp({ tour }: { tour: Tour }) {
     unlockAudio,
   } = useTour(tour)
 
+  const [stopsOpen, setStopsOpen] = useState(false)
+
   const handleStartTour = () => {
     unlockAudio()
     startTour()
+  }
+
+  // A per-stop "Start here" tap is a real user gesture: unlock audio on the
+  // same path as Start Tour, then walk the usual onboarding (safety notice,
+  // GPS explainer) before activating at the chosen stop.
+  const handleStartAtStop = (index: number) => {
+    unlockAudio()
+    startTourAtStop(index)
+  }
+
+  // Jumping mid-tour is also a user gesture; unlock so narration for the new
+  // stop can play on geofence entry without a second tap.
+  const handleJumpStop = (index: number) => {
+    unlockAudio()
+    jumpToStop(index)
+    setStopsOpen(false)
   }
 
   const handlePlayPause = () => {
@@ -178,6 +199,7 @@ function TourApp({ tour }: { tour: Tour }) {
           <StartScreen
             tour={tour}
             onStartTour={handleStartTour}
+            onStartAtStop={handleStartAtStop}
             wakeLockSupported={wakeLock.isSupported}
             speechSupported={speechSupported}
           />
@@ -187,6 +209,17 @@ function TourApp({ tour }: { tour: Tour }) {
         {phase !== 'idle' && phase !== 'completed' && (
           <>
             <TourHeader tour={tour} currentStopIndex={currentStopIndex} phase={phase} />
+
+            <div className="stops-bar">
+              <button
+                className="btn btn-secondary stops-toggle"
+                onClick={() => setStopsOpen(true)}
+                aria-haspopup="dialog"
+                type="button"
+              >
+                Stops
+              </button>
+            </div>
 
             <Map
               tour={tour}
@@ -202,7 +235,7 @@ function TourApp({ tour }: { tour: Tour }) {
                 tour={tour}
                 currentStopIndex={currentStopIndex}
                 currentStop={currentStop}
-                nextManeuver={nextManeuver}
+                guidance={guidance}
                 distanceToNextStopM={distanceToCurrentStop}
                 isAtStop={isAtStop}
                 isOffRoute={isOffRoute}
@@ -251,6 +284,15 @@ function TourApp({ tour }: { tour: Tour }) {
         {phase === 'completed' && (
           <CompletedScreen tour={tour} onRestart={handleRestart} />
         )}
+
+        {/* In-tour stop list for jumping to any stop */}
+        <StopsSheet
+          tour={tour}
+          currentStopIndex={currentStopIndex}
+          open={stopsOpen}
+          onClose={() => setStopsOpen(false)}
+          onJumpStop={handleJumpStop}
+        />
       </main>
 
       <footer className="footer">

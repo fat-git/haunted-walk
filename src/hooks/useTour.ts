@@ -11,15 +11,15 @@
  */
 
 import { useEffect, useRef, useState, useCallback } from 'react'
-import type { Maneuver, RouteFile, Tour, TourStop } from '../types/tour'
+import type { RouteFile, Tour, TourStop } from '../types/tour'
 import type { GeoPoint } from '../lib/geofence'
 import { createStopGeofence, updateGeofence, resetGeofence } from '../lib/geofence'
 import { NarrationEngine, type NarrationProblem } from '../lib/narration'
 import {
   distanceToRouteM as measureDistanceToRouteM,
-  getNextManeuver,
   isOffRoutePoint,
 } from '../lib/route'
+import { getStopGuidance, resolveJumpIndex, type StopGuidance } from '../lib/jump'
 import { routeUrl } from '../lib/tourPaths'
 import { useGPS, type GeolocationPermissionState } from './useGPS'
 import { useWakeLock, type WakeLockState } from './useWakeLock'
@@ -49,7 +49,8 @@ export interface TourState {
   phase: TourPhase
   currentStopIndex: number
   currentStop: TourStop | null
-  nextManeuver: Maneuver | null
+  /** Guidance for the current stop; degrades to straight-line after a jump. */
+  guidance: StopGuidance
   distanceToCurrentStop: number | null
   distanceToRouteM: number | null
   isAtStop: boolean
@@ -75,6 +76,8 @@ export interface TourState {
 export interface TourControls {
   /** Leave idle: show the GPS explainer before any permission prompt. */
   startTour: () => void
+  /** Leave idle aiming at a chosen stop (same onboarding path as startTour). */
+  startTourAtStop: (index: number) => void
   /** From the GPS explainer: ask for location and go active. */
   startWithLocation: () => void
   /** From the GPS explainer: go active without location (manual playback). */
@@ -86,6 +89,8 @@ export interface TourControls {
   stopTour: () => void
   nextStop: () => void
   previousStop: () => void
+  /** Jump to any stop, forward or back, resetting geofence/narration state. */
+  jumpToStop: (index: number) => void
   playCurrentStop: () => void
   replayCurrentSentence: () => void
   restartCurrentStop: () => void
@@ -115,6 +120,9 @@ export function useTour(tour: Tour): TourState & TourControls {
 
   const gps = useGPS()
   const wakeLock = useWakeLock()
+  // Stop index the pending activation should begin at (set from the start
+  // screen's per-stop "Start here" action; defaults to the first stop).
+  const startStopIndexRef = useRef(0)
   const geofencesRef = useRef<Map<string, ReturnType<typeof createStopGeofence>>>(
     new Map(),
   )
@@ -278,6 +286,7 @@ export function useTour(tour: Tour): TourState & TourControls {
   }, [audioUnlocked])
 
   const startTour = useCallback(() => {
+    startStopIndexRef.current = 0
     unlockAudio()
     if (!safetyNoticeSeen) {
       setSafetyNoticeSeen(true)
@@ -288,14 +297,33 @@ export function useTour(tour: Tour): TourState & TourControls {
     setPhase('ready')
   }, [unlockAudio, safetyNoticeSeen])
 
+  const startTourAtStop = useCallback(
+    (index: number) => {
+      const resolved = resolveJumpIndex(tour.stops, index)
+      if (resolved === null) return
+      startStopIndexRef.current = resolved
+      unlockAudio()
+      if (!safetyNoticeSeen) {
+        setSafetyNoticeSeen(true)
+        persistSafetyNoticeSeen()
+      }
+      setPhase('ready')
+    },
+    [tour.stops, unlockAudio, safetyNoticeSeen],
+  )
+
   const activateTour = useCallback(() => {
-    initializeNarration(0)
-    setCurrentStopIndex(0)
+    const startIndex = resolveJumpIndex(tour.stops, startStopIndexRef.current) ?? 0
+    startStopIndexRef.current = 0
+    const geofence = geofencesRef.current.get(tour.stops[startIndex].id)
+    if (geofence) resetGeofence(geofence)
+    initializeNarration(startIndex)
+    setCurrentStopIndex(startIndex)
     setIsAtStop(false)
     setDistanceToCurrentStop(null)
     setPhase('active')
     wakeLock.request()
-  }, [initializeNarration, wakeLock])
+  }, [tour.stops, initializeNarration, wakeLock])
 
   const startWithLocation = useCallback(() => {
     gps.start()
@@ -364,6 +392,25 @@ export function useTour(tour: Tour): TourState & TourControls {
     }
   }, [currentStopIndex, tour.stops])
 
+  // Jump to any stop, forward or back, from the start page path or the
+  // in-tour stop list. Stops current narration cleanly and resets geofence
+  // and narration state for the new stop, so no stale "already played" or
+  // "inside geofence" flags survive the jump.
+  const jumpToStop = useCallback(
+    (index: number) => {
+      const resolved = resolveJumpIndex(tour.stops, index)
+      if (resolved === null) return
+      const stop = tour.stops[resolved]
+      const geofence = geofencesRef.current.get(stop.id)
+      if (geofence) resetGeofence(geofence)
+      initializeNarrationRef.current(resolved)
+      setCurrentStopIndex(resolved)
+      setIsAtStop(false)
+      setDistanceToCurrentStop(null)
+    },
+    [tour.stops],
+  )
+
   const playCurrentStop = useCallback(() => {
     unlockAudio()
     narrationEngine?.play()
@@ -402,7 +449,14 @@ export function useTour(tour: Tour): TourState & TourControls {
     phase,
     currentStopIndex,
     currentStop,
-    nextManeuver: getNextManeuver(route, tour.stops, currentStopIndex),
+    guidance: getStopGuidance({
+      route,
+      stops: tour.stops,
+      currentStopIndex,
+      isAtStop,
+      userPosition: gps.position,
+      userAccuracyM: gps.accuracyM,
+    }),
     distanceToCurrentStop,
     distanceToRouteM,
     isAtStop,
@@ -422,6 +476,7 @@ export function useTour(tour: Tour): TourState & TourControls {
     gpsError: gps.error,
     wakeLock,
     startTour,
+    startTourAtStop,
     startWithLocation,
     startWithoutLocation,
     enableLocation,
@@ -430,6 +485,7 @@ export function useTour(tour: Tour): TourState & TourControls {
     stopTour,
     nextStop,
     previousStop,
+    jumpToStop,
     playCurrentStop,
     replayCurrentSentence,
     restartCurrentStop,
