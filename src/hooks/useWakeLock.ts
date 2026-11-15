@@ -43,6 +43,7 @@ export function useWakeLock(): WakeLockState & WakeLockControls {
 
       wakeLock.addEventListener('release', () => {
         if (isMountedRef.current) {
+          wakeLockRef.current = null
           setState((s) => ({ ...s, isActive: false }))
         }
       })

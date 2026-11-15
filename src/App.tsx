@@ -115,6 +115,7 @@ function TourApp({ tour }: { tour: Tour }) {
     previousStop,
     playCurrentStop,
     replayCurrentSentence,
+    restartCurrentStop,
     dismissSafetyNotice,
     unlockAudio,
   } = useTour(tour)
@@ -179,7 +180,7 @@ function TourApp({ tour }: { tour: Tour }) {
               phase={phase}
               isAtStop={isAtStop}
               onPlayPause={handlePlayPause}
-              onReplay={replayCurrentSentence}
+              onReplay={restartCurrentStop}
               onNextStop={nextStop}
               onPreviousStop={previousStop}
               onPlayCurrentStop={playCurrentStop}

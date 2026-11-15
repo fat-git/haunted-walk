@@ -36,6 +36,7 @@ export interface TourControls {
   previousStop: () => void
   playCurrentStop: () => void
   replayCurrentSentence: () => void
+  restartCurrentStop: () => void
   dismissSafetyNotice: () => void
   unlockAudio: () => void
 }
@@ -257,6 +258,12 @@ export function useTour(tour: Tour): TourState & TourControls {
     narrationEngine?.replay()
   }, [unlockAudio, narrationEngine])
 
+  const restartCurrentStop = useCallback(() => {
+    unlockAudio()
+    narrationEngine?.stop()
+    narrationEngine?.play()
+  }, [unlockAudio, narrationEngine])
+
   const dismissSafetyNotice = useCallback(() => {
     setSafetyNoticeSeen(true)
   }, [])
@@ -282,6 +289,7 @@ export function useTour(tour: Tour): TourState & TourControls {
     previousStop,
     playCurrentStop,
     replayCurrentSentence,
+    restartCurrentStop,
     dismissSafetyNotice,
     unlockAudio,
   }
