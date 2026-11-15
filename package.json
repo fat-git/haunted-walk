@@ -9,8 +9,10 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run validate:tours && tsc -b && vite build",
+    "build": "npm run routes:check && npm run validate:tours && tsc -b && vite build",
     "validate:tours": "node scripts/validate-tours.mjs",
+    "routes:compute": "node scripts/compute-routes.mjs",
+    "routes:check": "node scripts/compute-routes.mjs --check",
     "preview": "vite preview",
     "typecheck": "tsc -b --pretty false",
     "lint": "eslint . --max-warnings=0",

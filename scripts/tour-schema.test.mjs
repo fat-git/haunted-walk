@@ -115,6 +115,7 @@ describe('route contract', () => {
 
   it('rejects a placeholder route without an explanatory note', () => {
     const broken = clone(route)
+    broken.metadata.status = 'placeholder'
     delete broken.metadata.note
 
     const errors = validateRoute(broken, { cityId: city.id, tour })
