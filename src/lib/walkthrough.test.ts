@@ -346,31 +346,12 @@ describe('FAT-34 narration engine and transcript highlights', () => {
   })
 })
 
-describe('FAT-34 transcript text integrity (splitIntoSentences)', () => {
-  it('documents current text loss after an abbreviation period (defect)', () => {
-    // A sentence-final period not followed by whitespace (e.g. "Jr.," or a
-    // closing quote "past.'") makes the split regex skip from the previous
-    // ". " to the next one, silently dropping the text in between from BOTH
-    // the spoken narration and the transcript. Affects 2 of 10 stops:
-    // french-opera-house-site and old-absinthe-house. When fixed, replace
-    // this pin with the full text-preservation test below.
-    const opera = splitIntoSentences(
-      (stops.find((s) => s.id === 'french-opera-house-site') as TourStop).narration,
-    )
-      .map((s) => s.text)
-      .join(' ')
-    expect(opera).not.toContain('designed by James Gallier Jr')
-    expect(opera).toContain(', and it hosted opera')
-
-    const absinthe = splitIntoSentences(
-      (stops.find((s) => s.id === 'old-absinthe-house') as TourStop).narration,
-    )
-      .map((s) => s.text)
-      .join(' ')
-    expect(absinthe).not.toContain('a rival saloon on Chartres Street')
-  })
-
-  it.skip('preserves the full script text for every stop (unskip when the split defect is fixed)', () => {
+describe('FAT-37 transcript text integrity (splitIntoSentences)', () => {
+  it('preserves the full script text for every stop (QA FAT-34 D1: no text loss)', () => {
+    // All 10 committed scripts: joining the split sentences must reproduce
+    // the narration exactly, modulo whitespace normalization. This was
+    // it.skip-ped by QA while the splitter dropped text after "Jr.," and
+    // "past.'".
     for (const stop of stops) {
       const joined = splitIntoSentences(stop.narration)
         .map((s) => s.text)
@@ -379,10 +360,57 @@ describe('FAT-34 transcript text integrity (splitIntoSentences)', () => {
     }
   })
 
-  it('splits mid-name at "St." / "No." (minor: unnatural pause, no text loss)', () => {
+  it('speaks the sentences QA pinned as lost: "Jr.," and the absinthe punchline', () => {
+    const opera = splitIntoSentences(
+      (stops.find((s) => s.id === 'french-opera-house-site') as TourStop).narration,
+    ).map((s) => s.text)
+    expect(
+      opera.some((text) =>
+        text.startsWith('The building opened in 1859, designed by James Gallier Jr.'),
+      ),
+    ).toBe(true)
+
+    const absinthe = splitIntoSentences(
+      (stops.find((s) => s.id === 'old-absinthe-house') as TourStop).narration,
+    ).map((s) => s.text)
+    expect(
+      absinthe.some((text) => text.includes('a rival saloon on Chartres Street')),
+    ).toBe(true)
+    expect(absinthe.some((text) => text.endsWith("handed down from the past.'"))).toBe(
+      true,
+    )
+  })
+
+  it('keeps a sentence together when a terminator meets a closer, with no loss', () => {
+    expect(
+      splitIntoSentences('Opened in 1859 by James Gallier Jr., and it hosted opera.')
+        .map((s) => s.text)
+        .join(' '),
+    ).toBe('Opened in 1859 by James Gallier Jr., and it hosted opera.')
+
+    expect(
+      splitIntoSentences(
+        "A line worth keeping: 'Legend is hearsay handed down from the past.' That is how we tell it.",
+      ).map((s) => s.text),
+    ).toEqual([
+      "A line worth keeping: 'Legend is hearsay handed down from the past.'",
+      'That is how we tell it.',
+    ])
+
+    expect(splitIntoSentences('He said, "Run!" and ran.').map((s) => s.text)).toEqual([
+      'He said, "Run!"',
+      'and ran.',
+    ])
+  })
+
+  it('does not break a name apart at "St." / "No." (QA minor: was an unnatural mid-name pause)', () => {
     const first = splitIntoSentences(stops[0].narration)
-    expect(first[0].text).toBe('You are standing outside St.')
-    expect(first[1].text).toBe('Louis Cemetery No.')
+    expect(first[0].text).toBe(
+      'You are standing outside St. Louis Cemetery No. 1, the oldest surviving cemetery in New Orleans.',
+    )
+    expect(first.some((s) => s.text.includes('the older St. Peter burial ground'))).toBe(
+      true,
+    )
   })
 })
 
