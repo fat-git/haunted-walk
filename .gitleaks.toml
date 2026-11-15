@@ -1,0 +1,11 @@
+# gitleaks configuration. CI treats any finding as a build failure.
+# This augments the default rule set; it does not replace it.
+
+[extend]
+useDefault = true
+
+# Lockfiles contain integrity hashes, not credentials. Everything else is
+# scanned, including built assets if they are ever committed by mistake.
+[allowlist]
+description = "Dependency lockfile hashes are not secrets"
+paths = ['''package-lock\.json''']
