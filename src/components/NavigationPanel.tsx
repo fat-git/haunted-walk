@@ -1,15 +1,20 @@
 /**
  * Navigation panel: the walking guidance card.
  *
- * Shows the next maneuver from the route's committed maneuver list, the
- * live distance to the next stop, an off-route warning (the app never
+ * Shows the maneuver from the route's committed maneuver list, the live
+ * distance to the current stop, an off-route warning (the app never
  * re-routes), per-stop Google/Apple Maps deep links as the turn-by-turn
  * fallback, GPS status, and the wake lock state.
+ *
+ * After a jump (FAT-47), guidance degrades honestly: when the walker is not
+ * on the committed leg into the current stop, no maneuver is claimed — only
+ * straight-line distance, bearing, and the maps deep links.
  */
 
-import type { Maneuver, Tour, TourStop } from '../types/tour'
+import type { Tour, TourStop } from '../types/tour'
 import type { GeolocationPermissionState } from '../hooks/useGPS'
 import type { WakeLockState } from '../hooks/useWakeLock'
+import type { StopGuidance } from '../lib/jump'
 import { formatDistanceM } from '../lib/format'
 import { appleMapsDirectionsUrl, googleMapsDirectionsUrl } from '../lib/mapsLinks'
 
@@ -17,7 +22,7 @@ interface NavigationPanelProps {
   tour: Tour
   currentStopIndex: number
   currentStop: TourStop
-  nextManeuver: Maneuver | null
+  guidance: StopGuidance
   distanceToNextStopM: number | null
   isAtStop: boolean
   isOffRoute: boolean
@@ -36,7 +41,7 @@ export function NavigationPanel({
   tour,
   currentStopIndex,
   currentStop,
-  nextManeuver,
+  guidance,
   distanceToNextStopM,
   isAtStop,
   isOffRoute,
@@ -79,16 +84,30 @@ export function NavigationPanel({
             Walking directions couldn't load. Follow the line on the map.
           </p>
         )}
-        {routeLoaded && nextManeuver && (
+        {routeLoaded && guidance.mode === 'straight-line' && (
+          <div className="jump-guidance" role="status">
+            <p className="maneuver-instruction">
+              You jumped to {currentStop.name}. The walking route is computed between
+              stops, so there are no street directions from here.
+            </p>
+            {guidance.straightLineM !== null && guidance.bearing !== null && (
+              <p className="maneuver-meta">
+                {formatDistanceM(guidance.straightLineM)} as the crow flies · heading{' '}
+                {guidance.bearing}
+              </p>
+            )}
+          </div>
+        )}
+        {routeLoaded && guidance.mode === 'leg' && guidance.maneuver && (
           <>
-            <p className="maneuver-instruction">{nextManeuver.instruction}</p>
+            <p className="maneuver-instruction">{guidance.maneuver.instruction}</p>
             <p className="maneuver-meta">
-              {formatDistanceM(nextManeuver.distanceM)} · about{' '}
-              {Math.max(1, Math.round(nextManeuver.durationS / 60))} min on foot
+              {formatDistanceM(guidance.maneuver.distanceM)} · about{' '}
+              {Math.max(1, Math.round(guidance.maneuver.durationS / 60))} min on foot
             </p>
           </>
         )}
-        {routeLoaded && !nextManeuver && (
+        {routeLoaded && guidance.mode === 'leg' && !guidance.maneuver && (
           <p className="maneuver-instruction">
             {isFinalStop
               ? 'Final stop — the tour ends here.'

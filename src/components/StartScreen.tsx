@@ -2,7 +2,9 @@
  * Start screen shown before tour begins.
  *
  * Includes the FAT-43 "Test audio" button so the walker can verify speech
- * output with a single tap before starting the walk.
+ * output with a single tap before starting the walk, and the FAT-47
+ * per-stop "Start here" actions so the walker can begin the tour at any
+ * stop instead of always stop 1.
  */
 
 import { useState } from 'react'
@@ -13,6 +15,7 @@ import { formatAudioCheck, runAudioCheck, type AudioCheckResult } from '../lib/n
 interface StartScreenProps {
   tour: Tour
   onStartTour: () => void
+  onStartAtStop: (index: number) => void
   wakeLockSupported: boolean
   speechSupported: boolean
 }
@@ -20,6 +23,7 @@ interface StartScreenProps {
 export function StartScreen({
   tour,
   onStartTour,
+  onStartAtStop,
   wakeLockSupported,
   speechSupported,
 }: StartScreenProps) {
@@ -59,6 +63,14 @@ export function StartScreen({
                 <span>{stop.address}</span>
               </div>
               <div className="stop-directions">
+                <button
+                  className="btn btn-secondary stop-start-btn"
+                  onClick={() => onStartAtStop(index)}
+                  aria-label={`Start the tour at stop ${index + 1}: ${stop.name}`}
+                  type="button"
+                >
+                  Start here
+                </button>
                 <a
                   href={googleMapsDirectionsUrl(stop.viewpoint.lat, stop.viewpoint.lon)}
                   target="_blank"
