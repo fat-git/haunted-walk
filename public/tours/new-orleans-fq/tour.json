@@ -87,6 +87,67 @@
       ]
     },
     {
+      "id": "old-absinthe-house",
+      "name": "The Old Absinthe House",
+      "lat": 29.9553574,
+      "lon": -90.0684677,
+      "address": "240 Bourbon St, New Orleans, LA 70130",
+      "viewpoint": {
+        "lat": 29.95537,
+        "lon": -90.06848,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk at the Bourbon and Bienville corner, outside 240 Bourbon."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "On the corner of Bourbon and Bienville stands a plain two-story stucco building that carries one of the great legends of the Battle of New Orleans. The building itself is genuinely old: its structure was built in the 1790s and completed around 1806, first used as a grocery, with the ground floor running as a bar by the 1830s. By 1869 it advertised itself as the Absinthe House, and in the 1870s its bartender, Cayetano Ferrer, made it famous for a single drink — the absinthe frappe, absinthe and sugar water, which regulars called the green monster. In 1912 the United States government banned the importation and sale of absinthe, and newspapers called the ban the house's death knell. The legend, though, is older than all of that: that in the weeks before the Battle of New Orleans, General Andrew Jackson met the privateer Jean Lafitte in a secret chamber on the second floor of this building to plan the city's defense. In 1950 the bar installed a plaque saying so. In 1951 a rival saloon on Chartres Street went to court over the right to claim the same meeting, and a Civil District Court judge dismissed the case with a line worth keeping: 'Legend means nothing more than hearsay or a story handed down from the past.' That is exactly how we tell it here — the meeting is legend, the drinking history is documented. You are on the public sidewalk; the plaque and the bar are inside.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://neworleanshistorical.org/items/show/619",
+        "https://en.wikipedia.org/wiki/Old_Absinthe_House"
+      ]
+    },
+    {
+      "id": "pirates-alley",
+      "name": "Pirate's Alley",
+      "lat": 29.9576172,
+      "lon": -90.0645451,
+      "address": "Pirate's Alley (near 615 St Peter St), New Orleans, LA 70116",
+      "viewpoint": {
+        "lat": 29.95762,
+        "lon": -90.06454,
+        "access": "public-sidewalk",
+        "description": "Public way of Pirate's Alley at its Royal Street end, beside the Arsenal block."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "This narrow brick channel between St. Louis Cathedral and the Cabildo has carried more than one name. On the old maps it is Orleans Alley; the name Pirate's Alley came later, and it is built on legend. The story says pirates rowed up from the river and slipped down this passage into town, and that smugglers and criminals were marched along it to the Spanish prison that once stood behind the Cabildo. There is real history braided into that tale: a prison — the Calabozo — did stand on this block, and in 1814 it held Pierre Lafitte, brother of the famous Jean, in chains. He escaped on the sixth of September, 1814, and later served with the American forces at the Battle of New Orleans. The prison was demolished in 1837, and the Arsenal standing behind the Cabildo today took its place. The pirate part — the midnight rowboats, the smugglers' shortcut — is folklore, the kind that ends up naming streets. The alley's documented fame is literary: in 1925 the novelist William Faulkner lived in a first-floor room at number 624, halfway down this passage, and drafted his first novel here. Walk its single block from Chartres to Royal — it is a public way — and enjoy what it really is: an ordinary alley wearing a pirate's name, because a good story beat the paperwork.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://neworleanshistorical.org/items/show/516",
+        "https://neworleanshistorical.org/items/show/1396"
+      ]
+    },
+    {
+      "id": "lalaurie-mansion",
+      "name": "LaLaurie Mansion",
+      "lat": 29.9618451,
+      "lon": -90.0612120,
+      "address": "1140 Royal St, New Orleans, LA 70116",
+      "viewpoint": {
+        "lat": 29.96186,
+        "lon": -90.06121,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Royal Street in front of 1140."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "The tall house at 1140 Royal Street is the most famous haunted address in New Orleans, and its true history is grim enough that the truth needs no decoration. In April of 1834, a fire broke out in the mansion of Delphine LaLaurie, a wealthy society woman at the center of Creole high life. Rescuers who came to fight the fire found enslaved people in the outbuildings and attic who had been chained and abused — contemporary newspaper accounts describe seven of them, starved and mutilated. The city answered with fury: a mob sacked the mansion before the day was out. Delphine LaLaurie escaped, and is believed to have fled to Paris. The house was gutted in the violence and rebuilt in 1838. That is the documented history, and it is well documented. Everything above it is folklore. Legend says screams still echo on Royal Street, that the ghosts of the abused pace the balconies, that the house punishes everyone who owns it. Writers and films added details over the years — a torture tower that never existed among them — which is exactly why the legend label on this stop matters. The mansion is a private residence today. We stop on the public sidewalk of Royal Street, look up at the ironwork, and keep the line between the fire of 1834 and everything the storytellers built on top of it.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://neworleanshistorical.org/items/show/1492",
+        "https://64parishes.org/entry/delphine-lalaurie",
+        "https://en.wikipedia.org/wiki/Delphine_LaLaurie"
+      ]
+    },
+    {
       "id": "french-opera-house-site",
       "name": "The French Opera House Site",
       "lat": 29.9577497,

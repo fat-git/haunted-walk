@@ -25,8 +25,8 @@
     "tour": "french-quarter-ghosts",
     "status": "placeholder",
     "note": "Hand-authored scaffolding geometry between the tour stops. T2.2 (FAT-21) replaces this with a walking route computed at build time.",
-    "generatedAt": "2026-11-15T16:40:00Z",
-    "stops": ["st-louis-cemetery-no-1", "marie-laveau-house-site", "lafittes-blacksmith-shop", "napoleon-house", "french-opera-house-site"],
+    "generatedAt": "2026-11-15T16:52:00Z",
+    "stops": ["st-louis-cemetery-no-1", "marie-laveau-house-site", "lafittes-blacksmith-shop", "napoleon-house", "old-absinthe-house", "pirates-alley", "lalaurie-mansion", "french-opera-house-site"],
     "maneuvers": [
       {
         "from": "st-louis-cemetery-no-1",
@@ -51,10 +51,31 @@
       },
       {
         "from": "napoleon-house",
+        "to": "old-absinthe-house",
+        "instruction": "Walk up Chartres Street to Bienville Street, turn left, and walk to the corner of Bourbon and Bienville.",
+        "distanceM": 330,
+        "durationS": 235
+      },
+      {
+        "from": "old-absinthe-house",
+        "to": "pirates-alley",
+        "instruction": "Walk north on Bourbon Street to St. Peter Street, turn left, and continue to Royal Street; Pirate's Alley begins just past the Arsenal.",
+        "distanceM": 455,
+        "durationS": 325
+      },
+      {
+        "from": "pirates-alley",
+        "to": "lalaurie-mansion",
+        "instruction": "Walk down Pirate's Alley to Royal Street, turn right, and continue up Royal Street to 1140.",
+        "distanceM": 568,
+        "durationS": 405
+      },
+      {
+        "from": "lalaurie-mansion",
         "to": "french-opera-house-site",
-        "instruction": "Walk north on Chartres Street to Toulouse Street, turn left and walk to Bourbon Street; the site is at 541 Bourbon.",
-        "distanceM": 240,
-        "durationS": 170
+        "instruction": "Continue down Royal Street to Toulouse Street, turn left, and walk to 541 Bourbon.",
+        "distanceM": 655,
+        "durationS": 470
       }
     ]
   }
