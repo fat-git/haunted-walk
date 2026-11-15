@@ -6,8 +6,11 @@
  */
 
 export interface NarrationSentence {
+  /** Trimmed sentence text, as spoken and rendered in the transcript. */
   text: string
+  /** Offset of the first sentence character in the full text. */
   startChar: number
+  /** Offset just past the last sentence character in the full text. */
   endChar: number
 }
 
@@ -35,38 +38,93 @@ export const DEFAULT_NARRATION_CONFIG = {
 }
 
 /**
+ * Abbreviations whose period is part of a name ("St. Louis", "No. 1",
+ * "James Gallier Jr."), so it does not end a sentence.
+ */
+const NAME_ABBREVIATIONS = new Set([
+  'St',
+  'Sr',
+  'Jr',
+  'No',
+  'Mr',
+  'Mrs',
+  'Ms',
+  'Dr',
+  'Mt',
+  'Ft',
+  'Capt',
+])
+
+/**
+ * Closing characters that may sit between a terminator and the whitespace
+ * after it (closing quotes, brackets, commas: "the past.'" / "Jr.,").
+ */
+const CLOSERS = new Set([',', "'", '"', ')', '’', '”'])
+
+function isTerminal(ch: string): boolean {
+  return ch === '.' || ch === '!' || ch === '?'
+}
+
+/** True when the period at `periodIndex` belongs to a name abbreviation. */
+function isNameAbbreviation(text: string, periodIndex: number): boolean {
+  let j = periodIndex
+  while (j > 0 && /[A-Za-z]/.test(text[j - 1])) j--
+  return j < periodIndex && NAME_ABBREVIATIONS.has(text.slice(j, periodIndex))
+}
+
+/**
  * Split text into sentences for granular playback control.
- * Uses a simple regex that handles common sentence boundaries.
+ *
+ * A sentence ends at a run of `.!?` followed by whitespace or the end of the
+ * text, with optional closing characters (a quote, comma, or bracket) in
+ * between — so `"past.'"` and `"Jr.,"` are kept whole. A period that is part
+ * of a name abbreviation ("St. Louis Cemetery No. 1") does not end a
+ * sentence. Every non-whitespace character is preserved: joining the
+ * returned sentences with single spaces reproduces the input, and
+ * startChar/endChar delimit each sentence in the original text.
  */
 export function splitIntoSentences(text: string): NarrationSentence[] {
-  // Match sentences ending with . ! ? followed by space or end of string
-  // This regex captures the sentence including the punctuation
-  const sentenceRegex = /[^.!?]+[.!?]+(?:\s|$)/g
   const sentences: NarrationSentence[] = []
-  let match: RegExpExecArray | null
-  let charIndex = 0
+  let start = 0
 
-  while ((match = sentenceRegex.exec(text)) !== null) {
-    const sentenceText = match[0].trim()
-    if (sentenceText.length > 0) {
-      sentences.push({
-        text: sentenceText,
-        startChar: charIndex,
-        endChar: charIndex + sentenceText.length,
-      })
-      charIndex += match[0].length
-    }
-  }
-
-  // If no sentences found (edge case), treat entire text as one sentence
-  if (sentences.length === 0 && text.trim().length > 0) {
+  const push = (endExclusive: number) => {
+    const raw = text.slice(start, endExclusive)
+    const trimmed = raw.trim()
+    if (trimmed.length === 0) return
+    const lead = raw.length - raw.trimStart().length
+    const startChar = start + lead
     sentences.push({
-      text: text.trim(),
-      startChar: 0,
-      endChar: text.trim().length,
+      text: trimmed,
+      startChar,
+      endChar: startChar + trimmed.length,
     })
   }
 
+  for (let i = 0; i < text.length; i++) {
+    if (!isTerminal(text[i])) continue
+
+    // A period that is part of a name abbreviation never ends a sentence.
+    if (text[i] === '.' && isNameAbbreviation(text, i)) continue
+
+    // Absorb a run of terminal punctuation ("?!", "...").
+    let end = i
+    while (end + 1 < text.length && isTerminal(text[end + 1])) end++
+
+    // Extend the boundary over closing characters until whitespace or the
+    // end of the text; a terminator that runs into more text ("1.5", "U.S.")
+    // is not a boundary.
+    let k = end + 1
+    while (k < text.length && CLOSERS.has(text[k])) k++
+    if (k < text.length && !/\s/.test(text[k])) continue
+    const boundary = k - 1
+
+    push(boundary + 1)
+    start = boundary + 1
+    i = boundary
+  }
+
+  // Trailing text without a terminator is the final sentence.
+  push(text.length)
   return sentences
 }
 

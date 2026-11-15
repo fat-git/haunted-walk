@@ -12,15 +12,6 @@ import { formatDistanceM } from '../lib/format'
 import type { Tour, RouteFile } from '../types/tour'
 import type { GeoPoint } from '../lib/geofence'
 
-// Fix Leaflet default icon paths
-const iconDefaultProto = L.Icon.Default.prototype as unknown as { _getIconUrl?: string }
-delete iconDefaultProto._getIconUrl
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-})
-
 interface MapProps {
   tour: Tour
   currentStopIndex: number
