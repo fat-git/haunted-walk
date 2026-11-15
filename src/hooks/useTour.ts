@@ -14,7 +14,7 @@ import { useEffect, useRef, useState, useCallback } from 'react'
 import type { RouteFile, Tour, TourStop } from '../types/tour'
 import type { GeoPoint } from '../lib/geofence'
 import { createStopGeofence, updateGeofence, resetGeofence } from '../lib/geofence'
-import { NarrationEngine, type NarrationProblem } from '../lib/narration'
+import { NarrationEngine, loadSpeechRate, type NarrationProblem } from '../lib/narration'
 import {
   distanceToRouteM as measureDistanceToRouteM,
   isOffRoutePoint,
@@ -194,7 +194,8 @@ export function useTour(tour: Tour): TourState & TourControls {
         narrationEngine.stop()
       }
 
-      const engine = new NarrationEngine(stop.narration)
+      // FAT-49: honor the start-screen Speed choice for this tour run.
+      const engine = new NarrationEngine(stop.narration, { rate: loadSpeechRate() })
       setNarrationEngine(engine)
       setNarrationProblem(null)
 

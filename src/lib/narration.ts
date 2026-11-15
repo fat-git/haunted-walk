@@ -39,16 +39,8 @@ export interface NarrationProblem {
   message: string
 }
 
-/** Default narration configuration. */
-export const DEFAULT_NARRATION_CONFIG = {
-  rate: 0.95,
-  pitch: 1,
-  volume: 1,
-  lang: 'en-US',
-}
-
 /**
- * Timing constants for the audio-failure paths (FAT-43).
+ * Timing constants for the audio-failure paths (FAT-43) and delivery (FAT-49).
  *
  * - watchdogMs: if `onstart` has not fired this long after speak(), the
  *   utterance is not audible; report, cancel, and retry once.
@@ -57,13 +49,32 @@ export const DEFAULT_NARRATION_CONFIG = {
  * - voicesTimeoutMs: getVoices() must never hang waiting for voiceschanged.
  * - maxSpeakChunkLength: Chrome/Android stops utterances around 15 s, so
  *   long sentences are split for speaking only.
+ * - sentencePauseMs: spoken pause between sentences (FAT-49) — the next
+ *   speak() call is delayed by this much so the read breathes instead of
+ *   machine-gunning sentences back to back.
  */
 export const NARRATION_TIMING = {
   watchdogMs: 3000,
   cancelSpeakDelayMs: 60,
   voicesTimeoutMs: 1500,
   maxSpeakChunkLength: 180,
+  sentencePauseMs: 250,
 } as const
+
+/** Default narration configuration (FAT-49 delivery + FAT-43 plumbing). */
+export const DEFAULT_NARRATION_CONFIG: {
+  rate: number
+  pitch: number
+  volume: number
+  lang: string
+  sentencePauseMs: number
+} = {
+  rate: 0.92,
+  pitch: 1,
+  volume: 1,
+  lang: 'en-US',
+  sentencePauseMs: NARRATION_TIMING.sentencePauseMs,
+}
 
 /**
  * Abbreviations whose period is part of a name ("St. Louis", "No. 1",
@@ -248,39 +259,127 @@ export function getVoices(
 }
 
 /**
- * Select the best English voice for narration.
- * Prefers a natural-sounding English voice.
+ * Voice selection (FAT-49).
+ *
+ * Device TTS voices vary wildly in quality: iOS ships robotic "compact"
+ * voices while the Premium/Enhanced/Siri ones sound natural, Android exposes
+ * network Google voices, desktop engines expose Natural/Neural voices. The
+ * ranking below is a single pure scoring function so the unit tests can pin
+ * the exact behavior with fixture voice lists per platform.
  */
-export function selectBestVoice(
+
+/** Name fragments that mark high-quality, natural voices. */
+const PREMIUM_VOICE_MARKERS = ['premium', 'enhanced', 'neural', 'natural', 'siri']
+
+/** Apple voices that sound decent even in their compact tier. */
+const PREFERRED_APPLE_NAMES = ['samantha', 'ava', 'allison', 'evan']
+
+/** A compact/default voice: Apple's fallback quality tier. */
+const COMPACT_MARKERS = ['compact', '(default)']
+
+/**
+ * Rank one voice for the tour language (higher is better).
+ *
+ * Order of preference: exact language match » primary-subtag match, then
+ * premium markers (Premium/Enhanced/Neural/Natural/Siri) » Google network
+ * voices » known Apple names » anything else. Compact/default voices are
+ * always penalized so they only win when nothing better exists.
+ */
+export function voiceRank(
+  voice: SpeechSynthesisVoice,
+  tourLang: string = DEFAULT_NARRATION_CONFIG.lang,
+): number {
+  const lang = voice.lang.toLowerCase().replace('_', '-')
+  const tour = tourLang.toLowerCase().replace('_', '-')
+  const name = voice.name.toLowerCase()
+
+  let score = 0
+  if (lang === tour) {
+    score += 400
+  } else if (lang.split('-')[0] === tour.split('-')[0]) {
+    score += 200
+  }
+  if (PREMIUM_VOICE_MARKERS.some((marker) => name.includes(marker))) score += 50
+  if (name.startsWith('google')) score += 30
+  if (PREFERRED_APPLE_NAMES.some((preferred) => name.startsWith(preferred))) score += 20
+  if (COMPACT_MARKERS.some((marker) => name.includes(marker))) score -= 10
+  return score
+}
+
+/**
+ * Pick the best available voice for the tour language.
+ *
+ * Pure: never reads speechSynthesis; takes the loaded voice list. Ties break
+ * by name so the choice is deterministic on a given device. Falls back to
+ * the best-scoring voice of any language when the tour language is missing.
+ */
+export function pickBestVoice(
   voices: SpeechSynthesisVoice[],
+  tourLang: string = DEFAULT_NARRATION_CONFIG.lang,
 ): SpeechSynthesisVoice | null {
-  // Preferred voice names (high quality, natural)
-  const preferredNames = [
-    'Samantha', // iOS/macOS
-    'Google US English', // Android/Chrome
-    'Microsoft Zira', // Windows
-    'Alex', // macOS
-    'Victoria', // macOS
-  ]
+  if (voices.length === 0) return null
+  const tourPrefix = tourLang.toLowerCase().replace('_', '-').split('-')[0]
+  const inTourLanguage = voices.filter((v) =>
+    v.lang.toLowerCase().replace('_', '-').split('-')[0] === tourPrefix,
+  )
+  const pool = inTourLanguage.length > 0 ? inTourLanguage : voices
+  return [...pool].sort(
+    (a, b) =>
+      voiceRank(b, tourLang) - voiceRank(a, tourLang) ||
+      a.name.localeCompare(b.name),
+  )[0]
+}
 
-  // First try exact name matches
-  for (const name of preferredNames) {
-    const voice = voices.find((v) => v.name === name && v.lang.startsWith('en'))
-    if (voice) return voice
+/** Saved-voice localStorage key (FAT-49). */
+export const VOICE_PREFERENCE_KEY = 'haunted-walk.voiceURI'
+
+/** Speed localStorage key (FAT-49). */
+export const SPEECH_RATE_KEY = 'haunted-walk.speechRate'
+
+/** Narration speed choices: slower reads less robotic (FAT-49). */
+export const SPEED_OPTIONS = [0.8, 0.9, 1.0, 1.1] as const
+
+function storageGet(key: string): string | null {
+  try {
+    return localStorage.getItem(key)
+  } catch {
+    return null
   }
+}
 
-  // Then try partial name matches
-  for (const name of preferredNames) {
-    const voice = voices.find((v) => v.name.includes(name) && v.lang.startsWith('en'))
-    if (voice) return voice
+function storageSet(key: string, value: string): void {
+  try {
+    localStorage.setItem(key, value)
+  } catch {
+    // Storage unavailable (private mode); the choice just does not persist.
   }
+}
 
-  // Fallback: any English voice
-  const englishVoice = voices.find((v) => v.lang.startsWith('en'))
-  if (englishVoice) return englishVoice
+/** Load the persisted narration speed, falling back to the tuned default. */
+export function loadSpeechRate(): number {
+  const raw = storageGet(SPEECH_RATE_KEY)
+  if (raw === null) return DEFAULT_NARRATION_CONFIG.rate
+  const rate = Number(raw)
+  if (!Number.isFinite(rate) || rate <= 0 || rate > 2) return DEFAULT_NARRATION_CONFIG.rate
+  return rate
+}
 
-  // Last resort: first available voice
-  return voices[0] ?? null
+/** Persist the narration speed. */
+export function saveSpeechRate(rate: number): void {
+  if (!Number.isFinite(rate) || rate <= 0 || rate > 2) return
+  storageSet(SPEECH_RATE_KEY, String(rate))
+}
+
+/** Load the persisted voice preference (a voiceURI), if any. */
+export function loadVoicePreference(): string | null {
+  const raw = storageGet(VOICE_PREFERENCE_KEY)
+  return raw && raw.length > 0 ? raw : null
+}
+
+/** Persist the voice preference by voiceURI. */
+export function saveVoicePreference(voiceURI: string): void {
+  if (!voiceURI) return
+  storageSet(VOICE_PREFERENCE_KEY, voiceURI)
 }
 
 /** Plain-language message for a speechSynthesis error code. */
@@ -339,11 +438,18 @@ export function formatAudioCheck(result: AudioCheckResult): string {
 /**
  * Speak a fixed check phrase and report what happened. Must be called from a
  * user gesture (the Test audio button tap).
+ *
+ * Accepts the voice the walker picked in the start-screen picker (FAT-49);
+ * falls back to the ranked best voice. Speaks at the persisted speed so the
+ * check sounds like real narration.
  */
-export function runAudioCheck(timeoutMs: number = 6000): Promise<AudioCheckResult> {
+export function runAudioCheck(
+  selectedVoice: SpeechSynthesisVoice | null = null,
+  timeoutMs: number = 6000,
+): Promise<AudioCheckResult> {
   return new Promise((resolve) => {
     const voices = speechSynthesis.getVoices()
-    const voice = selectBestVoice(voices)
+    const voice = selectedVoice ?? pickBestVoice(voices)
     const result: AudioCheckResult = {
       voiceCount: voices.length,
       voiceName: voice ? voice.name : null,
@@ -354,10 +460,10 @@ export function runAudioCheck(timeoutMs: number = 6000): Promise<AudioCheckResul
     const utterance = new SpeechSynthesisUtterance(
       'Audio check. If you can hear this, narration will work.',
     )
-    utterance.rate = 1
+    utterance.rate = loadSpeechRate()
     utterance.pitch = 1
     utterance.volume = 1
-    utterance.lang = DEFAULT_NARRATION_CONFIG.lang
+    utterance.lang = voice?.lang ?? DEFAULT_NARRATION_CONFIG.lang
     if (voice) utterance.voice = voice
 
     let settled = false
@@ -407,6 +513,8 @@ export class NarrationEngine {
   // Speech plumbing (FAT-43)
   private watchdogTimer: ReturnType<typeof setTimeout> | null = null
   private speakDelayTimer: ReturnType<typeof setTimeout> | null = null
+  // Delivery plumbing (FAT-49)
+  private sentencePauseTimer: ReturnType<typeof setTimeout> | null = null
   private needsCancelDelay = false
   private startedCurrent = false
   private erroredCurrent = false
@@ -429,7 +537,10 @@ export class NarrationEngine {
   /** Initialize the engine (load voices; never blocks playback). */
   async init(): Promise<void> {
     const voices = await getVoices()
-    this.voice = selectBestVoice(voices)
+    // A voice picked on the start screen wins; otherwise the ranked choice.
+    const preferred = loadVoicePreference()
+    const saved = preferred ? (voices.find((v) => v.voiceURI === preferred) ?? null) : null
+    this.voice = saved ?? pickBestVoice(voices, this.config.lang)
     if (voices.length === 0) {
       this.reportProblem({
         kind: 'no-voices',
@@ -509,6 +620,7 @@ export class NarrationEngine {
     this.bumpGeneration()
     this.clearWatchdog()
     this.clearSpeakDelay()
+    this.clearSentencePause()
     this.needsCancelDelay = false
     speechSynthesis.cancel()
     this.state.isPlaying = false
@@ -600,6 +712,13 @@ export class NarrationEngine {
     }
   }
 
+  private clearSentencePause(): void {
+    if (this.sentencePauseTimer !== null) {
+      clearTimeout(this.sentencePauseTimer)
+      this.sentencePauseTimer = null
+    }
+  }
+
   private reportProblem(problem: NarrationProblem): void {
     this.problem = problem
     this.onProblem?.(problem)
@@ -620,6 +739,22 @@ export class NarrationEngine {
     this.state.isPaused = false
     this.onSentenceChange?.(currentSentenceIndex)
     this.startChunk(0)
+  }
+
+  /**
+   * Delay the next sentence by a short spoken pause (FAT-49). The
+   * sentence-per-sentence machine-gun read is what makes TTS feel robotic;
+   * a ~250 ms gap lets the delivery breathe. The generation token cancels
+   * a pending pause if the walker stops, skips, or pauses meanwhile.
+   */
+  private scheduleSentencePause(pauseMs: number): void {
+    const gen = this.generation
+    this.clearSentencePause()
+    this.sentencePauseTimer = setTimeout(() => {
+      this.sentencePauseTimer = null
+      if (gen !== this.generation) return
+      this.speakCurrentSentence()
+    }, pauseMs)
   }
 
   /**
@@ -681,7 +816,12 @@ export class NarrationEngine {
       this.state.currentSentenceIndex += 1
       this.onSentenceChange?.(this.state.currentSentenceIndex)
       if (this.state.currentSentenceIndex < this.state.sentences.length) {
-        this.speakCurrentSentence()
+        // Between sentences: brief pause instead of an immediate speak (FAT-49).
+        if (this.config.sentencePauseMs > 0) {
+          this.scheduleSentencePause(this.config.sentencePauseMs)
+        } else {
+          this.speakCurrentSentence()
+        }
       } else {
         this.stop()
         this.onEnd?.()
