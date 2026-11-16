@@ -44,6 +44,15 @@
       "sources": [
         "https://neworleanshistorical.org/items/show/1610",
         "https://en.wikipedia.org/wiki/Marie_Laveau"
+      ],
+      "images": [
+        {
+          "src": "images/marie-laveau-house-site-1.jpg",
+          "alt": "St. Ann Street in the French Quarter, New Orleans - the 1000 block where Marie Laveau's house once stood, viewed from the public sidewalk.",
+          "credit": "edenpictures",
+          "license": "CC-BY-2.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Site_of_Marie_Laveau's_Home.jpg"
+        }
       ]
     },
     {
@@ -65,6 +74,15 @@
         "https://neworleanshistorical.org/items/show/1492",
         "https://64parishes.org/entry/delphine-lalaurie",
         "https://en.wikipedia.org/wiki/Delphine_LaLaurie"
+      ],
+      "images": [
+        {
+          "src": "images/lalaurie-mansion-1.jpg",
+          "alt": "The LaLaurie Mansion at 1140 Royal Street, New Orleans, seen from the public sidewalk on Royal Street.",
+          "credit": "Reading Tom",
+          "license": "CC-BY-2.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_LaLaurie_Mansion.jpg"
+        }
       ]
     },
     {
@@ -85,6 +103,15 @@
       "sources": [
         "https://neworleanshistorical.org/items/show/616",
         "https://en.wikipedia.org/wiki/Lafitte%27s_Blacksmith_Shop"
+      ],
+      "images": [
+        {
+          "src": "images/lafittes-blacksmith-shop-1.jpg",
+          "alt": "Lafitte's Blacksmith Shop at 941 Bourbon Street, New Orleans - exterior corner view of the historic slate-roofed building.",
+          "credit": "Jeremy Thompson",
+          "license": "CC-BY-4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lafitte's_Blacksmith_Shop_bar,_New_Orleans_November_2025_-_exterior,_corner_sign.jpg"
+        }
       ]
     },
     {
@@ -105,6 +132,15 @@
       "sources": [
         "https://www.andrewjacksonhotel.com/about-us",
         "https://en.wikipedia.org/wiki/Legal_affairs_of_Andrew_Jackson"
+      ],
+      "images": [
+        {
+          "src": "images/andrew-jackson-hotel-1.jpg",
+          "alt": "The Andrew Jackson Hotel at 919 Royal Street, New Orleans, seen from the public sidewalk.",
+          "credit": "APK",
+          "license": "CC-BY-SA-4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Andrew_Jackson_Hotel.jpg"
+        }
       ]
     },
     {
@@ -125,6 +161,15 @@
       "sources": [
         "https://neworleanshistorical.org/items/show/516",
         "https://neworleanshistorical.org/items/show/1396"
+      ],
+      "images": [
+        {
+          "src": "images/pirates-alley-1.jpg",
+          "alt": "Pirate's Alley in the French Quarter, New Orleans - the narrow public alley between St. Louis Cathedral and the Cabildo.",
+          "credit": "Arnold Genthe",
+          "license": "PD",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pirate_Alley,_New_Orleans_LOC_agc.7a03467.jpg"
+        }
       ]
     },
     {
@@ -145,6 +190,15 @@
       "sources": [
         "https://neworleanshistorical.org/items/show/263",
         "https://en.wikipedia.org/wiki/Napoleon_House"
+      ],
+      "images": [
+        {
+          "src": "images/napoleon-house-1.jpg",
+          "alt": "The Napoleon House, formerly the Girod House, at 500 Chartres Street, New Orleans - exterior view of the stucco building.",
+          "credit": "Historic American Buildings Survey, National Park Service",
+          "license": "PD",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Historic_American_Buildings_Survey_Richard_Koch,_Photographer,_April,_1934_FRONT_ELEVATION_(FACING_WEST)_-_Girod_House,_500-506_Chartres_Street,_New_Orleans,_Orleans_Parish,_LA_HABS_LA,36-NEWOR,8-1.tif"
+        }
       ]
     },
     {
@@ -165,6 +219,15 @@
         "https://neworleanshistorical.org/items/show/260",
         "https://hgghh.org/exhibitions/french-opera-house",
         "https://acloserwalknola.com/places/french-opera-house"
+      ],
+      "images": [
+        {
+          "src": "images/french-opera-house-site-1.jpg",
+          "alt": "Bourbon Street in the French Quarter, New Orleans - at left, the hotel at 541 Bourbon Street that now occupies the French Opera House site.",
+          "credit": "Infrogmation of New Orleans",
+          "license": "CC-BY-SA-3.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:BourbonSt14Jan2008FrenchOperaTropical.jpg"
+        }
       ]
     },
     {
@@ -205,6 +268,15 @@
       "sources": [
         "https://neworleanshistorical.org/items/show/619",
         "https://en.wikipedia.org/wiki/Old_Absinthe_House"
+      ],
+      "images": [
+        {
+          "src": "images/old-absinthe-house-1.jpg",
+          "alt": "The Old Absinthe House at 240 Bourbon Street, New Orleans, at the corner of Bourbon and Bienville Streets.",
+          "credit": "Frances Benjamin Johnston",
+          "license": "PD",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:New_Orleans_240_Bourbon_FB_Johnson_c_1937.jpg"
+        }
       ]
     }
   ]
