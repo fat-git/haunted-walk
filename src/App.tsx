@@ -98,6 +98,7 @@ function TourApp({
     isOffRoute,
     routeLoaded,
     routeError,
+    route,
     narration,
     safetyNoticeSeen,
     userPosition,
@@ -207,6 +208,7 @@ function TourApp({
             wakeLockSupported={wakeLock.isSupported}
             speechSupported={speechSupported}
             fallbackMessage={fallbackMessage}
+            route={route}
           />
         )}
 

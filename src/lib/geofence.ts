@@ -35,11 +35,14 @@ export interface StopGeofence {
 /** Earth radius in meters. */
 const EARTH_RADIUS_M = 6371000
 
+/** Worst fix accuracy (meters) the geofence still trusts; beyond this the hint shows. */
+export const minAccuracyM = 50
+
 /** Default geofence configuration. */
 export const DEFAULT_GEOFENCE_CONFIG: GeofenceConfig = {
   enterRadiusM: 30,
   exitRadiusM: 45,
-  minAccuracyM: 50,
+  minAccuracyM,
   requiredConsecutiveFixes: 2,
 }
 
