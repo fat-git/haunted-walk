@@ -145,12 +145,15 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
         runtimeCaching: [
           {
+            // urlPattern functions are serialized into dist/sw.js with
+            // toString(), so they must be self-contained: no outer-scope
+            // references (BASE_PATH, helpers). check:dist runs them in Node.
             // Per-city tour data for cities beyond the precached default:
             // NetworkFirst so a returning walker gets redeployed narration and
             // routes, falling back to the cached copy when offline or slow.
             urlPattern: ({ url, sameOrigin }: { url: URL; sameOrigin: boolean }) =>
               sameOrigin &&
-              url.pathname.startsWith(`${BASE_PATH}tours/`) &&
+              url.pathname.startsWith('/haunted-walk/tours/') &&
               (url.pathname.endsWith('.json') || url.pathname.endsWith('.geojson')),
             handler: 'NetworkFirst',
             options: {
@@ -168,7 +171,7 @@ export default defineConfig({
             // demand so an in-progress tour keeps showing them offline.
             urlPattern: ({ url, sameOrigin }: { url: URL; sameOrigin: boolean }) =>
               sameOrigin &&
-              url.pathname.startsWith(`${BASE_PATH}tours/`) &&
+              url.pathname.startsWith('/haunted-walk/tours/') &&
               /\.(jpg|jpeg|png|webp)$/i.test(url.pathname),
             handler: 'CacheFirst',
             options: {
