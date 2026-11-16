@@ -13,7 +13,12 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import type { RouteFile, Tour, TourStop } from '../types/tour'
 import type { GeoPoint } from '../lib/geofence'
-import { createStopGeofence, updateGeofence, resetGeofence } from '../lib/geofence'
+import {
+  rebuildStopGeofences,
+  type StopGeofence,
+  updateGeofence,
+  resetGeofence,
+} from '../lib/geofence'
 import { NarrationEngine, loadSpeechRate, type NarrationProblem } from '../lib/narration'
 import {
   distanceToRouteM as measureDistanceToRouteM,
@@ -123,29 +128,16 @@ export function useTour(tour: Tour): TourState & TourControls {
   // Stop index the pending activation should begin at (set from the start
   // screen's per-stop "Start here" action; defaults to the first stop).
   const startStopIndexRef = useRef(0)
-  const geofencesRef = useRef<Map<string, ReturnType<typeof createStopGeofence>>>(
-    new Map(),
-  )
+  const geofencesRef = useRef<Map<string, StopGeofence>>(new Map())
 
   // Refs for callbacks that need to reference each other
   const nextStopRef = useRef<() => void>(() => {})
   const initializeNarrationRef = useRef<(stopIndex: number) => void>(() => {})
 
-  // Initialize geofences for all stops
+  // Rebuild geofences whenever the stop list changes (e.g. a city swap), so
+  // lookups by stop id never go stale.
   useEffect(() => {
-    if (geofencesRef.current.size === 0 && tour.stops.length > 0) {
-      for (const stop of tour.stops) {
-        geofencesRef.current.set(
-          stop.id,
-          createStopGeofence(
-            stop.id,
-            { lat: stop.lat, lon: stop.lon },
-            stop.geofenceRadiusM,
-            stop.geofenceRadiusM + 15,
-          ),
-        )
-      }
-    }
+    rebuildStopGeofences(geofencesRef.current, tour.stops)
   }, [tour.stops])
 
   // Load the committed route. On failure the map falls back to straight

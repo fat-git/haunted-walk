@@ -42,6 +42,35 @@ interface StartScreenProps {
   fallbackMessage: string | null
 }
 
+export function CityPicker({
+  city,
+  cities,
+  onCityChange,
+}: {
+  city: CityEntry
+  cities: CityEntry[]
+  onCityChange: (cityId: string) => void
+}) {
+  if (cities.length <= 1) return null
+  return (
+    <div className="city-picker" role="region" aria-label="Choose a city">
+      <label htmlFor="city-picker">City</label>
+      <select
+        id="city-picker"
+        value={city.id}
+        onChange={(event) => onCityChange(event.target.value)}
+        aria-label="Choose city"
+      >
+        {cities.map((candidate) => (
+          <option key={candidate.id} value={candidate.id}>
+            {candidate.name}
+          </option>
+        ))}
+      </select>
+    </div>
+  )
+}
+
 export function StartScreen({
   tour,
   city,
@@ -113,23 +142,7 @@ export function StartScreen({
 
   return (
     <div className="start-screen">
-      {cities.length > 1 && (
-        <div className="city-picker" role="region" aria-label="Choose a city">
-          <label htmlFor="city-picker">City</label>
-          <select
-            id="city-picker"
-            value={city.id}
-            onChange={(event) => onCityChange(event.target.value)}
-            aria-label="Choose city"
-          >
-            {cities.map((candidate) => (
-              <option key={candidate.id} value={candidate.id}>
-                {candidate.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
+      <CityPicker city={city} cities={cities} onCityChange={onCityChange} />
 
       {fallbackMessage && (
         <p className="fallback-banner" role="status" aria-live="polite">

@@ -85,6 +85,30 @@ export function createStopGeofence(
   }
 }
 
+/** Replace `target`'s contents with one fresh geofence per stop. */
+export function rebuildStopGeofences(
+  target: Map<string, StopGeofence>,
+  stops: ReadonlyArray<{
+    id: string
+    lat: number
+    lon: number
+    geofenceRadiusM: number
+  }>,
+): void {
+  target.clear()
+  for (const stop of stops) {
+    target.set(
+      stop.id,
+      createStopGeofence(
+        stop.id,
+        { lat: stop.lat, lon: stop.lon },
+        stop.geofenceRadiusM,
+        stop.geofenceRadiusM + 15,
+      ),
+    )
+  }
+}
+
 /**
  * Update geofence state with a new GPS fix.
  * Returns true if the stop was just entered (trigger narration).

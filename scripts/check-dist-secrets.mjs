@@ -166,6 +166,17 @@ if (!existsSync(serviceWorker)) {
   if (sw.includes('tours/README.md')) {
     fail('service worker precache must not include tours/README.md')
   }
+  if (!sw.includes('clientsClaim')) {
+    fail('service worker does not claim clients; first-install offline would fail')
+  }
+  for (const required of ['tour.json', 'route.geojson']) {
+    if (!new RegExp(`url:"tours/[^"/]+/${required.replace('.', '\\.')}"`).test(sw)) {
+      fail(`service worker does not precache the default city's ${required}`)
+    }
+  }
+  if (sw.includes('url:"http')) {
+    fail('service worker precache must not include cross-origin URLs')
+  }
   // Duplicate precache entries waste the first-load cache and can break
   // `precacheAndRoute` bookkeeping. The glob patterns in vite.config.ts must
   // stay disjoint from the plugin's automatic manifest/icon entries.

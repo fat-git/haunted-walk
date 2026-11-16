@@ -13,7 +13,8 @@
 import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { StartScreen } from './StartScreen'
+import { CityPicker, StartScreen } from './StartScreen'
+import { isValidElement, type ReactElement } from 'react'
 import type { Tour, CityEntry } from '../types/tour'
 
 const TOUR: Tour = JSON.parse(
@@ -116,5 +117,46 @@ describe('StartScreen city picker (FAT-66)', () => {
     })
     expect(markup).toContain('Unknown city "nowhere"')
     expect(markup).toContain('Showing New Orleans French Quarter')
+  })
+})
+
+describe('CityPicker onChange (FAT-97)', () => {
+  const otherCity: CityEntry = {
+    id: 'somewhere-else',
+    name: 'Somewhere Else',
+    defaultTour: 'somewhere-else-tour',
+    description: 'A second city for the picker.',
+  }
+
+  function findSelect(node: unknown): ReactElement<Record<string, unknown>> | null {
+    if (!isValidElement(node)) return null
+    const element = node as ReactElement<Record<string, unknown>>
+    if (element.type === 'select') return element
+    const children = element.props.children
+    for (const child of Array.isArray(children) ? children : [children]) {
+      const found = findSelect(child)
+      if (found) return found
+    }
+    return null
+  }
+
+  it('reports the chosen city id through onCityChange', () => {
+    const picked: string[] = []
+    const tree = CityPicker({
+      city: CITY,
+      cities: [CITY, otherCity],
+      onCityChange: (id) => picked.push(id),
+    })
+    const select = findSelect(tree)
+    expect(select).not.toBeNull()
+    const onChange = select!.props.onChange as (event: {
+      target: { value: string }
+    }) => void
+    onChange({ target: { value: 'somewhere-else' } })
+    expect(picked).toEqual(['somewhere-else'])
+  })
+
+  it('renders nothing for a single city', () => {
+    expect(CityPicker({ city: CITY, cities: [CITY], onCityChange: () => {} })).toBeNull()
   })
 })
