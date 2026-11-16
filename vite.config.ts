@@ -100,13 +100,37 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Precache the app shell and every shipped tour file so the tour
-        // survives a dead spot. Tour data lives under /tours/.
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2,json,geojson,webmanifest}'],
+        // Precache the app shell plus the tiny city registry (index.json).
+        // Per-city tour.json/route.geojson are deliberately NOT eagerly
+        // precached: that would download every registered city on the first
+        // visit and bloat it as cities are added. Instead they are cached on
+        // demand below, so a city the walker has opened still loads offline
+        // without growing the first visit (see docs/ADD_A_CITY.md).
+        globPatterns: [
+          '**/*.{js,css,html,svg,png,ico,woff2,webmanifest}',
+          'tours/index.json',
+        ],
         navigateFallback: `${BASE_PATH}index.html`,
         navigateFallbackAllowlist: [/^\/haunted-walk\//],
         cleanupOutdatedCaches: true,
         runtimeCaching: [
+          {
+            // Per-city tour data: fetched from the network the first time a
+            // city is opened, then served from cache so that city loads
+            // offline afterwards. Only opened cities are ever stored.
+            urlPattern: ({ url }: { url: URL }) =>
+              url.pathname.includes('/tours/') &&
+              (url.pathname.endsWith('.json') || url.pathname.endsWith('.geojson')),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'tour-data',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 30,
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
           {
             // OSM tiles are cached only after the user actually views them.
             // Never precache or bulk-prefetch tiles: the OSM tile usage policy

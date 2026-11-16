@@ -1,7 +1,9 @@
 # Adding a city
 
 A new city is **data only**: create one directory, add one line to the registry,
-and run the build. No application code changes are needed or expected.
+and run the build. The app reads `public/tours/index.json` and offers a city
+picker whenever the registry lists more than one city, so no application code
+changes are needed or expected.
 
 The build validates every city before it compiles the app. A malformed stop, a
 missing source, missing coordinates, or a viewpoint that is not marked as a
@@ -248,6 +250,7 @@ the data afterwards.
 ## 6. Deploy and verify
 
 Merge through the normal PR gate. After the Pages deploy, run the post-deploy
-checks in [RUNBOOK.md](RUNBOOK.md): the four tour URLs plus `sw.js` must be
-HTTP 200, and the new city's `route.geojson` must report
-`metadata.status: "computed"`.
+checks in [RUNBOOK.md](RUNBOOK.md): for every city in the registry,
+`/haunted-walk/tours/<id>/tour.json` and `/haunted-walk/tours/<id>/route.geojson`
+must be HTTP 200 and each `route.geojson` must report `metadata.status: "computed"`,
+plus `sw.js` and the manifest must be HTTP 200.

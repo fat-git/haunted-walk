@@ -1,8 +1,8 @@
 # Runbook
 
-Operating manual for the deployed pilot. Today that is exactly one city — the
-New Orleans French Quarter — served as a static site from GitHub Pages. Facts
-here were verified against main at `85997e5` (PRs #9, #10, #11 merged).
+Operating manual for the deployed pilot. The app supports any city listed in
+`public/tours/index.json`; today only the New Orleans French Quarter is
+shipped. Facts here were verified against main at `85997e5` (PRs #9, #10, #11 merged).
 
 Live site: <https://fat-git.github.io/haunted-walk/>
 
@@ -95,23 +95,28 @@ testers to walk a few meters off the drawn line at those two stops.
 
 ## Check after every deploy
 
-All URLs must be HTTP 200. The required set is the four tour URLs + `sw.js`;
-the manifest is a free fifth check.
+All URLs must be HTTP 200. The required set is the app shell, `sw.js`, the
+manifest, and — for **every city listed in `tours/index.json`** — that city's
+`tour.json` and `route.geojson`. Iterate the registry rather than hard-coding
+a city id; the manifest is an additional check. The New Orleans French Quarter
+rows below are a worked example.
 
-| URL (under `https://fat-git.github.io`)            | Expect                                                                  |
-| -------------------------------------------------- | ----------------------------------------------------------------------- |
-| `/haunted-walk/`                                   | App shell loads; no blank page; CSP `<meta>` present in the page source |
-| `/haunted-walk/tours/index.json`                   | Registry JSON listing `new-orleans-fq`                                  |
-| `/haunted-walk/tours/new-orleans-fq/tour.json`     | Tour JSON, 10 stops                                                     |
-| `/haunted-walk/tours/new-orleans-fq/route.geojson` | `metadata.status` is `computed`; 9 maneuvers; stops in tour order       |
-| `/haunted-walk/sw.js`                              | Service-worker JS (never a 404 or the HTML fallback)                    |
-| `/haunted-walk/manifest.webmanifest`               | `id` / `start_url` / `scope` all under `/haunted-walk/`                 |
+| URL (under `https://fat-git.github.io`)            | Expect                                                                                     |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `/haunted-walk/`                                   | App shell loads; no blank page; CSP `<meta>` present in the page source                    |
+| `/haunted-walk/tours/index.json`                   | Registry JSON listing every city                                                           |
+| `/haunted-walk/tours/<id>/tour.json`               | HTTP 200 tour JSON for each city id `<id>` in the registry                                 |
+| `/haunted-walk/tours/<id>/route.geojson`           | HTTP 200; `metadata.status` is `computed`; maneuvers; stops in tour order, for each `<id>` |
+| `/haunted-walk/tours/new-orleans-fq/tour.json`     | Tour JSON, 10 stops (worked example: New Orleans French Quarter)                           |
+| `/haunted-walk/tours/new-orleans-fq/route.geojson` | `metadata.status` is `computed`; 9 maneuvers; stops in tour order (worked example)         |
+| `/haunted-walk/sw.js`                              | Service-worker JS (never a 404 or the HTML fallback)                                       |
+| `/haunted-walk/manifest.webmanifest`               | `id` / `start_url` / `scope` all under `/haunted-walk/`                                    |
 
 Then in a browser: DevTools → Application shows the service worker registered
 at scope `/haunted-walk/`, and the map draws the route with OSM tiles (the CSP
 allows only `tile.openstreetmap.org`).
 
-Verified 2026-11-15 against the live site: all six URLs 200;
+Verified 2026-11-15 against the live site: all required URLs 200;
 `route.geojson` `metadata.status` = `computed`.
 
 ## Known limits
