@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 import {
   calculateNarrationSeconds,
+  LEGEND_LABELS,
   validateCityRegistry,
   validateImages,
   validateRoute,
@@ -99,6 +100,62 @@ describe('required stop data', () => {
     const errors = validateTour(broken, tourOptions)
 
     expect(errors.some((error) => error.includes('narration'))).toBe(true)
+  })
+})
+
+describe('legendLabel', () => {
+  it('accepts a present valid label', () => {
+    const mutated = clone(tour)
+    mutated.stops[0].legendLabel = 'Local legend'
+
+    const errors = validateTour(mutated, tourOptions)
+
+    expect(errors).toEqual([])
+  })
+
+  it('rejects a present invalid label', () => {
+    const mutated = clone(tour)
+    mutated.stops[0].legendLabel = 'Fact'
+
+    const errors = validateTour(mutated, tourOptions)
+
+    expect(errors.some((error) => error.includes('legendLabel'))).toBe(true)
+  })
+
+  it('accepts an absent label (history-only stop, no legend told)', () => {
+    const mutated = clone(tour)
+    delete mutated.stops[0].legendLabel
+
+    const errors = validateTour(mutated, tourOptions)
+
+    expect(errors).toEqual([])
+  })
+
+  it('mutation-check: every invalid present label fails', () => {
+    const invalid = ['', 'fact', 'LEGEND', 'local legend', 'legendary', null, 7, true]
+
+    for (const value of invalid) {
+      const mutated = clone(tour)
+      mutated.stops[0].legendLabel = value
+
+      const errors = validateTour(mutated, tourOptions)
+
+      expect(
+        errors.some((error) => error.includes('legendLabel')),
+        `expected legendLabel=${JSON.stringify(value)} to fail`,
+      ).toBe(true)
+    }
+  })
+
+  it('mutation-check: each valid present label passes', () => {
+    for (const value of LEGEND_LABELS) {
+      const mutated = clone(tour)
+      mutated.stops[0].legendLabel = value
+
+      const errors = validateTour(mutated, tourOptions)
+
+      expect(errors).toEqual([])
+    }
   })
 })
 

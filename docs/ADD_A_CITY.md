@@ -90,7 +90,8 @@ is the walking order.
 | `viewpoint`       | Object with `lat`, `lon`, `access`, and `description`. See below.                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `geofenceRadiusM` | Number greater than 0 and at most 500. The pilot uses ~30 m.                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `narration`       | 60-120 seconds at 150 words per minute, i.e. roughly 150-300 words.                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `legendLabel`     | `"Legend"` or `"Local legend"`. The schema rejects anything that presents a legend as fact.                                                                                                                                                                                                                                                                                                                                                                                              |
+| `legendLabel`     | Optional. `"Legend"` or `"Local legend"`; omit the field when no legend is told at this stop. A                                                                                                                                                                                                                                                                                                                                                                                          |
+|                   | stop that narrates a legend MUST carry a label, and the narration must frame it as a story.                                                                                                                                                                                                                                                                                                                                                                                              |
 | `sources`         | At least one absolute `http(s)` URL. Every historical claim and reported sighting needs a source.                                                                                                                                                                                                                                                                                                                                                                                        |
 | `images`          | Optional array of stop pictures. Each item needs `src` (a path relative to the tour folder, e.g. `images/<stop-id>-1.jpg`, must exist), `alt` (non-empty, max 160 chars), `credit` (non-empty), `license` (one of CC0, PD, CC-BY-2.0, CC-BY-3.0, CC-BY-4.0, CC-BY-SA-2.0, CC-BY-SA-3.0, CC-BY-SA-4.0), `sourceUrl` (an https URL of the file page on commons.wikimedia.org, attribution link only, never fetched at runtime), and an optional `caption`. A stop with no images is valid. |
 
@@ -167,10 +168,36 @@ OSM snapshot. Lessons that now count as review criteria:
 
 ### Legends stay legends
 
+The label definitions live here, in one place, so every city uses them the same
+way:
+
+- `"Legend"` — a widely retold story attached to this specific place.
+- `"Local legend"` — a story told locally or by tour guides without wide
+  documentation.
+- omit the field — no legend is told at this stop (a history-only stop).
+
 The narration may retell ghost stories, but it must frame them as stories. Use
 language such as "legend says", "local lore holds", or "tour guides claim", and
 label the stop `"Legend"` or `"Local legend"`. Keep documented history and
 folklore visibly separate. Do not state a haunting as fact.
+
+A stop that narrates a legend MUST carry a `legendLabel`, and the narration must
+frame it as a story. A stop that tells no legend must omit the field — never
+label history as a legend, and never leave a narrated legend unlabeled. The
+build-time validator enforces: a present label must be `"Legend"` or
+`"Local legend"`, and an absent label means history only.
+
+### Leg spacing
+
+Aim for legs under about 600 m between consecutive stops' viewpoints. The New
+Orleans leg between `marie-laveau-house-site` and `lalaurie-mansion` is 838 m
+(about 11 minutes walking) and is the ceiling — treat any longer leg as a reason
+to add a stop or move a viewpoint.
+
+Check leg length after computing the route: each entry in
+`route.geojson.metadata.maneuvers` is one leg, and its `distanceM` is the leg
+length in metres. Run `npm run routes:check` to prove the committed route still
+matches a fresh computation over the committed OSM way snapshot.
 
 ### Sources
 
