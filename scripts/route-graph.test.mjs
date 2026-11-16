@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
 import {
-  CONNECTOR_CORRIDOR_M,
   MAX_CONNECTOR_LENGTH_M,
   MAX_SNAP_DISTANCE_M,
   buildRouteDocument,

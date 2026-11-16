@@ -1,0 +1,18 @@
+version: 2
+updates:
+  # Keep dev tooling patched; the app itself has no runtime network
+  # dependencies beyond leaflet/react.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      dev-toolchain:
+        dependency-type: development
+    allow:
+      - dependency-type: direct
+      - dependency-type: indirect
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

@@ -46,6 +46,11 @@ technology choice below follows from it:
 Because the app has no keys by design, **any key-shaped string in the bundle is a bug**,
 and that is something CI can test for.
 
+**Privacy, precisely:** your position is processed on your device and never uploaded or
+shared. The one network traffic pattern to know about: every map tile is fetched from
+OpenStreetMap, which means OSM sees the area you are viewing. That is inherent to
+third-party tiles, not to the app's data handling.
+
 Pages serves a project repo from a subpath, so Vite's `base`, the service-worker scope,
 and the manifest `start_url` must all be `/haunted-walk/`. If they don't match, the
 installed PWA 404s the first time someone reloads it on the street.

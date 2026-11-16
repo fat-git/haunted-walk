@@ -1,0 +1,6 @@
+# Workflow files execute with repository credentials and publish the site;
+# the secret scanner is the primary credential guard. Changes to these
+# files require the repository owner's review.
+/.github/workflows/**      @fat-git
+/.github/dependabot.yml    @fat-git
+/scripts/check-dist-secrets.mjs @fat-git

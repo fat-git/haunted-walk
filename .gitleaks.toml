@@ -4,8 +4,16 @@
 [extend]
 useDefault = true
 
-# Lockfiles contain integrity hashes, not credentials. Everything else is
-# scanned, including built assets if they are ever committed by mistake.
-[allowlist]
-description = "Dependency lockfile hashes are not secrets"
-paths = ['''package-lock\.json''']
+# Lockfile scanning, precisely: gitleaks' default config (extended above)
+# ships a *global* allowlist whose path list already excludes
+# package-lock.json and the other lockfiles wholesale — no rule, targeted or
+# not, runs against them. An extending config can only append allowlists; it
+# cannot subtract the default one, so a local rule-scoped allowlist for
+# lockfiles has no effect either way (verified locally with planted keys:
+# aws-access-token fires in a non-lockfile and stays silent in
+# package-lock.json under both the old whole-file allowlist and a
+# targetRules one). The whole-file allowlist this repo used to carry is
+# therefore gone: it claimed to do the scoping the default already does.
+# The compensating guard for anything that ends up bundled or committed
+# outside lockfiles is scripts/check-dist-secrets.mjs plus the scheduled
+# full-history scan, which uses this same config.

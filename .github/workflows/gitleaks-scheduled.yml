@@ -1,0 +1,28 @@
+name: Scheduled full-history secret scan
+
+on:
+  schedule:
+    # 03:17 UTC daily — off the hour so it is not the default everyone uses.
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gitleaks-full-history:
+    name: gitleaks (full history)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out full history
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0
+
+      # PR runs only cover the PR range; this scan covers every commit on
+      # main so a secret that landed earlier is still caught.
+      - name: Scan for secrets
+        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2.3.9
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
