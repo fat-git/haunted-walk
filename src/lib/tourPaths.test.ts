@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { registryUrl, routeUrl, tourUrl } from './tourPaths'
+import { imageUrl, registryUrl, routeUrl, tourUrl } from './tourPaths'
 
 /**
  * These tests exist because typecheck, lint, the unit suite, `build` and
@@ -51,6 +51,18 @@ describe('tour data paths', () => {
     )
   })
 
+  it('builds a stop image URL against the documented layout', () => {
+    expect(imageUrl('new-orleans-fq', 'images/st-louis-cemetery-no-1-1.jpg', '/')).toBe(
+      '/tours/new-orleans-fq/images/st-louis-cemetery-no-1-1.jpg',
+    )
+  })
+
+  it('resolves a stop image URL under the deployed base path', () => {
+    expect(imageUrl('new-orleans-fq', 'images/x.jpg', '/haunted-walk/')).toBe(
+      '/haunted-walk/tours/new-orleans-fq/images/x.jpg',
+    )
+  })
+
   it('lists at least one city in the registry', () => {
     expect(registry.cities.length).toBeGreaterThan(0)
   })
@@ -63,5 +75,16 @@ describe('tour data paths', () => {
   it.each(registry.cities)('names a tour id matching $id/tour.json', (city) => {
     const tour = JSON.parse(readShipped(tourUrl(city.id, '/'))) as { id: string }
     expect(tour.id).toBe(city.defaultTour)
+  })
+
+  it.each(registry.cities)('ships every image referenced by $id/tour.json', (city) => {
+    const tour = JSON.parse(readShipped(tourUrl(city.id, '/'))) as {
+      stops: Array<{ images?: Array<{ src: string }> }>
+    }
+    for (const stop of tour.stops) {
+      for (const image of stop.images ?? []) {
+        expect(shipped.has(imageUrl(city.id, image.src, '/'))).toBe(true)
+      }
+    }
   })
 })

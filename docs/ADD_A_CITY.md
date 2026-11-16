@@ -81,17 +81,42 @@ is the walking order.
 
 ### Stop fields
 
-| Field             | Rule                                                                                              |
-| ----------------- | ------------------------------------------------------------------------------------------------- |
-| `id`              | Kebab-case, unique within the tour.                                                               |
-| `name`            | Non-empty, at least 3 characters.                                                                 |
-| `lat`, `lon`      | The stop's mapped location, named `lat`/`lon` (not GeoJSON order).                                |
-| `address`         | A real street address. Do not invent one.                                                         |
-| `viewpoint`       | Object with `lat`, `lon`, `access`, and `description`. See below.                                 |
-| `geofenceRadiusM` | Number greater than 0 and at most 500. The pilot uses ~30 m.                                      |
-| `narration`       | 60-120 seconds at 150 words per minute, i.e. roughly 150-300 words.                               |
-| `legendLabel`     | `"Legend"` or `"Local legend"`. The schema rejects anything that presents a legend as fact.       |
-| `sources`         | At least one absolute `http(s)` URL. Every historical claim and reported sighting needs a source. |
+| Field             | Rule                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`              | Kebab-case, unique within the tour.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `name`            | Non-empty, at least 3 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `lat`, `lon`      | The stop's mapped location, named `lat`/`lon` (not GeoJSON order).                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `address`         | A real street address. Do not invent one.                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `viewpoint`       | Object with `lat`, `lon`, `access`, and `description`. See below.                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `geofenceRadiusM` | Number greater than 0 and at most 500. The pilot uses ~30 m.                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `narration`       | 60-120 seconds at 150 words per minute, i.e. roughly 150-300 words.                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `legendLabel`     | `"Legend"` or `"Local legend"`. The schema rejects anything that presents a legend as fact.                                                                                                                                                                                                                                                                                                                                                                                              |
+| `sources`         | At least one absolute `http(s)` URL. Every historical claim and reported sighting needs a source.                                                                                                                                                                                                                                                                                                                                                                                        |
+| `images`          | Optional array of stop pictures. Each item needs `src` (a path relative to the tour folder, e.g. `images/<stop-id>-1.jpg`, must exist), `alt` (non-empty, max 160 chars), `credit` (non-empty), `license` (one of CC0, PD, CC-BY-2.0, CC-BY-3.0, CC-BY-4.0, CC-BY-SA-2.0, CC-BY-SA-3.0, CC-BY-SA-4.0), `sourceUrl` (an https URL of the file page on commons.wikimedia.org, attribution link only, never fetched at runtime), and an optional `caption`. A stop with no images is valid. |
+
+### Images
+
+Stop pictures are **optional** and **data only**: add an `images` array to stops in `tour.json`, then commit the image files under the tour folder (for example `public/tours/<city>/images/`). The build validator rejects any stop whose image breaks the rules below, so a missing or oversized image fails `npm run build` before the app compiles.
+
+#### Free licenses only
+
+`license` must be one of `CC0`, `PD`, `CC-BY-2.0`, `CC-BY-3.0`, `CC-BY-4.0`, `CC-BY-SA-2.0`, `CC-BY-SA-3.0`, or `CC-BY-SA-4.0`. No other license is accepted. This keeps every picture freely reusable with attribution.
+
+#### Wikimedia Commons for the source
+
+`sourceUrl` must be an `https` URL of a file page on `commons.wikimedia.org`. It is used only for the attribution link ("Photo: <credit>, <license>"); the app never fetches it at runtime. Do not hotlink the image file itself — images are same-origin static files shipped with the tour.
+
+#### Exterior views from public places
+
+Pictures must show exteriors visible from a public sidewalk or public way. Do not photograph inside a paid or closed site, over a private fence, or from private property. The same placement rules that apply to viewpoints apply to pictures: public right-of-way only.
+
+#### Size limits
+
+Each image must be at most 150 KB and use one of `.jpg`, `.jpeg`, `.png`, `.webp`. Images wider than 1200 px should be downscaled before committing; the validator cannot cheaply check dimensions, so keep them modest by convention. Large images bust the walker's data plan and the modest precache budget.
+
+#### Credit required
+
+`credit` (author or photographer) and `alt` (what is visible, max 160 characters) are both required on every image. The credit is rendered on the stop view as "Photo: <credit>, <license>" linking to `sourceUrl`.
 
 ### Viewpoints are public sidewalks
 

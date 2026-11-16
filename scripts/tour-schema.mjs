@@ -20,6 +20,18 @@ export const MAX_VIEWPOINT_DISTANCE_M = 250
 export const LEGEND_LABELS = ['Legend', 'Local legend']
 export const VIEWPOINT_ACCESS = 'public-sidewalk'
 export const ROUTE_STATUSES = ['placeholder', 'computed']
+export const IMAGE_LICENSES = [
+  'CC0',
+  'PD',
+  'CC-BY-2.0',
+  'CC-BY-3.0',
+  'CC-BY-4.0',
+  'CC-BY-SA-2.0',
+  'CC-BY-SA-3.0',
+  'CC-BY-SA-4.0',
+]
+export const MAX_IMAGE_ALT_CHARS = 160
+export const IMAGE_KEYS = ['src', 'alt', 'credit', 'license', 'sourceUrl', 'caption']
 
 const ID_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 
@@ -37,6 +49,7 @@ const STOP_KEYS = [
   'narration',
   'legendLabel',
   'sources',
+  'images',
 ]
 const VIEWPOINT_KEYS = ['lat', 'lon', 'access', 'description']
 const ROUTE_KEYS = ['type', 'features', 'metadata']
@@ -79,6 +92,16 @@ function isHttpUrl(value) {
   try {
     const url = new URL(value)
     return url.protocol === 'https:' || url.protocol === 'http:'
+  } catch {
+    return false
+  }
+}
+
+function isCommonsWikimediaUrl(value) {
+  if (!isNonEmptyString(value)) return false
+  try {
+    const url = new URL(value)
+    return url.protocol === 'https:' && url.hostname === 'commons.wikimedia.org'
   } catch {
     return false
   }
@@ -199,6 +222,51 @@ export function validateViewpoint(viewpoint, path, stop) {
   return errors
 }
 
+export function validateImages(images, path = 'images') {
+  const errors = []
+
+  if (images === undefined) return errors
+  if (!Array.isArray(images)) {
+    errors.push(`${path}: must be an array of image objects`)
+    return errors
+  }
+
+  images.forEach((image, index) => {
+    const imagePath = `${path}[${index}]`
+    if (!isPlainObject(image)) {
+      errors.push(`${imagePath}: must be an object`)
+      return
+    }
+    checkAllowedKeys(image, IMAGE_KEYS, imagePath, errors)
+    if (!isNonEmptyString(image.src)) {
+      errors.push(`${imagePath}.src: must be a path relative to the tour folder`)
+    }
+    if (!isNonEmptyString(image.alt)) {
+      errors.push(`${imagePath}.alt: must describe what is visible`)
+    } else if (image.alt.length > MAX_IMAGE_ALT_CHARS) {
+      errors.push(`${imagePath}.alt: must be at most ${MAX_IMAGE_ALT_CHARS} characters`)
+    }
+    if (!isNonEmptyString(image.credit)) {
+      errors.push(`${imagePath}.credit: must name the author or photographer`)
+    }
+    if (!IMAGE_LICENSES.includes(image.license)) {
+      errors.push(
+        `${imagePath}.license: must be one of ${IMAGE_LICENSES.map((license) => `"${license}"`).join(', ')}`,
+      )
+    }
+    if (!isCommonsWikimediaUrl(image.sourceUrl)) {
+      errors.push(
+        `${imagePath}.sourceUrl: must be an https URL of a commons.wikimedia.org file page`,
+      )
+    }
+    if (image.caption !== undefined && typeof image.caption !== 'string') {
+      errors.push(`${imagePath}.caption: must be a string`)
+    }
+  })
+
+  return errors
+}
+
 export function validateStop(stop, path = 'stop') {
   const errors = []
 
@@ -247,6 +315,7 @@ export function validateStop(stop, path = 'stop') {
   }
   errors.push(...validateSources(stop.sources, path))
   errors.push(...validateViewpoint(stop.viewpoint, `${path}.viewpoint`, stop))
+  errors.push(...validateImages(stop.images, `${path}.images`))
 
   return errors
 }

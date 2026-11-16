@@ -4,11 +4,13 @@
  * Provides play/pause, replay, skip, next stop, and manual play override.
  */
 
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import type { NarrationEngine, NarrationProblem } from '../lib/narration'
 import type { TourStop } from '../types/tour'
+import { imageUrl } from '../lib/tourPaths'
 
 interface PlaybackControlsProps {
+  city: string
   narration: NarrationEngine | null
   currentStop: TourStop | null
   phase: 'idle' | 'ready' | 'active' | 'paused' | 'completed'
@@ -28,6 +30,7 @@ interface PlaybackControlsProps {
 }
 
 export function PlaybackControls({
+  city,
   narration,
   currentStop,
   phase,
@@ -50,6 +53,8 @@ export function PlaybackControls({
   const currentSentenceIndex = state?.currentSentenceIndex ?? 0
   const totalSentences = state?.sentences.length ?? 0
 
+  const [imageLoadFailed, setImageLoadFailed] = useState(false)
+
   const canPlay = phase === 'active' || phase === 'paused'
   const showControls = phase !== 'idle' && phase !== 'completed'
 
@@ -57,12 +62,35 @@ export function PlaybackControls({
     return null
   }
 
+  // The first image of the current stop; undefined when the stop has none.
+  const firstImage = currentStop.images?.[0]
+
   return (
     <div className="playback-controls" role="region" aria-label="Narration controls">
       <div className="stop-info">
         <h3 className="stop-name">{currentStop.name}</h3>
         <p className="stop-address">{currentStop.address}</p>
       </div>
+
+      {firstImage && !imageLoadFailed && (
+        <>
+          <figure className="stop-image" key={firstImage.src} aria-label={firstImage.alt}>
+            <img
+              src={imageUrl(city, firstImage.src)}
+              alt={firstImage.alt}
+              loading="lazy"
+              decoding="async"
+              onError={() => setImageLoadFailed(true)}
+            />
+          </figure>
+          <p className="stop-image-credit">
+            Photo:{' '}
+            <a href={firstImage.sourceUrl} target="_blank" rel="noopener noreferrer">
+              {firstImage.credit}, {firstImage.license}
+            </a>
+          </p>
+        </>
+      )}
 
       <div
         className="progress-bar"
