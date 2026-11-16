@@ -1,7 +1,8 @@
 /**
  * Playback controls for narration.
  *
- * Provides play/pause, replay, skip, next stop, and manual play override.
+ * Provides play/pause, replay, skip, next stop, manual play override,
+ * stop image gallery, and optional engagement content.
  */
 
 import { useMemo, useState } from 'react'
@@ -29,6 +30,146 @@ interface PlaybackControlsProps {
   onDismissNarrationProblem: () => void
 }
 
+function StopGallery({ city, stop }: { city: string; stop: TourStop }) {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [failed, setFailed] = useState<Record<number, boolean>>({})
+  const images = stop.images ?? []
+
+  if (images.length === 0) return null
+
+  const safeIndex = Math.min(activeIndex, images.length - 1)
+  const image = images[safeIndex]
+  if (!image || failed[safeIndex]) return null
+
+  return (
+    <section className="stop-gallery" aria-label="Stop photos">
+      <figure className="stop-image" key={`${stop.id}-${image.src}`}>
+        <img
+          src={imageUrl(city, image.src)}
+          alt={image.alt}
+          loading="lazy"
+          decoding="async"
+          onError={() => setFailed((prev) => ({ ...prev, [safeIndex]: true }))}
+        />
+      </figure>
+      <p className="stop-image-credit">
+        Photo:{' '}
+        <a href={image.sourceUrl} target="_blank" rel="noopener noreferrer">
+          {image.credit}, {image.license}
+        </a>
+      </p>
+      {images.length > 1 && (
+        <div className="stop-gallery-nav" aria-label="Photo navigation">
+          <button
+            type="button"
+            className="control-btn tertiary"
+            onClick={() => setActiveIndex((i) => (i - 1 + images.length) % images.length)}
+            aria-label="Previous photo"
+          >
+            Prev
+          </button>
+          <span className="stop-gallery-count" aria-live="polite">
+            {safeIndex + 1} / {images.length}
+          </span>
+          <button
+            type="button"
+            className="control-btn tertiary"
+            onClick={() => setActiveIndex((i) => (i + 1) % images.length)}
+            aria-label="Next photo"
+          >
+            Next
+          </button>
+        </div>
+      )}
+      {images.length > 1 && (
+        <div className="stop-gallery-dots" role="tablist" aria-label="Choose photo">
+          {images.map((img, idx) => (
+            <button
+              key={img.src}
+              type="button"
+              role="tab"
+              className={`gallery-dot ${idx === safeIndex ? 'active' : ''}`}
+              aria-selected={idx === safeIndex}
+              aria-label={`Photo ${idx + 1}`}
+              onClick={() => setActiveIndex(idx)}
+            />
+          ))}
+        </div>
+      )}
+    </section>
+  )
+}
+
+function StopEngagement({ stop }: { stop: TourStop }) {
+  const [selectedOption, setSelectedOption] = useState<number | null>(null)
+  const [revealed, setRevealed] = useState(false)
+  const hasContent = stop.lookFor || stop.discuss || stop.funFact || stop.quiz
+  if (!hasContent) return null
+
+  return (
+    <section className="stop-engagement" aria-label="Engagement">
+      {stop.lookFor && (
+        <article className="engagement-card">
+          <h4>Look for</h4>
+          <p>{stop.lookFor}</p>
+        </article>
+      )}
+      {stop.discuss && (
+        <article className="engagement-card">
+          <h4>Discuss</h4>
+          <p>{stop.discuss}</p>
+        </article>
+      )}
+      {stop.funFact && (
+        <article className="engagement-card">
+          <h4>{stop.funFact.kind === 'legend' ? 'Legend' : 'Fun fact'}</h4>
+          <p>{stop.funFact.text}</p>
+          <p className="engagement-source">
+            <a href={stop.funFact.sourceUrl} target="_blank" rel="noopener noreferrer">
+              Source
+            </a>
+          </p>
+        </article>
+      )}
+      {stop.quiz && (
+        <article className="engagement-card engagement-quiz">
+          <h4>Quick quiz</h4>
+          <p>{stop.quiz.question}</p>
+          <div className="quiz-options">
+            {stop.quiz.options.map((option, index) => (
+              <button
+                key={`${index}-${option}`}
+                type="button"
+                className={`quiz-option ${selectedOption === index ? 'selected' : ''} ${
+                  revealed && index === stop.quiz!.answerIndex ? 'correct' : ''
+                }`}
+                onClick={() => setSelectedOption(index)}
+                aria-pressed={selectedOption === index}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+          <button
+            type="button"
+            className="control-btn tertiary"
+            onClick={() => setRevealed(true)}
+            disabled={selectedOption === null || revealed}
+          >
+            Reveal answer
+          </button>
+          {revealed && (
+            <p className="quiz-explanation" role="status">
+              {selectedOption === stop.quiz.answerIndex ? 'Correct. ' : 'Not quite. '}
+              {stop.quiz.explanation}
+            </p>
+          )}
+        </article>
+      )}
+    </section>
+  )
+}
+
 export function PlaybackControls({
   city,
   narration,
@@ -53,17 +194,12 @@ export function PlaybackControls({
   const currentSentenceIndex = state?.currentSentenceIndex ?? 0
   const totalSentences = state?.sentences.length ?? 0
 
-  const [imageLoadFailed, setImageLoadFailed] = useState(false)
-
   const canPlay = phase === 'active' || phase === 'paused'
   const showControls = phase !== 'idle' && phase !== 'completed'
 
   if (!showControls || !currentStop) {
     return null
   }
-
-  // The first image of the current stop; undefined when the stop has none.
-  const firstImage = currentStop.images?.[0]
 
   return (
     <div className="playback-controls" role="region" aria-label="Narration controls">
@@ -72,25 +208,8 @@ export function PlaybackControls({
         <p className="stop-address">{currentStop.address}</p>
       </div>
 
-      {firstImage && !imageLoadFailed && (
-        <>
-          <figure className="stop-image" key={firstImage.src} aria-label={firstImage.alt}>
-            <img
-              src={imageUrl(city, firstImage.src)}
-              alt={firstImage.alt}
-              loading="lazy"
-              decoding="async"
-              onError={() => setImageLoadFailed(true)}
-            />
-          </figure>
-          <p className="stop-image-credit">
-            Photo:{' '}
-            <a href={firstImage.sourceUrl} target="_blank" rel="noopener noreferrer">
-              {firstImage.credit}, {firstImage.license}
-            </a>
-          </p>
-        </>
-      )}
+      <StopGallery key={currentStop.id} city={city} stop={currentStop} />
+      <StopEngagement key={`${currentStop.id}-engagement`} stop={currentStop} />
 
       <div
         className="progress-bar"

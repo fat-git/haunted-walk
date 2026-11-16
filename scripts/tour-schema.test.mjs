@@ -281,3 +281,93 @@ describe('stop images', () => {
     expect(errors.some((error) => error.includes('unknown field'))).toBe(true)
   })
 })
+
+describe('stop engagement fields', () => {
+  function stopWithEngagement(patch) {
+    const broken = clone(tour)
+    broken.stops[0] = { ...broken.stops[0], ...patch }
+    return broken
+  }
+
+  it('accepts optional engagement fields when omitted', () => {
+    expect(validateTour(tour, tourOptions)).toEqual([])
+  })
+
+  it('accepts valid lookFor, discuss, funFact and quiz', () => {
+    const enriched = stopWithEngagement({
+      lookFor: 'Notice the ironwork and plaques from the sidewalk.',
+      discuss: 'What details make this story feel local?',
+      funFact: {
+        text: 'The site changed uses over time.',
+        kind: 'fact',
+        sourceUrl: 'https://example.org/fun-fact',
+      },
+      quiz: {
+        question: 'Which view is this from?',
+        options: ['Public sidewalk', 'Inside', 'Rooftop'],
+        answerIndex: 0,
+        explanation: 'Tours stay on public sidewalks.',
+      },
+    })
+    expect(validateTour(enriched, tourOptions)).toEqual([])
+  })
+
+  it('rejects lookFor and discuss over length limits', () => {
+    expect(
+      validateTour(stopWithEngagement({ lookFor: 'x'.repeat(281) }), tourOptions).some(
+        (e) => e.includes('lookFor'),
+      ),
+    ).toBe(true)
+    expect(
+      validateTour(stopWithEngagement({ discuss: 'x'.repeat(281) }), tourOptions).some(
+        (e) => e.includes('discuss'),
+      ),
+    ).toBe(true)
+  })
+
+  it('requires funFact sourceUrl and validates kind/text', () => {
+    expect(
+      validateTour(
+        stopWithEngagement({
+          funFact: { text: 'A fact', kind: 'fact' },
+        }),
+        tourOptions,
+      ).some((e) => e.includes('sourceUrl')),
+    ).toBe(true)
+    expect(
+      validateTour(
+        stopWithEngagement({
+          funFact: { text: 'A fact', kind: 'rumor', sourceUrl: 'https://example.org/f' },
+        }),
+        tourOptions,
+      ).some((e) => e.includes('kind')),
+    ).toBe(true)
+  })
+
+  it('validates quiz shape and bounds', () => {
+    expect(
+      validateTour(
+        stopWithEngagement({
+          quiz: { question: 'Q?', options: ['A'], answerIndex: 0, explanation: 'E' },
+        }),
+        tourOptions,
+      ).some((e) => e.includes('options')),
+    ).toBe(true)
+    expect(
+      validateTour(
+        stopWithEngagement({
+          quiz: { question: 'Q?', options: ['A', 'B'], answerIndex: 3, explanation: 'E' },
+        }),
+        tourOptions,
+      ).some((e) => e.includes('answerIndex')),
+    ).toBe(true)
+  })
+
+  it('rejects unknown engagement fields', () => {
+    expect(
+      validateTour(stopWithEngagement({ trivia: 'nope' }), tourOptions).some((e) =>
+        e.includes('unknown field'),
+      ),
+    ).toBe(true)
+  })
+})

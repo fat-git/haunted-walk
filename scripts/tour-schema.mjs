@@ -33,6 +33,18 @@ export const IMAGE_LICENSES = [
 export const MAX_IMAGE_ALT_CHARS = 160
 export const IMAGE_KEYS = ['src', 'alt', 'credit', 'license', 'sourceUrl', 'caption']
 
+export const FUN_FACT_KINDS = ['fact', 'legend']
+export const MAX_LOOK_FOR_CHARS = 280
+export const MAX_DISCUSS_CHARS = 280
+export const MAX_FUN_FACT_TEXT_CHARS = 280
+export const MAX_QUIZ_QUESTION_CHARS = 280
+export const MAX_QUIZ_OPTION_CHARS = 120
+export const MAX_QUIZ_EXPLANATION_CHARS = 280
+export const MIN_QUIZ_OPTIONS = 2
+export const MAX_QUIZ_OPTIONS = 4
+export const FUN_FACT_KEYS = ['text', 'kind', 'sourceUrl']
+export const QUIZ_KEYS = ['question', 'options', 'answerIndex', 'explanation']
+
 const ID_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 
 const CITY_KEYS = ['id', 'name', 'defaultTour', 'description']
@@ -50,6 +62,10 @@ const STOP_KEYS = [
   'legendLabel',
   'sources',
   'images',
+  'lookFor',
+  'discuss',
+  'funFact',
+  'quiz',
 ]
 const VIEWPOINT_KEYS = ['lat', 'lon', 'access', 'description']
 const ROUTE_KEYS = ['type', 'features', 'metadata']
@@ -267,6 +283,92 @@ export function validateImages(images, path = 'images') {
   return errors
 }
 
+function validateOptionalText(value, key, maxChars, path, errors) {
+  if (value === undefined) return
+  if (!isNonEmptyString(value)) {
+    errors.push(`${path}.${key}: must be a non-empty string`)
+    return
+  }
+  if (value.length > maxChars) {
+    errors.push(`${path}.${key}: must be at most ${maxChars} characters`)
+  }
+}
+
+export function validateFunFact(funFact, path = 'funFact') {
+  const errors = []
+  if (funFact === undefined) return errors
+  if (!isPlainObject(funFact)) {
+    errors.push(`${path}: must be an object`)
+    return errors
+  }
+  checkAllowedKeys(funFact, FUN_FACT_KEYS, path, errors)
+  if (!isNonEmptyString(funFact.text)) {
+    errors.push(`${path}.text: must be a non-empty string`)
+  } else if (funFact.text.length > MAX_FUN_FACT_TEXT_CHARS) {
+    errors.push(`${path}.text: must be at most ${MAX_FUN_FACT_TEXT_CHARS} characters`)
+  }
+  if (!FUN_FACT_KINDS.includes(funFact.kind)) {
+    errors.push(
+      `${path}.kind: must be one of ${FUN_FACT_KINDS.map((kind) => `"${kind}"`).join(', ')}`,
+    )
+  }
+  if (!isHttpUrl(funFact.sourceUrl)) {
+    errors.push(`${path}.sourceUrl: must be an absolute http(s) URL`)
+  }
+  return errors
+}
+
+export function validateQuiz(quiz, path = 'quiz') {
+  const errors = []
+  if (quiz === undefined) return errors
+  if (!isPlainObject(quiz)) {
+    errors.push(`${path}: must be an object`)
+    return errors
+  }
+  checkAllowedKeys(quiz, QUIZ_KEYS, path, errors)
+  if (!isNonEmptyString(quiz.question)) {
+    errors.push(`${path}.question: must be a non-empty string`)
+  } else if (quiz.question.length > MAX_QUIZ_QUESTION_CHARS) {
+    errors.push(`${path}.question: must be at most ${MAX_QUIZ_QUESTION_CHARS} characters`)
+  }
+  if (!Array.isArray(quiz.options)) {
+    errors.push(`${path}.options: must be an array of answer options`)
+  } else {
+    if (
+      quiz.options.length < MIN_QUIZ_OPTIONS ||
+      quiz.options.length > MAX_QUIZ_OPTIONS
+    ) {
+      errors.push(
+        `${path}.options: must contain ${MIN_QUIZ_OPTIONS}-${MAX_QUIZ_OPTIONS} options`,
+      )
+    }
+    quiz.options.forEach((option, index) => {
+      const optionPath = `${path}.options[${index}]`
+      if (!isNonEmptyString(option)) {
+        errors.push(`${optionPath}: must be a non-empty string`)
+      } else if (option.length > MAX_QUIZ_OPTION_CHARS) {
+        errors.push(`${optionPath}: must be at most ${MAX_QUIZ_OPTION_CHARS} characters`)
+      }
+    })
+  }
+  if (!Number.isInteger(quiz.answerIndex)) {
+    errors.push(`${path}.answerIndex: must be an integer`)
+  } else if (
+    Array.isArray(quiz.options) &&
+    (quiz.answerIndex < 0 || quiz.answerIndex >= quiz.options.length)
+  ) {
+    errors.push(`${path}.answerIndex: must point to one of the options`)
+  }
+  if (!isNonEmptyString(quiz.explanation)) {
+    errors.push(`${path}.explanation: must be a non-empty string`)
+  } else if (quiz.explanation.length > MAX_QUIZ_EXPLANATION_CHARS) {
+    errors.push(
+      `${path}.explanation: must be at most ${MAX_QUIZ_EXPLANATION_CHARS} characters`,
+    )
+  }
+  return errors
+}
+
 export function validateStop(stop, path = 'stop') {
   const errors = []
 
@@ -316,6 +418,10 @@ export function validateStop(stop, path = 'stop') {
   errors.push(...validateSources(stop.sources, path))
   errors.push(...validateViewpoint(stop.viewpoint, `${path}.viewpoint`, stop))
   errors.push(...validateImages(stop.images, `${path}.images`))
+  validateOptionalText(stop.lookFor, 'lookFor', MAX_LOOK_FOR_CHARS, path, errors)
+  validateOptionalText(stop.discuss, 'discuss', MAX_DISCUSS_CHARS, path, errors)
+  errors.push(...validateFunFact(stop.funFact, `${path}.funFact`))
+  errors.push(...validateQuiz(stop.quiz, `${path}.quiz`))
 
   return errors
 }

@@ -97,6 +97,55 @@ describe('PlaybackControls stop image', () => {
     expect(markup).toContain(imageUrl('new-orleans-fq', image.src))
   })
 
+  it('renders multiple images with navigation and per-image credits', () => {
+    const stop: TourStop = {
+      ...stopWithImage,
+      images: [
+        stopWithImage.images![0],
+        {
+          src: 'images/second.jpg',
+          alt: 'A second angle from the sidewalk.',
+          credit: 'Jane Photo',
+          license: 'CC-BY-SA-4.0',
+          sourceUrl: 'https://commons.wikimedia.org/wiki/File:Second.jpg',
+        },
+      ],
+    }
+    const markup = renderPlaybackControls(stop)
+    expect(markup).toContain(imageUrl('new-orleans-fq', stop.images![0].src))
+    expect(markup).toContain(stop.images![0].credit)
+    expect(markup).toContain('1 / 2')
+    expect(markup).toContain('Next photo')
+    expect(markup).toContain('Previous photo')
+  })
+
+  it('renders optional engagement cards and plain-text content', () => {
+    const stop: TourStop = {
+      ...stopWithoutImage,
+      lookFor: 'Look for <ironwork> details.',
+      discuss: 'What stories linger here?',
+      funFact: {
+        text: 'A sourced fact.',
+        kind: 'fact',
+        sourceUrl: 'https://example.org/fact',
+      },
+      quiz: {
+        question: 'Where should you stand?',
+        options: ['Public sidewalk', 'Private yard'],
+        answerIndex: 0,
+        explanation: 'Stay on public sidewalks.',
+      },
+    }
+    const markup = renderPlaybackControls(stop)
+    expect(markup).toContain('Look for')
+    expect(markup).toContain('Discuss')
+    expect(markup).toContain('Fun fact')
+    expect(markup).toContain('Quick quiz')
+    expect(markup).toContain('Look for <ironwork> details.')
+    expect(markup).toContain('https://example.org/fact')
+    expect(markup).toContain('Reveal answer')
+  })
+
   it('resolves the image URL through the tour-path helper', () => {
     expect(imageUrl('new-orleans-fq', 'images/x.jpg')).toBe(
       '/tours/new-orleans-fq/images/x.jpg',
