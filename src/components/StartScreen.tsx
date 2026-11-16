@@ -11,7 +11,7 @@
  * when the device exposes no voices (keep the FAT-43 behavior).
  */
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import type { Tour, CityEntry } from '../types/tour'
 import { appleMapsDirectionsUrl, googleMapsDirectionsUrl } from '../lib/mapsLinks'
 import {
@@ -40,35 +40,6 @@ interface StartScreenProps {
   wakeLockSupported: boolean
   speechSupported: boolean
   fallbackMessage: string | null
-}
-
-export function CityPicker({
-  city,
-  cities,
-  onCityChange,
-}: {
-  city: CityEntry
-  cities: CityEntry[]
-  onCityChange: (cityId: string) => void
-}) {
-  if (cities.length <= 1) return null
-  return (
-    <div className="city-picker" role="region" aria-label="Choose a city">
-      <label htmlFor="city-picker">City</label>
-      <select
-        id="city-picker"
-        value={city.id}
-        onChange={(event) => onCityChange(event.target.value)}
-        aria-label="Choose city"
-      >
-        {cities.map((candidate) => (
-          <option key={candidate.id} value={candidate.id}>
-            {candidate.name}
-          </option>
-        ))}
-      </select>
-    </div>
-  )
 }
 
 export function StartScreen({
@@ -142,7 +113,23 @@ export function StartScreen({
 
   return (
     <div className="start-screen">
-      <CityPicker city={city} cities={cities} onCityChange={onCityChange} />
+      {cities.length > 1 && (
+        <div className="city-picker" role="region" aria-label="Choose a city">
+          <label htmlFor="city-picker">City</label>
+          <select
+            id="city-picker"
+            value={city.id}
+            onChange={(event) => onCityChange(event.target.value)}
+            aria-label="Choose city"
+          >
+            {cities.map((candidate) => (
+              <option key={candidate.id} value={candidate.id}>
+                {candidate.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
 
       {fallbackMessage && (
         <p className="fallback-banner" role="status" aria-live="polite">

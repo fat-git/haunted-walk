@@ -92,6 +92,7 @@ export async function loadTour(
     const found = cities.find((candidate) => candidate.id === requestedCityId)
     if (found) {
       city = found
+      persistSelectedCity(requestedCityId)
     } else {
       city = cities[0]
       fallbackMessage = `Unknown city "${requestedCityId}". Showing ${cities[0].name}.`
@@ -114,12 +115,6 @@ export async function loadTour(
     throw new Error(
       `Registry names tour "${city.defaultTour}" for ${city.id} but its tour.json is "${tour.id}"`,
     )
-  }
-
-  // Remember an explicit pick only once its tour has loaded, so a failed
-  // fetch never leaves the walker stuck on a city that cannot open.
-  if (requestedCityId && city.id === requestedCityId) {
-    persistSelectedCity(city.id)
   }
 
   return { tour, city, registry, fallbackMessage }
