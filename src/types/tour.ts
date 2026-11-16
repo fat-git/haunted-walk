@@ -56,7 +56,8 @@ export interface TourStop extends GeoPoint {
   viewpoint: Viewpoint
   geofenceRadiusM: number
   narration: string
-  legendLabel: LegendLabel
+  /** Absent means this stop tells history only — no legend is told here. */
+  legendLabel?: LegendLabel
   sources: string[]
   images?: Image[]
 }
