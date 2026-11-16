@@ -220,6 +220,15 @@
         "https://neworleanshistorical.org/items/show/260",
         "https://hgghh.org/exhibitions/french-opera-house",
         "https://acloserwalknola.com/places/french-opera-house"
+      ],
+      "images": [
+        {
+          "src": "images/french-opera-house-site-1.jpg",
+          "alt": "Bourbon Street in the French Quarter, New Orleans - at left, the hotel at 541 Bourbon Street that now occupies the French Opera House site.",
+          "credit": "Infrogmation of New Orleans",
+          "license": "CC-BY-SA-3.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:BourbonSt14Jan2008FrenchOperaTropical.jpg"
+        }
       ]
     },
     {
