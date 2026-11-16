@@ -6,6 +6,12 @@
       "name": "New Orleans French Quarter",
       "defaultTour": "french-quarter-ghosts",
       "description": "A self-guided walking ghost tour through the historic French Quarter"
+    },
+    {
+      "id": "nashville-downtown",
+      "name": "Historic Downtown Nashville",
+      "defaultTour": "nashville-downtown",
+      "description": "A self-guided walking tour of documented history in downtown Nashville."
     }
   ]
 }

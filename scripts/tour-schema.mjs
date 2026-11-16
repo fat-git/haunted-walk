@@ -240,7 +240,7 @@ export function validateStop(stop, path = 'stop') {
       )
     }
   }
-  if (!LEGEND_LABELS.includes(stop.legendLabel)) {
+  if (stop.legendLabel !== undefined && !LEGEND_LABELS.includes(stop.legendLabel)) {
     errors.push(
       `${path}.legendLabel: must be one of ${LEGEND_LABELS.map((label) => `"${label}"`).join(', ')} so legend is never presented as fact`,
     )
