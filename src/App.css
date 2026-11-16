@@ -846,6 +846,47 @@ h1 {
   gap: 1.5rem;
 }
 
+.city-picker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.city-picker label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.city-picker select {
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: var(--bg-quiet);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  min-height: 44px;
+}
+
+.city-picker select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.fallback-banner {
+  margin: 0;
+  padding: 0.6rem 0.875rem;
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  background: var(--bg-raised);
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  text-align: center;
+}
+
 .start-preview {
   background: var(--bg-raised);
   border: 1px solid var(--line);

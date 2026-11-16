@@ -107,12 +107,16 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Precache the app shell and every shipped tour file so the tour
-        // survives a dead spot. Tour data lives under /tours/.
+        // Precache the app shell plus the tiny city registry (index.json).
+        // Per-city tour.json/route.geojson are deliberately NOT eagerly
+        // precached: that would download every registered city on the first
+        // visit and bloat it as cities are added. Instead they are cached on
+        // demand below, so a city the walker has opened still loads offline
+        // without growing the first visit (see docs/ADD_A_CITY.md).
         // `webmanifest` is deliberately absent: the plugin adds the generated
         // manifest.webmanifest to precache itself (above), and a glob match
-        // here would duplicate it. README.md is not precached on purpose.
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2,json,geojson}'],
+        // here would duplicate it.
+        globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}', 'tours/index.json'],
         // Tour images under /tours/ are intentionally not precached (keeps the
         // app shell modest). They are runtime-cached below so the tour still
         // shows them offline. The manifest icons live in public/ and are
@@ -122,6 +126,23 @@ export default defineConfig({
         navigateFallbackAllowlist: [/^\/haunted-walk\//],
         cleanupOutdatedCaches: true,
         runtimeCaching: [
+          {
+            // Per-city tour data: fetched from the network the first time a
+            // city is opened, then served from cache so that city loads
+            // offline afterwards. Only opened cities are ever stored.
+            urlPattern: ({ url }: { url: URL }) =>
+              url.pathname.includes('/tours/') &&
+              (url.pathname.endsWith('.json') || url.pathname.endsWith('.geojson')),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'tour-data',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 30,
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
           {
             // Tour stop images are same-origin static files. Cache them on
             // demand so an in-progress tour keeps showing them offline.

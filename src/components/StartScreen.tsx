@@ -12,7 +12,7 @@
  */
 
 import { useEffect, useState } from 'react'
-import type { Tour } from '../types/tour'
+import type { Tour, CityEntry } from '../types/tour'
 import { appleMapsDirectionsUrl, googleMapsDirectionsUrl } from '../lib/mapsLinks'
 import {
   DEFAULT_NARRATION_CONFIG,
@@ -32,18 +32,26 @@ import {
 
 interface StartScreenProps {
   tour: Tour
+  city: CityEntry
+  cities: CityEntry[]
   onStartTour: () => void
   onStartAtStop: (index: number) => void
+  onCityChange: (cityId: string) => void
   wakeLockSupported: boolean
   speechSupported: boolean
+  fallbackMessage: string | null
 }
 
 export function StartScreen({
   tour,
+  city,
+  cities,
   onStartTour,
   onStartAtStop,
+  onCityChange,
   wakeLockSupported,
   speechSupported,
+  fallbackMessage,
 }: StartScreenProps) {
   const [audioCheck, setAudioCheck] = useState<AudioCheckResult | null>(null)
   const [checkingAudio, setCheckingAudio] = useState(false)
@@ -105,6 +113,30 @@ export function StartScreen({
 
   return (
     <div className="start-screen">
+      {cities.length > 1 && (
+        <div className="city-picker" role="region" aria-label="Choose a city">
+          <label htmlFor="city-picker">City</label>
+          <select
+            id="city-picker"
+            value={city.id}
+            onChange={(event) => onCityChange(event.target.value)}
+            aria-label="Choose city"
+          >
+            {cities.map((candidate) => (
+              <option key={candidate.id} value={candidate.id}>
+                {candidate.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {fallbackMessage && (
+        <p className="fallback-banner" role="status" aria-live="polite">
+          {fallbackMessage}
+        </p>
+      )}
+
       <header className="tour-header">
         <h2>{tour.name}</h2>
         <p className="tour-description">{tour.description}</p>
