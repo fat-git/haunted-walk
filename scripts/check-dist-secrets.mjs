@@ -7,10 +7,14 @@
  *     key-shaped in `dist/` is either a leak or a bug.
  *  2. Fail if the deployment contract broke: the CSP must ship, and the
  *     manifest must keep the `/haunted-walk/` id, start_url and scope.
+ *  3. Execute the built sw.js runtime-cache matchers in Node against sample
+ *     URLs (see sw-matchers.mjs) so a matcher that throws inside the service
+ *     worker cannot ship.
  */
 
 import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs'
 import { join, relative } from 'node:path'
+import { checkMatchers } from './sw-matchers.mjs'
 
 const DIST = 'dist'
 const BASE_PATH = '/haunted-walk/'
@@ -166,6 +170,17 @@ if (!existsSync(serviceWorker)) {
   if (sw.includes('tours/README.md')) {
     fail('service worker precache must not include tours/README.md')
   }
+  if (!sw.includes('clientsClaim')) {
+    fail('service worker does not claim clients; first-install offline would fail')
+  }
+  for (const required of ['tour.json', 'route.geojson']) {
+    if (!new RegExp(`url:"tours/[^"/]+/${required.replace('.', '\\.')}"`).test(sw)) {
+      fail(`service worker does not precache the default city's ${required}`)
+    }
+  }
+  if (sw.includes('url:"http')) {
+    fail('service worker precache must not include cross-origin URLs')
+  }
   // Duplicate precache entries waste the first-load cache and can break
   // `precacheAndRoute` bookkeeping. The glob patterns in vite.config.ts must
   // stay disjoint from the plugin's automatic manifest/icon entries.
@@ -176,9 +191,15 @@ if (!existsSync(serviceWorker)) {
       `service worker precache has duplicate URLs: ${[...new Set(duplicates)].join(', ')}`,
     )
   }
+  // Execute the built runtime-caching matchers: they are serialized with
+  // toString(), so any outer-scope reference only blows up inside the SW.
+  for (const problem of checkMatchers(sw)) {
+    fail(`service worker matcher: ${problem}`)
+  }
 }
 
 if (failures.length > 0) {
+  for (const message of failures) console.error(`check-dist: FAIL ${message}`)
   console.error(`\ncheck-dist: ${failures.length} problem(s) found.`)
   process.exit(1)
 }

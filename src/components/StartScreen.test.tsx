@@ -3,6 +3,9 @@
  * tour data (name + address per stop) and offers a "Start here" jump action
  * per stop, with the existing "Start Tour" button still present.
  *
+ * FAT-66 addition: when the registry has more than one city the page offers a
+ * city picker; with a single city it renders exactly as before (no picker).
+ *
  * Renders the real component against the real shipped tour.json with
  * react-dom/server, so no DOM or new dependencies are needed.
  */
@@ -10,8 +13,9 @@
 import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { StartScreen } from './StartScreen'
-import type { Tour } from '../types/tour'
+import { CityPicker, StartScreen } from './StartScreen'
+import { isValidElement, type ReactElement } from 'react'
+import type { Tour, CityEntry } from '../types/tour'
 
 const TOUR: Tour = JSON.parse(
   readFileSync(
@@ -19,6 +23,13 @@ const TOUR: Tour = JSON.parse(
     'utf8',
   ),
 )
+
+const CITY: CityEntry = {
+  id: 'new-orleans-fq',
+  name: 'New Orleans French Quarter',
+  defaultTour: 'french-quarter-ghosts',
+  description: TOUR.description,
+}
 
 /** react-dom/server escapes apostrophes and ampersands; compare on text. */
 function decode(markup: string): string {
@@ -30,15 +41,22 @@ function decode(markup: string): string {
     .replaceAll('&amp;', '&')
 }
 
-function renderStartScreen(): string {
+function renderStartScreen(
+  props: Partial<Parameters<typeof StartScreen>[0]> = {},
+): string {
   return decode(
     renderToStaticMarkup(
       <StartScreen
         tour={TOUR}
+        city={CITY}
+        cities={[CITY]}
         onStartTour={() => {}}
         onStartAtStop={() => {}}
+        onCityChange={() => {}}
         wakeLockSupported={true}
         speechSupported={true}
+        fallbackMessage={null}
+        {...props}
       />,
     ),
   )
@@ -66,5 +84,79 @@ describe('StartScreen stop list', () => {
       expect(markup).toContain(`Open ${stop.name} in Google Maps`)
       expect(markup).toContain(`Open ${stop.name} in Apple Maps`)
     }
+  })
+})
+
+describe('StartScreen city picker (FAT-66)', () => {
+  it('renders no city picker when the registry has a single city', () => {
+    const markup = renderStartScreen()
+    expect(markup).not.toContain('<select')
+    expect(markup).not.toContain('Choose a city')
+    expect(markup).not.toContain('aria-label="Choose city"')
+  })
+
+  it('renders a picker with every registered city when there is more than one', () => {
+    const otherCity: CityEntry = {
+      id: 'somewhere-else',
+      name: 'Somewhere Else',
+      defaultTour: 'somewhere-else-tour',
+      description: 'A second city for the picker.',
+    }
+    const markup = renderStartScreen({ cities: [CITY, otherCity] })
+    expect(markup).toContain('<select')
+    expect(markup).toContain('Choose a city')
+    expect(markup).toContain('New Orleans French Quarter')
+    expect(markup).toContain('Somewhere Else')
+    // the currently selected city is the selected option.
+    expect(markup).toContain(`value="new-orleans-fq"`)
+  })
+
+  it('shows the fallback banner when an unknown city id was requested', () => {
+    const markup = renderStartScreen({
+      fallbackMessage: 'Unknown city "nowhere". Showing New Orleans French Quarter.',
+    })
+    expect(markup).toContain('Unknown city "nowhere"')
+    expect(markup).toContain('Showing New Orleans French Quarter')
+  })
+})
+
+describe('CityPicker onChange (FAT-97)', () => {
+  const otherCity: CityEntry = {
+    id: 'somewhere-else',
+    name: 'Somewhere Else',
+    defaultTour: 'somewhere-else-tour',
+    description: 'A second city for the picker.',
+  }
+
+  function findSelect(node: unknown): ReactElement<Record<string, unknown>> | null {
+    if (!isValidElement(node)) return null
+    const element = node as ReactElement<Record<string, unknown>>
+    if (element.type === 'select') return element
+    const children = element.props.children
+    for (const child of Array.isArray(children) ? children : [children]) {
+      const found = findSelect(child)
+      if (found) return found
+    }
+    return null
+  }
+
+  it('reports the chosen city id through onCityChange', () => {
+    const picked: string[] = []
+    const tree = CityPicker({
+      city: CITY,
+      cities: [CITY, otherCity],
+      onCityChange: (id) => picked.push(id),
+    })
+    const select = findSelect(tree)
+    expect(select).not.toBeNull()
+    const onChange = select!.props.onChange as (event: {
+      target: { value: string }
+    }) => void
+    onChange({ target: { value: 'somewhere-else' } })
+    expect(picked).toEqual(['somewhere-else'])
+  })
+
+  it('renders nothing for a single city', () => {
+    expect(CityPicker({ city: CITY, cities: [CITY], onCityChange: () => {} })).toBeNull()
   })
 })

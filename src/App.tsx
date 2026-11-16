@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { TourHeader } from './components/TourHeader'
 import { Map } from './components/Map'
 import { NavigationPanel } from './components/NavigationPanel'
@@ -11,38 +11,9 @@ import { CompletedScreen } from './components/CompletedScreen'
 import { StopsSheet } from './components/StopsSheet'
 import { useTour } from './hooks/useTour'
 import { NarrationEngine } from './lib/narration'
-import { registryUrl, tourUrl } from './lib/tourPaths'
+import { cityIdFromSearchParams, loadTour } from './lib/loadTour'
 import type { Tour, CityRegistry, CityEntry } from './types/tour'
 import './App.css'
-
-/** Load the tour data from the registry, resolving the default tour for the first city. */
-async function loadTour(): Promise<Tour> {
-  const registryResponse = await fetch(registryUrl())
-  if (!registryResponse.ok) {
-    throw new Error(`Failed to load tour registry: ${registryResponse.status}`)
-  }
-  const registry: CityRegistry = await registryResponse.json()
-
-  const city: CityEntry | undefined = registry.cities[0]
-  if (!city) {
-    throw new Error('No cities found in tour registry')
-  }
-
-  const tourResponse = await fetch(tourUrl(city.id))
-  if (!tourResponse.ok) {
-    throw new Error(`Failed to load tour: ${tourResponse.status}`)
-  }
-  const tour: Tour = await tourResponse.json()
-
-  // `defaultTour` is a tour id, not a directory. Check it rather than ignore it,
-  // so a registry that names a tour the city folder does not hold fails loudly.
-  if (tour.id !== city.defaultTour) {
-    throw new Error(
-      `Registry names tour "${city.defaultTour}" for ${city.id} but its tour.json is "${tour.id}"`,
-    )
-  }
-  return tour
-}
 
 function ErrorScreen({ message }: { message: string }) {
   return (
@@ -101,7 +72,19 @@ function LoadingScreen() {
   )
 }
 
-function TourApp({ tour }: { tour: Tour }) {
+function TourApp({
+  tour,
+  city,
+  cities,
+  onCityChange,
+  fallbackMessage,
+}: {
+  tour: Tour
+  city: CityEntry
+  cities: CityEntry[]
+  onCityChange: (cityId: string) => void
+  fallbackMessage: string | null
+}) {
   const speechSupported = NarrationEngine.isSupported()
 
   const {
@@ -204,10 +187,14 @@ function TourApp({ tour }: { tour: Tour }) {
         {phase === 'idle' && !showSafetyNotice && (
           <StartScreen
             tour={tour}
+            city={city}
+            cities={cities}
             onStartTour={handleStartTour}
             onStartAtStop={handleStartAtStop}
+            onCityChange={onCityChange}
             wakeLockSupported={wakeLock.isSupported}
             speechSupported={speechSupported}
+            fallbackMessage={fallbackMessage}
           />
         )}
 
@@ -318,24 +305,67 @@ function TourApp({ tour }: { tour: Tour }) {
 
 function App() {
   const [tour, setTour] = useState<Tour | null>(null)
+  const [city, setCity] = useState<CityEntry | null>(null)
+  const [registry, setRegistry] = useState<CityRegistry | null>(null)
   const [loadError, setLoadError] = useState<string | null>(null)
+  const [fallbackMessage, setFallbackMessage] = useState<string | null>(null)
 
-  // Load tour data on mount
-  useEffect(() => {
-    loadTour()
-      .then(setTour)
-      .catch((err) => setLoadError(err.message))
+  const latestRequestRef = useRef(0)
+  const hasTourRef = useRef(false)
+
+  // Last choice wins: a response from an older request is ignored. A failed
+  // swap keeps the previous city on screen with a message; only a failed
+  // first load shows the error screen.
+  const requestCity = useCallback((cityId: string | null) => {
+    const requestId = ++latestRequestRef.current
+    loadTour(cityId)
+      .then((result) => {
+        if (requestId !== latestRequestRef.current) return
+        hasTourRef.current = true
+        setTour(result.tour)
+        setCity(result.city)
+        setRegistry(result.registry)
+        setFallbackMessage(result.fallbackMessage)
+        setLoadError(null)
+      })
+      .catch((err) => {
+        if (requestId !== latestRequestRef.current) return
+        const message = err instanceof Error ? err.message : String(err)
+        if (hasTourRef.current) {
+          setFallbackMessage(
+            `Couldn't open that city (${message}). Staying on the current one.`,
+          )
+        } else {
+          setLoadError(message)
+        }
+      })
   }, [])
+
+  // Load tour data on mount, honoring a `?city=<id>` deep link.
+  useEffect(() => {
+    requestCity(cityIdFromSearchParams(window.location.search))
+  }, [requestCity])
+
+  const handleCityChange = requestCity
 
   if (loadError) {
     return <ErrorScreen message={loadError} />
   }
 
-  if (!tour) {
+  if (!tour || !city || !registry) {
     return <LoadingScreen />
   }
 
-  return <TourApp tour={tour} />
+  return (
+    <TourApp
+      key={city.id}
+      tour={tour}
+      city={city}
+      cities={registry.cities}
+      onCityChange={handleCityChange}
+      fallbackMessage={fallbackMessage}
+    />
+  )
 }
 
 export default App
