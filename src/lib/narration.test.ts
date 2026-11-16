@@ -10,11 +10,18 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import {
   NARRATION_TIMING,
+  SPEECH_RATE_KEY,
+  VOICE_PREFERENCE_KEY,
   NarrationEngine,
   describeSpeechError,
   formatAudioCheck,
   getVoices,
+  loadSpeechRate,
+  loadVoicePreference,
+  pickBestVoice,
   runAudioCheck,
+  saveSpeechRate,
+  saveVoicePreference,
   splitForSpeaking,
   splitIntoSentences,
   type NarrationProblem,
@@ -214,8 +221,10 @@ describe('FAT-43 no-start watchdog', () => {
     engine.setOnProblem((problem) => problems.push(problem))
     engine.play()
     advanceCurrent()
+    // FAT-49: sentence 2 starts only after the between-sentence pause.
+    vi.advanceTimersByTime(NARRATION_TIMING.sentencePauseMs)
     advanceCurrent() // finish both sentences so no utterance is left pending
-    vi.advanceTimersByTime(NARRATION_TIMING.watchdogMs * 2)
+    vi.advanceTimersByTime(NARRATION_TIMING.watchdogMs)
     expect(problems).toEqual([])
     expect(spoken).toHaveLength(2)
   })
@@ -265,11 +274,15 @@ describe('FAT-43 cancel-then-speak race', () => {
     engine.setOnEnd(onEnd)
     engine.play()
     advanceCurrent()
+    vi.advanceTimersByTime(NARRATION_TIMING.sentencePauseMs)
     advanceCurrent()
     engine.pause()
     engine.play()
     vi.advanceTimersByTime(NARRATION_TIMING.cancelSpeakDelayMs)
-    while (engine.getState().isPlaying && spoken.length < 20) advanceCurrent()
+    while (engine.getState().isPlaying && spoken.length < 20) {
+      advanceCurrent()
+      vi.advanceTimersByTime(NARRATION_TIMING.sentencePauseMs)
+    }
     expect(onEnd).toHaveBeenCalledTimes(1)
   })
 })
@@ -351,5 +364,227 @@ describe('FAT-43 audio check', () => {
     active?.onerror?.({ error: 'not-allowed' })
     const result = await promise
     expect(result.error).toBe(describeSpeechError('not-allowed'))
+  })
+})
+
+/** Fake localStorage for the FAT-49 persistence helpers (node env). */
+function stubLocalStorage(initial: Record<string, string> = {}) {
+  const store = new Map(Object.entries(initial))
+  const fake = {
+    getItem: (key: string) => (store.has(key) ? store.get(key)! : null),
+    setItem: (key: string, value: string) => store.set(key, value),
+    removeItem: (key: string) => store.delete(key),
+  }
+  vi.stubGlobal('localStorage', fake)
+  return store
+}
+
+/** Fixture voice factory: devices expose name+lang+voiceURI. */
+const fixtureVoice = (
+  name: string,
+  lang: string,
+  voiceURI = name,
+): SpeechSynthesisVoice =>
+  ({
+    name,
+    lang,
+    voiceURI,
+    default: false,
+    localService: true,
+  }) as unknown as SpeechSynthesisVoice
+
+describe('FAT-49 voice ranking (fixture voice lists per platform)', () => {
+  it('iOS Safari: prefers a Premium/Enhanced voice over the compact default', () => {
+    // iOS ships "Samantha" as the compact fallback; downloaded enhanced
+    // voices surface names like "Ava (Premium)" or "Siri (English (US))".
+    const ios = [
+      fixtureVoice('Samantha', 'en-US'),
+      fixtureVoice('Ava (Premium)', 'en-US'),
+      fixtureVoice('Nick', 'en-US'),
+    ]
+    expect(pickBestVoice(ios)?.name).toBe('Ava (Premium)')
+  })
+
+  it('iOS Safari: Siri beats an Apple preferred name without quality markers', () => {
+    const ios = [
+      fixtureVoice('Samantha', 'en-US'),
+      fixtureVoice('Siri (English (United States))', 'en-US'),
+    ]
+    expect(pickBestVoice(ios)?.name).toBe('Siri (English (United States))')
+  })
+
+  it('iOS Safari: compact Samantha still wins when it is the only en-US voice', () => {
+    const ios = [fixtureVoice('Amélie', 'fr-CA'), fixtureVoice('Samantha', 'en-US')]
+    expect(pickBestVoice(ios)?.name).toBe('Samantha')
+  })
+
+  it('Android Chrome: Google network voices beat generic device voices', () => {
+    const android = [
+      fixtureVoice('com.apple.ttsforgeign', 'en-US'),
+      fixtureVoice('Samsung TTS', 'en-US'),
+      fixtureVoice('Google US English', 'en-US'),
+    ]
+    expect(pickBestVoice(android)?.name).toBe('Google US English')
+  })
+
+  it('desktop Chrome: Google US English beats an SAPI fallback', () => {
+    const desktop = [
+      fixtureVoice('Microsoft Zira - English (United States)', 'en-US'),
+      fixtureVoice('Google US English', 'en-US'),
+    ]
+    expect(pickBestVoice(desktop)?.name).toBe('Google US English')
+  })
+
+  it('Edge: Natural online voices beat Google voices', () => {
+    const edge = [
+      fixtureVoice('Google US English', 'en-US'),
+      fixtureVoice('Microsoft Aria Online (Natural) - English (United States)', 'en-US'),
+    ]
+    expect(pickBestVoice(edge)?.name).toBe(
+      'Microsoft Aria Online (Natural) - English (United States)',
+    )
+  })
+
+  it('exact tour language beats a same-primary-subtag voice', () => {
+    const mixed = [fixtureVoice('Daniel', 'en-GB'), fixtureVoice('Fred', 'en-US')]
+    expect(pickBestVoice(mixed, 'en-US')?.name).toBe('Fred')
+  })
+
+  it('falls back to the best-scoring voice of any language when the tour language is missing', () => {
+    const onlyFrench = [fixtureVoice('Thomas', 'fr-FR'), fixtureVoice('Amélie', 'fr-CA')]
+    expect(pickBestVoice(onlyFrench, 'en-US')?.name).toBe('Amélie')
+    expect(pickBestVoice([], 'en-US')).toBeNull()
+  })
+})
+
+describe('FAT-49 speed and voice persistence', () => {
+  it('defaults to the tuned delivery rate when nothing is stored', () => {
+    stubLocalStorage()
+    expect(loadSpeechRate()).toBe(0.92)
+  })
+
+  it('round-trips a chosen speed', () => {
+    stubLocalStorage()
+    saveSpeechRate(0.9)
+    expect(loadSpeechRate()).toBe(0.9)
+    saveSpeechRate(1.1)
+    expect(loadSpeechRate()).toBe(1.1)
+  })
+
+  it('falls back to the default on corrupt or out-of-range stored values', () => {
+    stubLocalStorage({ [SPEECH_RATE_KEY]: 'not-a-number' })
+    expect(loadSpeechRate()).toBe(0.92)
+    stubLocalStorage({ [SPEECH_RATE_KEY]: '9' })
+    expect(loadSpeechRate()).toBe(0.92)
+    stubLocalStorage({ [SPEECH_RATE_KEY]: '-1' })
+    expect(loadSpeechRate()).toBe(0.92)
+  })
+
+  it('round-trips the voice preference and ignores garbage', () => {
+    stubLocalStorage()
+    expect(loadVoicePreference()).toBeNull()
+    saveVoicePreference('com.apple.tts.siri')
+    expect(loadVoicePreference()).toBe('com.apple.tts.siri')
+    saveVoicePreference('')
+    expect(loadVoicePreference()).toBe('com.apple.tts.siri')
+  })
+})
+
+describe('FAT-49 engine delivery', () => {
+  it('speaks at the tuned default rate 0.92 and pitch 1', () => {
+    const engine = new NarrationEngine('One.')
+    engine.play()
+    expect(spoken).toHaveLength(1)
+    expect(spoken[0].rate).toBe(0.92)
+    expect(spoken[0].pitch).toBe(1)
+  })
+
+  it('honors the start-screen Speed choice', () => {
+    const engine = new NarrationEngine('One.', { rate: 0.8 })
+    engine.play()
+    expect(spoken[0].rate).toBe(0.8)
+  })
+
+  it('uses the voice saved in the picker after init', async () => {
+    stubLocalStorage({ [VOICE_PREFERENCE_KEY]: 'com.apple.tts.siri' })
+    voices = [
+      { name: 'Samantha', lang: 'en-US' },
+      {
+        name: 'Siri (English (United States))',
+        lang: 'en-US',
+        voiceURI: 'com.apple.tts.siri',
+      },
+    ] as unknown as FakeVoice[]
+    const engine = new NarrationEngine('One.')
+    const init = engine.init()
+    await init
+    engine.play()
+    expect(spoken[0].voice?.name).toBe('Siri (English (United States))')
+  })
+
+  it('falls back to the ranked voice when the saved voiceURI no longer exists', async () => {
+    stubLocalStorage({ [VOICE_PREFERENCE_KEY]: 'removed.voice' })
+    voices = [
+      { name: 'Samantha', lang: 'en-US' },
+      { name: 'Ava (Premium)', lang: 'en-US' },
+    ] as unknown as FakeVoice[]
+    const engine = new NarrationEngine('One.')
+    await engine.init()
+    engine.play()
+    expect(spoken[0].voice?.name).toBe('Ava (Premium)')
+  })
+
+  it('leaves a 250 ms spoken pause between sentences, not between chunks', () => {
+    const clause = 'C'.repeat(38)
+    const long = Array.from({ length: 6 }, () => clause).join(', ') + '.'
+    const engine = new NarrationEngine(`${long} Two.`)
+    engine.play()
+    expect(spoken).toHaveLength(1)
+    // Chunk of the same sentence: chains immediately, no pause.
+    advanceCurrent()
+    expect(spoken).toHaveLength(2)
+    expect(active).not.toBeNull()
+    // Sentence boundary: the next speak waits for the pause.
+    advanceCurrent()
+    expect(spoken).toHaveLength(2)
+    expect(active).toBeNull()
+    vi.advanceTimersByTime(NARRATION_TIMING.sentencePauseMs - 1)
+    expect(spoken).toHaveLength(2)
+    vi.advanceTimersByTime(1)
+    expect(spoken).toHaveLength(3)
+    expect(spoken[2].text).toBe('Two.')
+  })
+
+  it('drops a pending pause when the walker stops or skips', () => {
+    const engine = new NarrationEngine('One. Two.')
+    engine.play()
+    advanceCurrent()
+    engine.stop()
+    vi.advanceTimersByTime(NARRATION_TIMING.sentencePauseMs * 2)
+    expect(spoken).toHaveLength(1)
+    expect(engine.getState().isPlaying).toBe(false)
+  })
+
+  it('skips the pause entirely when sentencePauseMs is 0', () => {
+    const engine = new NarrationEngine('One. Two.', { sentencePauseMs: 0 })
+    engine.play()
+    advanceCurrent()
+    expect(spoken).toHaveLength(2)
+    expect(spoken[1].text).toBe('Two.')
+  })
+})
+
+describe('FAT-49 audio check honors the picked voice and speed', () => {
+  it('speaks with the selected picker voice at the persisted rate', async () => {
+    stubLocalStorage({ [SPEECH_RATE_KEY]: '0.8' })
+    const picked = fixtureVoice('Picked Voice', 'en-US', 'picked')
+    const promise = runAudioCheck(picked)
+    expect(spoken).toHaveLength(1)
+    expect(spoken[0].voice?.name).toBe('Picked Voice')
+    expect(spoken[0].rate).toBe(0.8)
+    active?.onstart?.()
+    active?.onend?.()
+    const result = await promise
+    expect(result.voiceName).toBe('Picked Voice')
   })
 })

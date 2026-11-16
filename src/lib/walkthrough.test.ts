@@ -293,7 +293,7 @@ describe('FAT-34 narration engine and transcript highlights', () => {
       const sentences = splitIntoSentences(stop.narration)
       expect(sentences.length).toBeGreaterThan(2)
 
-      const engine = new NarrationEngine(stop.narration)
+      const engine = new NarrationEngine(stop.narration, { sentencePauseMs: 0 })
       const highlightIndices: number[] = []
       const onEnd = vi.fn()
       engine.setOnSentenceChange((index) => highlightIndices.push(index))
@@ -325,7 +325,9 @@ describe('FAT-34 narration engine and transcript highlights', () => {
 
   it('pause keeps the highlight position and resume finishes without restarting', async () => {
     const stop = stops[0]
-    const engine = new NarrationEngine(stop.narration)
+    // FAT-49 delivery pacing is off here: this test drives the engine
+    // synchronously with real timers and only checks highlight position.
+    const engine = new NarrationEngine(stop.narration, { sentencePauseMs: 0 })
     const onEnd = vi.fn()
     engine.setOnEnd(onEnd)
     await engine.init()

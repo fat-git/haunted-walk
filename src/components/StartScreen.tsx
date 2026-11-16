@@ -5,12 +5,30 @@
  * output with a single tap before starting the walk, and the FAT-47
  * per-stop "Start here" actions so the walker can begin the tour at any
  * stop instead of always stop 1.
+ *
+ * FAT-49: a voice picker and Speed control so the walker can soften the
+ * delivery before the walk. Both persist in localStorage; both are hidden
+ * when the device exposes no voices (keep the FAT-43 behavior).
  */
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Tour } from '../types/tour'
 import { appleMapsDirectionsUrl, googleMapsDirectionsUrl } from '../lib/mapsLinks'
-import { formatAudioCheck, runAudioCheck, type AudioCheckResult } from '../lib/narration'
+import {
+  DEFAULT_NARRATION_CONFIG,
+  SPEED_OPTIONS,
+  formatAudioCheck,
+  getVoices,
+  loadSpeechRate,
+  loadVoicePreference,
+  pickBestVoice,
+  runAudioCheck,
+  saveSpeechRate,
+  saveVoicePreference,
+  voiceRank,
+  type AudioCheckResult,
+  type VoiceOption,
+} from '../lib/narration'
 
 interface StartScreenProps {
   tour: Tour
@@ -29,15 +47,60 @@ export function StartScreen({
 }: StartScreenProps) {
   const [audioCheck, setAudioCheck] = useState<AudioCheckResult | null>(null)
   const [checkingAudio, setCheckingAudio] = useState(false)
+  // Voice picker state (FAT-49). Null means "not loaded yet"; an empty list
+  // means the device exposed no voices for the tour language.
+  const [voiceOptions, setVoiceOptions] = useState<VoiceOption[] | null>(null)
+  const [selectedVoiceURI, setSelectedVoiceURI] = useState<string>('')
+  const [speed, setSpeed] = useState<number>(() => loadSpeechRate())
+
+  useEffect(() => {
+    if (!speechSupported) return
+    let cancelled = false
+    getVoices().then((voices) => {
+      if (cancelled) return
+      const tourLang = DEFAULT_NARRATION_CONFIG.lang
+      const tourPrefix = tourLang.split('-')[0]
+      const options: VoiceOption[] = voices
+        .filter(
+          (v) => v.lang.toLowerCase().replace('_', '-').split('-')[0] === tourPrefix,
+        )
+        .sort((a, b) => voiceRank(b, tourLang) - voiceRank(a, tourLang))
+        .map((v) => ({ voice: v, name: v.name, lang: v.lang }))
+      setVoiceOptions(options)
+      const saved = loadVoicePreference()
+      const initial =
+        options.find((o) => o.voice.voiceURI === saved)?.voice ??
+        pickBestVoice(voices, tourLang)
+      if (initial && options.some((o) => o.voice.voiceURI === initial.voiceURI)) {
+        setSelectedVoiceURI(initial.voiceURI)
+      }
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [speechSupported])
 
   const handleTestAudio = async () => {
     setCheckingAudio(true)
     setAudioCheck(null)
     try {
-      setAudioCheck(await runAudioCheck())
+      const selected =
+        voiceOptions?.find((o) => o.voice.voiceURI === selectedVoiceURI) ?? null
+      setAudioCheck(await runAudioCheck(selected?.voice ?? null))
     } finally {
       setCheckingAudio(false)
     }
+  }
+
+  const handleVoiceChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const uri = event.target.value
+    setSelectedVoiceURI(uri)
+    saveVoicePreference(uri)
+  }
+
+  const handleSpeedChange = (rate: number) => {
+    setSpeed(rate)
+    saveSpeechRate(rate)
   }
 
   return (
@@ -191,6 +254,51 @@ export function StartScreen({
           </p>
         )}
       </div>
+
+      {voiceOptions !== null && voiceOptions.length > 0 && (
+        <div className="voice-settings">
+          <label className="voice-settings-label" htmlFor="voice-picker">
+            Voice
+          </label>
+          <select
+            id="voice-picker"
+            className="voice-picker"
+            value={selectedVoiceURI}
+            onChange={handleVoiceChange}
+          >
+            {voiceOptions.map((option) => (
+              <option key={option.voice.voiceURI} value={option.voice.voiceURI}>
+                {option.name}
+              </option>
+            ))}
+          </select>
+
+          <div className="voice-settings-row">
+            <span className="voice-settings-label" id="speed-label">
+              Speed
+            </span>
+            <div className="speed-control" role="group" aria-labelledby="speed-label">
+              {SPEED_OPTIONS.map((option) => (
+                <button
+                  key={option}
+                  type="button"
+                  className={`speed-option${speed === option ? ' active' : ''}`}
+                  aria-pressed={speed === option}
+                  onClick={() => handleSpeedChange(option)}
+                >
+                  {option.toFixed(1)}×
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <p className="voice-settings-hint">
+            Tip: iPhone — Settings › Accessibility › Spoken Content › Voices has
+            higher-quality voices you can download. Android — check Settings ›
+            Text-to-speech.
+          </p>
+        </div>
+      )}
 
       <p className="footer-note">
         Map data ©{' '}
