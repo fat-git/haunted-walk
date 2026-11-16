@@ -113,10 +113,31 @@ export default defineConfig({
         // manifest.webmanifest to precache itself (above), and a glob match
         // here would duplicate it. README.md is not precached on purpose.
         globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2,json,geojson}'],
+        // Tour images under /tours/ are intentionally not precached (keeps the
+        // app shell modest). They are runtime-cached below so the tour still
+        // shows them offline. The manifest icons live in public/ and are
+        // matched by the glob above.
+        globIgnores: ['**/tours/**/*.{jpg,jpeg,png,webp}'],
         navigateFallback: `${BASE_PATH}index.html`,
         navigateFallbackAllowlist: [/^\/haunted-walk\//],
         cleanupOutdatedCaches: true,
         runtimeCaching: [
+          {
+            // Tour stop images are same-origin static files. Cache them on
+            // demand so an in-progress tour keeps showing them offline.
+            urlPattern: ({ url }: { url: URL }) =>
+              url.pathname.startsWith(`${BASE_PATH}tours/`) &&
+              /\.(jpg|jpeg|png|webp)$/i.test(url.pathname),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'tour-images',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 30,
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
           {
             // OSM tiles are cached only after the user actually views them.
             // Never precache or bulk-prefetch tiles: the OSM tile usage policy

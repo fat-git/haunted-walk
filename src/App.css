@@ -459,6 +459,48 @@ h1 {
   color: var(--ink-muted);
 }
 
+/* Stop image (FAT-51): fixed aspect-ratio box so the layout never jumps while
+   the lazy image loads; on load failure or missing image nothing renders. */
+.stop-image {
+  margin: 0 0 0.75rem;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  background: var(--bg-quiet);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stop-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.stop-image-credit {
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--ink-muted);
+  min-height: 2.6rem;
+  padding-top: 0.15rem;
+}
+
+.stop-image-credit a {
+  color: var(--accent);
+  text-underline-offset: 0.2em;
+  border-radius: 0.3rem;
+  padding: 0.15rem 0.25rem;
+}
+
+.stop-image-credit a:hover {
+  color: var(--ink);
+}
+
 .progress-bar {
   position: relative;
   height: 6px;

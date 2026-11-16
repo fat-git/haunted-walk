@@ -12,6 +12,29 @@ export type ViewpointAccess = 'public-sidewalk'
 
 export type RouteStatus = 'placeholder' | 'computed'
 
+export type ImageLicense =
+  | 'CC0'
+  | 'PD'
+  | 'CC-BY-2.0'
+  | 'CC-BY-3.0'
+  | 'CC-BY-4.0'
+  | 'CC-BY-SA-2.0'
+  | 'CC-BY-SA-3.0'
+  | 'CC-BY-SA-4.0'
+
+export interface Image {
+  /** Path relative to the tour folder, e.g. `images/<stop-id>-1.jpg`. */
+  src: string
+  /** Describes what is visible; non-empty, at most 160 characters. */
+  alt: string
+  /** Author or photographer; non-empty. */
+  credit: string
+  license: ImageLicense
+  /** https URL of the file page on commons.wikimedia.org; attribution link only. */
+  sourceUrl: string
+  caption?: string
+}
+
 export interface GeoPoint {
   lat: number
   lon: number
@@ -35,6 +58,7 @@ export interface TourStop extends GeoPoint {
   narration: string
   legendLabel: LegendLabel
   sources: string[]
+  images?: Image[]
 }
 
 export interface Tour {

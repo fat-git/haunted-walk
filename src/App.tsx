@@ -258,6 +258,7 @@ function TourApp({ tour }: { tour: Tour }) {
             )}
 
             <PlaybackControls
+              city={tour.city}
               narration={narration}
               currentStop={currentStop}
               phase={phase}

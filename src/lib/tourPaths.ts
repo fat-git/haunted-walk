@@ -24,6 +24,11 @@ export function routeUrl(cityId: string, base?: string): string {
   return withBase(`tours/${cityId}/route.geojson`, ...maybeBase(base))
 }
 
+/** A stop image, stored relative to the city's tour folder (e.g. `images/<stop-id>-1.jpg`). */
+export function imageUrl(cityId: string, src: string, base?: string): string {
+  return withBase(`tours/${cityId}/${src}`, ...maybeBase(base))
+}
+
 /** Forward an explicit base only when given, so `withBase` keeps its default. */
 function maybeBase(base?: string): [string] | [] {
   return base === undefined ? [] : [base]
