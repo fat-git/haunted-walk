@@ -1,4 +1,3 @@
-import { readFileSync } from 'node:fs'
 import react from '@vitejs/plugin-react'
 import { defineConfig, type Plugin } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -15,10 +14,6 @@ const BASE_PATH = '/haunted-walk/'
  * tour.json and route.geojson are precached so the pilot works offline right
  * after the first install; other cities are cached lazily at runtime.
  */
-const DEFAULT_CITY_ID: string = JSON.parse(
-  readFileSync(new URL('./public/tours/index.json', import.meta.url), 'utf8'),
-).cities[0].id
-
 const OSM_TILE_ORIGINS = 'https://tile.openstreetmap.org https://*.tile.openstreetmap.org'
 
 /**

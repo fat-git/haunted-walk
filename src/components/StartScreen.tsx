@@ -11,7 +11,7 @@
  * when the device exposes no voices (keep the FAT-43 behavior).
  */
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { Tour, CityEntry } from '../types/tour'
 import { appleMapsDirectionsUrl, googleMapsDirectionsUrl } from '../lib/mapsLinks'
 import {
