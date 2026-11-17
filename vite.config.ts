@@ -119,23 +119,45 @@ export default defineConfig({
         // demand below, so a city the walker has opened still loads offline
         // without growing the first visit (see docs/ADD_A_CITY.md).
         globPatterns: [
-          '**/*.{js,css,html,svg,png,ico,woff2,webmanifest}',
+          '**/*.{js,css,html,svg,png,ico,woff2}',
           'tours/index.json',
+          'tours/new-orleans-fq/tour.json',
+          'tours/new-orleans-fq/route.geojson',
         ],
         navigateFallback: `${BASE_PATH}index.html`,
         navigateFallbackAllowlist: [/^\/haunted-walk\//],
         cleanupOutdatedCaches: true,
+        clientsClaim: true,
         runtimeCaching: [
           {
             // Per-city tour data: fetched from the network the first time a
             // city is opened, then served from cache so that city loads
             // offline afterwards. Only opened cities are ever stored.
             urlPattern: ({ url }: { url: URL }) =>
+              url.origin === 'https://fat-git.github.io' &&
+              url.pathname.startsWith('/haunted-walk/') &&
               url.pathname.includes('/tours/') &&
               (url.pathname.endsWith('.json') || url.pathname.endsWith('.geojson')),
             handler: 'CacheFirst',
             options: {
               cacheName: 'tour-data',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 30,
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            // Stop images: same-origin and within the app base only.
+            urlPattern: ({ url }: { url: URL }) =>
+              url.origin === 'https://fat-git.github.io' &&
+              url.pathname.startsWith('/haunted-walk/') &&
+              url.pathname.includes('/tours/') &&
+              /\.(jpg|jpeg|png|webp)$/i.test(url.pathname),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'tour-images',
               expiration: {
                 maxEntries: 50,
                 maxAgeSeconds: 60 * 60 * 24 * 30,
