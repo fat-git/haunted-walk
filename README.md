@@ -14,9 +14,12 @@ on your phone, it shows the route, walks you to the next stop, and when you get 
 > testing was possible in the sandbox, so the board owes the pilot one personal
 > walk ([docs/RUNBOOK.md](docs/RUNBOOK.md) has the checklist). Security (T3.2)
 > confirmed no secrets, no runtime egress beyond OSM tiles, strict CSP, and
-> tap-gated permissions; its route-data findings are open: viewpoint connectors
-> at 2 stops cross private lots and 4–5 viewpoints sit off the public sidewalk
-> — an owned follow-up data fix. Operations: [docs/RUNBOOK.md](docs/RUNBOOK.md).
+> tap-gated permissions; FAT-38 (PR #15) fixed viewpoint placement — every
+> French Quarter viewpoint now sits on a public sidewalk within ~10 m of a
+> public way — and connector corridors are still checked by eye against the
+> committed OSM snapshot because build-time tooling does not validate them yet.
+> The board owes the pilot one real-device walk. Operations:
+> [docs/RUNBOOK.md](docs/RUNBOOK.md).
 > Adding a city: [docs/ADD_A_CITY.md](docs/ADD_A_CITY.md).
 
 ## What it does
