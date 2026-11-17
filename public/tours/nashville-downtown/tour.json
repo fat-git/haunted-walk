@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "id": "nashville-downtown",
+  "city": "nashville-downtown",
+  "name": "Historic Downtown Nashville",
+  "description": "A self-guided walking tour of documented history in downtown Nashville, from Capitol Hill to Lower Broadway.",
+  "stops": [
+    {
+      "id": "tennessee-state-capitol",
+      "name": "Tennessee State Capitol",
+      "lat": 36.1658,
+      "lon": -86.7842,
+      "address": "Capitol Hill, Nashville, TN",
+      "viewpoint": {
+        "lat": 36.16594,
+        "lon": -86.78399,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Dr. Martin Luther King Jr. Boulevard at the south edge of the Capitol grounds."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on Capitol Hill, the high point of downtown Nashville, looking at the Tennessee State Capitol. The building was designed by Philadelphia architect William Strickland and constructed between 1845 and 1859, using skilled artisans along with convict and enslaved labor. It is one of the oldest working statehouses in the country, and Tennessee's legislature has met here continuously since 1853. Strickland died before the building was finished and is entombed in its east wall, alongside Samuel Morgan, who chaired the building commission. On the grounds, a tomb holds President James K. Polk and his wife Sarah. During the Civil War, Union troops occupied the capitol, using it as a camp, hospital, and lookout, and they called the earthworks around it Fort Andrew Johnson. The building is Greek Revival, one of just a handful of state capitols without a dome, and it was the tallest building in the Southeast when completed. It was listed on the National Register of Historic Places in 1970 and named a National Historic Landmark in 1971. We are viewing the capitol from the public sidewalk and plaza on Dr. Martin Luther King Jr. Boulevard; the building and its grounds are a working seat of state government. This stop recounts the documented history of the site.",
+      "sources": ["https://en.wikipedia.org/wiki/Tennessee_State_Capitol"]
+    },
+    {
+      "id": "hermitage-hotel",
+      "name": "The Hermitage Hotel",
+      "lat": 36.1631,
+      "lon": -86.7836,
+      "address": "231 6th Avenue North, Nashville, TN 37219",
+      "viewpoint": {
+        "lat": 36.16318,
+        "lon": -86.78341,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk at the corner of Union Street and Sixth Avenue North, beside the hotel."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk at the corner of Union Street and Sixth Avenue North, in front of the Hermitage Hotel. The hotel was commissioned by 250 Nashville residents in 1908 and opened on September 17, 1910, as the city's third skyscraper. It was designed in the Beaux-Arts style and remains the only surviving example of that style in a commercial building in Tennessee. In 1920, when Tennessee became the 36th state to ratify the 19th Amendment, granting women the right to vote, the Hermitage served as the headquarters for both pro- and anti-suffrage forces, and President Taft had earlier banqueted here in 1911. The hotel closed in 1977, was saved from demolition by local preservationists and Mayor Richard Fulton, and reopened in 1981 after a full renovation. It was listed on the National Register of Historic Places in 1975 and designated a National Historic Landmark in 2020 for its role in the suffrage victory. We are viewing the Beaux-Arts facade from the public sidewalk; the lobby and grand staircase are inside, open to guests. This stop recounts the documented history of the building.",
+      "sources": ["https://en.wikipedia.org/wiki/Hermitage_Hotel"]
+    },
+    {
+      "id": "downtown-presbyterian-church",
+      "name": "Downtown Presbyterian Church",
+      "lat": 36.163,
+      "lon": -86.7798,
+      "address": "154 5th Ave North, Nashville, TN",
+      "viewpoint": {
+        "lat": 36.16294,
+        "lon": -86.77994,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk at the corner of Fifth Avenue North and Church Street, beside the church."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk at the corner of Fifth Avenue North and Church Street, in front of Downtown Presbyterian Church. The congregation began worshiping on this site in 1816, and the present sanctuary — the third on the lot — was completed in 1849 after a fire destroyed its predecessor. It was designed by William Strickland, the same architect who created the Tennessee State Capitol, in the Egyptian Revival style, with lotus columns and a winged sun disk above the entrance. President Andrew Jackson was a member when it was still First Presbyterian Church, and he was presented with a ceremonial sword on these steps after the Battle of New Orleans. Governor James K. Polk was inaugurated in the second sanctuary. During the Civil War, Federal forces seized the building and used it as Union Hospital No. 8, with 206 beds. The church was listed on the National Register of Historic Places in 1970 and designated a National Historic Landmark in 1993. We are viewing the Egyptian Revival facade from the public sidewalk; this is an active church. This stop tells the documented history of the building.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Downtown_Presbyterian_Church_(Nashville)"
+      ]
+    },
+    {
+      "id": "ryman-auditorium",
+      "name": "Ryman Auditorium",
+      "lat": 36.1613,
+      "lon": -86.7785,
+      "address": "116 Rep. John Lewis Way N, Nashville, TN 37219",
+      "viewpoint": {
+        "lat": 36.16144,
+        "lon": -86.77859,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Fifth Avenue North at the rear entry plaza of the Ryman Auditorium."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk outside the Ryman Auditorium at 116 Rep. John Lewis Way North. The building opened in 1892 as the Union Gospel Tabernacle, constructed over seven years at the urging of riverboat captain and saloon owner Thomas Ryman after his conversion at a revival. Architect Hugh Cathcart Thompson designed it, and when Ryman died in 1904, his memorial service was held here and the hall was renamed in his honor. From 1943 to 1974, the Ryman was the home of the Grand Ole Opry, the country-music radio broadcast that made Nashville Music City. Performers including Hank Williams, Patsy Cline, Johnny Cash, and Elvis all appeared on this stage. After the Opry moved to Opryland in 1974, the Ryman sat vacant for nearly twenty years before preservationists and performers revived it; Emmylou Harris's 1991 acoustic concerts helped spark the restoration. It was listed on the National Register of Historic Places in 1971 and designated a National Historic Landmark in 2001. We are viewing the historic facade from the public sidewalk; the Ryman is an active concert venue. This stop recounts the documented history of the building.",
+      "sources": ["https://en.wikipedia.org/wiki/Ryman_Auditorium"]
+    },
+    {
+      "id": "tootsies-orchid-lounge",
+      "name": "Tootsie's Orchid Lounge",
+      "lat": 36.1608,
+      "lon": -86.7782,
+      "address": "422 Broadway, Nashville, TN 37203",
+      "viewpoint": {
+        "lat": 36.16074,
+        "lon": -86.77816,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Broadway behind the Ryman Auditorium, beside the purple facade of the lounge."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk of Lower Broadway, behind the Ryman Auditorium, at the purple facade of Tootsie's Orchid Lounge. Hattie Louise Tootsie Bess bought the bar \u2014 then called Mom's \u2014 in 1960, and it acquired its name when a painter unexpectedly made the exterior purple. For decades, it has been the unofficial backstage living room of the Grand Ole Opry: when the Opry was at the Ryman just across the alley, performers crossed over between sets to play and sing here. Willie Nelson, Patsy Cline, Kris Kristofferson, Waylon Jennings, and countless other country musicians were early regulars, and the bar's walls are papered with photos of the stars who passed through. The Opry left the Ryman in 1974, but Tootsie's survived the neighborhood's decline and rode the 1990s Broadway renaissance, remaining a songwriter's haven and honky-tonk. We are viewing the bar from the public sidewalk of Broadway; it is an active music venue open to the public. This stop tells the documented history of the lounge.",
+      "sources": ["https://en.wikipedia.org/wiki/Tootsie%27s_Orchid_Lounge"]
+    },
+    {
+      "id": "second-avenue",
+      "name": "Second Avenue Commercial District",
+      "lat": 36.1639,
+      "lon": -86.7764,
+      "address": "2nd Avenue North, Nashville, TN",
+      "viewpoint": {
+        "lat": 36.16338,
+        "lon": -86.77613,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Second Avenue North in the historic commercial district."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk of Second Avenue North, in Nashville's Second Avenue Commercial District. The district runs along Second Avenue between Brandon Street and Broadway and was listed on the National Register of Historic Places in 1972. Its brick and cast-iron buildings were constructed mainly in the 1870s and 1880s, when Second Avenue \u2014 originally Market Street \u2014 connected Nashville's industrial and commercial districts. The three- and four-story Victorian Italianate storefronts overlook the Cumberland River and represent one of the most outstanding collections of commercial architecture in the South. A fire in 1985 damaged three buildings, which were demolished, and in 2020 an explosion on the 160 block damaged many structures that were subsequently repaired. Today the avenue is a mixed-use district of shops, restaurants, and honky-tonks. We are viewing the historic storefronts from the public sidewalk; this is an active commercial district. This stop recounts the documented history of the avenue.",
+      "sources": ["https://en.wikipedia.org/wiki/Second_Avenue_Commercial_District"]
+    },
+    {
+      "id": "schermerhorn-symphony-center",
+      "name": "Schermerhorn Symphony Center",
+      "lat": 36.1597,
+      "lon": -86.7753,
+      "address": "One Symphony Place, Nashville, TN 37201",
+      "viewpoint": {
+        "lat": 36.15981,
+        "lon": -86.77502,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk outside the Schermerhorn Symphony Center at One Symphony Place."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk outside the Schermerhorn Symphony Center at One Symphony Place. The center opened in 2006 as the home of the Nashville Symphony, designed by David M. Schwarz Architects with Earl Swensson Associates as architect of record, in a New Classical style that nods to Nashville's Parthenon and other classical landmarks. The 1,844-seat Laura Turner Concert Hall is the heart of the building, and the center is named for Kenneth Schermerhorn, the symphony's music director from 1983 until his death in 2005. The building's public spaces include the Martha Rivers Ingram Garden Courtyard, enclosed by a colonnade. In May 2010, the historic Nashville flood filled the lower levels with roughly 24 feet of water, causing about 40 million dollars in damage, but the center reopened later that year. We are viewing the center from the public sidewalk; it is an active concert hall. This stop tells the documented history of the building.",
+      "sources": ["https://en.wikipedia.org/wiki/Schermerhorn_Symphony_Center"]
+    },
+    {
+      "id": "bridgestone-arena",
+      "name": "Bridgestone Arena",
+      "lat": 36.1592,
+      "lon": -86.7786,
+      "address": "501 Broadway, Nashville, TN",
+      "viewpoint": {
+        "lat": 36.15894,
+        "lon": -86.7792,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Broadway beside Bridgestone Arena at Fifth Avenue."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk of Broadway at Fifth Avenue, in front of Bridgestone Arena. The arena opened in 1996 as the Nashville Arena and was designed in physical homage to the nearby Ryman Auditorium, with its angled corner on Broadway. It became the home of the Nashville Predators of the National Hockey League in 1998 and has hosted the Country Music Association Awards since 2006, the 2016 NHL All-Star Game, and countless concerts and events. The building has been known by several names \u2014 Nashville Arena, Gaylord Entertainment Center, Sommet Center, and Bridgestone Arena \u2014 and the 2010 Nashville flood sent water into the event level. The arena seats more than 17,000 for hockey and has hosted NCAA tournament games, WWE events, and major touring concerts. We are viewing the arena from the public sidewalk of Broadway; it is an active sports and entertainment venue. This stop recounts the documented history of the arena.",
+      "sources": ["https://en.wikipedia.org/wiki/Bridgestone_Arena"]
+    },
+    {
+      "id": "frist-art-museum",
+      "name": "Frist Art Museum",
+      "lat": 36.1578,
+      "lon": -86.7839,
+      "address": "919 Broadway, Nashville, TN 37203",
+      "viewpoint": {
+        "lat": 36.15791,
+        "lon": -86.78394,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Broadway beside the Frist Art Museum."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk of Broadway in front of the Frist Art Museum, housed in Nashville's historic former main post office. The white marble Art Deco building was constructed in 1933 to 1934 to the designs of Marr and Holman Architects, its location near Union Station chosen for convenient mail distribution by train. When a new main post office opened near the airport in 1986, the old facility became a downtown branch, and in 1999 the City of Nashville acquired the building to create an art center. The Frist Center for the Visual Arts opened in April 2001 and was renamed the Frist Art Museum in 2018. The building is listed on the National Register of Historic Places as part of the Marr and Holman Buildings in Downtown Nashville. Today it presents rotating visual-art exhibitions and has no permanent collection, and a post office branch still operates in the basement. We are viewing the Art Deco facade from the public sidewalk of Broadway; the galleries are inside. This stop recounts the documented history of the building.",
+      "sources": ["https://en.wikipedia.org/wiki/Frist_Art_Museum"]
+    },
+    {
+      "id": "union-station",
+      "name": "Union Station",
+      "lat": 36.1572,
+      "lon": -86.7848,
+      "address": "1001 Broadway, Nashville, TN",
+      "viewpoint": {
+        "lat": 36.15743,
+        "lon": -86.78461,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Broadway beside the Union Station facade."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk of Broadway at 1001 Broadway, in front of Union Station, now a hotel. The station was designed by Richard Montfort for the Louisville and Nashville Railroad and opened in 1900, with a striking Romanesque Revival tower that made it a Nashville landmark. At its peak during World War II, it was the shipping-out point for tens of thousands of troops and hosted a USO canteen. The last passenger train left in 1979, and after years of vacancy the building reopened as the Union Station Hotel in 1986. It was designated a National Historic Landmark in 1975, a status later withdrawn in 2003 after fire damage demolished its great trainshed, and it remains listed on the National Register of Historic Places. We are viewing the Romanesque Revival facade from the public sidewalk of Broadway; it is an active hotel. This stop tells the documented history of the station.",
+      "sources": ["https://en.wikipedia.org/wiki/Union_Station_(Nashville)"]
+    }
+  ]
+}

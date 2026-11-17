@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { TourHeader } from './components/TourHeader'
 import { Map } from './components/Map'
 import { NavigationPanel } from './components/NavigationPanel'
@@ -11,7 +11,7 @@ import { CompletedScreen } from './components/CompletedScreen'
 import { StopsSheet } from './components/StopsSheet'
 import { useTour } from './hooks/useTour'
 import { NarrationEngine } from './lib/narration'
-import { cityIdFromSearchParams, loadTour } from './lib/loadTour'
+import { cityIdFromSearchParams, loadTour, type LoadTourResult } from './lib/loadTour'
 import type { Tour, CityRegistry, CityEntry } from './types/tour'
 import './App.css'
 
@@ -310,43 +310,30 @@ function App() {
   const [loadError, setLoadError] = useState<string | null>(null)
   const [fallbackMessage, setFallbackMessage] = useState<string | null>(null)
 
-  const latestRequestRef = useRef(0)
-  const hasTourRef = useRef(false)
-
-  // Last choice wins: a response from an older request is ignored. A failed
-  // swap keeps the previous city on screen with a message; only a failed
-  // first load shows the error screen.
-  const requestCity = useCallback((cityId: string | null) => {
-    const requestId = ++latestRequestRef.current
-    loadTour(cityId)
-      .then((result) => {
-        if (requestId !== latestRequestRef.current) return
-        hasTourRef.current = true
-        setTour(result.tour)
-        setCity(result.city)
-        setRegistry(result.registry)
-        setFallbackMessage(result.fallbackMessage)
-        setLoadError(null)
-      })
-      .catch((err) => {
-        if (requestId !== latestRequestRef.current) return
-        const message = err instanceof Error ? err.message : String(err)
-        if (hasTourRef.current) {
-          setFallbackMessage(
-            `Couldn't open that city (${message}). Staying on the current one.`,
-          )
-        } else {
-          setLoadError(message)
-        }
-      })
+  const setResult = useCallback((result: LoadTourResult) => {
+    setTour(result.tour)
+    setCity(result.city)
+    setRegistry(result.registry)
+    setFallbackMessage(result.fallbackMessage)
+    setLoadError(null)
   }, [])
 
-  // Load tour data on mount, honoring a `?city=<id>` deep link.
+  // Load tour data on mount, honoring a `?city=<id>` deep link. Setters run in
+  // `.then`/`.catch` callbacks, not directly in the effect body.
   useEffect(() => {
-    requestCity(cityIdFromSearchParams(window.location.search))
-  }, [requestCity])
+    loadTour(cityIdFromSearchParams(window.location.search))
+      .then(setResult)
+      .catch((err) => setLoadError(err instanceof Error ? err.message : String(err)))
+  }, [setResult])
 
-  const handleCityChange = requestCity
+  const handleCityChange = useCallback(
+    (cityId: string) => {
+      loadTour(cityId)
+        .then(setResult)
+        .catch((err) => setLoadError(err instanceof Error ? err.message : String(err)))
+    },
+    [setResult],
+  )
 
   if (loadError) {
     return <ErrorScreen message={loadError} />
@@ -358,7 +345,6 @@ function App() {
 
   return (
     <TourApp
-      key={city.id}
       tour={tour}
       city={city}
       cities={registry.cities}

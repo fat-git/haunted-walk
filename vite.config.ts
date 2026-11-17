@@ -1,4 +1,3 @@
-import { readFileSync } from 'node:fs'
 import react from '@vitejs/plugin-react'
 import { defineConfig, type Plugin } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -15,10 +14,6 @@ const BASE_PATH = '/haunted-walk/'
  * tour.json and route.geojson are precached so the pilot works offline right
  * after the first install; other cities are cached lazily at runtime.
  */
-const DEFAULT_CITY_ID: string = JSON.parse(
-  readFileSync(new URL('./public/tours/index.json', import.meta.url), 'utf8'),
-).cities[0].id
-
 const OSM_TILE_ORIGINS = 'https://tile.openstreetmap.org https://*.tile.openstreetmap.org'
 
 /**
@@ -117,61 +112,48 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Precache the app shell, the tiny city registry (index.json) and the
-        // default (first) city's tour.json + route.geojson so the pilot city
-        // works offline right after install. Other cities' tour data is NOT
-        // eagerly precached: that would download every registered city on the
-        // first visit and bloat it as cities are added. They are cached on
-        // demand below (see docs/ADD_A_CITY.md).
-        // `clientsClaim` lets the first service worker take control of the
-        // already-open page, so even the first session's fetches are cached.
-        // `webmanifest` is deliberately absent: the plugin adds the generated
-        // manifest.webmanifest to precache itself (above), and a glob match
-        // here would duplicate it.
+        // Precache the app shell plus the tiny city registry (index.json).
+        // Per-city tour.json/route.geojson are deliberately NOT eagerly
+        // precached: that would download every registered city on the first
+        // visit and bloat it as cities are added. Instead they are cached on
+        // demand below, so a city the walker has opened still loads offline
+        // without growing the first visit (see docs/ADD_A_CITY.md).
         globPatterns: [
           '**/*.{js,css,html,svg,png,ico,woff2}',
           'tours/index.json',
-          `tours/${DEFAULT_CITY_ID}/tour.json`,
-          `tours/${DEFAULT_CITY_ID}/route.geojson`,
+          'tours/new-orleans-fq/tour.json',
+          'tours/new-orleans-fq/route.geojson',
         ],
-        clientsClaim: true,
-        // Tour images under /tours/ are intentionally not precached (keeps the
-        // app shell modest). They are runtime-cached below so the tour still
-        // shows them offline. The manifest icons live in public/ and are
-        // matched by the glob above.
-        globIgnores: ['**/tours/**/*.{jpg,jpeg,png,webp}'],
         navigateFallback: `${BASE_PATH}index.html`,
         navigateFallbackAllowlist: [/^\/haunted-walk\//],
         cleanupOutdatedCaches: true,
+        clientsClaim: true,
         runtimeCaching: [
           {
-            // urlPattern functions are serialized into dist/sw.js with
-            // toString(), so they must be self-contained: no outer-scope
-            // references (BASE_PATH, helpers). check:dist runs them in Node.
-            // Per-city tour data for cities beyond the precached default:
-            // NetworkFirst so a returning walker gets redeployed narration and
-            // routes, falling back to the cached copy when offline or slow.
-            urlPattern: ({ url, sameOrigin }: { url: URL; sameOrigin: boolean }) =>
-              sameOrigin &&
-              url.pathname.startsWith('/haunted-walk/tours/') &&
+            // Per-city tour data: fetched from the network the first time a
+            // city is opened, then served from cache so that city loads
+            // offline afterwards. Only opened cities are ever stored.
+            urlPattern: ({ url }: { url: URL }) =>
+              url.origin === 'https://fat-git.github.io' &&
+              url.pathname.startsWith('/haunted-walk/') &&
+              url.pathname.includes('/tours/') &&
               (url.pathname.endsWith('.json') || url.pathname.endsWith('.geojson')),
-            handler: 'NetworkFirst',
+            handler: 'CacheFirst',
             options: {
               cacheName: 'tour-data',
-              networkTimeoutSeconds: 3,
               expiration: {
                 maxEntries: 50,
                 maxAgeSeconds: 60 * 60 * 24 * 30,
               },
-              cacheableResponse: { statuses: [200] },
+              cacheableResponse: { statuses: [0, 200] },
             },
           },
           {
-            // Tour stop images are same-origin static files. Cache them on
-            // demand so an in-progress tour keeps showing them offline.
-            urlPattern: ({ url, sameOrigin }: { url: URL; sameOrigin: boolean }) =>
-              sameOrigin &&
-              url.pathname.startsWith('/haunted-walk/tours/') &&
+            // Stop images: same-origin and within the app base only.
+            urlPattern: ({ url }: { url: URL }) =>
+              url.origin === 'https://fat-git.github.io' &&
+              url.pathname.startsWith('/haunted-walk/') &&
+              url.pathname.includes('/tours/') &&
               /\.(jpg|jpeg|png|webp)$/i.test(url.pathname),
             handler: 'CacheFirst',
             options: {
