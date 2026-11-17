@@ -44,6 +44,14 @@ export const MIN_QUIZ_OPTIONS = 2
 export const MAX_QUIZ_OPTIONS = 4
 export const FUN_FACT_KEYS = ['text', 'kind', 'sourceUrl']
 export const QUIZ_KEYS = ['question', 'options', 'answerIndex', 'explanation']
+export const MAX_FUN_FACTS = 6
+export const MAX_QUIZZES = 3
+export const FUN_FACTS_KEYS = ['text', 'kind', 'sourceUrl']
+export const QUIZZES_KEYS = ['question', 'options', 'answerIndex', 'explanation']
+export const EXTRA_STORY_KEYS = ['text']
+export const MAX_EXTRA_STORY_WORDS = 160
+export const MIN_EXTRA_STORY_WORDS = 80
+export const MAX_CHALLENGE_CHARS = 160
 
 const ID_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 
@@ -66,6 +74,10 @@ const STOP_KEYS = [
   'discuss',
   'funFact',
   'quiz',
+  'funFacts',
+  'quizzes',
+  'extraStory',
+  'challenge',
 ]
 const VIEWPOINT_KEYS = ['lat', 'lon', 'access', 'description']
 const ROUTE_KEYS = ['type', 'features', 'metadata']
@@ -369,6 +381,78 @@ export function validateQuiz(quiz, path = 'quiz') {
   return errors
 }
 
+export function validateFunFacts(funFacts, path = 'funFacts') {
+  const errors = []
+  if (funFacts === undefined) return errors
+  if (!Array.isArray(funFacts)) {
+    errors.push(`${path}: must be an array of fun fact objects`)
+    return errors
+  }
+  if (funFacts.length > MAX_FUN_FACTS) {
+    errors.push(`${path}: must contain at most ${MAX_FUN_FACTS} fun facts`)
+  }
+  funFacts.forEach((funFact, index) => {
+    errors.push(...validateFunFact(funFact, `${path}[${index}]`))
+  })
+  return errors
+}
+
+export function validateQuizzes(quizzes, path = 'quizzes') {
+  const errors = []
+  if (quizzes === undefined) return errors
+  if (!Array.isArray(quizzes)) {
+    errors.push(`${path}: must be an array of quiz objects`)
+    return errors
+  }
+  if (quizzes.length > MAX_QUIZZES) {
+    errors.push(`${path}: must contain at most ${MAX_QUIZZES} quizzes`)
+  }
+  quizzes.forEach((quiz, index) => {
+    errors.push(...validateQuiz(quiz, `${path}[${index}]`))
+  })
+  return errors
+}
+
+export function validateExtraStory(extraStory, path = 'extraStory') {
+  const errors = []
+  if (extraStory === undefined) return errors
+  if (!isPlainObject(extraStory)) {
+    errors.push(`${path}: must be an object`)
+    return errors
+  }
+  checkAllowedKeys(extraStory, EXTRA_STORY_KEYS, path, errors)
+  if (!isNonEmptyString(extraStory.text)) {
+    errors.push(`${path}.text: must be a non-empty string`)
+    return errors
+  }
+  if (/<\/?[a-z][^>]*>/i.test(extraStory.text)) {
+    errors.push(`${path}.text: must be plain text without HTML markup`)
+  }
+  const words = countWords(extraStory.text)
+  if (words < MIN_EXTRA_STORY_WORDS || words > MAX_EXTRA_STORY_WORDS) {
+    errors.push(
+      `${path}.text: must be ${MIN_EXTRA_STORY_WORDS}-${MAX_EXTRA_STORY_WORDS} words; got ${words}`,
+    )
+  }
+  return errors
+}
+
+export function validateChallenge(challenge, path = 'challenge') {
+  const errors = []
+  if (challenge === undefined) return errors
+  if (!isNonEmptyString(challenge)) {
+    errors.push(`${path}: must be a non-empty string`)
+    return errors
+  }
+  if (challenge.length > MAX_CHALLENGE_CHARS) {
+    errors.push(`${path}: must be at most ${MAX_CHALLENGE_CHARS} characters`)
+  }
+  if (/<\/?[a-z][^>]*>/i.test(challenge)) {
+    errors.push(`${path}: must be plain text without HTML markup`)
+  }
+  return errors
+}
+
 export function validateStop(stop, path = 'stop') {
   const errors = []
 
@@ -422,6 +506,17 @@ export function validateStop(stop, path = 'stop') {
   validateOptionalText(stop.discuss, 'discuss', MAX_DISCUSS_CHARS, path, errors)
   errors.push(...validateFunFact(stop.funFact, `${path}.funFact`))
   errors.push(...validateQuiz(stop.quiz, `${path}.quiz`))
+  errors.push(...validateFunFacts(stop.funFacts, `${path}.funFacts`))
+  errors.push(...validateQuizzes(stop.quizzes, `${path}.quizzes`))
+  errors.push(...validateExtraStory(stop.extraStory, `${path}.extraStory`))
+  errors.push(...validateChallenge(stop.challenge, `${path}.challenge`))
+
+  if (stop.funFact !== undefined && stop.funFacts !== undefined) {
+    errors.push(`${path}: use either "funFact" or "funFacts", not both`)
+  }
+  if (stop.quiz !== undefined && stop.quizzes !== undefined) {
+    errors.push(`${path}: use either "quiz" or "quizzes", not both`)
+  }
 
   return errors
 }

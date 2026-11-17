@@ -99,12 +99,37 @@ is the walking order.
 | `discuss`         | Optional non-empty string (max 280 chars). Short discussion prompt for visitors.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `funFact`         | Optional object `{ text, kind, sourceUrl }`. `text` non-empty (max 280 chars), `kind` is `"fact"` or `"legend"` (legend content must be labelled as legend in UI), and `sourceUrl` is a required absolute `http(s)` URL.                                                                                                                                                                                                                                                                                                                                                             |
 | `quiz`            | Optional object `{ question, options, answerIndex, explanation }`. `question`/`explanation` non-empty (max 280 chars), `options` is 2-4 non-empty strings (max 120 chars each), `answerIndex` is a 0-based index into `options`. Quizzes are tap-to-reveal client-side only (no backend).                                                                                                                                                                                                                                                                                            |
-| `funFacts`        | Optional array of up to 6 `{ text, kind, sourceUrl }` fact/legend cards (`kind` `"fact"` or `"legend"`; `sourceUrl` required). Rendered as a tap-through card deck (“Next fact”). Supersedes singular `funFact`; use one or the other, not both. |
-| `quizzes`         | Optional array of up to 3 `{ question, options, answerIndex, explanation }` quizzes (`options` 2-4, `answerIndex` 0-based). Rendered as separate tap-to-reveal cards. Supersedes singular `quiz`; use one or the other, not both. |
-| `extraStory`      | Optional object `{ text }` (80-160 words, plain text). Shown as a “Hear more” button that speaks it through the same speechSynthesis engine as narration. Stops on stop-change or geofence trigger; does not interrupt main narration. |
-| `challenge`       | Optional non-empty string (max ~160 chars). Shown as a distinct card with a “Done” tap that records completion in localStorage-only visit progress. |
+| `funFacts`        | Optional array of up to 6 `{ text, kind, sourceUrl }` fact/legend cards (`kind` `"fact"` or `"legend"`; `sourceUrl` required). Rendered as a tap-through card deck (“Next fact”). Supersedes singular `funFact`; use one or the other, not both.                                                                                                                                                                                                                                                                                                                                     |
+| `quizzes`         | Optional array of up to 3 `{ question, options, answerIndex, explanation }` quizzes (`options` 2-4, `answerIndex` 0-based). Rendered as separate tap-to-reveal cards. Supersedes singular `quiz`; use one or the other, not both.                                                                                                                                                                                                                                                                                                                                                    |
+| `extraStory`      | Optional object `{ text }` (80-160 words, plain text). Shown as a “Hear more” button that speaks it through the same speechSynthesis engine as narration. Stops on stop-change or geofence trigger; does not interrupt main narration.                                                                                                                                                                                                                                                                                                                                               |
+| `challenge`       | Optional non-empty string (max ~160 chars). Shown as a distinct card with a “Done” tap that records completion in localStorage-only visit progress.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 Engagement fields (`lookFor`, `discuss`, `funFact`, `quiz`, `funFacts`, `quizzes`, `extraStory`, `challenge`) are additive: old tours without them remain valid and render unchanged. Any new visitor-facing engagement text is additive and must follow the same legend/fact and sourcing rules as narration/content review. Do not change existing narration wording when adding engagement content.
+
+## 4a. Optional progress and ranks
+
+The tour may override the default playful rank curve via a top-level `progress`
+object in `tour.json`:
+
+```json
+{
+  "progress": {
+    "rankLabels": [
+      "Fledgling ghost hunter",
+      "Ghost seeker",
+      "Spirit walker",
+      "Haunt master"
+    ],
+    "rankThresholds": [0, 3, 6, 10]
+  }
+}
+```
+
+- `rankLabels` is an optional array of label strings from lowest to highest rank.
+- `rankThresholds` is an optional array of score cutoffs (ascending) matching
+  `rankLabels`. Scores are `stopsVisited + quizzesCorrect * 2 + challengesDone * 3`.
+- Omit both fields to use the built-in defaults; only supply overrides when a
+  new city warrants a different curve.
 
 ### Images
 

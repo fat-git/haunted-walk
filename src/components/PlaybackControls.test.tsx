@@ -58,6 +58,15 @@ function propsFor(stop: TourStop | null) {
     narrationProblem: null,
     onRetryNarration: () => {},
     onDismissNarrationProblem: () => {},
+    extraStory: null,
+    extraStoryPlaying: false,
+    extraStoryPaused: false,
+    extraStorySupported: false,
+    onPlayExtraStory: () => {},
+    onPauseExtraStory: () => {},
+    onStopExtraStory: () => {},
+    onQuizCorrect: () => {},
+    onChallengeDone: () => {},
   }
 }
 
@@ -144,6 +153,50 @@ describe('PlaybackControls stop image', () => {
     expect(markup).toContain('Look for <ironwork> details.')
     expect(markup).toContain('https://example.org/fact')
     expect(markup).toContain('Reveal answer')
+  })
+
+  it('renders multiple fun facts and quizzes, extra story, and challenge', () => {
+    const stop: TourStop = {
+      ...stopWithoutImage,
+      funFacts: [
+        {
+          text: 'First sourced fact.',
+          kind: 'fact',
+          sourceUrl: 'https://example.org/fact-1',
+        },
+        {
+          text: 'A local legend.',
+          kind: 'legend',
+          sourceUrl: 'https://example.org/legend',
+        },
+      ],
+      quizzes: [
+        {
+          question: 'First question?',
+          options: ['Yes', 'No'],
+          answerIndex: 0,
+          explanation: 'First explanation.',
+        },
+        {
+          question: 'Second question?',
+          options: ['A', 'B'],
+          answerIndex: 1,
+          explanation: 'Second explanation.',
+        },
+      ],
+      extraStory: { text: 'An extra story about this stop.' },
+      challenge: 'Find the hidden plaque.',
+    }
+    const markup = renderPlaybackControls(stop)
+    expect(markup).toContain('First sourced fact.')
+    expect(markup).toContain('1 / 2')
+    expect(markup).toContain('First question?')
+    expect(markup).toContain('Second question?')
+    expect(markup).toContain('Hear more')
+    expect(markup).toContain('An extra story about this stop.')
+    expect(markup).toContain('Challenge')
+    expect(markup).toContain('Find the hidden plaque.')
+    expect(markup).toContain('Done')
   })
 
   it('resolves the image URL through the tour-path helper', () => {

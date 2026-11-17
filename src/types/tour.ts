@@ -50,6 +50,18 @@ export interface Quiz {
   explanation: string
 }
 
+export interface ExtraStory {
+  text: string
+}
+
+/** Optional per-tour override for the playful visit rank (defaults in code). */
+export interface TourProgressConfig {
+  /** Labels from lowest to highest rank; defaults are in `lib/progress.ts`. */
+  rankLabels?: string[]
+  /** Score cutoffs (ascending); defaults are in `lib/progress.ts`. */
+  rankThresholds?: number[]
+}
+
 export interface GeoPoint {
   lat: number
   lon: number
@@ -79,6 +91,10 @@ export interface TourStop extends GeoPoint {
   discuss?: string
   funFact?: FunFact
   quiz?: Quiz
+  funFacts?: FunFact[]
+  quizzes?: Quiz[]
+  extraStory?: ExtraStory
+  challenge?: string
 }
 
 export interface Tour {
@@ -88,6 +104,8 @@ export interface Tour {
   name: string
   description: string
   stops: TourStop[]
+  /** Optional override for rank labels/thresholds (defaults in code). */
+  progress?: TourProgressConfig
 }
 
 /** Backwards-compatible name for the tour file as a whole. */
