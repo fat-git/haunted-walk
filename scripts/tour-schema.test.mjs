@@ -7,6 +7,7 @@ import {
   LEGEND_LABELS,
   validateCityRegistry,
   validateImages,
+  validateProgress,
   validateRoute,
   validateTour,
 } from './tour-schema.mjs'
@@ -368,6 +369,101 @@ describe('stop engagement fields', () => {
       validateTour(stopWithEngagement({ trivia: 'nope' }), tourOptions).some((e) =>
         e.includes('unknown field'),
       ),
+    ).toBe(true)
+  })
+})
+
+describe('tour progress config', () => {
+  const validProgress = {
+    rankLabels: [
+      'Fledgling ghost hunter',
+      'Ghost seeker',
+      'Spirit walker',
+      'Haunt master',
+    ],
+    rankThresholds: [0, 3, 6, 10],
+  }
+
+  function tourWithProgress(progress) {
+    const mutated = clone(tour)
+    mutated.progress = progress
+    return mutated
+  }
+
+  it('accepts the documented progress override', () => {
+    expect(validateTour(tourWithProgress(validProgress), tourOptions)).toEqual([])
+    expect(validateProgress(validProgress)).toEqual([])
+  })
+
+  it('accepts a tour with no progress field (built-in defaults)', () => {
+    const mutated = clone(tour)
+    delete mutated.progress
+    expect(validateTour(mutated, tourOptions)).toEqual([])
+    expect(validateProgress(undefined)).toEqual([])
+  })
+
+  it('rejects a non-object progress value', () => {
+    expect(
+      validateTour(tourWithProgress('Haunt master'), tourOptions).some((e) =>
+        e.includes('must be an object'),
+      ),
+    ).toBe(true)
+  })
+
+  it('rejects unknown fields inside progress', () => {
+    expect(
+      validateTour(
+        tourWithProgress({ ...validProgress, rankPoints: true }),
+        tourOptions,
+      ).some((e) => e.includes('unknown field')),
+    ).toBe(true)
+  })
+
+  it('rejects rankLabels that is not an array of non-empty strings', () => {
+    expect(
+      validateProgress({ rankLabels: 'Ghost seeker' }).some((e) =>
+        e.includes('must be an array'),
+      ),
+    ).toBe(true)
+    expect(
+      validateProgress({ rankLabels: ['Ghost seeker', ''] }).some((e) =>
+        e.includes('non-empty string'),
+      ),
+    ).toBe(true)
+    expect(
+      validateProgress({ rankLabels: [] }).some((e) => e.includes('at least one label')),
+    ).toBe(true)
+  })
+
+  it('rejects rankThresholds that is not strictly ascending non-negative numbers', () => {
+    expect(
+      validateProgress({ rankThresholds: [10, 6, 3, 0] }).some((e) =>
+        e.includes('strictly ascending'),
+      ),
+    ).toBe(true)
+    expect(
+      validateProgress({ rankThresholds: [0, 3, 3, 10] }).some((e) =>
+        e.includes('strictly ascending'),
+      ),
+    ).toBe(true)
+    expect(
+      validateProgress({ rankThresholds: [0, -1, 6, 10] }).some((e) =>
+        e.includes('not be negative'),
+      ),
+    ).toBe(true)
+    expect(
+      validateProgress({ rankThresholds: [0, '3', 6, 10] }).some((e) =>
+        e.includes('must be a number'),
+      ),
+    ).toBe(true)
+  })
+
+  it('rejects rankLabels and rankThresholds of different lengths', () => {
+    expect(
+      validateTour(
+        tourWithProgress({ rankLabels: ['A', 'B'], rankThresholds: [0, 3, 6] }),
+        tourOptions,
+      ).some((e) => e.includes('same length')),
     ).toBe(true)
   })
 })

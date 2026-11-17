@@ -52,12 +52,22 @@ export const EXTRA_STORY_KEYS = ['text']
 export const MAX_EXTRA_STORY_WORDS = 160
 export const MIN_EXTRA_STORY_WORDS = 80
 export const MAX_CHALLENGE_CHARS = 160
+export const PROGRESS_KEYS = ['rankLabels', 'rankThresholds']
+export const MAX_RANKS = 8
 
 const ID_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 
 const CITY_KEYS = ['id', 'name', 'defaultTour', 'description']
 const REGISTRY_KEYS = ['schemaVersion', 'cities']
-const TOUR_KEYS = ['schemaVersion', 'id', 'city', 'name', 'description', 'stops']
+const TOUR_KEYS = [
+  'schemaVersion',
+  'id',
+  'city',
+  'name',
+  'description',
+  'stops',
+  'progress',
+]
 const STOP_KEYS = [
   'id',
   'name',
@@ -453,6 +463,72 @@ export function validateChallenge(challenge, path = 'challenge') {
   return errors
 }
 
+export function validateProgress(progress, path = 'tour.progress') {
+  const errors = []
+  if (progress === undefined) return errors
+  if (!isPlainObject(progress)) {
+    errors.push(`${path}: must be an object`)
+    return errors
+  }
+  checkAllowedKeys(progress, PROGRESS_KEYS, path, errors)
+
+  if (progress.rankLabels !== undefined) {
+    if (!Array.isArray(progress.rankLabels)) {
+      errors.push(`${path}.rankLabels: must be an array of label strings`)
+    } else {
+      if (progress.rankLabels.length === 0) {
+        errors.push(`${path}.rankLabels: must contain at least one label`)
+      }
+      if (progress.rankLabels.length > MAX_RANKS) {
+        errors.push(`${path}.rankLabels: must contain at most ${MAX_RANKS} labels`)
+      }
+      progress.rankLabels.forEach((label, index) => {
+        if (!isNonEmptyString(label)) {
+          errors.push(`${path}.rankLabels[${index}]: must be a non-empty string`)
+        }
+      })
+    }
+  }
+
+  if (progress.rankThresholds !== undefined) {
+    if (!Array.isArray(progress.rankThresholds)) {
+      errors.push(`${path}.rankThresholds: must be an array of numbers`)
+    } else {
+      if (progress.rankThresholds.length === 0) {
+        errors.push(`${path}.rankThresholds: must contain at least one cutoff`)
+      }
+      if (progress.rankThresholds.length > MAX_RANKS) {
+        errors.push(`${path}.rankThresholds: must contain at most ${MAX_RANKS} cutoffs`)
+      }
+      progress.rankThresholds.forEach((threshold, index) => {
+        if (!isFiniteNumber(threshold)) {
+          errors.push(`${path}.rankThresholds[${index}]: must be a number`)
+        } else if (threshold < 0) {
+          errors.push(`${path}.rankThresholds[${index}]: must not be negative`)
+        }
+      })
+      for (let index = 1; index < progress.rankThresholds.length; index++) {
+        const previous = progress.rankThresholds[index - 1]
+        const current = progress.rankThresholds[index]
+        if (isFiniteNumber(previous) && isFiniteNumber(current) && current <= previous) {
+          errors.push(`${path}.rankThresholds: must be strictly ascending`)
+          break
+        }
+      }
+    }
+  }
+
+  if (
+    Array.isArray(progress.rankLabels) &&
+    Array.isArray(progress.rankThresholds) &&
+    progress.rankLabels.length !== progress.rankThresholds.length
+  ) {
+    errors.push(`${path}: rankLabels and rankThresholds must have the same length`)
+  }
+
+  return errors
+}
+
 export function validateStop(stop, path = 'stop') {
   const errors = []
 
@@ -530,6 +606,8 @@ export function validateTour(tour, options = {}) {
   }
 
   checkAllowedKeys(tour, TOUR_KEYS, 'tour', errors)
+
+  errors.push(...validateProgress(tour.progress, 'tour.progress'))
 
   if (tour.schemaVersion !== SCHEMA_VERSION) {
     errors.push(`tour.schemaVersion: must be ${SCHEMA_VERSION}`)
