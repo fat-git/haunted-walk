@@ -8,7 +8,7 @@
         "coordinates": [
           [-86.7842, 36.1658],
           [-86.7836, 36.1631],
-          [-86.7798, 36.1630],
+          [-86.7798, 36.163],
           [-86.7785, 36.1613],
           [-86.7782, 36.1608],
           [-86.7764, 36.1639],
@@ -41,15 +41,69 @@
       "union-station"
     ],
     "maneuvers": [
-      { "from": "tennessee-state-capitol", "to": "hermitage-hotel", "instruction": "Walk south to the Hermitage Hotel", "distanceM": 300, "durationS": 230 },
-      { "from": "hermitage-hotel", "to": "downtown-presbyterian-church", "instruction": "Walk east to Downtown Presbyterian Church", "distanceM": 310, "durationS": 238 },
-      { "from": "downtown-presbyterian-church", "to": "ryman-auditorium", "instruction": "Walk south to the Ryman Auditorium", "distanceM": 220, "durationS": 169 },
-      { "from": "ryman-auditorium", "to": "tootsies-orchid-lounge", "instruction": "Walk south to Tootsie's Orchid Lounge", "distanceM": 60, "durationS": 46 },
-      { "from": "tootsies-orchid-lounge", "to": "second-avenue", "instruction": "Walk northeast to Second Avenue", "distanceM": 370, "durationS": 284 },
-      { "from": "second-avenue", "to": "schermerhorn-symphony-center", "instruction": "Walk south to the Schermerhorn Symphony Center", "distanceM": 480, "durationS": 368 },
-      { "from": "schermerhorn-symphony-center", "to": "bridgestone-arena", "instruction": "Walk west to Bridgestone Arena", "distanceM": 280, "durationS": 215 },
-      { "from": "bridgestone-arena", "to": "frist-art-museum", "instruction": "Walk west to the Frist Art Museum", "distanceM": 460, "durationS": 353 },
-      { "from": "frist-art-museum", "to": "union-station", "instruction": "Walk west to Union Station", "distanceM": 100, "durationS": 77 }
+      {
+        "from": "tennessee-state-capitol",
+        "to": "hermitage-hotel",
+        "instruction": "Walk south to the Hermitage Hotel",
+        "distanceM": 300,
+        "durationS": 230
+      },
+      {
+        "from": "hermitage-hotel",
+        "to": "downtown-presbyterian-church",
+        "instruction": "Walk east to Downtown Presbyterian Church",
+        "distanceM": 310,
+        "durationS": 238
+      },
+      {
+        "from": "downtown-presbyterian-church",
+        "to": "ryman-auditorium",
+        "instruction": "Walk south to the Ryman Auditorium",
+        "distanceM": 220,
+        "durationS": 169
+      },
+      {
+        "from": "ryman-auditorium",
+        "to": "tootsies-orchid-lounge",
+        "instruction": "Walk south to Tootsie's Orchid Lounge",
+        "distanceM": 60,
+        "durationS": 46
+      },
+      {
+        "from": "tootsies-orchid-lounge",
+        "to": "second-avenue",
+        "instruction": "Walk northeast to Second Avenue",
+        "distanceM": 370,
+        "durationS": 284
+      },
+      {
+        "from": "second-avenue",
+        "to": "schermerhorn-symphony-center",
+        "instruction": "Walk south to the Schermerhorn Symphony Center",
+        "distanceM": 480,
+        "durationS": 368
+      },
+      {
+        "from": "schermerhorn-symphony-center",
+        "to": "bridgestone-arena",
+        "instruction": "Walk west to Bridgestone Arena",
+        "distanceM": 280,
+        "durationS": 215
+      },
+      {
+        "from": "bridgestone-arena",
+        "to": "frist-art-museum",
+        "instruction": "Walk west to the Frist Art Museum",
+        "distanceM": 460,
+        "durationS": 353
+      },
+      {
+        "from": "frist-art-museum",
+        "to": "union-station",
+        "instruction": "Walk west to Union Station",
+        "distanceM": 100,
+        "durationS": 77
+      }
     ]
   }
 }
