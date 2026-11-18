@@ -22,6 +22,8 @@ export type ImageLicense =
   | 'CC-BY-SA-3.0'
   | 'CC-BY-SA-4.0'
 
+export type FunFactKind = 'fact' | 'legend'
+
 export interface Image {
   /** Path relative to the tour folder, e.g. `images/<stop-id>-1.jpg`. */
   src: string
@@ -33,6 +35,31 @@ export interface Image {
   /** https URL of the file page on commons.wikimedia.org; attribution link only. */
   sourceUrl: string
   caption?: string
+}
+
+export interface FunFact {
+  text: string
+  kind: FunFactKind
+  sourceUrl: string
+}
+
+export interface Quiz {
+  question: string
+  options: string[]
+  answerIndex: number
+  explanation: string
+}
+
+export interface ExtraStory {
+  text: string
+}
+
+/** Optional per-tour override for the playful visit rank (defaults in code). */
+export interface TourProgressConfig {
+  /** Labels from lowest to highest rank; defaults are in `lib/progress.ts`. */
+  rankLabels?: string[]
+  /** Score cutoffs (ascending); defaults are in `lib/progress.ts`. */
+  rankThresholds?: number[]
 }
 
 export interface GeoPoint {
@@ -60,6 +87,14 @@ export interface TourStop extends GeoPoint {
   legendLabel?: LegendLabel
   sources: string[]
   images?: Image[]
+  lookFor?: string
+  discuss?: string
+  funFact?: FunFact
+  quiz?: Quiz
+  funFacts?: FunFact[]
+  quizzes?: Quiz[]
+  extraStory?: ExtraStory
+  challenge?: string
 }
 
 export interface Tour {
@@ -69,6 +104,8 @@ export interface Tour {
   name: string
   description: string
   stops: TourStop[]
+  /** Optional override for rank labels/thresholds (defaults in code). */
+  progress?: TourProgressConfig
 }
 
 /** Backwards-compatible name for the tour file as a whole. */

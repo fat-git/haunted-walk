@@ -93,6 +93,7 @@ function TourApp({
     currentStop,
     guidance,
     distanceToCurrentStop,
+
     isAtStop,
     isOffRoute,
     routeLoaded,
@@ -107,6 +108,12 @@ function TourApp({
     gpsWatching,
     gpsError,
     wakeLock,
+    progress,
+    rank,
+    extraStory,
+    extraStoryPlaying,
+    extraStoryPaused,
+    extraStorySupported,
     startTour,
     startTourAtStop,
     startWithLocation,
@@ -126,6 +133,11 @@ function TourApp({
     dismissNarrationProblem,
     dismissSafetyNotice,
     unlockAudio,
+    recordQuizCorrect,
+    recordChallengeDone,
+    playExtraStory,
+    pauseExtraStory,
+    stopExtraStory,
   } = useTour(tour)
 
   const [stopsOpen, setStopsOpen] = useState(false)
@@ -201,7 +213,12 @@ function TourApp({
         {/* Active Tour UI */}
         {phase !== 'idle' && phase !== 'completed' && (
           <>
-            <TourHeader tour={tour} currentStopIndex={currentStopIndex} phase={phase} />
+            <TourHeader
+              tour={tour}
+              currentStopIndex={currentStopIndex}
+              phase={phase}
+              rank={rank}
+            />
 
             <div className="stops-bar">
               <button
@@ -262,6 +279,15 @@ function TourApp({
               narrationProblem={narrationProblem}
               onRetryNarration={retryNarration}
               onDismissNarrationProblem={dismissNarrationProblem}
+              extraStory={extraStory}
+              extraStoryPlaying={extraStoryPlaying}
+              extraStoryPaused={extraStoryPaused}
+              extraStorySupported={extraStorySupported}
+              onPlayExtraStory={playExtraStory}
+              onPauseExtraStory={pauseExtraStory}
+              onStopExtraStory={stopExtraStory}
+              onQuizCorrect={recordQuizCorrect}
+              onChallengeDone={recordChallengeDone}
             />
 
             {narration && (
@@ -276,7 +302,12 @@ function TourApp({
 
         {/* Completed Screen */}
         {phase === 'completed' && (
-          <CompletedScreen tour={tour} onRestart={handleRestart} />
+          <CompletedScreen
+            tour={tour}
+            onRestart={handleRestart}
+            progress={progress}
+            rank={rank}
+          />
         )}
 
         {/* In-tour stop list for jumping to any stop */}

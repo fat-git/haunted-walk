@@ -2,14 +2,28 @@
  * Screen shown when tour is completed.
  */
 
+import { useMemo } from 'react'
 import type { Tour } from '../types/tour'
+import { computeSummary, type VisitProgress } from '../lib/progress'
 
 interface CompletedScreenProps {
   tour: Tour
   onRestart: () => void
+  progress: VisitProgress
+  rank: string
 }
 
-export function CompletedScreen({ tour, onRestart }: CompletedScreenProps) {
+export function CompletedScreen({
+  tour,
+  onRestart,
+  progress,
+  rank,
+}: CompletedScreenProps) {
+  const summary = useMemo(
+    () => computeSummary(progress, tour.stops.length),
+    [progress, tour.stops.length],
+  )
+
   return (
     <div className="completed-screen">
       <div className="completion-badge" aria-hidden="true">
@@ -37,6 +51,14 @@ export function CompletedScreen({ tour, onRestart }: CompletedScreenProps) {
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className="visit-progress-summary">
+        <h3>Your progress</h3>
+        <p className="rank-display">
+          <strong>{rank}</strong>
+        </p>
+        <p className="summary-text">{summary}</p>
       </div>
 
       <button className="btn btn-primary" onClick={onRestart} type="button">

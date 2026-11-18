@@ -8,9 +8,10 @@ interface TourHeaderProps {
   tour: Tour
   currentStopIndex: number
   phase: 'idle' | 'ready' | 'active' | 'paused' | 'completed'
+  rank?: string
 }
 
-export function TourHeader({ tour, currentStopIndex, phase }: TourHeaderProps) {
+export function TourHeader({ tour, currentStopIndex, phase, rank }: TourHeaderProps) {
   const currentStop = tour.stops[currentStopIndex]
   const visitedCount = phase === 'completed' ? tour.stops.length : currentStopIndex
   const progress = tour.stops.length > 0 ? (visitedCount / tour.stops.length) * 100 : 0
@@ -51,6 +52,14 @@ export function TourHeader({ tour, currentStopIndex, phase }: TourHeaderProps) {
         <div className="current-stop-badge">
           <span className="stop-number">Stop {currentStopIndex + 1}</span>
           <span className="stop-name">{currentStop.name}</span>
+        </div>
+      )}
+
+      {rank && phase !== 'completed' && (
+        <div className="rank-badge" data-testid="visit-rank">
+          <span className="rank-label" aria-live="polite">
+            Rank: {rank}
+          </span>
         </div>
       )}
 

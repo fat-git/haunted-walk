@@ -26,6 +26,15 @@ import {
 } from '../lib/route'
 import { getStopGuidance, resolveJumpIndex, type StopGuidance } from '../lib/jump'
 import { routeUrl } from '../lib/tourPaths'
+import {
+  load as loadProgress,
+  markStopVisited,
+  markQuizCorrect,
+  markChallengeDone,
+  computeScore,
+  computeRank,
+  type VisitProgress,
+} from '../lib/progress'
 import { useGPS, type GeolocationPermissionState } from './useGPS'
 import { useWakeLock, type WakeLockState } from './useWakeLock'
 
@@ -76,6 +85,18 @@ export interface TourState {
   gpsWatching: boolean
   gpsError: GeolocationPositionError | null
   wakeLock: WakeLockState
+  /** Visit progress (localStorage only; no PII). */
+  progress: VisitProgress
+  /** Current playful rank label derived from progress. */
+  rank: string
+  /** Optional extra-story narration engine for the current stop. */
+  extraStory: NarrationEngine | null
+  /** Whether the extra story is currently playing. */
+  extraStoryPlaying: boolean
+  /** Whether the extra story is paused. */
+  extraStoryPaused: boolean
+  /** Whether the browser speech synthesis engine is available. */
+  extraStorySupported: boolean
 }
 
 export interface TourControls {
@@ -105,6 +126,16 @@ export interface TourControls {
   dismissNarrationProblem: () => void
   dismissSafetyNotice: () => void
   unlockAudio: () => void
+  /** Record a correct quiz answer for the current stop. */
+  recordQuizCorrect: (quizIndex: number) => void
+  /** Record completion of the current stop's challenge. */
+  recordChallengeDone: () => void
+  /** Play the current stop's optional extra story. No-op while main narration plays. */
+  playExtraStory: () => void
+  /** Pause the current stop's extra story. */
+  pauseExtraStory: () => void
+  /** Stop the current stop's extra story. */
+  stopExtraStory: () => void
 }
 
 export function useTour(tour: Tour): TourState & TourControls {
@@ -117,6 +148,85 @@ export function useTour(tour: Tour): TourState & TourControls {
   const [narrationEngine, setNarrationEngine] = useState<NarrationEngine | null>(null)
   const [sentenceTick, setSentenceTick] = useState(0)
   const [narrationProblem, setNarrationProblem] = useState<NarrationProblem | null>(null)
+
+  const [progress, setProgress] = useState<VisitProgress>(() => loadProgress(tour.id))
+
+  // Current stop for convenience (must be before the stop-visited effect).
+  const currentStop = tour.stops[currentStopIndex] ?? null
+
+  // Extra-story narration engine (optional per stop). Kept separate from the
+  // main narration so it never alters the tour script. Stops on stop change
+  // or geofence trigger.
+  const [extraStoryEngine, setExtraStoryEngine] = useState<NarrationEngine | null>(null)
+  const extraStoryRef = useRef<NarrationEngine | null>(null)
+
+  const stopExtraStory = useCallback(() => {
+    extraStoryRef.current?.stop()
+    setExtraStoryEngine(null)
+    extraStoryRef.current = null
+  }, [])
+
+  const playExtraStory = useCallback(() => {
+    const text = currentStop?.extraStory?.text
+    if (!text) return
+    // Do not interrupt main narration.
+    if (narrationEngine?.getState().isPlaying) return
+    let engine = extraStoryRef.current
+    if (!engine) {
+      engine = new NarrationEngine(text, { rate: loadSpeechRate() })
+      engine.setOnEnd(() => {
+        engine?.stop()
+        setExtraStoryEngine(null)
+      })
+      engine.init().catch(console.error)
+      extraStoryRef.current = engine
+      setExtraStoryEngine(engine)
+    }
+    engine.play()
+  }, [currentStop, narrationEngine])
+
+  const pauseExtraStory = useCallback(() => {
+    extraStoryRef.current?.pause()
+  }, [])
+
+  // Create/stop the extra-story engine when the stop changes.
+  useEffect(() => {
+    const text = currentStop?.extraStory?.text
+    if (!text) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      stopExtraStory()
+      return
+    }
+    stopExtraStory()
+    const engine = new NarrationEngine(text, { rate: loadSpeechRate() })
+    engine.setOnEnd(() => {
+      engine.stop()
+      if (extraStoryRef.current === engine) {
+        extraStoryRef.current = null
+      }
+    })
+    engine.init().catch(console.error)
+    extraStoryRef.current = engine
+    setExtraStoryEngine(engine)
+    return () => {
+      engine.stop()
+      if (extraStoryRef.current === engine) {
+        extraStoryRef.current = null
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentStop?.id, tour.id])
+
+  // Mark stop as visited when the walker enters the geofence.
+  useEffect(() => {
+    if (isAtStop && currentStop) {
+      const stopId = currentStop.id
+      if (!progress.stopsVisited.includes(stopId)) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setProgress(markStopVisited(tour.id, stopId))
+      }
+    }
+  }, [isAtStop, currentStop, tour.id, progress.stopsVisited])
 
   // The committed, build-time route. Its maneuver list drives the next-maneuver
   // display and its geometry the off-route check. Never re-routed.
@@ -248,11 +358,15 @@ export function useTour(tour: Tour): TourState & TourControls {
 
     if (entered && !isAtStop) {
       setIsAtStop(true)
+      // Main narration is starting: extra story must not continue.
+      stopExtraStory()
       if (narrationEngine && audioUnlocked) {
         narrationEngine.play()
       }
     } else if (exited && isAtStop) {
       setIsAtStop(false)
+      // Walker left the geofence: stop any extra story.
+      stopExtraStory()
     }
   }, [
     gps.position,
@@ -263,6 +377,7 @@ export function useTour(tour: Tour): TourState & TourControls {
     audioUnlocked,
     narrationEngine,
     isAtStop,
+    stopExtraStory,
   ])
 
   // Audio unlock - must be called from user gesture
@@ -354,7 +469,8 @@ export function useTour(tour: Tour): TourState & TourControls {
     setCurrentStopIndex(0)
     setIsAtStop(false)
     setDistanceToCurrentStop(null)
-  }, [gps, wakeLock, narrationEngine])
+    stopExtraStory()
+  }, [gps, wakeLock, narrationEngine, stopExtraStory])
 
   const nextStop = useCallback(() => {
     if (currentStopIndex < tour.stops.length - 1) {
@@ -366,8 +482,9 @@ export function useTour(tour: Tour): TourState & TourControls {
       if (geofence) resetGeofence(geofence)
       initializeNarrationRef.current(nextIndex)
       setIsAtStop(false)
+      stopExtraStory()
     }
-  }, [currentStopIndex, tour.stops])
+  }, [currentStopIndex, tour.stops, stopExtraStory])
 
   // Store nextStop in ref for initializeNarration to use
   useEffect(() => {
@@ -382,8 +499,9 @@ export function useTour(tour: Tour): TourState & TourControls {
       if (geofence) resetGeofence(geofence)
       initializeNarrationRef.current(prevIndex)
       setIsAtStop(false)
+      stopExtraStory()
     }
-  }, [currentStopIndex, tour.stops])
+  }, [currentStopIndex, tour.stops, stopExtraStory])
 
   // Jump to any stop, forward or back, from the start page path or the
   // in-tour stop list. Stops current narration cleanly and resets geofence
@@ -400,8 +518,9 @@ export function useTour(tour: Tour): TourState & TourControls {
       setCurrentStopIndex(resolved)
       setIsAtStop(false)
       setDistanceToCurrentStop(null)
+      stopExtraStory()
     },
-    [tour.stops],
+    [tour.stops, stopExtraStory],
   )
 
   const playCurrentStop = useCallback(() => {
@@ -436,7 +555,26 @@ export function useTour(tour: Tour): TourState & TourControls {
     setNarrationProblem(null)
   }, [narrationEngine])
 
-  const currentStop = tour.stops[currentStopIndex] ?? null
+  const recordQuizCorrect = useCallback(
+    (quizIndex: number) => {
+      const stop = tour.stops[currentStopIndex]
+      if (!stop) return
+      setProgress(markQuizCorrect(tour.id, stop.id, quizIndex))
+    },
+    [tour.id, tour.stops, currentStopIndex],
+  )
+
+  const recordChallengeDone = useCallback(() => {
+    const stop = tour.stops[currentStopIndex]
+    if (!stop) return
+    setProgress(markChallengeDone(tour.id, stop.id))
+  }, [tour.id, tour.stops, currentStopIndex])
+
+  const rank = computeRank(computeScore(progress), tour.progress)
+
+  const extraStoryPlaying = extraStoryEngine?.getState().isPlaying ?? false
+  const extraStoryPaused = extraStoryEngine?.getState().isPaused ?? false
+  const extraStorySupported = NarrationEngine.isSupported()
 
   return {
     phase,
@@ -468,6 +606,12 @@ export function useTour(tour: Tour): TourState & TourControls {
     gpsWatching: gps.isWatching,
     gpsError: gps.error,
     wakeLock,
+    progress,
+    rank,
+    extraStory: extraStoryEngine,
+    extraStoryPlaying,
+    extraStoryPaused,
+    extraStorySupported,
     startTour,
     startTourAtStop,
     startWithLocation,
@@ -486,5 +630,10 @@ export function useTour(tour: Tour): TourState & TourControls {
     dismissNarrationProblem,
     dismissSafetyNotice,
     unlockAudio,
+    recordQuizCorrect,
+    recordChallengeDone,
+    playExtraStory,
+    pauseExtraStory,
+    stopExtraStory,
   }
 }

@@ -7,6 +7,7 @@ import {
   LEGEND_LABELS,
   validateCityRegistry,
   validateImages,
+  validateProgress,
   validateRoute,
   validateTour,
 } from './tour-schema.mjs'
@@ -279,5 +280,190 @@ describe('stop images', () => {
   it('rejects an image with an unknown field', () => {
     const errors = validateTour(stopWith([{ ...validImage, foo: 'bar' }]), tourOptions)
     expect(errors.some((error) => error.includes('unknown field'))).toBe(true)
+  })
+})
+
+describe('stop engagement fields', () => {
+  function stopWithEngagement(patch) {
+    const broken = clone(tour)
+    broken.stops[0] = { ...broken.stops[0], ...patch }
+    return broken
+  }
+
+  it('accepts optional engagement fields when omitted', () => {
+    expect(validateTour(tour, tourOptions)).toEqual([])
+  })
+
+  it('accepts valid lookFor, discuss, funFact and quiz', () => {
+    const enriched = stopWithEngagement({
+      lookFor: 'Notice the ironwork and plaques from the sidewalk.',
+      discuss: 'What details make this story feel local?',
+      funFact: {
+        text: 'The site changed uses over time.',
+        kind: 'fact',
+        sourceUrl: 'https://example.org/fun-fact',
+      },
+      quiz: {
+        question: 'Which view is this from?',
+        options: ['Public sidewalk', 'Inside', 'Rooftop'],
+        answerIndex: 0,
+        explanation: 'Tours stay on public sidewalks.',
+      },
+    })
+    expect(validateTour(enriched, tourOptions)).toEqual([])
+  })
+
+  it('rejects lookFor and discuss over length limits', () => {
+    expect(
+      validateTour(stopWithEngagement({ lookFor: 'x'.repeat(281) }), tourOptions).some(
+        (e) => e.includes('lookFor'),
+      ),
+    ).toBe(true)
+    expect(
+      validateTour(stopWithEngagement({ discuss: 'x'.repeat(281) }), tourOptions).some(
+        (e) => e.includes('discuss'),
+      ),
+    ).toBe(true)
+  })
+
+  it('requires funFact sourceUrl and validates kind/text', () => {
+    expect(
+      validateTour(
+        stopWithEngagement({
+          funFact: { text: 'A fact', kind: 'fact' },
+        }),
+        tourOptions,
+      ).some((e) => e.includes('sourceUrl')),
+    ).toBe(true)
+    expect(
+      validateTour(
+        stopWithEngagement({
+          funFact: { text: 'A fact', kind: 'rumor', sourceUrl: 'https://example.org/f' },
+        }),
+        tourOptions,
+      ).some((e) => e.includes('kind')),
+    ).toBe(true)
+  })
+
+  it('validates quiz shape and bounds', () => {
+    expect(
+      validateTour(
+        stopWithEngagement({
+          quiz: { question: 'Q?', options: ['A'], answerIndex: 0, explanation: 'E' },
+        }),
+        tourOptions,
+      ).some((e) => e.includes('options')),
+    ).toBe(true)
+    expect(
+      validateTour(
+        stopWithEngagement({
+          quiz: { question: 'Q?', options: ['A', 'B'], answerIndex: 3, explanation: 'E' },
+        }),
+        tourOptions,
+      ).some((e) => e.includes('answerIndex')),
+    ).toBe(true)
+  })
+
+  it('rejects unknown engagement fields', () => {
+    expect(
+      validateTour(stopWithEngagement({ trivia: 'nope' }), tourOptions).some((e) =>
+        e.includes('unknown field'),
+      ),
+    ).toBe(true)
+  })
+})
+
+describe('tour progress config', () => {
+  const validProgress = {
+    rankLabels: [
+      'Fledgling ghost hunter',
+      'Ghost seeker',
+      'Spirit walker',
+      'Haunt master',
+    ],
+    rankThresholds: [0, 3, 6, 10],
+  }
+
+  function tourWithProgress(progress) {
+    const mutated = clone(tour)
+    mutated.progress = progress
+    return mutated
+  }
+
+  it('accepts the documented progress override', () => {
+    expect(validateTour(tourWithProgress(validProgress), tourOptions)).toEqual([])
+    expect(validateProgress(validProgress)).toEqual([])
+  })
+
+  it('accepts a tour with no progress field (built-in defaults)', () => {
+    const mutated = clone(tour)
+    delete mutated.progress
+    expect(validateTour(mutated, tourOptions)).toEqual([])
+    expect(validateProgress(undefined)).toEqual([])
+  })
+
+  it('rejects a non-object progress value', () => {
+    expect(
+      validateTour(tourWithProgress('Haunt master'), tourOptions).some((e) =>
+        e.includes('must be an object'),
+      ),
+    ).toBe(true)
+  })
+
+  it('rejects unknown fields inside progress', () => {
+    expect(
+      validateTour(
+        tourWithProgress({ ...validProgress, rankPoints: true }),
+        tourOptions,
+      ).some((e) => e.includes('unknown field')),
+    ).toBe(true)
+  })
+
+  it('rejects rankLabels that is not an array of non-empty strings', () => {
+    expect(
+      validateProgress({ rankLabels: 'Ghost seeker' }).some((e) =>
+        e.includes('must be an array'),
+      ),
+    ).toBe(true)
+    expect(
+      validateProgress({ rankLabels: ['Ghost seeker', ''] }).some((e) =>
+        e.includes('non-empty string'),
+      ),
+    ).toBe(true)
+    expect(
+      validateProgress({ rankLabels: [] }).some((e) => e.includes('at least one label')),
+    ).toBe(true)
+  })
+
+  it('rejects rankThresholds that is not strictly ascending non-negative numbers', () => {
+    expect(
+      validateProgress({ rankThresholds: [10, 6, 3, 0] }).some((e) =>
+        e.includes('strictly ascending'),
+      ),
+    ).toBe(true)
+    expect(
+      validateProgress({ rankThresholds: [0, 3, 3, 10] }).some((e) =>
+        e.includes('strictly ascending'),
+      ),
+    ).toBe(true)
+    expect(
+      validateProgress({ rankThresholds: [0, -1, 6, 10] }).some((e) =>
+        e.includes('not be negative'),
+      ),
+    ).toBe(true)
+    expect(
+      validateProgress({ rankThresholds: [0, '3', 6, 10] }).some((e) =>
+        e.includes('must be a number'),
+      ),
+    ).toBe(true)
+  })
+
+  it('rejects rankLabels and rankThresholds of different lengths', () => {
+    expect(
+      validateTour(
+        tourWithProgress({ rankLabels: ['A', 'B'], rankThresholds: [0, 3, 6] }),
+        tourOptions,
+      ).some((e) => e.includes('same length')),
+    ).toBe(true)
   })
 })
