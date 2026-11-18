@@ -10,7 +10,7 @@
  * then.
  */
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useMemo, useRef, useState, useCallback } from 'react'
 import type { RouteFile, Tour, TourStop } from '../types/tour'
 import type { GeoPoint } from '../lib/geofence'
 import {
@@ -509,6 +509,9 @@ export function useTour(tour: Tour): TourState & TourControls {
   // in-tour stop list. Stops current narration cleanly and resets geofence
   // and narration state for the new stop, so no stale "already played" or
   // "inside geofence" flags survive the jump.
+  // Normalization (FAT-56 QA item 2): a jump always activates the tour. If it
+  // was paused this resumes playback; if already active it stays active. This
+  // matches the expected UX where jumping starts narration at the new stop.
   const jumpToStop = useCallback(
     (index: number) => {
       const resolved = resolveJumpIndex(tour.stops, index)
@@ -521,6 +524,7 @@ export function useTour(tour: Tour): TourState & TourControls {
       setIsAtStop(false)
       setDistanceToCurrentStop(null)
       stopExtraStory()
+      setPhase('active')
     },
     [tour.stops, stopExtraStory],
   )
@@ -578,18 +582,26 @@ export function useTour(tour: Tour): TourState & TourControls {
   const extraStoryPaused = extraStoryEngine?.getState().isPaused ?? false
   const extraStorySupported = NarrationEngine.isSupported()
 
+  // FAT-56: memoize guidance so leg slicing + haversine only recompute when
+  // their inputs change, not on unrelated state churn (sentence ticks, etc.).
+  const guidance = useMemo(
+    () =>
+      getStopGuidance({
+        route,
+        stops: tour.stops,
+        currentStopIndex,
+        isAtStop,
+        userPosition: gps.position,
+        userAccuracyM: gps.accuracyM,
+      }),
+    [route, tour.stops, currentStopIndex, isAtStop, gps.position, gps.accuracyM],
+  )
+
   return {
     phase,
     currentStopIndex,
     currentStop,
-    guidance: getStopGuidance({
-      route,
-      stops: tour.stops,
-      currentStopIndex,
-      isAtStop,
-      userPosition: gps.position,
-      userAccuracyM: gps.accuracyM,
-    }),
+    guidance,
     distanceToCurrentStop,
     distanceToRouteM,
     isAtStop,
