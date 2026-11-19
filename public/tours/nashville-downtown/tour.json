@@ -88,22 +88,6 @@
       "sources": ["https://en.wikipedia.org/wiki/Tootsie%27s_Orchid_Lounge"]
     },
     {
-      "id": "schermerhorn-symphony-center",
-      "name": "Schermerhorn Symphony Center",
-      "lat": 36.1597,
-      "lon": -86.7753,
-      "address": "One Symphony Place, Nashville, TN 37201",
-      "viewpoint": {
-        "lat": 36.15981,
-        "lon": -86.77502,
-        "access": "public-sidewalk",
-        "description": "Public sidewalk outside the Schermerhorn Symphony Center at One Symphony Place."
-      },
-      "geofenceRadiusM": 30,
-      "narration": "You are standing on the public sidewalk outside the Schermerhorn Symphony Center at One Symphony Place. The center opened in 2006 as the home of the Nashville Symphony, designed by David M. Schwarz Architects with Earl Swensson Associates as architect of record, in a New Classical style that nods to Nashville's Parthenon and other classical landmarks. The 1,844-seat Laura Turner Concert Hall is the heart of the building, and the center is named for Kenneth Schermerhorn, the symphony's music director from 1983 until his death in 2005. The building's public spaces include the Martha Rivers Ingram Garden Courtyard, enclosed by a colonnade. In May 2010, the historic Nashville flood filled the lower levels with roughly 24 feet of water, causing about 40 million dollars in damage, but the center reopened later that year. We are viewing the center from the public sidewalk; it is an active concert hall. This stop tells the documented history of the building.",
-      "sources": ["https://en.wikipedia.org/wiki/Schermerhorn_Symphony_Center"]
-    },
-    {
       "id": "bridgestone-arena",
       "name": "Bridgestone Arena",
       "lat": 36.1592,
@@ -126,8 +110,8 @@
       "lon": -86.7839,
       "address": "919 Broadway, Nashville, TN 37203",
       "viewpoint": {
-        "lat": 36.15791,
-        "lon": -86.78394,
+        "lat": 36.1578331,
+        "lon": -86.7830591,
         "access": "public-sidewalk",
         "description": "Public sidewalk on Broadway beside the Frist Art Museum."
       },
