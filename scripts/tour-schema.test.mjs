@@ -294,21 +294,25 @@ describe('stop engagement fields', () => {
     expect(validateTour(tour, tourOptions)).toEqual([])
   })
 
-  it('accepts valid lookFor, discuss, funFact and quiz', () => {
+  it('accepts valid lookFor, discuss, funFacts and quizzes', () => {
     const enriched = stopWithEngagement({
       lookFor: 'Notice the ironwork and plaques from the sidewalk.',
       discuss: 'What details make this story feel local?',
-      funFact: {
-        text: 'The site changed uses over time.',
-        kind: 'fact',
-        sourceUrl: 'https://example.org/fun-fact',
-      },
-      quiz: {
-        question: 'Which view is this from?',
-        options: ['Public sidewalk', 'Inside', 'Rooftop'],
-        answerIndex: 0,
-        explanation: 'Tours stay on public sidewalks.',
-      },
+      funFacts: [
+        {
+          text: 'The site changed uses over time.',
+          kind: 'fact',
+          sourceUrl: 'https://example.org/fun-fact',
+        },
+      ],
+      quizzes: [
+        {
+          question: 'Which view is this from?',
+          options: ['Public sidewalk', 'Inside', 'Rooftop'],
+          answerIndex: 0,
+          explanation: 'Tours stay on public sidewalks.',
+        },
+      ],
     })
     expect(validateTour(enriched, tourOptions)).toEqual([])
   })
@@ -326,11 +330,11 @@ describe('stop engagement fields', () => {
     ).toBe(true)
   })
 
-  it('requires funFact sourceUrl and validates kind/text', () => {
+  it('requires funFacts sourceUrl and validates kind/text', () => {
     expect(
       validateTour(
         stopWithEngagement({
-          funFact: { text: 'A fact', kind: 'fact' },
+          funFacts: [{ text: 'A fact', kind: 'fact' }],
         }),
         tourOptions,
       ).some((e) => e.includes('sourceUrl')),
@@ -338,7 +342,9 @@ describe('stop engagement fields', () => {
     expect(
       validateTour(
         stopWithEngagement({
-          funFact: { text: 'A fact', kind: 'rumor', sourceUrl: 'https://example.org/f' },
+          funFacts: [
+            { text: 'A fact', kind: 'rumor', sourceUrl: 'https://example.org/f' },
+          ],
         }),
         tourOptions,
       ).some((e) => e.includes('kind')),
@@ -349,7 +355,7 @@ describe('stop engagement fields', () => {
     expect(
       validateTour(
         stopWithEngagement({
-          quiz: { question: 'Q?', options: ['A'], answerIndex: 0, explanation: 'E' },
+          quizzes: [{ question: 'Q?', options: ['A'], answerIndex: 0, explanation: 'E' }],
         }),
         tourOptions,
       ).some((e) => e.includes('options')),
@@ -357,7 +363,9 @@ describe('stop engagement fields', () => {
     expect(
       validateTour(
         stopWithEngagement({
-          quiz: { question: 'Q?', options: ['A', 'B'], answerIndex: 3, explanation: 'E' },
+          quizzes: [
+            { question: 'Q?', options: ['A', 'B'], answerIndex: 3, explanation: 'E' },
+          ],
         }),
         tourOptions,
       ).some((e) => e.includes('answerIndex')),

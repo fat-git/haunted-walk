@@ -133,17 +133,21 @@ describe('PlaybackControls stop image', () => {
       ...stopWithoutImage,
       lookFor: 'Look for <ironwork> details.',
       discuss: 'What stories linger here?',
-      funFact: {
-        text: 'A sourced fact.',
-        kind: 'fact',
-        sourceUrl: 'https://example.org/fact',
-      },
-      quiz: {
-        question: 'Where should you stand?',
-        options: ['Public sidewalk', 'Private yard'],
-        answerIndex: 0,
-        explanation: 'Stay on public sidewalks.',
-      },
+      funFacts: [
+        {
+          text: 'A sourced fact.',
+          kind: 'fact',
+          sourceUrl: 'https://example.org/fact',
+        },
+      ],
+      quizzes: [
+        {
+          question: 'Where should you stand?',
+          options: ['Public sidewalk', 'Private yard'],
+          answerIndex: 0,
+          explanation: 'Stay on public sidewalks.',
+        },
+      ],
     }
     const markup = renderPlaybackControls(stop)
     expect(markup).toContain('Look for')

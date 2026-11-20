@@ -21,9 +21,66 @@
       "narration": "You are standing outside St. Louis Cemetery No. 1, the oldest surviving cemetery in New Orleans. It opened in 1789, then outside the city limits, replacing the older St. Peter burial ground after the city was redesigned following the fire of 1788. The tombs beyond this wall are above-ground vaults, a burial form associated with the city's French and Spanish heritage and its high water table. The cemetery is still in use, and it is also the resting place of Marie Laveau, the nineteenth-century Vodou practitioner often called the Voodoo Queen. Legend says that Laveau's spirit still answers petitions at her family tomb, and visitors once marked the tomb with Xs, knocked, and made wishes. Those marks damaged the brick, and today the cemetery is open only to approved guided tours. We are not going inside. From this public sidewalk you can see the whitewashed tombs and the wall vaults without crossing the gate. Treat what follows as legend, not verified fact: some tour guides say the cemetery's dead walk among the tombs at night. The historical record tells us the cemetery is real, Laveau was buried here, and the above-ground tombs were built for a wet, low-lying city. The ghost stories belong to the city's folklore.",
       "legendLabel": "Legend",
       "sources": [
-        "https://nolacatholiccemeteries.org/st-louis-cemetery-1",
         "https://neworleanshistorical.org/items/show/1612",
-        "https://64parishes.org/entry/st-louis-cemetery-no-1-no-2-and-no-3"
+        "https://en.wikipedia.org/wiki/St._Louis_Cemetery_No._1"
+      ],
+      "funFacts": [
+        {
+          "text": "St. Louis Cemetery No. 1 opened in 1789, then outside the city limits, replacing the older St. Peter burial ground after the 1788 fire.",
+          "kind": "fact",
+          "sourceUrl": "https://64parishes.org/entry/st-louis-cemetery-no-1-no-2-and-no-3"
+        },
+        {
+          "text": "The tombs beyond the wall are above-ground vaults, a burial form associated with the city's French and Spanish heritage and its high water table.",
+          "kind": "fact",
+          "sourceUrl": "https://nolacatholiccemeteries.org/st-louis-cemetery-1"
+        },
+        {
+          "text": "Legend says Marie Laveau's spirit still answers petitions at her family tomb, and visitors once marked the tomb with Xs and made wishes.",
+          "kind": "legend",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/1612"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "In what year did St. Louis Cemetery No. 1 open?",
+          "options": ["1765", "1789", "1803", "1815"],
+          "answerIndex": 1,
+          "explanation": "The cemetery opened in 1789 after the 1788 fire led the city to redesign its burial grounds."
+        },
+        {
+          "question": "Why are the tombs built above ground?",
+          "options": [
+            "Tradition only",
+            "High water table",
+            "Spanish law",
+            "Lack of stone"
+          ],
+          "answerIndex": 1,
+          "explanation": "Above-ground vaults suit the city's wet, low-lying ground and high water table."
+        }
+      ],
+      "extraStory": {
+        "text": "The cemetery opened in 1789, outside the city limits of the time, after the fire of 1788 forced the city to redesign its burial grounds. The tombs you can see beyond the wall are above-ground vaults, a burial form tied to the city's French and Spanish heritage and its high water table. Marie Laveau, the nineteenth-century Vodou practitioner often called the Voodoo Queen, is buried here. Visitors once marked her family tomb with Xs, knocked, and made wishes, and those marks damaged the brick. Today the cemetery is open only to approved guided tours, so we do not go inside. From the public sidewalk you can see the whitewashed tombs and wall vaults without crossing the gate."
+      },
+      "challenge": "Count how many whitewashed tombs you can see from the sidewalk without crossing the gate.",
+      "lookFor": "Look for the wall vaults built into the cemetery wall facing Basin Street.",
+      "discuss": "Why might a wet, low-lying city choose above-ground burial?",
+      "images": [
+        {
+          "src": "images/st-louis-cemetery-no-1-1.jpg",
+          "alt": "Entrance gate and signs for Saint Louis Cemetery No. 1 on Basin Street, with a whitewashed wall and cross behind.",
+          "credit": "Infrogmation",
+          "license": "CC-BY-3.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:StLouis1CemFrontGate.jpg"
+        },
+        {
+          "src": "images/st-louis-cemetery-no-1-2.jpg",
+          "alt": "A park ranger leads a group along the sidewalk beside the tall white cemetery wall, with downtown towers behind.",
+          "credit": "Fred Mang, Jr.",
+          "license": "PD",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ranger_Tour_approaching_cemetery_entrance,_New_Orleans,_circa_1985.jpg"
+        }
       ]
     },
     {
@@ -52,8 +109,52 @@
           "credit": "edenpictures",
           "license": "CC-BY-2.0",
           "sourceUrl": "https://commons.wikimedia.org/wiki/File:Site_of_Marie_Laveau's_Home.jpg"
+        },
+        {
+          "src": "images/marie-laveau-house-site-2.jpg",
+          "alt": "A row of colorful Creole cottages on St. Ann Street, including a yellow house numbered 1020 with a white porch.",
+          "credit": "edenpictures",
+          "license": "CC-BY-2.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:St_Ann_Street_French_Quarter,_New_Orleans_April_2023.jpg"
         }
-      ]
+      ],
+      "funFacts": [
+        {
+          "text": "Marie Catherine Laveau was born a free woman of color in New Orleans in 1801.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Marie_Laveau"
+        },
+        {
+          "text": "The documentary record shows Laveau as a hairdresser, herbalist, midwife, and Catholic who nursed the sick during the 1878 yellow-fever epidemic.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/1610"
+        },
+        {
+          "text": "Legend says she won this house through a courtroom favor, praying with hot guinea peppers and slipping them beneath the judge's seat.",
+          "kind": "legend",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Marie_Laveau"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "What year was Marie Laveau born?",
+          "options": ["1797", "1801", "1812", "1820"],
+          "answerIndex": 1,
+          "explanation": "Marie Laveau was born a free woman of color in New Orleans in 1801."
+        },
+        {
+          "question": "When was the cottage on this lot demolished?",
+          "options": ["1881", "1893", "1903", "1915"],
+          "answerIndex": 2,
+          "explanation": "The cottage on the St. Ann Street lot was demolished in 1903."
+        }
+      ],
+      "extraStory": {
+        "text": "Marie Laveau was born a free woman of color in New Orleans in 1801 and became the most famous Voodoo practitioner in the city. The documentary record shows a working woman: a hairdresser to wealthy families, an herbalist who nursed the sick during the yellow-fever epidemic of 1878, a midwife, and a Catholic who visited condemned prisoners in their last days. Her home here on St. Ann Street was one of the three places where she received people, alongside Congo Square and the shore of Lake Pontchartrain. The cottage on this lot was demolished in 1903. What is documented is her life, her death in 1881, and her tomb in St. Louis Cemetery No. 1."
+      },
+      "challenge": "Find the historical marker for Marie Laveau's former home on St. Ann Street.",
+      "lookFor": "Look for newer buildings now standing on the lot where the Laveau cottage once stood.",
+      "discuss": "How does calling Marie Laveau a Voodoo Queen both honor and simplify her documented life?"
     },
     {
       "id": "lalaurie-mansion",
@@ -82,8 +183,52 @@
           "credit": "Reading Tom",
           "license": "CC-BY-2.0",
           "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_LaLaurie_Mansion.jpg"
+        },
+        {
+          "src": "images/lalaurie-mansion-2.jpg",
+          "alt": "A circa-1900s photograph of the LaLaurie mansion with a street lamp, iron balcony, and the caption \"The Haunted House.\"",
+          "credit": "Detroit Photographic Co.",
+          "license": "PD",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Haunted_House,_New_Orleans,_La_-_LaLaurie_House,_1900s_crop.jpg"
         }
-      ]
+      ],
+      "funFacts": [
+        {
+          "text": "In April 1834 a fire broke out at Delphine LaLaurie's mansion, and rescuers found enslaved people locked in the attic, bound and showing signs of long abuse.",
+          "kind": "fact",
+          "sourceUrl": "https://64parishes.org/entry/delphine-lalaurie"
+        },
+        {
+          "text": "A crowd of thousands gathered and ransacked the mansion; Delphine LaLaurie escaped and is believed to have fled to Paris.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/1492"
+        },
+        {
+          "text": "Legend says screams still echo on Royal Street and that the ghosts of the abused pace the balconies.",
+          "kind": "legend",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Delphine_LaLaurie"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "In what year did the LaLaurie Mansion fire occur?",
+          "options": ["1824", "1834", "1844", "1854"],
+          "answerIndex": 1,
+          "explanation": "The fire broke out in April 1834 and exposed the abuse inside the mansion."
+        },
+        {
+          "question": "When was the house standing today built?",
+          "options": ["1808", "1834", "1838", "1890"],
+          "answerIndex": 2,
+          "explanation": "The house standing today was built in 1838, after the 1834 fire."
+        }
+      ],
+      "extraStory": {
+        "text": "The tall house at 1140 Royal Street is the most famous haunted address in New Orleans, and its true history is grim enough that the truth needs no decoration. Delphine LaLaurie was a wealthy society woman at the center of Creole high life. After the fire of 1834, a crowd of thousands gathered and the mansion was ransacked, while LaLaurie escaped and is believed to have fled to Paris. The house standing today was built in 1838. That is the documented history, and it is well documented. Everything above it is folklore. Writers and films have added details over the years, which is exactly why the legend label on this stop matters. The mansion is a private residence today, so we stop on the public sidewalk of Royal Street and keep the line between the fire of 1834 and everything the storytellers built on top of it."
+      },
+      "challenge": "Find the ironwork gallery on the mansion and note how many windows face Royal Street.",
+      "lookFor": "Look up at the wrought-iron balconies above the public sidewalk on Royal Street.",
+      "discuss": "How do you keep a documented tragedy separate from the folklore built on top of it?"
     },
     {
       "id": "lafittes-blacksmith-shop",
@@ -111,8 +256,52 @@
           "credit": "Jeremy Thompson",
           "license": "CC-BY-4.0",
           "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lafitte's_Blacksmith_Shop_bar,_New_Orleans_November_2025_-_exterior,_corner_sign.jpg"
+        },
+        {
+          "src": "images/lafittes-blacksmith-shop-2.jpg",
+          "alt": "A 1903 photograph of the low, steep-roofed Lafitte's Blacksmith Shop on a Bourbon Street corner, with a horse and cart nearby.",
+          "credit": "Photographer uncredited",
+          "license": "PD",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:LafittesShop1903.jpg"
         }
-      ]
+      ],
+      "funFacts": [
+        {
+          "text": "The documentary record dates the building between 1772 and 1791, making it older than the American flag over New Orleans.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/616"
+        },
+        {
+          "text": "In 1970 the federal government listed Lafitte's Blacksmith Shop as a National Historic Landmark.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Lafitte%27s_Blacksmith_Shop"
+        },
+        {
+          "text": "Legend says Jean Lafitte kept this shop as a front, hammering iron by day and running contraband by night.",
+          "kind": "legend",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Lafitte%27s_Blacksmith_Shop"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "What is the oldest date in the documentary record for this building?",
+          "options": ["1762", "1772", "1791", "1801"],
+          "answerIndex": 1,
+          "explanation": "The documentary record dates the building between 1772 and 1791."
+        },
+        {
+          "question": "When was the building listed as a National Historic Landmark?",
+          "options": ["1950", "1960", "1970", "1980"],
+          "answerIndex": 2,
+          "explanation": "It was listed as a National Historic Landmark in 1970."
+        }
+      ],
+      "extraStory": {
+        "text": "This low slate-roofed building at 941 Bourbon Street is one of the oldest surviving structures in the French Quarter. The documentary record dates it between 1772 and 1791, which makes it older than the American flag over New Orleans, and in 1970 the federal government listed it as a National Historic Landmark. Today it is a bar called Lafitte's Blacksmith Shop. Legend says the name is literal: that Jean Lafitte, the privateer and smuggler, kept this shop as a front, hammering iron by day and running contraband by night. It is a wonderful story, and it is folklore. A historian who searched the property records of the period found no Lafitte connected to this building at all. What the record gives us is an exceptionally old building that picked up a pirate's name and kept it, because the name fits the candlelight and the shadowed corners."
+      },
+      "challenge": "Count the slates you can make out on the old roof from the sidewalk.",
+      "lookFor": "Look for the low slate roof and the corner entrance at 941 Bourbon Street.",
+      "discuss": "Why do you think a pirate's name stuck to a building with no documented Lafitte connection?"
     },
     {
       "id": "andrew-jackson-hotel",
@@ -140,8 +329,62 @@
           "credit": "APK",
           "license": "CC-BY-SA-4.0",
           "sourceUrl": "https://commons.wikimedia.org/wiki/File:Andrew_Jackson_Hotel.jpg"
+        },
+        {
+          "src": "images/andrew-jackson-hotel-2.jpg",
+          "alt": "The Andrew Jackson Hotel at night, its balcony hung with Mardi Gras bunting and lit by a street lamp.",
+          "credit": "Miguel Discart (Photos Vrac)",
+          "license": "CC-BY-SA-2.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Night_tour_of_the_French_Quarter,_New_Orleans,_2024-02-10_-_50.jpg"
         }
-      ]
+      ],
+      "funFacts": [
+        {
+          "text": "In 1792, under the Spanish colonial government, the site opened as a boarding school and orphanage for boys orphaned by yellow-fever epidemics.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Legal_affairs_of_Andrew_Jackson"
+        },
+        {
+          "text": "In the fire of 1794, the orphanage burned with five young boys inside.",
+          "kind": "fact",
+          "sourceUrl": "https://www.andrewjacksonhotel.com/about-us"
+        },
+        {
+          "text": "A federal courthouse here fined General Andrew Jackson one thousand dollars for contempt of court in 1815.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Legal_affairs_of_Andrew_Jackson"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "What stood on this site in 1792?",
+          "options": [
+            "A hotel",
+            "A boarding school and orphanage",
+            "A courthouse",
+            "A tavern"
+          ],
+          "answerIndex": 1,
+          "explanation": "In 1792 the site opened as a boarding school and orphanage for boys."
+        },
+        {
+          "question": "How much was Andrew Jackson fined for contempt of court?",
+          "options": [
+            "One hundred dollars",
+            "Five hundred dollars",
+            "One thousand dollars",
+            "Five thousand dollars"
+          ],
+          "answerIndex": 2,
+          "explanation": "The courthouse fined Jackson one thousand dollars for contempt of court in 1815."
+        }
+      ],
+      "extraStory": {
+        "text": "The ground behind the hotel's wrought-iron gallery has stacked up more than one hard history. In 1792, under the Spanish colonial government, the site opened as a boarding school and orphanage for boys whose parents had died in the yellow-fever epidemics. In the great fire of 1794 that consumed much of the Quarter, the orphanage burned with five young boys inside. Afterward, a United States federal courthouse stood here, and this is where General Andrew Jackson was fined one thousand dollars for contempt of court in 1815, after he kept the city under martial law during the British invasion. The courthouse later came down, and the hotel building went up in 1890."
+      },
+      "challenge": "Count the bays of the wrought-iron gallery facing Royal Street from the sidewalk.",
+      "lookFor": "Look for the wrought-iron gallery at 919 Royal Street.",
+      "discuss": "Should a site's ghosts be told by the business that now occupies it? Who gets to tell the story?"
     },
     {
       "id": "pirates-alley",
@@ -169,8 +412,62 @@
           "credit": "Arnold Genthe",
           "license": "PD",
           "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pirate_Alley,_New_Orleans_LOC_agc.7a03467.jpg"
+        },
+        {
+          "src": "images/pirates-alley-2.jpg",
+          "alt": "A bronze plaque at 624 Pirate's Alley marking William Faulkner's residence.",
+          "credit": "Infrogmation",
+          "license": "CC-BY-2.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:FQFaulknerPlaque.jpg"
         }
-      ]
+      ],
+      "funFacts": [
+        {
+          "text": "On the old maps the alley is Orleans Alley; the name Pirate's Alley came later and is built on legend.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/516"
+        },
+        {
+          "text": "A prison called the Calabozo stood on this block; in 1814 it held Pierre Lafitte in chains until he escaped on September 6.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/1396"
+        },
+        {
+          "text": "In 1925 the novelist William Faulkner lived in a first-floor apartment at number 624, halfway down this passage.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/516"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "What was the alley's name on old maps?",
+          "options": [
+            "Pirate's Alley",
+            "Orleans Alley",
+            "Smuggler's Pass",
+            "Cathedral Way"
+          ],
+          "answerIndex": 1,
+          "explanation": "On the old maps it is Orleans Alley; the name Pirate's Alley came later."
+        },
+        {
+          "question": "Which writer lived at 624 Pirate's Alley in 1925?",
+          "options": [
+            "Tennessee Williams",
+            "William Faulkner",
+            "Truman Capote",
+            "Ernest Hemingway"
+          ],
+          "answerIndex": 1,
+          "explanation": "William Faulkner lived in a first-floor apartment at number 624 in 1925."
+        }
+      ],
+      "extraStory": {
+        "text": "This narrow brick channel between St. Louis Cathedral and the Cabildo has carried more than one name. On the old maps it is Orleans Alley; the name Pirate's Alley came later, and it is built on legend. The story says pirates rowed up from the river and slipped down this passage into town, and that smugglers and criminals were marched along it to the Spanish prison that once stood behind the Cabildo. There is real history braided into that tale: a prison, the Calabozo, did stand on this block, and in 1814 it held Pierre Lafitte, brother of the famous Jean, in chains. He escaped on September 6, 1814, and later served with the American forces. The prison was demolished in 1837."
+      },
+      "challenge": "Walk the single block from Chartres to Royal and name the building on each side.",
+      "lookFor": "Look for the plaque marking William Faulkner's 1925 apartment at 624 Pirate's Alley.",
+      "discuss": "How does a nickname on old maps become accepted history?"
     },
     {
       "id": "napoleon-house",
@@ -198,8 +495,57 @@
           "credit": "Historic American Buildings Survey, National Park Service",
           "license": "PD",
           "sourceUrl": "https://commons.wikimedia.org/wiki/File:Historic_American_Buildings_Survey_Richard_Koch,_Photographer,_April,_1934_FRONT_ELEVATION_(FACING_WEST)_-_Girod_House,_500-506_Chartres_Street,_New_Orleans,_Orleans_Parish,_LA_HABS_LA,36-NEWOR,8-1.tif"
+        },
+        {
+          "src": "images/napoleon-house-2.jpg",
+          "alt": "A close view of the Napoleon House's entrance with a worn mosaic tile sign and arched doorway.",
+          "credit": "Infrogmation",
+          "license": "CC-BY-SA-3.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:FQ3Oct07ChartresNapoleonHouseTiles.jpg"
         }
-      ]
+      ],
+      "funFacts": [
+        {
+          "text": "The building dates to the 1790s, and its best-remembered owner is Nicholas Girod, an early mayor of New Orleans.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Napoleon_House"
+        },
+        {
+          "text": "Napoleon died on the remote island of Saint Helena in 1821, and no emperor ever crossed this threshold.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Napoleon_House"
+        },
+        {
+          "text": "Legend says Girod meant the house as a refuge for Napoleon, and privateers would sail south to bring him home to Chartres Street.",
+          "kind": "legend",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/263"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "When did Napoleon Bonaparte die?",
+          "options": ["1805", "1815", "1821", "1831"],
+          "answerIndex": 2,
+          "explanation": "Napoleon died on the island of Saint Helena in 1821."
+        },
+        {
+          "question": "Which early New Orleans mayor is best remembered as owner of this house?",
+          "options": [
+            "Andrew Jackson",
+            "Nicholas Girod",
+            "Jean Lafitte",
+            "James Gallier"
+          ],
+          "answerIndex": 1,
+          "explanation": "The building's best-remembered owner is Nicholas Girod, an early mayor of New Orleans."
+        }
+      ],
+      "extraStory": {
+        "text": "This pale stucco house at 500 Chartres Street is called the Napoleon House, and it carries one of the Quarter's favorite legends. The building dates to the 1790s, and its best-remembered owner is Nicholas Girod, an early mayor of New Orleans. Legend says Girod meant the house as a refuge for Napoleon Bonaparte: that after the emperor's defeat and exile, the mayor offered this residence to him, and that New Orleans privateers would sail south and bring the emperor home to Chartres Street. It never happened. Napoleon died on the remote island of Saint Helena in 1821, and no emperor ever crossed this threshold. The name stuck, and the house has served drinks under it for generations."
+      },
+      "challenge": "Note the color of the front door and the age of the stucco from the sidewalk.",
+      "lookFor": "Look for the pale stucco facade and the doorway at 500 Chartres Street.",
+      "discuss": "Why does a legend that never happened still shape how we see a building?"
     },
     {
       "id": "french-opera-house-site",
@@ -227,8 +573,52 @@
           "credit": "Infrogmation of New Orleans",
           "license": "CC-BY-SA-3.0",
           "sourceUrl": "https://commons.wikimedia.org/wiki/File:BourbonSt14Jan2008FrenchOperaTropical.jpg"
+        },
+        {
+          "src": "images/french-opera-house-site-2.jpg",
+          "alt": "The burned shell of the French Opera House after the 1919 fire, with rubble in the foreground.",
+          "credit": "Rembrandt Studios, New Orleans",
+          "license": "PD",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:FrenchOperaHouseRuinsRembrandt.jpg"
         }
-      ]
+      ],
+      "funFacts": [
+        {
+          "text": "The French Opera House opened in 1859, designed by James Gallier Jr., and hosted opera, Carnival balls, and society events.",
+          "kind": "fact",
+          "sourceUrl": "https://hgghh.org/exhibitions/french-opera-house"
+        },
+        {
+          "text": "On the night of December 3, 1919, after a rehearsal of Carmen, a fire broke out and by morning the opera house was in ruins.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/260"
+        },
+        {
+          "text": "The Times-Picayune wrote after the fire that the heart of the old French Quarter had stopped beating.",
+          "kind": "fact",
+          "sourceUrl": "https://acloserwalknola.com/places/french-opera-house"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "In what year did the French Opera House open?",
+          "options": ["1829", "1839", "1859", "1869"],
+          "answerIndex": 2,
+          "explanation": "The French Opera House opened in 1859, designed by James Gallier Jr."
+        },
+        {
+          "question": "Which opera was being rehearsed on the night of the 1919 fire?",
+          "options": ["Aida", "Carmen", "La Traviata", "Faust"],
+          "answerIndex": 1,
+          "explanation": "The fire broke out after a rehearsal of Carmen on December 3, 1919."
+        }
+      ],
+      "extraStory": {
+        "text": "This corner of Bourbon and Toulouse Streets was once the site of the French Opera House, for sixty years one of the cultural centers of New Orleans. The building opened in 1859, designed by James Gallier Jr., and it hosted opera, Carnival balls, and society events. For many Creole families it was the heart of the Quarter's social life. On the night of December 3, 1919, after a rehearsal of Carmen, a fire broke out. By morning the opera house was in ruins. A hotel stands on the corner now. We have found no documented haunting for this spot, so we leave the ghosts out and keep what is on the record: the fire, the loss, and the role the opera house played in the life of the city."
+      },
+      "challenge": "Find the corner building now standing on the former opera house site.",
+      "lookFor": "Look at the hotel that now occupies the corner of Bourbon and Toulouse Streets.",
+      "discuss": "What is lost when a city's cultural center burns down?"
     },
     {
       "id": "rising-sun-hotel-site",
@@ -248,6 +638,64 @@
       "sources": [
         "https://neworleanshistorical.org/items/show/1281",
         "https://en.wikipedia.org/wiki/The_House_of_the_Rising_Sun"
+      ],
+      "funFacts": [
+        {
+          "text": "In 1821 an advertisement in the Louisiana Gazette announced the Rising Sun Hotel at 535 Conti.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/1281"
+        },
+        {
+          "text": "The hotel burned to the ground in 1822, and a later building on the lot suffered another fire late in the century.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/1281"
+        },
+        {
+          "text": "The claim that this hotel inspired the song 'The House of the Rising Sun' is legend; the song is far older than any New Orleans story about it.",
+          "kind": "legend",
+          "sourceUrl": "https://en.wikipedia.org/wiki/The_House_of_the_Rising_Sun"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "What year was the Rising Sun Hotel advertised in the Louisiana Gazette?",
+          "options": ["1811", "1821", "1831", "1841"],
+          "answerIndex": 1,
+          "explanation": "An 1821 advertisement announced the Rising Sun Hotel at 535 Conti."
+        },
+        {
+          "question": "What did the 2005 excavation of the site recover from the 1822 fire layer?",
+          "options": [
+            "Coins and maps",
+            "Burned glassware, jewelry, and rouge pots",
+            "Ship timbers",
+            "Pottery kilns"
+          ],
+          "answerIndex": 1,
+          "explanation": "Archaeologists recovered burned glassware, jewelry, and many small rouge pots."
+        }
+      ],
+      "extraStory": {
+        "text": "This stretch of Conti Street hides the address behind one of the most famous songs in American music. In 1821 an advertisement in the Louisiana Gazette announced the Rising Sun Hotel here at 535 Conti, promising the best entertainment the house had enjoyed for twenty years past. The hotel burned to the ground in 1822, and a later building on the lot suffered another fire late in the century. In 2005 archaeologists excavated the site and pulled burned glassware, jewelry, and a striking number of small rouge pots out of the 1822 fire layer. The rouge pots suggested a brothel, and the story caught on. The claim that this hotel inspired the song is legend: the song is far older, its authorship is unknown, and Rising Sun was a common tavern name."
+      },
+      "challenge": "Find the parking garage now standing on the old hotel lot at 535 Conti.",
+      "lookFor": "Look for the lot at 535 Conti Street where the hotel once stood.",
+      "discuss": "Why does a famous song attach itself to a particular address, even without proof?",
+      "images": [
+        {
+          "src": "images/rising-sun-hotel-site-1.jpg",
+          "alt": "A sidewalk view along the 500 block of Conti Street, with a pink building whose doorway is marked 527.",
+          "credit": "Infrogmation",
+          "license": "CC-BY-SA-4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Conti_Street,_French_Quarter_-_500_block,_4_April_2017_-_07.jpg"
+        },
+        {
+          "src": "images/rising-sun-hotel-site-2.jpg",
+          "alt": "A weathered 500-block Conti Street facade with a fenced archway, brick upper floors, and a parked red SUV.",
+          "credit": "Infrogmation",
+          "license": "CC-BY-SA-4.0",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Conti_Street,_French_Quarter_-_500_block,_4_April_2017_-_12.jpg"
+        }
       ]
     },
     {
@@ -276,8 +724,57 @@
           "credit": "Frances Benjamin Johnston",
           "license": "PD",
           "sourceUrl": "https://commons.wikimedia.org/wiki/File:New_Orleans_240_Bourbon_FB_Johnson_c_1937.jpg"
+        },
+        {
+          "src": "images/old-absinthe-house-2.jpg",
+          "alt": "A 1941 black-and-white street scene showing the Old Absinthe House sign, a Jax Beer sign, and vintage cars.",
+          "credit": "Marion Post Wolcott",
+          "license": "PD",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:AbsintheHouseWolcottUp.jpg"
         }
-      ]
+      ],
+      "funFacts": [
+        {
+          "text": "The building was completed around 1806, first used as a grocery, with the ground floor running as a bar by the 1830s.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/619"
+        },
+        {
+          "text": "Around 1870 its bartender Cayetano Ferrer helped make it famous for the absinthe frappe, which regulars called the green monster.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Old_Absinthe_House"
+        },
+        {
+          "text": "Legend says General Andrew Jackson met Jean Lafitte in a secret chamber upstairs to plan the city's defense before the Battle of New Orleans.",
+          "kind": "legend",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Old_Absinthe_House"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "When did the bar first advertise itself as the Absinthe House?",
+          "options": ["1839", "1849", "1859", "1869"],
+          "answerIndex": 3,
+          "explanation": "By 1869 it advertised itself as the Absinthe House."
+        },
+        {
+          "question": "What did regulars call the absinthe frappe?",
+          "options": [
+            "The green fairy",
+            "The green monster",
+            "The green ghost",
+            "The green hour"
+          ],
+          "answerIndex": 1,
+          "explanation": "Regulars called the absinthe frappe the green monster."
+        }
+      ],
+      "extraStory": {
+        "text": "On the corner of Bourbon and Bienville stands a plain two-story stucco building that carries one of the great legends of the Battle of New Orleans. The building itself is genuinely old: it was completed around 1806, first used as a grocery, with the ground floor running as a bar by the 1830s. By 1869 it advertised itself as the Absinthe House, and around 1870 its bartender, Cayetano Ferrer, helped make it famous for the absinthe frappe, which regulars called the green monster. In 1912 the United States banned the importation and sale of absinthe. The legend is older: that General Andrew Jackson met Jean Lafitte in a secret chamber upstairs to plan the city's defense. A 1951 court dismissed a rival claim with the line that legend means nothing more than hearsay handed down from the past."
+      },
+      "challenge": "Read the plaque outside the bar and note the year it was installed.",
+      "lookFor": "Look at the plain two-story stucco corner building at 240 Bourbon.",
+      "discuss": "When a bar installs a plaque for a legend, does that make the legend feel true?"
     }
   ]
 }
