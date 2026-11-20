@@ -191,9 +191,12 @@ OSM snapshot. Lessons that now count as review criteria:
   site) satisfies "outside the site" but not "public sidewalk". Place the
   marker on the paved sidewalk itself.
 - **Not mid-block.** A marker beyond the sidewalk edge or inside a block
-  (the pilot's `pirates-alley` and `rising-sun-hotel-site` markers sit 9–16 m
-  from any public way) walks people across private lots. Rule of thumb: keep
-  the viewpoint within the public right-of-way, within ~10 m of a public way.
+  (the pilot's pre-fix `pirates-alley` and `rising-sun-hotel-site` markers
+  sat 9–16 m from any public way) walked people across private lots. Rule of
+  thumb: keep the viewpoint within the public right-of-way, within ~10 m of a
+  public way. The FAT-38 placement fix returned all New Orleans pilot viewpoints
+  to public sidewalks within that distance, so the 9–16 m example is the pilot's
+  pre-fix history, not current data.
 - **The connector counts too.** The route's short connector from the nearest
   public way to the viewpoint must stay inside the right-of-way. Tooling does
   not yet validate connector corridors (known gap, T3.2/F1), so verify by eye
