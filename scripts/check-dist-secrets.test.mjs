@@ -198,39 +198,70 @@ describe('checkManifest — deployment contract', () => {
   })
 })
 
-describe('checkServiceWorker', () => {
-  const VALID_SW = `
-    self.__precacheManifest = [{url:"/index.html"},{url:"/osm-tiles"}];
-  `
+// Mirrors the shape of a built Workbox sw.js: precache manifest, clientsClaim,
+// and the three self-contained runtime-cache matchers.
+const SW_WRAP = (body) => `define(["./workbox-x"],function(e){"use strict";${body}})`
+const SW_MATCHERS =
+  `e.registerRoute(({url:a,sameOrigin:s})=>s&&a.pathname.startsWith("/haunted-walk/tours/")&&(a.pathname.endsWith(".json")||a.pathname.endsWith(".geojson")),new e.NetworkFirst({cacheName:"tour-data"}),"GET"),` +
+  `e.registerRoute(({url:a,sameOrigin:s})=>s&&a.pathname.startsWith("/haunted-walk/tours/")&&/\\.(jpg|jpeg|png|webp)$/i.test(a.pathname),new e.CacheFirst({cacheName:"tour-images"}),"GET"),` +
+  `e.registerRoute(({url:a})=>"tile.openstreetmap.org"===a.hostname||a.hostname.endsWith(".tile.openstreetmap.org"),new e.CacheFirst({cacheName:"osm-tiles"}),"GET")`
+const VALID_SW = SW_WRAP(
+  `e.clientsClaim(),e.precacheAndRoute([{url:"index.html",revision:"1"},{url:"tours/nola/tour.json",revision:"1"},{url:"tours/nola/route.geojson",revision:"1"}]),${SW_MATCHERS}`,
+)
 
+describe('checkServiceWorker', () => {
   it('passes a valid service worker', () => {
     expect(checkServiceWorker(VALID_SW)).toEqual([])
   })
 
   it('fails when index.html is not precached', () => {
-    const failures = checkServiceWorker('self.__precacheManifest = [];')
+    const failures = checkServiceWorker(VALID_SW.replace('index.html', 'other.html'))
     expect(failures.some((f) => f.includes('index.html'))).toBe(true)
   })
 
   it('fails without an OSM tile runtime cache', () => {
-    const failures = checkServiceWorker(
-      'self.__precacheManifest = [{url:"/index.html"}];',
-    )
+    const failures = checkServiceWorker(VALID_SW.replaceAll('osm-tiles', 'tiles'))
     expect(failures.some((f) => f.includes('OpenStreetMap tiles'))).toBe(true)
   })
 
   it('fails when tours/README.md is precached', () => {
     const failures = checkServiceWorker(
-      'self.__precacheManifest = [{url:"/index.html"},{url:"/tours/README.md"}];',
+      VALID_SW.replace('}])', '},{url:"tours/README.md",revision:"1"}])'),
     )
     expect(failures.some((f) => f.includes('tours/README.md'))).toBe(true)
   })
 
   it('fails on duplicate precache URLs', () => {
     const failures = checkServiceWorker(
-      'self.__precacheManifest = [{url:"/index.html"},{url:"/index.html"}];',
+      VALID_SW.replace('}])', '},{url:"index.html",revision:"2"}])'),
     )
     expect(failures.some((f) => f.includes('duplicate URLs'))).toBe(true)
+  })
+
+  it('fails when the service worker does not claim clients', () => {
+    const failures = checkServiceWorker(VALID_SW.replace('e.clientsClaim(),', ''))
+    expect(failures.some((f) => f.includes('claim clients'))).toBe(true)
+  })
+
+  it("fails when the default city's tour data is not precached", () => {
+    const failures = checkServiceWorker(
+      VALID_SW.replace(',{url:"tours/nola/route.geojson",revision:"1"}', ''),
+    )
+    expect(failures.some((f) => f.includes('route.geojson'))).toBe(true)
+  })
+
+  it('fails on a cross-origin precache URL', () => {
+    const failures = checkServiceWorker(
+      VALID_SW.replace('}])', '},{url:"https://evil.example.com/a.js",revision:"1"}])'),
+    )
+    expect(failures.some((f) => f.includes('cross-origin'))).toBe(true)
+  })
+
+  it('fails when a runtime-cache matcher references outer scope', () => {
+    const failures = checkServiceWorker(
+      VALID_SW.replaceAll('"/haunted-walk/tours/"', 'BASE_PATH+"tours/"'),
+    )
+    expect(failures.some((f) => f.includes('BASE_PATH is not defined'))).toBe(true)
   })
 })
 
@@ -264,7 +295,7 @@ describe('check:dist CLI end-to-end', () => {
         start_url: BASE_PATH,
         scope: BASE_PATH,
       }),
-      'sw.js': 'self.__precacheManifest = [{url:"/index.html"},{url:"/osm-tiles"}];',
+      'sw.js': VALID_SW,
     })
     rmSync(dir, { recursive: true, force: true })
     expect(output).toContain('check-dist: OK')
@@ -293,7 +324,7 @@ describe('check:dist CLI end-to-end', () => {
         start_url: BASE_PATH,
         scope: BASE_PATH,
       }),
-      'sw.js': 'self.__precacheManifest = [{url:"/index.html"},{url:"/osm-tiles"}];',
+      'sw.js': VALID_SW,
     })
     rmSync(dir, { recursive: true, force: true })
     expect(output).toContain('FAIL:')

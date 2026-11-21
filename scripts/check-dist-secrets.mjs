@@ -8,6 +8,9 @@
  *  2. Fail if the deployment contract broke: the CSP must ship exactly as
  *     declared in vite.config.ts, and the manifest must keep the
  *     `/haunted-walk/` id, start_url and scope.
+ *  3. Execute the built sw.js runtime-cache matchers in Node against sample
+ *     URLs (see sw-matchers.mjs) so a matcher that throws inside the service
+ *     worker cannot ship.
  *
  * The checks are exported as pure functions so they can be unit-tested without
  * spawning a process. The CLI entry point runs only when this file is invoked
@@ -17,6 +20,7 @@
 import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs'
 import { join, relative } from 'node:path'
 import { pathToFileURL } from 'node:url'
+import { checkMatchers } from './sw-matchers.mjs'
 
 const DIST = 'dist'
 const BASE_PATH = '/haunted-walk/'
@@ -189,12 +193,33 @@ export function checkServiceWorker(sw) {
   if (sw.includes('tours/README.md')) {
     failures.push('service worker precache must not include tours/README.md')
   }
+  if (!sw.includes('clientsClaim')) {
+    failures.push(
+      'service worker does not claim clients; first-install offline would fail',
+    )
+  }
+  for (const required of ['tour.json', 'route.geojson']) {
+    if (!new RegExp(`url:"tours/[^"/]+/${required.replace('.', '\\.')}"`).test(sw)) {
+      failures.push(`service worker does not precache the default city's ${required}`)
+    }
+  }
+  if (sw.includes('url:"http')) {
+    failures.push('service worker precache must not include cross-origin URLs')
+  }
+  // Duplicate precache entries waste the first-load cache and can break
+  // `precacheAndRoute` bookkeeping; vite.config.ts globs must stay disjoint
+  // from the plugin's automatic manifest/icon entries.
   const precacheUrls = [...sw.matchAll(/url:"([^"]+)"/g)].map((m) => m[1])
   const duplicates = precacheUrls.filter((url, i) => precacheUrls.indexOf(url) !== i)
   if (duplicates.length > 0) {
     failures.push(
       `service worker precache has duplicate URLs: ${[...new Set(duplicates)].join(', ')}`,
     )
+  }
+  // Matchers are serialized with toString(), so any outer-scope reference only
+  // blows up inside the SW.
+  for (const problem of checkMatchers(sw)) {
+    failures.push(`service worker matcher: ${problem}`)
   }
   return failures
 }
