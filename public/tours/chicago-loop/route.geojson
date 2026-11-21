@@ -1,0 +1,142 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -87.6235,
+            41.8745
+          ],
+          [
+            -87.625,
+            41.8761
+          ],
+          [
+            -87.6328,
+            41.8781
+          ],
+          [
+            -87.6395,
+            41.8786
+          ],
+          [
+            -87.6325,
+            41.8791
+          ],
+          [
+            -87.6245,
+            41.8839
+          ],
+          [
+            -87.6272,
+            41.8803
+          ],
+          [
+            -87.6275,
+            41.8839
+          ],
+          [
+            -87.628,
+            41.8853
+          ],
+          [
+            -87.628,
+            41.8959
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Walking route",
+        "mode": "walking"
+      }
+    }
+  ],
+  "metadata": {
+    "schemaVersion": 1,
+    "city": "chicago-loop",
+    "tour": "chicago-loop",
+    "status": "placeholder",
+    "note": "Placeholder straight-line geometry between stop viewpoints. The Geo & Data Engineer (FAT-73 follow-up) replaces this with a walking route computed at build time from a committed OSM way snapshot.",
+    "generatedAt": "2026-11-21T03:00:00Z",
+    "stops": [
+      "congress-plaza-hotel",
+      "auditorium-building",
+      "board-of-trade-building",
+      "union-station",
+      "rookery-building",
+      "chicago-cultural-center",
+      "palmer-house",
+      "marshall-fields",
+      "chicago-theatre",
+      "holy-name-cathedral"
+    ],
+    "maneuvers": [
+      {
+        "from": "congress-plaza-hotel",
+        "to": "auditorium-building",
+        "instruction": "Head to Auditorium Building. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 217,
+        "durationS": 166
+      },
+      {
+        "from": "auditorium-building",
+        "to": "board-of-trade-building",
+        "instruction": "Head to Chicago Board of Trade Building. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 683,
+        "durationS": 523
+      },
+      {
+        "from": "board-of-trade-building",
+        "to": "union-station",
+        "instruction": "Head to Chicago Union Station. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 557,
+        "durationS": 427
+      },
+      {
+        "from": "union-station",
+        "to": "rookery-building",
+        "instruction": "Head to Rookery Building. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 582,
+        "durationS": 446
+      },
+      {
+        "from": "rookery-building",
+        "to": "chicago-cultural-center",
+        "instruction": "Head to Chicago Cultural Center. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 851,
+        "durationS": 652
+      },
+      {
+        "from": "chicago-cultural-center",
+        "to": "palmer-house",
+        "instruction": "Head to Palmer House Hilton. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 458,
+        "durationS": 351
+      },
+      {
+        "from": "palmer-house",
+        "to": "marshall-fields",
+        "instruction": "Head to Marshall Field's (Macy's State Street). Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 401,
+        "durationS": 307
+      },
+      {
+        "from": "marshall-fields",
+        "to": "chicago-theatre",
+        "instruction": "Head to Chicago Theatre. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 161,
+        "durationS": 123
+      },
+      {
+        "from": "chicago-theatre",
+        "to": "holy-name-cathedral",
+        "instruction": "Head to Holy Name Cathedral. Street-by-street walking directions arrive in the next update; use the Maps button for live directions.",
+        "distanceM": 1179,
+        "durationS": 903
+      }
+    ]
+  }
+}
