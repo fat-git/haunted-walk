@@ -12,6 +12,12 @@
       "name": "Historic Downtown Nashville",
       "defaultTour": "nashville-downtown",
       "description": "A self-guided walking tour of documented history in downtown Nashville."
+    },
+    {
+      "id": "toronto-downtown",
+      "name": "Downtown Toronto",
+      "defaultTour": "toronto-downtown",
+      "description": "A self-guided walking tour of downtown Toronto's documented history and the ghost legends attached to it."
     }
   ]
 }

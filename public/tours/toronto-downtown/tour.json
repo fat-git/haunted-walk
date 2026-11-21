@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "id": "toronto-downtown",
+  "city": "toronto-downtown",
+  "name": "Downtown Toronto Ghosts and Histories",
+  "description": "A self-guided evening walk through the downtown core, from Osgoode Hall to the old Victorian streets east of Yonge, telling documented history and the ghost legends attached to it.",
+  "stops": [
+    {
+      "id": "osgoode-hall",
+      "name": "Osgoode Hall",
+      "lat": 43.652104,
+      "lon": -79.385795,
+      "address": "130 Queen Street West, Toronto, ON M5H 2N6",
+      "viewpoint": {
+        "lat": 43.651089,
+        "lon": -79.3858,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the north side of Queen Street West, outside the iron fence and gates of the Osgoode Hall grounds."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "Start on the Queen Street sidewalk, outside the iron fence. Work on Osgoode Hall began in 1829, and the building carries the name of William Osgoode, the first chief justice of Upper Canada; it is the home of the Law Society of Ontario and its Great Library. Everything on this walk happens from the public sidewalk. The lawn beyond this fence, and the courtrooms and library inside, are not part of the tour, so stay on the pavement and look from here. Legend says the building keeps company of its own, and the Law Society has published one of the stories itself. Its chief librarian, George Johnston, is said to have found a stranger reading at a desk in the Great Library on an autumn Sunday in the 1960s, then watched the figure walk to a door and pass straight through it. Every door was locked, and the watchman had let nobody in. The Law Society's own account calls it a rumour, passed on second hand by a former under-treasurer who heard it from Johnston. Toronto Public Library tells a second story: a superintendent on his rounds heard the sound of a crowd behind the doors of an empty Convocation Hall, and visitors have reported the same murmur since. Treat both as stories, told for at least half a century. Now walk one short block west along Queen for a house that is far older than it looks.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://greatlibrary.blog/2017/10/24/ghost-stories/",
+        "https://blogs.tpl.ca/local-history-genealogy/2020/10/114-spooky-stories-haunted-histories-from-above-and-beyond/"
+      ]
+    },
+    {
+      "id": "campbell-house",
+      "name": "Campbell House",
+      "lat": 43.651067,
+      "lon": -79.387331,
+      "address": "160 Queen Street West, Toronto, ON M5H 3H3",
+      "viewpoint": {
+        "lat": 43.650788,
+        "lon": -79.387217,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the north side of Queen Street West in front of Campbell House, between University Avenue and Simcoe Street."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "This brick house was built in 1822 for Sir William Campbell, chief justice of Upper Canada, who died in 1834. It did not start here. The house stood at the head of Frederick Street in the old Town of York, and in March 1972 the Advocates Society hauled roughly two hundred and seventy tonnes of it more than a kilometre and a half northwest to this corner. The Queen Mother opened the restored house in 1974. The City of Toronto owns it, and the Sir William Campbell Foundation runs it as a museum. A local legend attaches one visitor to the place. In 2006 the Eyeopener, the student newspaper at what is now Toronto Metropolitan University, reported that the architect Marion McCrae had seen an elderly man in nineteenth-century clothing near where the basement used to be. That is the whole of the documented claim: a single reported sighting, retold since, and this walk will not inflate it. From the sidewalk, look at the doorcase and the fanlight above it, and picture the whole front being rolled up Queen Street on a Sunday morning. Next, follow Queen Street east for about four hundred metres, towards the clock tower you can already see.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Campbell_House_(Toronto)",
+        "https://theeyeopener.com/2006/10/spotting-t-dots-haunted-hotspots/"
+      ]
+    },
+    {
+      "id": "old-city-hall",
+      "name": "Old City Hall",
+      "lat": 43.652654,
+      "lon": -79.382143,
+      "address": "60 Queen Street West, Toronto, ON M5H 2M4",
+      "viewpoint": {
+        "lat": 43.652153,
+        "lon": -79.382141,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the east side of Bay Street at the corner of Queen Street West, below the southwest corner of Old City Hall."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "Old City Hall opened in 1899 and has spent most of the past century as a courthouse. It is a working court building, so this stop is told entirely from the sidewalk. Look up at the sandstone and the clock tower, then at the arch over the doors. The legends here belong to the judges. Toronto Public Library records that the first to report anything was a judge who heard footsteps following him on the rear staircase and felt a tug at his robe with nobody behind him, and that other judges then described the same thing. The Globe and Mail's account adds hands pressing at their backs on the stairs. Reports of moaning from the old holding cells below have been passed along as well. The room most often named is Courtroom 33, where the last two men sentenced to hang in Canada, Ronald Turpin and Arthur Lucas, were condemned. They were hanged at the Don Jail, east of here across the Don Valley, and a Heritage Toronto plaque at that building records the date: the eleventh of December, 1962, the last execution in Canada. The history is documented; the hauntings are stories that courthouse staff have told for decades. From here, keep going east along Queen, then north on James Street, about two hundred and sixty metres, to a church that is now ringed by a shopping centre.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://blogs.tpl.ca/local-history-genealogy/2020/10/114-spooky-stories-haunted-histories-from-above-and-beyond/",
+        "https://www.theglobeandmail.com/news/toronto/haunted-toronto-a-paranormal-primer/article559802/",
+        "https://torontoplaques.ca/Pages/Don_Jail"
+      ]
+    },
+    {
+      "id": "church-of-the-holy-trinity",
+      "name": "Church of the Holy Trinity",
+      "lat": 43.654676,
+      "lon": -79.381669,
+      "address": "10 Trinity Square, Toronto, ON M5G 1B1",
+      "viewpoint": {
+        "lat": 43.654488,
+        "lon": -79.381669,
+        "access": "public-sidewalk",
+        "description": "Public pedestrian walkway on James Street in Trinity Square, on the south side of the church."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "No ghost story at this stop, and that is deliberate. This walk only tells legends that someone has actually written down, and the documented history here is strange enough. The Church of the Holy Trinity was built in 1847 to a Gothic Revival design by Henry Bower Lane. It opened because of an anonymous bequest from England, a donor later identified as Mary Lambert Swale of Settle, and probably her sister Eliza as well, given on one condition: that all the pews be free and unreserved, forever. That was not how churches worked in colonial Toronto, where the better seats were rented. The church stood at the edge of town in a district called Macaulaytown, later St. John's Ward, known simply as the Ward, where immigrants, formerly enslaved people and the city's poorest neighbours lived. In the 1970s developers wanted the site cleared for the Eaton Centre. The congregation refused, kept the building, and the fight produced the public square you are standing in. Around you now are the Toronto Homeless Memorial and a public labyrinth, still part of that same tradition. Stay on the walkway rather than going inside; the square is public, the church keeps its own hours. Next, walk east and south about two hundred and fifty metres to the theatre marquee on Yonge Street.",
+      "sources": [
+        "https://doorsopenontario.on.ca/toronto/church-of-the-holy-trinity",
+        "https://holytrinity.to/our-history/"
+      ]
+    },
+    {
+      "id": "elgin-and-winter-garden",
+      "name": "Elgin and Winter Garden Theatre Centre",
+      "lat": 43.653031,
+      "lon": -79.379291,
+      "address": "189 Yonge Street, Toronto, ON M5B 1M4",
+      "viewpoint": {
+        "lat": 43.65303,
+        "lon": -79.379405,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the east side of Yonge Street, outside the theatre entrance just north of Queen Street."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "Two theatres are stacked on top of each other behind this frontage. They were built between 1912 and 1914 for the vaudeville magnate Marcus Loew, to designs by Thomas Lamb. The lower house opened as Loew's Yonge Street Theatre in December 1913, and the Winter Garden, seven storeys above it, opened in February 1914. When talking pictures killed vaudeville the Winter Garden closed in 1928 and sat sealed for about sixty years. The Ontario Heritage Foundation bought the building in 1981, restored both theatres between 1987 and 1989, and this is now the last operating double-decker theatre in the world. Legend has filled the dark upper house. Toronto Public Library records the best known story: a faint trombone heard in an empty theatre, said to belong to Sam, a musician who fell to his death into the orchestra pit in 1918. The Globe and Mail has reported a woman stabbed in the building's early years, and the 1913 hand-cranked elevators travelling between floors with no operator in them. The Eyeopener adds a figure called the Lady in Lavender crossing the lobby. None of it is fact; all of it is story, retold for as long as the upper theatre has been open again. Look up at the marquee, then walk about a hundred and forty metres northeast to Shuter Street.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://www.historicplaces.ca/en/rep-reg/place-lieu.aspx?id=9622",
+        "https://blogs.tpl.ca/local-history-genealogy/2020/10/114-spooky-stories-haunted-histories-from-above-and-beyond/",
+        "https://www.theglobeandmail.com/news/toronto/haunted-toronto-a-paranormal-primer/article559802/"
+      ]
+    },
+    {
+      "id": "massey-hall",
+      "name": "Massey Hall",
+      "lat": 43.654096,
+      "lon": -79.37901,
+      "address": "178 Victoria Street, Toronto, ON M5B 1T7",
+      "viewpoint": {
+        "lat": 43.654232,
+        "lon": -79.378833,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk at the corner of Shuter Street and Victoria Street, outside Massey Hall's Shuter Street front."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "Massey Hall was paid for by the industrialist Hart Massey in memory of his son Charles Albert Massey, and it opened on the fourteenth of June, 1894, with Handel's Messiah sung by a chorus of five hundred over a seventy-piece orchestra. The architect was Sidney Badgely of Cleveland, and the hall became a national historic site in 1981. Almost everyone who has played here has a story about the place; a couple of them are ghost stories. Local legend holds that a figure in old-fashioned clothes, taken to be a long-ago custodian who lived in rooms behind the stage, has been seen backstage. The most entertaining record of this is in NOW Magazine from 2006, where a writer and two off-duty ushers sat in a dressing room with a Ouija board and believed they had reached a manager who died in 1910. The hall's general manager Stewart Houston did die in 1909, which is close. The writer then took his own evidence apart, deciding that the mysterious answers on his tape were his breath across the microphone and a stray radio signal. That is a fair model for this whole walk: enjoy the story, check the recording. Now continue east along Shuter about a hundred and twenty metres to the cathedral on Bond Street.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://www.thecanadianencyclopedia.ca/en/article/massey-hall",
+        "https://nowtoronto.com/news/ghosts-of-massey-hall-past/"
+      ]
+    },
+    {
+      "id": "st-michaels-cathedral",
+      "name": "St. Michael's Cathedral Basilica",
+      "lat": 43.654972,
+      "lon": -79.377168,
+      "address": "65 Bond Street, Toronto, ON M5B 1X5",
+      "viewpoint": {
+        "lat": 43.654972,
+        "lon": -79.377701,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the east side of Bond Street, in front of the cathedral's Bond Street frontage."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "This stop is history, with no legend attached. Bishop Michael Power commissioned this cathedral in April 1845, to a design by the architect William Thomas that looked to York Minster in England; fragments of stone and oak from York Minster were set into the cornerstone. Power raised the money in small amounts, much of it from poor Irish immigrants, and parishioners dug the foundations themselves to save the cost. In early 1847 he travelled to Europe and saw the famine that was driving Irish families onto emigrant ships; more than ninety thousand Irish migrants reached Quebec that year, and typhus moved with them. Power spent that summer ministering to the sick in Toronto, caught typhus himself, and died on the first of October, 1847, at the age of forty-two. His cathedral was dedicated on the twenty-ninth of September, 1848, nearly a year after his death. Stand on the Bond Street sidewalk and look at the spire, finished later with donations from Protestant Torontonians as well as Catholic ones. If you want a ghost for this corner, the honest answer is that the documented story is a bishop who walked into an epidemic on purpose. Next, go east to Church Street and look across the lawn at the tower of Metropolitan United.",
+      "sources": [
+        "https://www.biographi.ca/en/bio/power_michael_7E.html",
+        "https://www.thecanadianencyclopedia.ca/en/article/toronto-feature-st-michaels-cathedral"
+      ]
+    },
+    {
+      "id": "metropolitan-united-church",
+      "name": "Metropolitan United Church",
+      "lat": 43.653831,
+      "lon": -79.376676,
+      "address": "56 Queen Street East, Toronto, ON M5C 2Z3",
+      "viewpoint": {
+        "lat": 43.653831,
+        "lon": -79.376144,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the west side of Church Street, at the east edge of the Metropolitan United grounds, looking across the lawn to the tower."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "In 1868 the trustees of a growing Methodist congregation bought the whole block in front of you, bounded by Queen, Church, Shuter and Bond streets, then known as McGill Square. Henry Langley designed the Gothic Revival church that went up between 1870 and 1872; Egerton Ryerson laid the cornerstone in August 1870, and the building seated about eighteen hundred people. Its presence on this block earned it the nickname the Cathedral of Methodism. In January 1928 fire gutted it. The tower, parts of the south front and the entrance porches survived, and the congregation held services in Massey Hall, which you just left, while J. Gibb Morton rebuilt the church on its old foundations. It reopened in December 1929, smaller inside than before. The tower holds a carillon, twenty-three bells dedicated by Chester Massey in April 1922, which had grown to fifty-four by 1971. On a quiet evening you may hear them; that is the most haunted sound on this walk and it is entirely mechanical. Again, no legend here: the park is public, the church is not part of the tour, and we are not inventing a ghost for a building that does not have a documented one. From here, walk north on Church, west on Shuter, then north on Bond to the small brick house at number 82.",
+      "sources": ["https://en.wikipedia.org/wiki/Metropolitan_United_Church"]
+    },
+    {
+      "id": "mackenzie-house",
+      "name": "Mackenzie House",
+      "lat": 43.655712,
+      "lon": -79.378262,
+      "address": "82 Bond Street, Toronto, ON M5B 1X2",
+      "viewpoint": {
+        "lat": 43.655712,
+        "lon": -79.378142,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the west side of Bond Street directly in front of Mackenzie House, between Shuter Street and Dundas Street East."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "This is the most storied haunted house in Toronto. The City of Toronto runs it as a museum: an 1850s townhouse, the last home of William Lyon Mackenzie, the city's first mayor and the leader of the 1837 rebellion, kept when its neighbours came down in 1936. The City's own description says the house is rumoured to have resident ghosts, which is a careful way of putting a long record of reports. The student paper at Toronto Metropolitan University gathered them in 1995. From 1956 the caretakers, Charles Edmunds and his wife, described footsteps on the wooden stairs, a short man in a frock coat, and a woman with long dark hair; Mrs. Edmunds said the woman struck her and left three welts. The piano in the parlour was heard playing with nobody at it. A locked, disused printing press in the basement was heard rumbling. The next caretakers left within months in 1960. In 1962 carpenters are said to have found a noose on a stairway, and reports continued into the 1970s. Global News adds the detail that sticks: when the house was handed to the City in 1960, the inventory of its contents ended with the words one ghost, and an archdeacon blessed the rooms that year. Legend, all of it, but carefully recorded legend. One last stop: walk north on Bond and east on Gould.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://www.toronto.ca/explore-enjoy/history-art-culture/museums/mackenzie-house/",
+        "https://globalnews.ca/news/4613378/mackenzie-house-toronto/",
+        "https://theeyeopener.com/1995/10/scary-barely/"
+      ]
+    },
+    {
+      "id": "oakham-house",
+      "name": "Oakham House",
+      "lat": 43.657891,
+      "lon": -79.378139,
+      "address": "63 Gould Street, Toronto, ON M5B 1E9",
+      "viewpoint": {
+        "lat": 43.657853,
+        "lon": -79.377794,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the west side of Church Street at Gould Street, outside the corner of Oakham House."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "The walk ends with the man who built much of it. A Toronto Historical Board plaque records that this house was finished in 1848 and designed by William Thomas, who lived and worked here until his death in 1860. Look at the carved heads, crests and finials on the Gothic front; an architect who put faces on his own house is telling you something about himself. Thomas drew the cathedral on Bond Street you stood in front of a few minutes ago. He also designed the Don Jail, where, more than a century after his death, the last execution in Canada was carried out in December 1962, the sentence handed down in the courtroom at Old City Hall where this walk began. So the city you have just crossed was, in part, one man's drawing office. After Thomas, the surveyor John McGee's family lived here until 1892; the house was enlarged in 1899 and became the Home for Working Boys, and the Ryerson Institute of Technology, now Toronto Metropolitan University, took it over in 1960. It is a campus building today, so admire it from the sidewalk and let the students have their common room. That is the end of the tour. Everything you heard framed as legend was legend, and every date came from a source you can check.",
+      "sources": [
+        "https://torontoplaques.ca/Pages/Oakham_House",
+        "https://torontoplaques.ca/Pages/Don_Jail",
+        "https://www.thecanadianencyclopedia.ca/en/article/toronto-feature-st-michaels-cathedral",
+        "https://blogs.tpl.ca/local-history-genealogy/2020/10/114-spooky-stories-haunted-histories-from-above-and-beyond/"
+      ]
+    }
+  ]
+}
