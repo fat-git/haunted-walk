@@ -2,7 +2,7 @@
 /**
  * Post-build guard for the static bundle. Run in CI after `npm run build`.
  *
- * Two jobs:
+ * Three jobs:
  *  1. Fail on key-shaped strings. The app has no keys by design, so anything
  *     key-shaped in `dist/` is either a leak or a bug.
  *  2. Fail if the deployment contract broke: the CSP must ship exactly as
@@ -48,8 +48,15 @@ const CSP_CONTRACT = {
 // keeps bare base64 hashes in the bundle from matching; the separator segment
 // lets the pattern cross `=`, `:`, space and wrapping quotes that real leak
 // shapes use (env files, JSON, YAML, minified JS).
+//
+// The leading `\b` word boundary was dropped so that `VITE_AWS_SECRET_ACCESS_KEY`,
+// `MY_AWS_SECRET_ACCESS_KEY` and other prefixed variants are caught (they were
+// previously missed because `_` is a word character and `\b` fails before `aws`).
+// The separator budget was widened from 3 to 6 and `\\` was added to handle
+// space-before-colon (`"aws_secret_access_key" : "…"`) and JSON-escaped-in-string
+// backslash (`\"aws…\":\"…\"`) shapes that the original 3-char budget missed.
 const AWS_SECRET_PATTERN =
-  /\baws[\w.-]{0,20}['":=\s]{0,3}["']?[A-Za-z0-9/+]{40}(?![A-Za-z0-9/+])/gi
+  /aws[\w.-]{0,20}['":=\s\\]{0,6}["']?[A-Za-z0-9/+]{40}(?![A-Za-z0-9/+])/gi
 
 const SECRET_PATTERNS = [
   ['private key block', /-----BEGIN (?:[A-Z]+ )?PRIVATE KEY-----/g],
