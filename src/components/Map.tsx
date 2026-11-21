@@ -39,6 +39,8 @@ export function Map({
   const geofenceCircleRef = useRef<L.Circle | null>(null)
   const routeLayerRef = useRef<L.LayerGroup | null>(null)
   const [routeData, setRouteData] = useState<RouteFile | null>(null)
+  const [tilesUnavailable, setTilesUnavailable] = useState(false)
+  const tileLayerRef = useRef<L.TileLayer | null>(null)
 
   // Load the precomputed route. On failure we keep `routeData` null and the
   // render effect below draws straight stop-to-stop lines instead.
@@ -75,11 +77,18 @@ export function Map({
     mapInstanceRef.current = map
 
     // Add OSM tile layer
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map)
+    })
+    tileLayerRef.current = tiles
+    // Show a non-blocking notice when tiles cannot load (offline), and clear it
+    // as soon as tiles load again. Markers and the route polyline render on
+    // their own layers and keep working without tiles.
+    tiles.on('tileerror', () => setTilesUnavailable(true))
+    tiles.on('tileload', () => setTilesUnavailable(false))
+    tiles.addTo(map)
 
     // Add markers layer
     markersRef.current.addTo(map)
@@ -260,6 +269,12 @@ export function Map({
       aria-label="Tour map"
     >
       <div ref={mapRef} className="map" />
+      {tilesUnavailable && (
+        <div className="map-tile-notice" role="status" aria-live="polite">
+          Map tiles unavailable offline. Stop markers and the route line still work; use
+          the stop list and Play Stop.
+        </div>
+      )}
       {formatDistance && (
         <div className="map-distance" aria-live="polite">
           {isAtStop ? '📍 At stop' : `📍 ${formatDistance} to next stop`}

@@ -17,6 +17,7 @@ import type { WakeLockState } from '../hooks/useWakeLock'
 import type { StopGuidance } from '../lib/jump'
 import { formatDistanceM } from '../lib/format'
 import { appleMapsDirectionsUrl, googleMapsDirectionsUrl } from '../lib/mapsLinks'
+import { minAccuracyM } from '../lib/geofence'
 
 interface NavigationPanelProps {
   tour: Tour
@@ -161,6 +162,15 @@ export function NavigationPanel({
             Location on{gpsAccuracyM != null ? ` · ±${Math.round(gpsAccuracyM)} m` : ''}
           </p>
         )}
+        {gpsSupported &&
+          !gpsError &&
+          gpsAccuracyM != null &&
+          gpsAccuracyM > minAccuracyM && (
+            <p className="gps-weak-hint" role="status">
+              GPS is weak here, so narration may not start by itself. Tap Play Stop to
+              hear this stop.
+            </p>
+          )}
         {gpsSupported && !gpsError && !gpsWatching && gpsPermission !== 'denied' && (
           <button
             type="button"

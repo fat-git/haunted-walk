@@ -11,8 +11,8 @@
  * when the device exposes no voices (keep the FAT-43 behavior).
  */
 
-import { useState, useEffect } from 'react'
-import type { Tour, CityEntry } from '../types/tour'
+import { useEffect, useState } from 'react'
+import type { Tour, CityEntry, RouteFile } from '../types/tour'
 import { appleMapsDirectionsUrl, googleMapsDirectionsUrl } from '../lib/mapsLinks'
 import {
   DEFAULT_NARRATION_CONFIG,
@@ -29,6 +29,7 @@ import {
   type AudioCheckResult,
   type VoiceOption,
 } from '../lib/narration'
+import { estimateTourMinutes } from '../lib/tourEstimate'
 
 interface StartScreenProps {
   tour: Tour
@@ -40,6 +41,8 @@ interface StartScreenProps {
   wakeLockSupported: boolean
   speechSupported: boolean
   fallbackMessage: string | null
+  /** The committed precomputed route for the selected city, when loaded. */
+  route?: RouteFile | null
 }
 
 export function StartScreen({
@@ -52,6 +55,7 @@ export function StartScreen({
   wakeLockSupported,
   speechSupported,
   fallbackMessage,
+  route,
 }: StartScreenProps) {
   const [audioCheck, setAudioCheck] = useState<AudioCheckResult | null>(null)
   const [checkingAudio, setCheckingAudio] = useState(false)
@@ -87,6 +91,11 @@ export function StartScreen({
       cancelled = true
     }
   }, [speechSupported])
+
+  // Data-driven estimate: committed route maneuver time + narration at 150 wpm,
+  // rounded to the nearest 5 minutes. Falls back to stops x 8 min when the
+  // route has not loaded yet. Computed per city from the selected city's data.
+  const estimateMinutes = route == null ? null : estimateTourMinutes(tour, route)
 
   const handleTestAudio = async () => {
     setCheckingAudio(true)
@@ -143,7 +152,11 @@ export function StartScreen({
         <div className="tour-stats">
           <span>{tour.stops.length} stops</span>
           <span>·</span>
-          <span>~{Math.round(tour.stops.length * 8)} min walk</span>
+          <span>
+            {estimateMinutes != null
+              ? `~${estimateMinutes} min`
+              : `~${Math.round(tour.stops.length * 8)} min walk`}
+          </span>
         </div>
       </header>
 

@@ -71,6 +71,8 @@ export interface TourState {
   isOffRoute: boolean
   routeLoaded: boolean
   routeError: string | null
+  /** The committed precomputed route, null until it loads. */
+  route: RouteFile | null
   narration: NarrationEngine | null
   /** Bumped on every sentence change so transcript highlights re-render. */
   sentenceTick: number
@@ -594,6 +596,7 @@ export function useTour(tour: Tour): TourState & TourControls {
     isOffRoute,
     routeLoaded: route !== null,
     routeError,
+    route,
     narration: narrationEngine,
     sentenceTick,
     narrationProblem,
