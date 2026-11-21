@@ -82,14 +82,11 @@
           [-79.3814785, 43.6540078],
           [-79.3811973, 43.6533588],
           [-79.3811056, 43.6533668],
-          [-79.3810266, 43.6533772],
-          [-79.3809085, 43.6534007],
-          [-79.3805687, 43.6534691],
-          [-79.3805074, 43.6534814],
-          [-79.3804329, 43.6534961],
-          [-79.3801589, 43.6535529],
-          [-79.3799138, 43.6536037],
-          [-79.3798901, 43.6536086],
+          [-79.3810718, 43.653276],
+          [-79.381041, 43.6532001],
+          [-79.3806462, 43.6522036],
+          [-79.3799991, 43.6523401],
+          [-79.3797776, 43.6523896],
           [-79.3793943, 43.652472],
           [-79.3792913, 43.6524942],
           [-79.3791892, 43.6525162],
@@ -226,9 +223,9 @@
       {
         "from": "church-of-the-holy-trinity",
         "to": "elgin-and-winter-garden",
-        "instruction": "Head south on James Street, then turn right onto the sidewalk, then continue on Eaton Centre level 2, then turn left onto the sidewalk to Elgin and Winter Garden Theatre Centre (450 m).",
-        "distanceM": 450,
-        "durationS": 346
+        "instruction": "Head south on James Street, then turn right onto the sidewalk to Elgin and Winter Garden Theatre Centre (455 m).",
+        "distanceM": 455,
+        "durationS": 350
       },
       {
         "from": "elgin-and-winter-garden",
