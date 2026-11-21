@@ -16,8 +16,15 @@
     {
       "id": "toronto-downtown",
       "name": "Downtown Toronto",
+      "name": "Downtown Toronto",
       "defaultTour": "toronto-downtown",
       "description": "A self-guided walking tour of downtown Toronto's documented history and the ghost legends attached to it."
+    },
+    {
+      "id": "gettysburg-borough",
+      "name": "Gettysburg Borough",
+      "defaultTour": "gettysburg-borough-ghosts",
+      "description": "A self-guided walking tour of Gettysburg borough's documented history and the ghost legends attached to it, staying on public sidewalks and out of the National Military Park."
     }
   ]
 }
