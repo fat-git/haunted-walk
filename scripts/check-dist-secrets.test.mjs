@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { execFileSync } from 'child_process'
+import { spawnSync } from 'child_process'
 import { mkdtempSync, writeFileSync, rmSync, mkdirSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
@@ -51,6 +51,12 @@ describe('scanSecrets — AWS secret access key (Security F1 / QA 3)', () => {
     [`AWS_SECRET_ACCESS_KEY='${SECRET_VALUE}'`, 'single-quoted env'],
     [`aws_secret_access_key ${SECRET_VALUE}`, 'space separator'],
     [`aws_secret_access_key${SECRET_VALUE}`, 'no separator'],
+    [`VITE_AWS_SECRET_ACCESS_KEY="${SECRET_VALUE}"`, 'VITE-prefixed env'],
+    [`MY_AWS_SECRET_ACCESS_KEY="${SECRET_VALUE}"`, 'MY-prefixed env'],
+    [`"VITE_AWS_SECRET_ACCESS_KEY":"${SECRET_VALUE}"`, 'VITE-prefixed JSON'],
+    [`"aws_secret_access_key":${SECRET_VALUE}`, 'space before colon'],
+    [`"aws_secret_access_key" : "${SECRET_VALUE}"`, 'space around colon'],
+    [`["aws_secret_access_key":"${SECRET_VALUE}"]`, 'JSON-escaped-in-string'],
   ])('detects %s', (text) => {
     const failures = scanSecrets(text)
     expect(failures.length).toBeGreaterThan(0)
@@ -274,21 +280,16 @@ describe('check:dist CLI end-to-end', () => {
     for (const [name, content] of Object.entries(files)) {
       writeFileSync(join(dir, 'dist', name), content)
     }
-    let result
-    try {
-      result = execFileSync(process.execPath, [SCRIPT], {
-        cwd: dir,
-        encoding: 'utf8',
-      })
-    } catch (err) {
-      result = err.stdout ? err.stdout : err.message
-    }
-    return { dir, output: result }
+    const result = spawnSync(process.execPath, [SCRIPT], {
+      cwd: dir,
+      encoding: 'utf8',
+    })
+    return { dir, status: result.status, output: result.stdout + result.stderr }
   }
 
   it('exits 0 on a clean dist', () => {
     const csp = `<meta http-equiv="Content-Security-Policy" content="${VALID_CSP}">`
-    const { dir, output } = runWithDist({
+    const { dir, status, output } = runWithDist({
       'index.html': `<html><head>${csp}<link rel="stylesheet" href="${BASE_PATH}assets/index.css"></head><body></body></html>`,
       'manifest.webmanifest': JSON.stringify({
         id: BASE_PATH,
@@ -298,14 +299,16 @@ describe('check:dist CLI end-to-end', () => {
       'sw.js': VALID_SW,
     })
     rmSync(dir, { recursive: true, force: true })
+    expect(status).toBe(0)
     expect(output).toContain('check-dist: OK')
   })
 
   it('exits 1 and prints a named failure for a planted AWS leak', () => {
-    const { dir, output } = runWithDist({
+    const { dir, status, output } = runWithDist({
       'index.html': `<html><body>AWS_SECRET_ACCESS_KEY="${SECRET_VALUE}"</body></html>`,
     })
     rmSync(dir, { recursive: true, force: true })
+    expect(status).toBe(1)
     expect(output).toContain('FAIL:')
     expect(output).toContain('AWS secret access key')
     expect(output).not.toContain(SECRET_VALUE)
@@ -317,7 +320,7 @@ describe('check:dist CLI end-to-end', () => {
       `img-src 'self' data: ${OSM}`,
       `img-src 'self' data: ${OSM} https://evil.example.com`,
     )
-    const { dir, output } = runWithDist({
+    const { dir, status, output } = runWithDist({
       'index.html': `<html><head><meta http-equiv="Content-Security-Policy" content="${badCsp}"><link rel="stylesheet" href="${BASE_PATH}assets/index.css"></head><body></body></html>`,
       'manifest.webmanifest': JSON.stringify({
         id: BASE_PATH,
@@ -327,6 +330,7 @@ describe('check:dist CLI end-to-end', () => {
       'sw.js': VALID_SW,
     })
     rmSync(dir, { recursive: true, force: true })
+    expect(status).toBe(1)
     expect(output).toContain('FAIL:')
     expect(output).toContain('CSP img-src is')
     expect(output).toContain('https://evil.example.com')
