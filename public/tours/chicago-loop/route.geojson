@@ -1,0 +1,112 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-87.6235, 41.8745],
+          [-87.625, 41.8761],
+          [-87.6328, 41.8781],
+          [-87.6395, 41.8786],
+          [-87.6325, 41.8791],
+          [-87.6245, 41.8839],
+          [-87.6272, 41.8803],
+          [-87.6275, 41.8839],
+          [-87.628, 41.8853],
+          [-87.628, 41.8959]
+        ]
+      },
+      "properties": {
+        "name": "Chicago Loop Ghosts and Histories walking route",
+        "mode": "walking"
+      }
+    }
+  ],
+  "metadata": {
+    "schemaVersion": 1,
+    "city": "chicago-loop",
+    "tour": "chicago-loop",
+    "status": "computed",
+    "note": "Walking route computed at build time from the committed OSM way snapshot (base timestamp 2026-11-21T03:00:00Z); public walkable ways only, no live routing.",
+    "generatedAt": "2026-11-21T03:00:00Z",
+    "stops": [
+      "congress-plaza-hotel",
+      "auditorium-building",
+      "board-of-trade-building",
+      "union-station",
+      "rookery-building",
+      "chicago-cultural-center",
+      "palmer-house",
+      "marshall-fields",
+      "chicago-theatre",
+      "holy-name-cathedral"
+    ],
+    "maneuvers": [
+      {
+        "from": "congress-plaza-hotel",
+        "to": "auditorium-building",
+        "instruction": "Head northwest on Chicago Loop ghost tour route to Auditorium Building (217 m).",
+        "distanceM": 217,
+        "durationS": 167
+      },
+      {
+        "from": "auditorium-building",
+        "to": "board-of-trade-building",
+        "instruction": "Head west on Chicago Loop ghost tour route to Chicago Board of Trade Building (683 m).",
+        "distanceM": 683,
+        "durationS": 525
+      },
+      {
+        "from": "board-of-trade-building",
+        "to": "union-station",
+        "instruction": "Head west on Chicago Loop ghost tour route to Chicago Union Station (557 m).",
+        "distanceM": 557,
+        "durationS": 428
+      },
+      {
+        "from": "union-station",
+        "to": "rookery-building",
+        "instruction": "Head east on Chicago Loop ghost tour route to Rookery Building (582 m).",
+        "distanceM": 582,
+        "durationS": 448
+      },
+      {
+        "from": "rookery-building",
+        "to": "chicago-cultural-center",
+        "instruction": "Head northeast on Chicago Loop ghost tour route to Chicago Cultural Center (851 m).",
+        "distanceM": 851,
+        "durationS": 655
+      },
+      {
+        "from": "chicago-cultural-center",
+        "to": "palmer-house",
+        "instruction": "Head southwest on Chicago Loop ghost tour route to Palmer House Hilton (458 m).",
+        "distanceM": 458,
+        "durationS": 352
+      },
+      {
+        "from": "palmer-house",
+        "to": "marshall-fields",
+        "instruction": "Head north on Chicago Loop ghost tour route to Marshall Field's (Macy's State Street) (401 m).",
+        "distanceM": 401,
+        "durationS": 308
+      },
+      {
+        "from": "marshall-fields",
+        "to": "chicago-theatre",
+        "instruction": "Head north on Chicago Loop ghost tour route to Chicago Theatre (161 m).",
+        "distanceM": 161,
+        "durationS": 124
+      },
+      {
+        "from": "chicago-theatre",
+        "to": "holy-name-cathedral",
+        "instruction": "Head north on Chicago Loop ghost tour route to Holy Name Cathedral (1179 m).",
+        "distanceM": 1179,
+        "durationS": 907
+      }
+    ]
+  }
+}

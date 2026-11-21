@@ -1,0 +1,130 @@
+{
+  "version": "0.6",
+  "generator": "haunted-walk build FAT-74",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-21T03:00:00Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "way",
+      "id": 1000001,
+      "tags": {
+        "highway": "footway",
+        "name": "Chicago Loop ghost tour route"
+      },
+      "geometry": [
+        {
+          "lat": 41.8745,
+          "lon": -87.6235
+        },
+        {
+          "lat": 41.8761,
+          "lon": -87.625
+        },
+        {
+          "lat": 41.8781,
+          "lon": -87.6328
+        },
+        {
+          "lat": 41.8786,
+          "lon": -87.6395
+        },
+        {
+          "lat": 41.8791,
+          "lon": -87.6325
+        },
+        {
+          "lat": 41.8839,
+          "lon": -87.6245
+        },
+        {
+          "lat": 41.8803,
+          "lon": -87.6272
+        },
+        {
+          "lat": 41.8839,
+          "lon": -87.6275
+        },
+        {
+          "lat": 41.8853,
+          "lon": -87.628
+        },
+        {
+          "lat": 41.8959,
+          "lon": -87.628
+        }
+      ]
+    },
+    {
+      "type": "node",
+      "id": 1000000,
+      "lat": 41.8745,
+      "lon": -87.6235,
+      "tags": {}
+    },
+    {
+      "type": "node",
+      "id": 1000001,
+      "lat": 41.8761,
+      "lon": -87.625,
+      "tags": {}
+    },
+    {
+      "type": "node",
+      "id": 1000002,
+      "lat": 41.8781,
+      "lon": -87.6328,
+      "tags": {}
+    },
+    {
+      "type": "node",
+      "id": 1000003,
+      "lat": 41.8786,
+      "lon": -87.6395,
+      "tags": {}
+    },
+    {
+      "type": "node",
+      "id": 1000004,
+      "lat": 41.8791,
+      "lon": -87.6325,
+      "tags": {}
+    },
+    {
+      "type": "node",
+      "id": 1000005,
+      "lat": 41.8839,
+      "lon": -87.6245,
+      "tags": {}
+    },
+    {
+      "type": "node",
+      "id": 1000006,
+      "lat": 41.8803,
+      "lon": -87.6272,
+      "tags": {}
+    },
+    {
+      "type": "node",
+      "id": 1000007,
+      "lat": 41.8839,
+      "lon": -87.6275,
+      "tags": {}
+    },
+    {
+      "type": "node",
+      "id": 1000008,
+      "lat": 41.8853,
+      "lon": -87.628,
+      "tags": {}
+    },
+    {
+      "type": "node",
+      "id": 1000009,
+      "lat": 41.8959,
+      "lon": -87.628,
+      "tags": {}
+    }
+  ]
+}
