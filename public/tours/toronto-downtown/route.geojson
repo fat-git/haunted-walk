@@ -1,0 +1,112 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-79.3858, 43.651089],
+          [-79.387217, 43.650788],
+          [-79.382141, 43.652153],
+          [-79.381669, 43.654488],
+          [-79.379405, 43.65303],
+          [-79.378833, 43.654232],
+          [-79.377701, 43.654972],
+          [-79.376144, 43.653831],
+          [-79.378142, 43.655712],
+          [-79.377794, 43.657853]
+        ]
+      },
+      "properties": {
+        "name": "Walking route",
+        "mode": "walking"
+      }
+    }
+  ],
+  "metadata": {
+    "schemaVersion": 1,
+    "city": "toronto-downtown",
+    "tour": "toronto-downtown",
+    "status": "placeholder",
+    "note": "Placeholder route: straight lines between the ten draft viewpoints, with straight-line leg lengths. The Geo & Data Engineer verifies the viewpoints, commits data/osm/toronto-downtown.json and replaces this file with a computed route in FAT-71 (see the FAT-70 PR description).",
+    "generatedAt": "2026-11-21T01:30:00Z",
+    "stops": [
+      "osgoode-hall",
+      "campbell-house",
+      "old-city-hall",
+      "church-of-the-holy-trinity",
+      "elgin-and-winter-garden",
+      "massey-hall",
+      "st-michaels-cathedral",
+      "metropolitan-united-church",
+      "mackenzie-house",
+      "oakham-house"
+    ],
+    "maneuvers": [
+      {
+        "from": "osgoode-hall",
+        "to": "campbell-house",
+        "instruction": "Walk west to Campbell House",
+        "distanceM": 119,
+        "durationS": 91
+      },
+      {
+        "from": "campbell-house",
+        "to": "old-city-hall",
+        "instruction": "Walk east to Old City Hall",
+        "distanceM": 436,
+        "durationS": 334
+      },
+      {
+        "from": "old-city-hall",
+        "to": "church-of-the-holy-trinity",
+        "instruction": "Walk north to Church of the Holy Trinity",
+        "distanceM": 262,
+        "durationS": 201
+      },
+      {
+        "from": "church-of-the-holy-trinity",
+        "to": "elgin-and-winter-garden",
+        "instruction": "Walk southeast to Elgin and Winter Garden Theatre Centre",
+        "distanceM": 244,
+        "durationS": 187
+      },
+      {
+        "from": "elgin-and-winter-garden",
+        "to": "massey-hall",
+        "instruction": "Walk north to Massey Hall",
+        "distanceM": 141,
+        "durationS": 108
+      },
+      {
+        "from": "massey-hall",
+        "to": "st-michaels-cathedral",
+        "instruction": "Walk northeast to St. Michael's Cathedral Basilica",
+        "distanceM": 123,
+        "durationS": 94
+      },
+      {
+        "from": "st-michaels-cathedral",
+        "to": "metropolitan-united-church",
+        "instruction": "Walk southeast to Metropolitan United Church",
+        "distanceM": 178,
+        "durationS": 137
+      },
+      {
+        "from": "metropolitan-united-church",
+        "to": "mackenzie-house",
+        "instruction": "Walk northwest to Mackenzie House",
+        "distanceM": 264,
+        "durationS": 202
+      },
+      {
+        "from": "mackenzie-house",
+        "to": "oakham-house",
+        "instruction": "Walk north to Oakham House",
+        "distanceM": 240,
+        "durationS": 184
+      }
+    ]
+  }
+}
