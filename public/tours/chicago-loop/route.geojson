@@ -161,15 +161,7 @@
           [-87.6278989, 41.8852071],
           [-87.6278996, 41.8852339],
           [-87.6279002, 41.8852608],
-          [-87.62791, 41.88531],
-          [-87.6279002, 41.8852608],
-          [-87.6278996, 41.8852339],
-          [-87.6278989, 41.8852071],
-          [-87.6280888, 41.8852067],
-          [-87.6280827, 41.8850055],
-          [-87.6280817, 41.8849663],
-          [-87.6281163, 41.8849236],
-          [-87.62815, 41.88491]
+          [-87.62791, 41.88531]
         ]
       },
       "properties": {
@@ -191,8 +183,7 @@
       "palmer-house",
       "chicago-cultural-center",
       "marshall-fields",
-      "chicago-theatre",
-      "death-alley"
+      "chicago-theatre"
     ],
     "maneuvers": [
       {
@@ -229,13 +220,6 @@
         "instruction": "Head southeast on the sidewalk, then turn right onto Pedway, then turn right onto the sidewalk to Chicago Theatre (190 m).",
         "distanceM": 190,
         "durationS": 146
-      },
-      {
-        "from": "chicago-theatre",
-        "to": "death-alley",
-        "instruction": "Head southwest on the sidewalk to Death Alley (Couch Place) (63 m).",
-        "distanceM": 63,
-        "durationS": 48
       }
     ]
   }

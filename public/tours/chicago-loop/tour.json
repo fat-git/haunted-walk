@@ -103,29 +103,8 @@
         "description": "Public sidewalk on the west side of State Street, outside the theatre's famous CHICAGO marquee and the Y-shaped municipal device symbol."
       },
       "geofenceRadiusM": 30,
-      "narration": "The Chicago Theatre's vertical CHICAGO sign and marquee are an unofficial emblem of the city. Opened October 26, 1921, as the Balaban and Katz Chicago Theatre, it was the flagship for a chain of 28 city theatres and over 100 more across the Midwest. Built for $4 million, the Neo-Baroque French Revival movie palace seated 3,880 and was promoted as the Wonder Theatre of the World. Mounted police were needed for crowd control at the opening week. The theatre pioneered air conditioning to entice patrons with a plush environment. Jesse Crawford played the Mighty Wurlitzer theatre organ, and live jazz became a mainstay through the 1920s and 1930s. Ronald Reagan announced his engagement to Jane Wyman here. Business declined in 1970s; the theatre closed in 1985 after showing American Ninja and Teen Wolf. A preservation group renovated it in 1986, reopening with Frank Sinatra. The original marquee was donated to the Smithsonian in 2004. The coat of arms of Balaban and Katz — two horses holding film ribbons — sits inside a Tiffany stained glass window in the triumphal arch. The theatre is a National Register of Historic Places site and a Chicago Landmark. From here, walk north-west about one hundred metres on Randolph Street to Death Alley.",
+      "narration": "The Chicago Theatre's vertical CHICAGO sign and marquee are an unofficial emblem of the city. Opened October 26, 1921, as the Balaban and Katz Chicago Theatre, it was the flagship for a chain of 28 city theatres and over 100 more across the Midwest. Built for $4 million, the Neo-Baroque French Revival movie palace seated 3,880 and was promoted as the Wonder Theatre of the World. Mounted police were needed for crowd control at the opening week. The theatre pioneered air conditioning to entice patrons with a plush environment. Jesse Crawford played the Mighty Wurlitzer theatre organ, and live jazz became a mainstay through the 1920s and 1930s. Ronald Reagan announced his engagement to Jane Wyman here. Business declined in the 1970s; the theatre closed in 1985 after showing American Ninja and Teen Wolf. A preservation group renovated it in 1986, reopening with Frank Sinatra. The original marquee was donated to the Smithsonian in 2004. The coat of arms of Balaban and Katz — two horses holding film ribbons — sits inside a Tiffany stained glass window in the triumphal arch. The theatre is a National Register of Historic Places site and a Chicago Landmark. From here, the tour concludes.",
       "sources": ["https://en.wikipedia.org/wiki/Chicago_Theatre"]
-    },
-    {
-      "id": "death-alley",
-      "name": "Death Alley (Couch Place)",
-      "lat": 41.88491,
-      "lon": -87.62831,
-      "address": "36 West Randolph Street, Chicago, IL 60601",
-      "viewpoint": {
-        "lat": 41.88491,
-        "lon": -87.62815,
-        "access": "public-sidewalk",
-        "description": "Public sidewalk on the west side of State Street, at the alley behind the former Iroquois/Nederlander Theatre, where the 1903 fire claimed hundreds of lives."
-      },
-      "geofenceRadiusM": 30,
-      "narration": "Death Alley, also known as Couch Place, runs behind the Nederlander Theatre (formerly the Iroquois Theatre) on West Randolph Street. On December 30, 1903, the Iroquois Theatre fire broke out during a packed vaudeville matinee, killing an estimated 600 people and injuring hundreds more. The blaze started from a faulty spotlight and raced through scenery and curtains; within minutes the auditorium was engulfed. Many patrons died in the crush toward the few exits, and the alley behind the theater became a makeshift morgue, its brick walls and pavement crowded with bodies. The tragedy shocked the nation and led to new fire safety codes for theaters across the country. Legend holds that the souls of the victims still wander Couch Place, and visitors have reported unexplained whispers, shadowy figures, and sudden drops in temperature. The alley retains its name from the tragic events, and it remains a somber reminder of Chicago's theater history. From here, the tour concludes.",
-      "legendLabel": "Legend",
-      "sources": [
-        "https://www.hauntedplaces.org/item/death-alley/",
-        "https://www.atlasobscura.com/places/couch-place-the-alley-of-death",
-        "https://www.wickedcoolplaces.com/places/couch-place-chicago-alley-of-death"
-      ]
     }
   ]
 }
