@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "id": "gettysburg-borough-ghosts",
+  "city": "gettysburg-borough",
+  "name": "Gettysburg Borough Ghosts",
+  "description": "A self-guided evening walk through Gettysburg borough's documented history and the ghost legends attached to it, staying on public sidewalks and out of the National Military Park.",
+  "stops": [
+    {
+      "id": "pennsylvania-hall",
+      "name": "Pennsylvania Hall, Gettysburg College",
+      "lat": 39.832,
+      "lon": -77.2333,
+      "address": "300 N Washington St, Gettysburg, PA 17325",
+      "viewpoint": {
+        "lat": 39.83196,
+        "lon": -77.23331,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on North Washington Street beside the Gettysburg College campus."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk of North Washington Street at the edge of the Gettysburg College campus, looking toward Pennsylvania Hall, also known as Old Dorm. The building was completed in the 1830s as the center of Pennsylvania College, founded in 1832 by Samuel Simon Schmucker. During the Battle of Gettysburg, Pennsylvania Hall sat on high ground that both armies coveted. Union signal officers used its cupola as a lookout, and after the first day's fighting the building became a field hospital for wounded soldiers from both sides, its halls filled with the wounded and dying. The college's own history records that students from the 26th Pennsylvania Emergency Militia Regiment, mostly Gettysburg College men, skirmished with Confederate troops north of town just days before the battle. Since 1991, when author Mark Nesbitt published Ghosts of Gettysburg, the building has been associated with reported sightings of figures in Civil War-era clothing moving through its halls and grounds. Those stories are legend, retold by students, guides, and visitors for more than thirty years, while the building's role as a signal station and hospital is part of the documented historical record.",
+      "legendLabel": "Legend",
+      "sources": ["https://en.wikipedia.org/wiki/Gettysburg_College"]
+    },
+    {
+      "id": "lincoln-square",
+      "name": "Lincoln Square",
+      "lat": 39.8307933,
+      "lon": -77.2312524,
+      "address": "Lincoln Square, Gettysburg, PA 17325",
+      "viewpoint": {
+        "lat": 39.830793,
+        "lon": -77.231212,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Lincoln Square at the corner of Baltimore and York Streets."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk of Lincoln Square, the heart of downtown Gettysburg, at the intersection of Baltimore, York, Chambersburg, and Carlisle streets. In 1806, when the new borough was incorporated, the square was named for the recently assassinated President Abraham Lincoln, whose visit to Gettysburg for the dedication of the Soldiers' National Cemetery came the following year. The square has been the gathering point of the town ever since, and during the Battle of Gettysburg the buildings around you were occupied, shelled, and filled with soldiers. The Adams County Courthouse you can see just south of this corner was built later, in 1859, but the square predates it and served as the town's public grounds long before. The streets around you became corridors of traffic during the three days of fighting in July 1863, as supply wagons, artillery, and retreating and advancing troops moved through this crowded crossroads. President Lincoln came through this square on November 18, 1863, the night before he delivered the Gettysburg Address at the cemetery dedication. This stop tells the documented history of the square and the buildings around it. No ghost story is told here, though the history is anything but quiet.",
+      "sources": ["https://en.wikipedia.org/wiki/Gettysburg,_Pennsylvania"]
+    },
+    {
+      "id": "david-wills-house",
+      "name": "David Wills House",
+      "lat": 39.8307686,
+      "lon": -77.2305643,
+      "address": "8 Lincoln Square, Gettysburg, PA 17325",
+      "viewpoint": {
+        "lat": 39.8307575,
+        "lon": -77.2307413,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Lincoln Square at the corner of the David Wills House."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk of Lincoln Square at 8 Lincoln Square, the home of attorney David Wills in 1863. Wills was a prominent citizen, president of the borough council and an Adams County judge, and his house became the center of Gettysburg's response to the battle's aftermath. Wounded soldiers filled the home after the fighting, and local women nursed the dying there under the auspices of the U.S. Sanitary Commission. Citizens met in the house to plan the burial of the dead, work that led to the creation of the Soldiers' National Cemetery just outside town. President Abraham Lincoln arrived in Gettysburg on the evening of November 18, 1863, and Wills escorted him to this house, where Lincoln spent the night. In the bedroom upstairs, Lincoln finished revising the Gettysburg Address before walking to the cemetery the next morning to deliver it. The house still stands at the corner of Lincoln Square, and the National Park Service preserves it as a museum dedicated to Lincoln's visit and the cemetery's creation. This stop recounts documented history drawn from the National Park Service's own account of the David Wills House.",
+      "sources": ["https://www.nps.gov/gett/planyourvisit/david-wills-house.htm"]
+    },
+    {
+      "id": "christ-lutheran-church",
+      "name": "Christ Lutheran Church",
+      "lat": 39.8305981,
+      "lon": -77.2325222,
+      "address": "30 Chambersburg St, Gettysburg, PA 17325",
+      "viewpoint": {
+        "lat": 39.8302944,
+        "lon": -77.2321516,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Chambersburg Street in front of Christ Lutheran Church."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk of Chambersburg Street in front of Christ Lutheran Church at 30 Chambersburg Street. The congregation traces its roots to the earliest days of Gettysburg, and the church has stood at this corner since the nineteenth century. During the Battle of Gettysburg, the building found itself between the lines as Confederate and Union forces contested the town. Like many of Gettysburg's churches and public buildings, Christ Lutheran served as a temporary hospital for wounded soldiers in the days after the fighting, its pews and floors given over to the injured of both armies. Civilians in the town opened their homes and churches to care for thousands of wounded men with virtually no medical infrastructure to support them, and the churches of Gettysburg bore a heavy share of that burden. The building has been restored and remains an active congregation today. This stop tells only the documented history of the church's role during the battle, drawn from local church histories and Civil War accounts. No legend or ghost story is attached to this stop.",
+      "sources": ["https://www.christlutherangettysburg.org/"]
+    },
+    {
+      "id": "adams-county-courthouse",
+      "name": "Adams County Courthouse",
+      "lat": 39.8295407,
+      "lon": -77.2315135,
+      "address": "117 Baltimore St, Gettysburg, PA 17325",
+      "viewpoint": {
+        "lat": 39.8296607,
+        "lon": -77.2317187,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Baltimore Street beside the Adams County Courthouse at Lincoln Square."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk of Baltimore Street in front of the Adams County Courthouse at 117 Baltimore Street, a landmark of downtown Gettysburg since its construction in 1859. The courthouse stands at the center of Lincoln Square, the town's main intersection where Baltimore Street meets York and Chambersburg Streets. During the Battle of Gettysburg, the courthouse and the square around it were filled with wounded soldiers from both armies, and the building served as a temporary collection point for the injured. The town's streets, including the ones you can see from this corner, were clogged with supply wagons, artillery, and retreating troops during the three days of fighting. After the battle, the courthouse resumed its ordinary business, and over the years it has hosted everything from routine county proceedings to the gatherings that remember Lincoln's visit. President Abraham Lincoln passed through Gettysburg on November 18, 1863, the day before he delivered the Gettysburg Address at the dedication of the Soldiers' National Cemetery. This stop tells the documented history of the courthouse and the square, drawn from the borough's own historical record. No ghost story is told here.",
+      "sources": ["https://en.wikipedia.org/wiki/Gettysburg,_Pennsylvania"]
+    },
+    {
+      "id": "shriver-house-museum",
+      "name": "Shriver House Museum",
+      "lat": 39.8265459,
+      "lon": -77.2312702,
+      "address": "309 Baltimore St, Gettysburg, PA 17325",
+      "viewpoint": {
+        "lat": 39.826788,
+        "lon": -77.2311615,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Baltimore Street in front of the Shriver House Museum."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk of Baltimore Street in front of the Shriver House Museum at 309 Baltimore Street. The house was home to Hettie Shriver, her husband George, and their two young daughters when the Battle of Gettysburg began in July 1863. When Confederate troops entered the town, the Shriver family retreated to the cellar for safety, and from that vantage they watched Confederate sharpshooters take up positions in the house's attic, firing from the windows toward Union lines on Cemetery Hill. Confederate bullets struck the house many times during the fighting, and afterward the family found their home damaged and looted. George Shriver, who had enlisted in the Union army, was captured in 1864 and died at Andersonville prison before the war ended. The story is told today from the restored house, which preserves the Shriver family's experience of the battle as civilians caught in the crossfire. This stop recounts documented history. Everything described here — the cellar refuge, the sharpshooters in the attic, the damage to the house — comes from the historical record preserved by the Shriver House Museum, and no ghost story is attached to this stop.",
+      "sources": ["https://www.shriverhouse.org/"]
+    },
+    {
+      "id": "farnsworth-house-inn",
+      "name": "Farnsworth House Inn",
+      "lat": 39.8256502,
+      "lon": -77.2313816,
+      "address": "401 Baltimore St, Gettysburg, PA 17325",
+      "viewpoint": {
+        "lat": 39.8257317,
+        "lon": -77.2311817,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Baltimore Street in front of the Farnsworth House Inn."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk of Baltimore Street in front of the Farnsworth House Inn, a building that has stood at the heart of Gettysburg since 1810. During the Battle of Gettysburg, Confederate sharpshooters are said to have fired from the house's attic toward Union positions on Cemetery Hill, and more than one hundred bullet holes mark the brick facade today. The house takes its name from Brigadier General Elon Farnsworth, who led a doomed cavalry charge just outside town on July 3, 1863, and was killed in the attempt. For as long as the inn has welcomed guests, stories have circulated of spirits that never left. Current owners report as many as sixteen distinct spirits attached to the building, each with its own name and personality, and guests and staff have described footsteps, cold spots, and figures seen in the windows from the street. Local legend names one of the most active spots a room where a woman called Sara is said to appear, visible even from the sidewalk at night. The inn markets itself as the birthplace of ghost storytelling in Gettysburg, and its tours are built on these tales. The battle damage and the name are documented history; the spirits are stories told for at least half a century.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://en.wikipedia.org/wiki/The_Farnsworth_House_Inn",
+        "https://www.farnsworthhouseinn.com/"
+      ]
+    },
+    {
+      "id": "jennie-wade-house",
+      "name": "Jennie Wade House",
+      "lat": 39.823317,
+      "lon": -77.2307847,
+      "address": "548 Baltimore St, Gettysburg, PA 17325",
+      "viewpoint": {
+        "lat": 39.8231771,
+        "lon": -77.2307408,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Baltimore Street in front of the Jennie Wade House Museum."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk of Baltimore Street in front of the house where Jennie Wade was killed on the morning of July 3, 1863. Jennie, twenty years old, had come to her sister Georgia's home at 548 Baltimore Street to help care for Georgia's newborn baby during the battle. About eight o'clock that morning, while Jennie was kneading dough for bread in the kitchen, a single bullet passed through two doors and struck her. She died instantly, the only civilian killed directly by the fighting during the Battle of Gettysburg. The exact source of the shot is unknown; some accounts attribute it to an unknown Confederate sharpshooter, but no one can say for certain. Her body was temporarily buried in the backyard before being moved first to the German Reformed Church cemetery and finally, in November 1865, to Evergreen Cemetery, where her monument still stands. For decades, visitors and guides have reported seeing Jennie's figure near the house and hearing the faint sounds of baking in the kitchen. These are stories, local legend, passed down since the battle. Every claim about what happened on July 3 comes from the documented record; the haunting belongs to folklore.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Jennie_Wade",
+        "https://www.jenniewadehouse.com/"
+      ]
+    },
+    {
+      "id": "dobbin-house-tavern",
+      "name": "Dobbin House Tavern",
+      "lat": 39.8227574,
+      "lon": -77.2327133,
+      "address": "89 Steinwehr Ave, Gettysburg, PA 17325",
+      "viewpoint": {
+        "lat": 39.8226316,
+        "lon": -77.2327013,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Steinwehr Avenue directly in front of the Dobbin House Tavern."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk of Steinwehr Avenue in front of the Dobbin House Tavern, the oldest standing structure within the town limits of Gettysburg. The house was built in 1776 for the Reverend Alexander Dobbin, making it older than the borough itself, and it is listed on the National Register of Historic Places. During and after the Battle of Gettysburg in July 1863, the house served as a temporary field hospital for wounded soldiers, and like many buildings in town it bore the marks of the fighting. Family tradition holds that the house may have been a stop on the Underground Railroad in the decades before the Civil War, though that connection has not been substantiated by surviving documentation. Today the building operates as a tavern and restaurant, and its historic exterior can be viewed from the public sidewalk at any hour. This stop tells the documented history of the house — its construction, its listing on the National Register, and its use as a field hospital — and clearly separates verified history from the unsubstantiated Underground Railroad tradition. No ghost story is attached to this stop.",
+      "sources": ["https://en.wikipedia.org/wiki/Dobbin_House_Tavern"]
+    },
+    {
+      "id": "evergreen-cemetery-gatehouse",
+      "name": "Evergreen Cemetery Gatehouse",
+      "lat": 39.8207819,
+      "lon": -77.2293278,
+      "address": "799 Baltimore St, Gettysburg, PA 17325",
+      "viewpoint": {
+        "lat": 39.8208397,
+        "lon": -77.2293037,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Baltimore Street at the cemetery gatehouse entrance."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk of Baltimore Street at the gatehouse of Evergreen Cemetery, just south of Lincoln Square. The Italianate gatehouse was completed in 1855, designed by Philadelphia architect Stephen Decatur Button, and served as the cemetery caretaker's residence. During the three days of the Battle of Gettysburg in July 1863, Union forces made Cemetery Hill, the ground you are looking at, the keystone of their defensive position, and Major General Oliver Howard used the gatehouse as his corps headquarters. The cemetery was swept by artillery and infantry fire during the fighting on July 2. In the aftermath, the task of burying the dead fell to a few local residents, and among them was Elizabeth Thorn, the cemetery's caretaker, who carried out this grim work while roughly six months pregnant. More than one hundred soldiers are said to have been laid to rest under her care. Local legend holds that Mrs. Thorn still walks these grounds near the gatehouse, a quiet reminder of the civilians who shouldered the battle's burden. Treat this as a story told for generations, not as established fact.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Evergreen_Cemetery_(Adams_County,_Pennsylvania)"
+      ]
+    }
+  ]
+}
