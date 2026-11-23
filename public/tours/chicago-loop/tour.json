@@ -8,12 +8,12 @@
     {
       "id": "congress-plaza-hotel",
       "name": "Congress Plaza Hotel",
-      "lat": 41.8754,
-      "lon": -87.6245,
+      "lat": 41.87541,
+      "lon": -87.62451,
       "address": "520 South Michigan Avenue, Chicago, IL 60605",
       "viewpoint": {
-        "lat": 41.8745,
-        "lon": -87.6235,
+        "lat": 41.87451,
+        "lon": -87.62351,
         "access": "public-sidewalk",
         "description": "Public sidewalk on the east side of Michigan Avenue, outside the hotel's Grant Park entrance and porte-cochère."
       },
@@ -29,173 +29,102 @@
     {
       "id": "auditorium-building",
       "name": "Auditorium Building",
-      "lat": 41.8761,
-      "lon": -87.6253,
+      "lat": 41.87611,
+      "lon": -87.62531,
       "address": "430 South Michigan Avenue, Chicago, IL 60605",
       "viewpoint": {
-        "lat": 41.8761,
-        "lon": -87.6250,
+        "lat": 41.87624,
+        "lon": -87.62518,
         "access": "public-sidewalk",
         "description": "Public sidewalk on the west side of Michigan Avenue, between Ida B. Wells Drive and the Auditorium Building's main entrance."
       },
       "geofenceRadiusM": 30,
-      "narration": "The Auditorium Building rises beside you, a ten-story stone tower with a seventeen-story corner tower. Built between 1887 and 1889, it was designed by Adler & Sullivan, the partnership of Dankmar Adler and Louis Sullivan, with a young Frank Lloyd Wright on the drafting team. Chicago businessman Ferdinand Peck formed the Chicago Auditorium Association to create a permanent opera house after the success of the 1885 Grand Opera Festival, which drew 115,000 attendees. The building combined a 4,200-seat theatre, a 400-room hotel, and offices — a mixed-use skyscraper before the term existed. President Benjamin Harrison dedicated it on December 9, 1889, and opera star Adelina Patti sang Home Sweet Home at the opening. The theatre hosted Enrico Caruso, Amelita Galli-Curci, and Nellie Melba, among others. The hotel closed in 1941, briefly served as a servicemen's center during World War II, and was taken over by Roosevelt University in 1946, which converted the offices and hotel into classrooms. The Auditorium Theatre still operates today. The building is a National Historic Landmark and a Chicago Landmark. From here, walk west about eight hundred metres along Ida B. Wells Drive and Jackson Boulevard to the Chicago Board of Trade Building.",
-      "legendLabel": "Local legend",
-      "sources": [
-        "https://en.wikipedia.org/wiki/Auditorium_Building"
-      ]
-    },
-    {
-      "id": "board-of-trade-building",
-      "name": "Chicago Board of Trade Building",
-      "lat": 41.8781,
-      "lon": -87.6322,
-      "address": "141 West Jackson Boulevard, Chicago, IL 60604",
-      "viewpoint": {
-        "lat": 41.8781,
-        "lon": -87.6328,
-        "access": "public-sidewalk",
-        "description": "Public sidewalk on the south side of Jackson Boulevard, outside the building's main LaSalle Street entrance and the Ceres statue above."
-      },
-      "geofenceRadiusM": 30,
-      "narration": "You are standing at the foot of LaSalle Street's famous canyon. The 44-story, 604-foot Art Deco tower in front of you was completed in 1930 for the Chicago Board of Trade, designed by Holabird & Root. It was Chicago's tallest building until 1965. The building caps the LaSalle Street canyon, a corridor of financial towers that has been the city's trading heart for over a century. The current structure replaced an 1885 building by William W. Boyington that once held the title of Chicago's tallest, until its clock tower was removed in 1895. Atop the building sits a 6,500-pound, 31-foot aluminum statue of Ceres, Roman goddess of grain, holding a sheaf of wheat and a bag of corn — a nod to the exchange's commodity roots. On the building's north side, bulls protrude from the limestone, referencing a bull market. The trading floor, once the world's largest at 19,000 square feet, operated continuously from 1930 until 2004, when the historic pits were filled with concrete. The building is a National Historic Landmark and a Chicago Landmark. From here, walk west one short block on Jackson Boulevard to Chicago Union Station.",
-      "legendLabel": "Local legend",
-      "sources": [
-        "https://en.wikipedia.org/wiki/Chicago_Board_of_Trade_Building"
-      ]
-    },
-    {
-      "id": "union-station",
-      "name": "Chicago Union Station",
-      "lat": 41.8786,
-      "lon": -87.6402,
-      "address": "225 South Canal Street, Chicago, IL 60606",
-      "viewpoint": {
-        "lat": 41.8786,
-        "lon": -87.6395,
-        "access": "public-sidewalk",
-        "description": "Public sidewalk on the east side of Canal Street, outside the station's Great Hall entrance and limestone headhouse."
-      },
-      "geofenceRadiusM": 30,
-      "narration": "The current Union Station opened May 16, 1925, replacing an 1881 station. Designed by D.H. Burnham & Company in Beaux-Arts style, the limestone headhouse and its Great Hall — a soaring, barrel-vaulted waiting room of Tennessee marble with Corinthian columns — have welcomed presidents, royalty, and millions of travelers. During World War II, the station handled tens of thousands of troops daily and hosted a USO canteen. The last passenger train of the original Pennsylvania Railroad left in 1971; the great trainshed was demolished after fire damage in 2003, and the National Historic Landmark designation was withdrawn, though the station remains on the National Register. Today Union Station is Amtrak's Midwest hub and a Metra terminus, serving the Blue Water, Cardinal, City of New Orleans, Empire Builder, Hiawatha, Lincoln Service, Southwest Chief, Texas Eagle, and more. The station code CHI appears on every Amtrak ticket for Chicago. The building is a Chicago Landmark. From here, walk east two blocks on Jackson Boulevard and one block north on LaSalle Street to the Rookery Building.",
-      "legendLabel": "Local legend",
-      "sources": [
-        "https://en.wikipedia.org/wiki/Chicago_Union_Station"
-      ]
-    },
-    {
-      "id": "rookery-building",
-      "name": "Rookery Building",
-      "lat": 41.8791,
-      "lon": -87.6321,
-      "address": "209 South LaSalle Street, Chicago, IL 60604",
-      "viewpoint": {
-        "lat": 41.8791,
-        "lon": -87.6325,
-        "access": "public-sidewalk",
-        "description": "Public sidewalk on the west side of LaSalle Street, outside the building's main entrance and beneath the carved bird motifs near the roofline."
-      },
-      "geofenceRadiusM": 30,
-      "narration": "Completed in 1888, the Rookery Building is considered the oldest standing high-rise in Chicago. Daniel Burnham and John Wellborn Root of Burnham & Root designed it, and they kept their own offices here. The name comes from the previous city hall on this site, where pigeons and crows nested — and, by local wags, from the allegedly corrupt politicians it housed. Birds are carved into the facade near the entrance as a nod to the name. The building's two-story light court, clad in white terracotta, provides natural light to interior offices through a skylight of 5,000 glass panes. In 1905, Frank Lloyd Wright remodeled the lobby in his Prairie style, covering Root's elaborate wrought iron with white Carrara marble and adding his signature planters and light fixtures. Wright's only Loop commission, the atrium remains his work. A curving double staircase winds up from the second floor, and a balcony wraps the lobby. The building has survived multiple renovations, a foreclosure, and the September 11 attacks closing its atrium to the public. Today it houses US Bank and other tenants, and the Frank Lloyd Wright Trust gives weekday tours. The Rookery is a National Historic Landmark and a Chicago Landmark. From here, walk east about six hundred metres on Washington Street to the Chicago Cultural Center.",
-      "legendLabel": "Local legend",
-      "sources": [
-        "https://en.wikipedia.org/wiki/Rookery_Building"
-      ]
-    },
-    {
-      "id": "chicago-cultural-center",
-      "name": "Chicago Cultural Center",
-      "lat": 41.8839,
-      "lon": -87.6250,
-      "address": "78 East Washington Street, Chicago, IL 60602",
-      "viewpoint": {
-        "lat": 41.8839,
-        "lon": -87.6245,
-        "access": "public-sidewalk",
-        "description": "Public sidewalk on the south side of Washington Street, at the building's Washington Street entrance and grand staircase."
-      },
-      "geofenceRadiusM": 30,
-      "narration": "Opened in 1897 as the Chicago Public Library's central building and a Grand Army of the Republic memorial hall, this neoclassical landmark became the nation's first free municipal cultural center in 1978. The building has two stained-glass domes. The larger, in Preston Bradley Hall, is a 38-foot Tiffany glass dome designed by J. A. Holzer using glass and turtleback jewels from Kokomo Opalescent Glass Works — the Cultural Center states it is the largest Tiffany dome in the world, with over 60,000 individual pieces. The Grand Army of the Republic rotunda in the north wing holds a second dome in Renaissance pattern by Healy and Millet. The Washington Street entrance features a three-story vaulted lobby of white Carrara marble with mosaics, and a staircase inspired by Venice's Bridge of Sighs. A 2021–2022 renovation by Harboe Architects, funded by a $15 million grant of services, restored the art glass dome, recreated lost light fixtures, cleaned marble, and replaced a 1940s cement-and-copper cover on the G.A.R. dome with transparent glazing, returning natural light. The building is a National Historic Landmark and a Chicago Landmark. From here, walk south about two hundred metres on Michigan Avenue to the Palmer House Hilton.",
-      "legendLabel": "Local legend",
-      "sources": [
-        "https://en.wikipedia.org/wiki/Chicago_Cultural_Center"
-      ]
+      "narration": "The Auditorium Building rises beside you, a ten-story stone tower with a seventeen-story corner tower. Built between 1887 and 1889, it was designed by Adler & Sullivan, the partnership of Dankmar Adler and Louis Sullivan, with a young Frank Lloyd Wright on the drafting team. Chicago businessman Ferdinand Peck formed the Chicago Auditorium Association to create a permanent opera house after the success of the 1885 Grand Opera Festival, which drew 115,000 attendees. The building combined a 4,200-seat theatre, a 400-room hotel, and offices — a mixed-use skyscraper before the term existed. President Benjamin Harrison dedicated it on December 9, 1889, and opera star Adelina Patti sang Home Sweet Home at the opening. The theatre hosted Enrico Caruso, Amelita Galli-Curci, and Nellie Melba, among others. The hotel closed in 1941, briefly served as a servicemen's center during World War II, and was taken over by Roosevelt University in 1946, which converted the offices and hotel into classrooms. The Auditorium Theatre still operates today. The building is a National Historic Landmark and a Chicago Landmark. From here, walk north about four hundred metres on Michigan Avenue to the Palmer House Hilton.",
+      "sources": ["https://en.wikipedia.org/wiki/Auditorium_Building"]
     },
     {
       "id": "palmer-house",
       "name": "Palmer House Hilton",
-      "lat": 41.8803,
-      "lon": -87.6269,
+      "lat": 41.88031,
+      "lon": -87.62691,
       "address": "17 East Monroe Street, Chicago, IL 60603",
       "viewpoint": {
-        "lat": 41.8803,
-        "lon": -87.6272,
+        "lat": 41.88031,
+        "lon": -87.62755,
         "access": "public-sidewalk",
         "description": "Public sidewalk on the north side of Monroe Street, outside the hotel's Monroe Street entrance and peacock doors."
       },
       "geofenceRadiusM": 30,
-      "narration": "The Palmer House Hilton is the third hotel of this name on this site, and it claims to be the longest continuously operating hotel in North America. Potter Palmer built the first Palmer House in 1870 at State and Quincy as a wedding present for his bride, Bertha Honoré. It burned one year later in the Great Chicago Fire of October 9, 1871. The second Palmer House, designed by John M. Van Osdel, opened in 1875 and was advertised as the World's Only Fire Proof Hotel. It hosted Mark Twain, Oscar Wilde, Sarah Bernhardt, and five U.S. presidents. An 1895 meeting here founded the Big Ten Conference. The current 25-story building, designed by Holabird & Roche, opened in 1925 with 2,268 rooms, briefly the world's largest hotel. Conrad Hilton bought it in 1945 for $20 million. The hotel's Empire Room presented Frank Sinatra, Ella Fitzgerald, Louis Armstrong, Judy Garland, and countless others. The chocolate brownie was invented here for the 1893 World's Columbian Exposition. The hotel closed in 2020 during the COVID-19 pandemic, faced foreclosure, and reopened in June 2021 after upgrades. The Palmer House is a Chicago Landmark. From here, walk north about three hundred metres on State Street to the Marshall Field's building.",
-      "legendLabel": "Local legend",
-      "sources": [
-        "https://en.wikipedia.org/wiki/The_Palmer_House_Hilton"
-      ]
+      "narration": "The Palmer House Hilton is the third hotel of this name on this site, and it claims to be the longest continuously operating hotel in North America. Potter Palmer built the first Palmer House in 1870 at State and Quincy as a wedding present for his bride, Bertha Honoré. It burned one year later in the Great Chicago Fire of October 9, 1871. The second Palmer House, designed by John M. Van Osdel, opened in 1875 and was advertised as the World's Only Fire Proof Hotel. It hosted Mark Twain, Oscar Wilde, Sarah Bernhardt, and five U.S. presidents. An 1895 meeting here founded the Big Ten Conference. The current 25-story building, designed by Holabird & Roche, opened in 1925 with 2,268 rooms, briefly the world's largest hotel. Conrad Hilton bought it in 1945 for $20 million. The hotel's Empire Room presented Frank Sinatra, Ella Fitzgerald, Louis Armstrong, Judy Garland, and countless others. The chocolate brownie was invented here for the 1893 World's Columbian Exposition. The hotel closed in 2020 during the COVID-19 pandemic, faced foreclosure, and reopened in June 2021 after upgrades. The Palmer House is a Chicago Landmark. From here, walk northeast about four hundred metres on Monroe and Washington Streets to the Chicago Cultural Center.",
+      "sources": ["https://en.wikipedia.org/wiki/The_Palmer_House_Hilton"]
+    },
+    {
+      "id": "chicago-cultural-center",
+      "name": "Chicago Cultural Center",
+      "lat": 41.88391,
+      "lon": -87.62501,
+      "address": "78 East Washington Street, Chicago, IL 60602",
+      "viewpoint": {
+        "lat": 41.88391,
+        "lon": -87.62452,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the south side of Washington Street, at the building's Washington Street entrance and grand staircase."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "Opened in 1897 as the Chicago Public Library's central building and a Grand Army of the Republic memorial hall, this neoclassical landmark became the nation's first free municipal cultural center in 1978. The building has two stained-glass domes. The larger, in Preston Bradley Hall, is a 38-foot Tiffany glass dome designed by J. A. Holzer using glass and turtleback jewels from Kokomo Opalescent Glass Works — the Cultural Center states it is the largest Tiffany dome in the world, with over 60,000 individual pieces. The Grand Army of the Republic rotunda in the north wing holds a second dome in Renaissance pattern by Healy and Millet. The Washington Street entrance features a three-story vaulted lobby of white Carrara marble with mosaics, and a staircase inspired by Venice's Bridge of Sighs. A 2021–2022 renovation by Harboe Architects, funded by a $15 million grant of services, restored the art glass dome, recreated lost light fixtures, cleaned marble, and replaced a 1940s cement-and-copper cover on the G.A.R. dome with transparent glazing, returning natural light. The building is a National Historic Landmark and a Chicago Landmark. From here, walk east about two hundred metres on Washington Street to Marshall Field's.",
+      "sources": ["https://en.wikipedia.org/wiki/Chicago_Cultural_Center"]
     },
     {
       "id": "marshall-fields",
       "name": "Marshall Field's (Macy's State Street)",
-      "lat": 41.8839,
-      "lon": -87.6272,
+      "lat": 41.88391,
+      "lon": -87.62721,
       "address": "111 North State Street, Chicago, IL 60602",
       "viewpoint": {
-        "lat": 41.8839,
-        "lon": -87.6275,
+        "lat": 41.88391,
+        "lon": -87.6276,
         "access": "public-sidewalk",
         "description": "Public sidewalk on the west side of State Street, outside the building's iconic State and Washington corner with the Great Clock."
       },
       "geofenceRadiusM": 30,
-      "narration": "The Marshall Field and Company Building occupies the full city block bounded by Washington, State, Wabash, and Randolph. Potter Palmer founded the store in 1852; Marshall Field joined in 1865 and built it into a retail landmark. The Great Chicago Fire of 1871 destroyed the store, but employees saved enough merchandise to reopen in weeks. The current flagship, designed by Daniel Burnham's firm D.H. Burnham & Company, rose in stages from 1892 to 1914 to encompass the entire block. In 1892, Harry Gordon Selfridge took over the retail store and pioneered the modern department store concept. The iconic Great Clock at State and Washington was installed in 1897. In 1907, a Louis Comfort Tiffany-designed Favrile glass ceiling — the first and largest of its kind, with over 1.6 million pieces — was installed in the south building. The store's Frango mints, originally from Seattle's Frederick & Nelson, were produced in the State Street candy kitchen and became a Chicago tradition. The 1913 Illinois Senate investigation revealed female clerks earned as little as $2.75 a week; the company could have doubled wages but refused. Marshall Field's became Macy's in 2006 but retains its historic nameplates and the Tiffany ceiling. The building is a National Historic Landmark and a Chicago Landmark. From here, walk north about two hundred metres on State Street to the Chicago Theatre.",
-      "legendLabel": "Local legend",
-      "sources": [
-        "https://en.wikipedia.org/wiki/Marshall_Field%27s"
-      ]
+      "narration": "The Marshall Field and Company Building occupies the full city block bounded by Washington, State, Wabash, and Randolph. Potter Palmer founded the store in 1852; Marshall Field joined in 1865 and built it into a retail landmark. The Great Chicago Fire of 1871 destroyed the store, but employees saved enough merchandise to reopen in weeks. The current flagship, designed by Daniel Burnham's firm D.H. Burnham & Company, rose in stages from 1892 to 1914 to encompass the entire block. In 1892, Harry Gordon Selfridge took over the retail store and pioneered the modern department store concept. The iconic Great Clock at State and Washington was installed in 1897. In 1907, a Louis Comfort Tiffany-designed Favrile glass ceiling — the first and largest of its kind, with over 1.6 million pieces — was installed in the south building. The store's Frango mints, originally from Seattle's Frederick & Nelson, were produced in the State Street candy kitchen and became a Chicago tradition. The 1913 Illinois Senate investigation revealed female clerks earned as little as $2.75 a week; the company could have doubled wages but refused. Marshall Field's became Macy's in 2006 but retains its historic nameplates and the Tiffany ceiling. The building is a National Historic Landmark and a Chicago Landmark. From here, walk north about one hundred sixty metres on State Street to the Chicago Theatre.",
+      "sources": ["https://en.wikipedia.org/wiki/Marshall_Field%27s"]
     },
     {
       "id": "chicago-theatre",
       "name": "Chicago Theatre",
-      "lat": 41.8853,
-      "lon": -87.6278,
+      "lat": 41.88531,
+      "lon": -87.62781,
       "address": "175 North State Street, Chicago, IL 60601",
       "viewpoint": {
-        "lat": 41.8853,
-        "lon": -87.6280,
+        "lat": 41.88531,
+        "lon": -87.62806,
         "access": "public-sidewalk",
         "description": "Public sidewalk on the west side of State Street, outside the theatre's famous CHICAGO marquee and the Y-shaped municipal device symbol."
       },
       "geofenceRadiusM": 30,
-      "narration": "The Chicago Theatre's vertical CHICAGO sign and marquee are an unofficial emblem of the city. Opened October 26, 1921, as the Balaban and Katz Chicago Theatre, it was the flagship for a chain of 28 city theatres and over 100 more across the Midwest. Built for $4 million, the Neo-Baroque French Revival movie palace seated 3,880 and was promoted as the Wonder Theatre of the World. Mounted police were needed for crowd control at the opening week. The theatre pioneered air conditioning to entice patrons with a plush environment. Jesse Crawford played the Mighty Wurlitzer theatre organ, and live jazz became a mainstay through the 1920s and 1930s. Ronald Reagan announced his engagement to Jane Wyman here. Business declined in the 1970s; the theatre closed in 1985 after showing American Ninja and Teen Wolf. A preservation group renovated it in 1986, reopening with Frank Sinatra. The original marquee was donated to the Smithsonian in 2004. The coat of arms of Balaban and Katz — two horses holding film ribbons — sits inside a Tiffany stained glass window in the triumphal arch. The theatre is a National Register of Historic Places site and a Chicago Landmark. From here, walk north about seven hundred metres on State Street to Holy Name Cathedral.",
-      "legendLabel": "Local legend",
-      "sources": [
-        "https://en.wikipedia.org/wiki/Chicago_Theatre"
-      ]
+      "narration": "The Chicago Theatre's vertical CHICAGO sign and marquee are an unofficial emblem of the city. Opened October 26, 1921, as the Balaban and Katz Chicago Theatre, it was the flagship for a chain of 28 city theatres and over 100 more across the Midwest. Built for $4 million, the Neo-Baroque French Revival movie palace seated 3,880 and was promoted as the Wonder Theatre of the World. Mounted police were needed for crowd control at the opening week. The theatre pioneered air conditioning to entice patrons with a plush environment. Jesse Crawford played the Mighty Wurlitzer theatre organ, and live jazz became a mainstay through the 1920s and 1930s. Ronald Reagan announced his engagement to Jane Wyman here. Business declined in 1970s; the theatre closed in 1985 after showing American Ninja and Teen Wolf. A preservation group renovated it in 1986, reopening with Frank Sinatra. The original marquee was donated to the Smithsonian in 2004. The coat of arms of Balaban and Katz — two horses holding film ribbons — sits inside a Tiffany stained glass window in the triumphal arch. The theatre is a National Register of Historic Places site and a Chicago Landmark. From here, walk north-west about one hundred metres on Randolph Street to Death Alley.",
+      "sources": ["https://en.wikipedia.org/wiki/Chicago_Theatre"]
     },
     {
-      "id": "holy-name-cathedral",
-      "name": "Holy Name Cathedral",
-      "lat": 41.8959,
-      "lon": -87.6276,
-      "address": "730 North Wabash Avenue, Chicago, IL 60611",
+      "id": "death-alley",
+      "name": "Death Alley (Couch Place)",
+      "lat": 41.88491,
+      "lon": -87.62831,
+      "address": "36 West Randolph Street, Chicago, IL 60601",
       "viewpoint": {
-        "lat": 41.8959,
-        "lon": -87.6280,
+        "lat": 41.88491,
+        "lon": -87.62815,
         "access": "public-sidewalk",
-        "description": "Public sidewalk on the west side of State Street, at the cathedral's State Street frontage, looking across at the bullet-marked stone."
+        "description": "Public sidewalk on the west side of State Street, at the alley behind the former Iroquois/Nederlander Theatre, where the 1903 fire claimed hundreds of lives."
       },
       "geofenceRadiusM": 30,
-      "narration": "Dedicated November 21, 1875, Holy Name Cathedral replaced Saint Mary's Cathedral, destroyed in the Great Chicago Fire. During the 1920s gang wars, two murders occurred outside. In November 1924, Dion O'Banion, head of the North Side Gang, was murdered in his Schofield Flower Shop across the street by gunmen acting on Al Capone's orders; the archdiocese denied his funeral mass. In October 1926, Hymie Weiss, O'Banion's protégé, was assassinated by two snipers outside the same shop; some bullets struck the cathedral's stone facade, and a priest administered last rites on the cathedral steps. Like O'Banion, Weiss was denied a cathedral service. Legend holds that despite many repair attempts, the bullet holes cannot be covered — repair materials either never harden or fall off. Newlyweds married here often run their hands over the markings for good luck. The cathedral seats 1,100; its spire reaches 210 feet. Pope John Paul II visited in 1979, and Cardinal Mundelein lay in state here in 1939, drawing over a million mourners. The building is a National Historic Landmark and a Chicago Landmark. The tour ends here. You have walked from the Congress Plaza Hotel through the heart of the Loop, hearing documented history and the legends that have grown alongside it. Every story labeled as legend is legend; every date comes from a source you can check.",
+      "narration": "Death Alley, also known as Couch Place, runs behind the Nederlander Theatre (formerly the Iroquois Theatre) on West Randolph Street. On December 30, 1903, the Iroquois Theatre fire broke out during a packed vaudeville matinee, killing an estimated 600 people and injuring hundreds more. The blaze started from a faulty spotlight and raced through scenery and curtains; within minutes the auditorium was engulfed. Many patrons died in the crush toward the few exits, and the alley behind the theater became a makeshift morgue, its brick walls and pavement crowded with bodies. The tragedy shocked the nation and led to new fire safety codes for theaters across the country. Legend holds that the souls of the victims still wander Couch Place, and visitors have reported unexplained whispers, shadowy figures, and sudden drops in temperature. The alley retains its name from the tragic events, and it remains a somber reminder of Chicago's theater history. From here, the tour concludes.",
       "legendLabel": "Legend",
       "sources": [
-        "https://en.wikipedia.org/wiki/Holy_Name_Cathedral_(Chicago)",
-        "https://www.architecture.org/news/historic-chicago/5-haunted-places-in-chicago/"
+        "https://www.hauntedplaces.org/item/death-alley/",
+        "https://www.atlasobscura.com/places/couch-place-the-alley-of-death",
+        "https://www.wickedcoolplaces.com/places/couch-place-chicago-alley-of-death"
       ]
     }
   ]
