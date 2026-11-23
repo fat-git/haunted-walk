@@ -6,7 +6,7 @@
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [-77.2333, 39.832],
+          [-77.23331, 39.83196],
           [-77.2333221, 39.8319622],
           [-77.233257, 39.8319607],
           [-77.2332543, 39.8317801],
@@ -147,9 +147,9 @@
       {
         "from": "pennsylvania-hall",
         "to": "lincoln-square",
-        "instruction": "Head southeast on the alley, then turn right onto Baltimore Street to Lincoln Square (358 m).",
-        "distanceM": 358,
-        "durationS": 275
+        "instruction": "Head southeast on the alley, then turn right onto Baltimore Street to Lincoln Square (354 m).",
+        "distanceM": 354,
+        "durationS": 272
       },
       {
         "from": "lincoln-square",

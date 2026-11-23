@@ -12,10 +12,10 @@
       "lon": -77.2333,
       "address": "300 N Washington St, Gettysburg, PA 17325",
       "viewpoint": {
-        "lat": 39.832,
-        "lon": -77.2333,
+        "lat": 39.83196,
+        "lon": -77.23331,
         "access": "public-sidewalk",
-        "description": "Public sidewalk on North Washington Street at the south edge of the Gettysburg College campus."
+        "description": "Public sidewalk on North Washington Street beside the Gettysburg College campus."
       },
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk of North Washington Street at the edge of the Gettysburg College campus, looking toward Pennsylvania Hall, also known as Old Dorm. The building was completed in the 1830s as the center of Pennsylvania College, founded in 1832 by Samuel Simon Schmucker. During the Battle of Gettysburg, Pennsylvania Hall sat on high ground that both armies coveted. Union signal officers used its cupola as a lookout, and after the first day's fighting the building became a field hospital for wounded soldiers from both sides, its halls filled with the wounded and dying. The college's own history records that students from the 26th Pennsylvania Emergency Militia Regiment, mostly Gettysburg College men, skirmished with Confederate troops north of town just days before the battle. Since 1991, when author Mark Nesbitt published Ghosts of Gettysburg, the building has been associated with reported sightings of figures in Civil War-era clothing moving through its halls and grounds. Those stories are legend, retold by students, guides, and visitors for more than thirty years, while the building's role as a signal station and hospital is part of the documented historical record.",
