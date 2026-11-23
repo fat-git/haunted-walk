@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "id": "chicago-loop",
+  "city": "chicago-loop",
+  "name": "Chicago Loop Ghosts and Histories",
+  "description": "A self-guided evening walk through the Chicago Loop, from the Congress Plaza Hotel north along Michigan Avenue and State Street, telling documented history and the ghost legends attached to it.",
+  "stops": [
+    {
+      "id": "congress-plaza-hotel",
+      "name": "Congress Plaza Hotel",
+      "lat": 41.87541,
+      "lon": -87.62451,
+      "address": "520 South Michigan Avenue, Chicago, IL 60605",
+      "viewpoint": {
+        "lat": 41.87451,
+        "lon": -87.62351,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the east side of Michigan Avenue, outside the hotel's Grant Park entrance and porte-cochère."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "Stand on the Michigan Avenue sidewalk, looking up at the hotel's stone facade. The Congress Plaza Hotel opened in 1893 as the Auditorium Annex, built to house visitors to the World's Columbian Exposition. It was connected to the Auditorium Building across the street by a marble-lined underground passage called Peacock Alley. The hotel has hosted presidents from Grover Cleveland through Franklin Roosevelt. But the building is most famous for the stories that cling to its upper floors. Legend says Room 441 on the fourth floor is the building's most active room. Guests have reported a shadowy woman at the foot of the bed, kicking or disturbing the bedding before moving toward the bathroom. The room's floor-to-ceiling window looks directly at a solid cement wall just feet away, which some say contributes to the unsettling atmosphere. A recurring claim ties Stephen King's short story 1408 to a stay in this very room; King has never confirmed it, but the numeric mirror — 441 and 1408 — circulates in more credible accounts. The legend also points to two elevator operators, A.J. Berninston in 1904 and Archie L. Tripp in 1914, both reported to have fallen to their deaths down the elevator shaft from the fourth floor, each on March 12th exactly ten years apart. The original Room 441 door plaque was allegedly removed by souvenir hunters, and the hotel replaced it with a cheaper one. From here, walk north along Michigan Avenue about one hundred metres to the Auditorium Building.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Congress_Plaza_Hotel",
+        "https://www.architecture.org/news/historic-chicago/5-haunted-places-in-chicago/",
+        "https://cornerstonemansion.com/unlocking-room-441-s-secrets-congress-plaza-hauntings/"
+      ]
+    },
+    {
+      "id": "auditorium-building",
+      "name": "Auditorium Building",
+      "lat": 41.87611,
+      "lon": -87.62531,
+      "address": "430 South Michigan Avenue, Chicago, IL 60605",
+      "viewpoint": {
+        "lat": 41.87611,
+        "lon": -87.62421,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the west side of Michigan Avenue, between Ida B. Wells Drive and the Auditorium Building's main entrance."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "The Auditorium Building rises beside you, a ten-story stone tower with a seventeen-story corner tower. Built between 1887 and 1889, it was designed by Adler & Sullivan, the partnership of Dankmar Adler and Louis Sullivan, with a young Frank Lloyd Wright on the drafting team. Chicago businessman Ferdinand Peck formed the Chicago Auditorium Association to create a permanent opera house after the success of the 1885 Grand Opera Festival, which drew 115,000 attendees. The building combined a 4,200-seat theatre, a 400-room hotel, and offices — a mixed-use skyscraper before the term existed. President Benjamin Harrison dedicated it on December 9, 1889, and opera star Adelina Patti sang Home Sweet Home at the opening. The theatre hosted Enrico Caruso, Amelita Galli-Curci, and Nellie Melba, among others. The hotel closed in 1941, briefly served as a servicemen's center during World War II, and was taken over by Roosevelt University in 1946, which converted the offices and hotel into classrooms. The Auditorium Theatre still operates today. The building is a National Historic Landmark and a Chicago Landmark. From here, walk north about four hundred metres on Michigan Avenue to the Palmer House Hilton.",
+      "sources": ["https://en.wikipedia.org/wiki/Auditorium_Building"]
+    },
+    {
+      "id": "palmer-house",
+      "name": "Palmer House Hilton",
+      "lat": 41.88031,
+      "lon": -87.62691,
+      "address": "17 East Monroe Street, Chicago, IL 60603",
+      "viewpoint": {
+        "lat": 41.88031,
+        "lon": -87.62755,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the north side of Monroe Street, outside the hotel's Monroe Street entrance and peacock doors."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "The Palmer House Hilton is the third hotel of this name on this site, and it claims to be the longest continuously operating hotel in North America. Potter Palmer built the first Palmer House in 1870 at State and Quincy as a wedding present for his bride, Bertha Honoré. It burned one year later in the Great Chicago Fire of October 9, 1871. The second Palmer House, designed by John M. Van Osdel, opened in 1875 and was advertised as the World's Only Fire Proof Hotel. It hosted Mark Twain, Oscar Wilde, Sarah Bernhardt, and five U.S. presidents. An 1895 meeting here founded the Big Ten Conference. The current 25-story building, designed by Holabird & Roche, opened in 1925 with 2,268 rooms, briefly the world's largest hotel. Conrad Hilton bought it in 1945 for $20 million. The hotel's Empire Room presented Frank Sinatra, Ella Fitzgerald, Louis Armstrong, Judy Garland, and countless others. The chocolate brownie was invented here for the 1893 World's Columbian Exposition. The hotel closed in 2020 during the COVID-19 pandemic, faced foreclosure, and reopened in June 2021 after upgrades. The Palmer House is a Chicago Landmark. From here, walk northeast about four hundred metres on Monroe and Washington Streets to the Chicago Cultural Center.",
+      "sources": ["https://en.wikipedia.org/wiki/The_Palmer_House_Hilton"]
+    },
+    {
+      "id": "chicago-cultural-center",
+      "name": "Chicago Cultural Center",
+      "lat": 41.88391,
+      "lon": -87.62501,
+      "address": "78 East Washington Street, Chicago, IL 60602",
+      "viewpoint": {
+        "lat": 41.88391,
+        "lon": -87.62452,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the south side of Washington Street, at the building's Washington Street entrance and grand staircase."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "Opened in 1897 as the Chicago Public Library's central building and a Grand Army of the Republic memorial hall, this neoclassical landmark became the nation's first free municipal cultural center in 1978. The building has two stained-glass domes. The larger, in Preston Bradley Hall, is a 38-foot Tiffany glass dome designed by J. A. Holzer using glass and turtleback jewels from Kokomo Opalescent Glass Works — the Cultural Center states it is the largest Tiffany dome in the world, with over 60,000 individual pieces. The Grand Army of the Republic rotunda in the north wing holds a second dome in Renaissance pattern by Healy and Millet. The Washington Street entrance features a three-story vaulted lobby of white Carrara marble with mosaics, and a staircase inspired by Venice's Bridge of Sighs. A 2021–2022 renovation by Harboe Architects, funded by a $15 million grant of services, restored the art glass dome, recreated lost light fixtures, cleaned marble, and replaced a 1940s cement-and-copper cover on the G.A.R. dome with transparent glazing, returning natural light. The building is a National Historic Landmark and a Chicago Landmark. From here, walk east about two hundred metres on Washington Street to Marshall Field's.",
+      "sources": ["https://en.wikipedia.org/wiki/Chicago_Cultural_Center"]
+    },
+    {
+      "id": "marshall-fields",
+      "name": "Marshall Field's (Macy's State Street)",
+      "lat": 41.88391,
+      "lon": -87.62721,
+      "address": "111 North State Street, Chicago, IL 60602",
+      "viewpoint": {
+        "lat": 41.88391,
+        "lon": -87.62791,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the west side of State Street, outside the building's iconic State and Washington corner with the Great Clock."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "The Marshall Field and Company Building occupies the full city block bounded by Washington, State, Wabash, and Randolph. Potter Palmer founded the store in 1852; Marshall Field joined in 1865 and built it into a retail landmark. The Great Chicago Fire of 1871 destroyed the store, but employees saved enough merchandise to reopen in weeks. The current flagship, designed by Daniel Burnham's firm D.H. Burnham & Company, rose in stages from 1892 to 1914 to encompass the entire block. In 1892, Harry Gordon Selfridge took over the retail store and pioneered the modern department store concept. The iconic Great Clock at State and Washington was installed in 1897. In 1907, a Louis Comfort Tiffany-designed Favrile glass ceiling — the first and largest of its kind, with over 1.6 million pieces — was installed in the south building. The store's Frango mints, originally from Seattle's Frederick & Nelson, were produced in the State Street candy kitchen and became a Chicago tradition. The 1913 Illinois Senate investigation revealed female clerks earned as little as $2.75 a week; the company could have doubled wages but refused. Marshall Field's became Macy's in 2006 but retains its historic nameplates and the Tiffany ceiling. The building is a National Historic Landmark and a Chicago Landmark. From here, walk north about one hundred sixty metres on State Street to the Chicago Theatre.",
+      "sources": ["https://en.wikipedia.org/wiki/Marshall_Field%27s"]
+    },
+    {
+      "id": "chicago-theatre",
+      "name": "Chicago Theatre",
+      "lat": 41.88531,
+      "lon": -87.62781,
+      "address": "175 North State Street, Chicago, IL 60601",
+      "viewpoint": {
+        "lat": 41.88531,
+        "lon": -87.62791,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the west side of State Street, outside the theatre's famous CHICAGO marquee and the Y-shaped municipal device symbol."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "The Chicago Theatre's vertical CHICAGO sign and marquee are an unofficial emblem of the city. Opened October 26, 1921, as the Balaban and Katz Chicago Theatre, it was the flagship for a chain of 28 city theatres and over 100 more across the Midwest. Built for $4 million, the Neo-Baroque French Revival movie palace seated 3,880 and was promoted as the Wonder Theatre of the World. Mounted police were needed for crowd control at the opening week. The theatre pioneered air conditioning to entice patrons with a plush environment. Jesse Crawford played the Mighty Wurlitzer theatre organ, and live jazz became a mainstay through the 1920s and 1930s. Ronald Reagan announced his engagement to Jane Wyman here. Business declined in the 1970s; the theatre closed in 1985 after showing American Ninja and Teen Wolf. A preservation group renovated it in 1986, reopening with Frank Sinatra. The original marquee was donated to the Smithsonian in 2004. The coat of arms of Balaban and Katz — two horses holding film ribbons — sits inside a Tiffany stained glass window in the triumphal arch. The theatre is a National Register of Historic Places site and a Chicago Landmark. From here, the tour concludes.",
+      "sources": ["https://en.wikipedia.org/wiki/Chicago_Theatre"]
+    }
+  ]
+}

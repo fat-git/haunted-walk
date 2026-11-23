@@ -18,6 +18,12 @@
       "name": "Downtown Toronto",
       "defaultTour": "toronto-downtown",
       "description": "A self-guided walking tour of downtown Toronto's documented history and the ghost legends attached to it."
+    },
+    {
+      "id": "chicago-loop",
+      "name": "Chicago Loop",
+      "defaultTour": "chicago-loop",
+      "description": "A self-guided walking tour of Chicago Loop history and ghost legends."
     }
   ]
 }
