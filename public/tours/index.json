@@ -24,6 +24,24 @@
       "name": "Chicago Loop",
       "defaultTour": "chicago-loop",
       "description": "A self-guided walking tour of Chicago Loop history and ghost legends."
+    },
+    {
+      "id": "savannah-ga",
+      "name": "Savannah Ghosts",
+      "defaultTour": "savannah-ga-ghosts",
+      "description": "A self-guided evening walk through the documented history and ghost legends of Savannah's Historic District."
+    },
+    {
+      "id": "charleston-sc",
+      "name": "Charleston Ghosts",
+      "defaultTour": "charleston-sc-ghosts",
+      "description": "A self-guided evening walk through the documented history and ghost legends of Charleston's Historic District."
+    },
+    {
+      "id": "salem-ma",
+      "name": "Salem Ghosts",
+      "defaultTour": "salem-ma-ghosts",
+      "description": "A self-guided walking tour of documented 1692 witch trial history and the ghost legends attached to downtown Salem."
     }
   ]
 }

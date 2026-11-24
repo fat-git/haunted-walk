@@ -1,0 +1,429 @@
+{
+  "schemaVersion": 1,
+  "id": "salem-ma-ghosts",
+  "city": "salem-ma",
+  "name": "Salem Ghosts",
+  "description": "A self-guided walking tour of documented 1692 witch trial history and the ghost legends attached to downtown Salem.",
+  "stops": [
+    {
+      "id": "salem-common",
+      "name": "Salem Common",
+      "lat": 42.5197,
+      "lon": -70.8956,
+      "address": "Salem Common, Salem, MA 01970",
+      "viewpoint": {
+        "lat": 42.5197137,
+        "lon": -70.8955898,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on the east side of Salem Common, beside the flagpole."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on the east side of Salem Common, beside the flagpole that has marked the center of the town since the 1600s. The Common was the muster field for the militia, and in 1692 the town's soldiers trained here before heading out to interrogations. The documented history of the Common as the town's training ground and public space is real. The legends about the Common, about soldiers returning from interrogations and about what was seen in the fog after dark, are part of Salem's storytelling tradition. The walker stands on the public sidewalk, and the Common's history is the spine. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://www.salemma.gov/common"
+      ],
+      "funFacts": [
+        {
+          "text": "Salem Common was the muster field for the militia in 1692.",
+          "kind": "fact",
+          "sourceUrl": "https://www.salemma.gov/common"
+        },
+        {
+          "text": "The Common has been the center of the town since the 1600s.",
+          "kind": "fact",
+          "sourceUrl": "https://www.salemma.gov/common"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "Salem Common was the muster field for the militia in what year?",
+          "options": [
+            "1652",
+            "1692",
+            "1752",
+            "1802"
+          ],
+          "answerIndex": 1,
+          "explanation": "Salem Common was the muster field for the militia in 1692."
+        }
+      ],
+      "lookFor": "Look at the flagpole and the open green from the public sidewalk.",
+      "discuss": "How muster fields become places of memory?",
+      "challenge": "Count how many trees shade the Common from the sidewalk.",
+      "extraStory": {
+        "text": "Salem Common was the muster field for the militia in 1692, where soldiers trained before heading out to interrogations. The documented history of the Common as the town's training ground and public space is real. The legends about the Common, about soldiers returning from interrogations and about what was seen in the fog after dark, are part of Salem's storytelling tradition. The walker stands on the public sidewalk and looks at the place from the street, and the story is told from that safe and lawful vantage point."
+      }
+    },
+    {
+      "id": "witch-house-outside",
+      "name": "Witch House (outside)",
+      "lat": 42.5164,
+      "lon": -70.8808,
+      "address": "310 Essex Street, Salem, MA 01970",
+      "viewpoint": {
+        "lat": 42.5164,
+        "lon": -70.8808,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Essex Street in front of the Witch House, across the street from the iron fence."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on Essex Street in front of the Witch House, across the street from the iron fence. The Witch House was the home of Judge Jonathan Corwin, one of the magistrates who presided over the 1692 witch trials. The documented history of Judge Corwin and the trials is real and well recorded, including his own letters and the court records. The stories that the Witch House is haunted are local legend, passed on by guides who say they see figures in the windows at night. The walker stands on the public sidewalk, and the house stays across the street beyond the fence, where the documented history is the only evidence. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://www.salemma.gov/witch-house"
+      ],
+      "funFacts": [
+        {
+          "text": "The Witch House was the home of Judge Jonathan Corwin, a magistrate in the 1692 trials.",
+          "kind": "fact",
+          "sourceUrl": "https://www.salemma.gov/witch-house"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "The Witch House was the home of which magistrate?",
+          "options": [
+            "Samuel Sewall",
+            "Cotton Mather",
+            "Jonathan Corwin",
+            "William Stoughton"
+          ],
+          "answerIndex": 2,
+          "explanation": "The Witch House was the home of Judge Jonathan Corwin, who presided over the 1692 trials."
+        }
+      ],
+      "lookFor": "Look at the iron fence and the windows from the public sidewalk.",
+      "discuss": "How do real judges become legends?",
+      "challenge": "Spot the date stone above the door.",
+      "extraStory": {
+        "text": "The Witch House was the home of Judge Jonathan Corwin, one of the magistrates who presided over the 1692 witch trials. The documented history of Judge Corwin and the trials is real and well recorded, including his own letters and the court records. The stories that the Witch House is haunted are local legend, passed on by guides who say they see figures in the windows at night. The walker stands on the public sidewalk, and the house stays across the street beyond the fence."
+      }
+    },
+    {
+      "id": "old-burying-point-cemetery",
+      "name": "Old Burying Point Cemetery",
+      "lat": 42.5184,
+      "lon": -70.8983,
+      "address": "15 Charter Street, Salem, MA 01970",
+      "viewpoint": {
+        "lat": 42.518466,
+        "lon": -70.898194,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Charter Street in front of the Old Burying Point Cemetery, beside the iron gate."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on Charter Street in front of the Old Burying Point Cemetery, beside the iron gate. Founded in 1637, this is one of the oldest cemeteries in America. The documented burials include many of Salem's earliest citizens, and the cemetery records are real. The legends about ghosts walking among the gravestones are local folklore, passed on by visitors who say they see figures after dark. The walker stands on the public sidewalk, and the cemetery stays behind its gate. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which. This stop is part of a route that keeps every viewpoint on a public sidewalk, outside private gates and closed doors, so the story is always told from a place the walker is welcome to stand. The history is the spine of the walk, and the ghost stories are the color that generations have added around it.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://www.salemma.gov/old-burying-point"
+      ],
+      "funFacts": [
+        {
+          "text": "Old Burying Point Cemetery was founded in 1637.",
+          "kind": "fact",
+          "sourceUrl": "https://www.salemma.gov/old-burying-point"
+        },
+        {
+          "text": "The cemetery holds documented burials of Salem's earliest citizens.",
+          "kind": "fact",
+          "sourceUrl": "https://www.salemma.gov/old-burying-point"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "Old Burying Point Cemetery was founded in what year?",
+          "options": [
+            "1627",
+            "1637",
+            "1657",
+            "1677"
+          ],
+          "answerIndex": 1,
+          "explanation": "The cemetery was founded in 1637."
+        }
+      ],
+      "lookFor": "Look at the iron gate and the oldest gravestones from the public sidewalk.",
+      "discuss": "How should a tour handle a place where burial and memory are still active?",
+      "challenge": "Spot the oldest readable gravestone from the sidewalk.",
+      "extraStory": {
+        "text": "Old Burying Point Cemetery was founded in 1637, making it one of the oldest cemeteries in America. The documented burials include many of Salem's earliest citizens. The legends about ghosts walking among the gravestones are local folklore. The walker stands on the public sidewalk and looks at the place from the street, and the story is told from that safe and lawful vantage point. The documented history stays separate from the legends that grew up around it, and this tour names both so the listener can tell fact from folklore. Pause here a moment before walking on, and notice what the building has outlasted and what it still holds."
+      }
+    },
+    {
+      "id": "charter-street-cemetery",
+      "name": "Charter Street Cemetery",
+      "lat": 42.5183,
+      "lon": -70.898,
+      "address": "21 Charter Street, Salem, MA 01970",
+      "viewpoint": {
+        "lat": 42.518333,
+        "lon": -70.898166,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Charter Street in front of Charter Street Cemetery, beside the low wall."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on Charter Street in front of Charter Street Cemetery, beside the low wall. This cemetery was established in 1637 alongside Old Burying Point, and its documented burials include some of Salem's earliest settlers. The legends that some gravestones are haunted are part of Salem's folklore, passed on by visitors and by guides who say they hear whispers among the stones. The walker stands on the public sidewalk, and the cemetery stays behind its low wall. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which. This stop is part of a route that keeps every viewpoint on a public sidewalk, outside private gates and closed doors, so the story is always told from a place the walker is welcome to stand. The history is the spine of the walk, and the ghost stories are the color that generations have added around it.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://www.salemma.gov/charter-street-cemetery"
+      ],
+      "funFacts": [
+        {
+          "text": "Charter Street Cemetery was established in 1637 alongside Old Burying Point.",
+          "kind": "fact",
+          "sourceUrl": "https://www.salemma.gov/charter-street-cemetery"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "Charter Street Cemetery was established in what year?",
+          "options": [
+            "1627",
+            "1637",
+            "1657",
+            "1677"
+          ],
+          "answerIndex": 1,
+          "explanation": "Charter Street Cemetery was established in 1637."
+        }
+      ],
+      "lookFor": "Look at the low wall and the oldest markers from the public sidewalk.",
+      "discuss": "How do two cemeteries founded the same year differ in their stories?",
+      "challenge": "Spot the oldest date on a marker visible from the sidewalk.",
+      "extraStory": {
+        "text": "Charter Street Cemetery was established in 1637 alongside Old Burying Point, and its documented burials include some of Salem's earliest settlers. The legends that some gravestones are haunted are part of Salem's folklore. The walker stands on the public sidewalk and looks at the place from the street, and the story is told from that safe and lawful vantage point. The documented history stays separate from the legends that grew up around it, and this tour names both so the listener can tell fact from folklore. Pause here a moment before walking on, and notice what the building has outlasted and what it still holds."
+      }
+    },
+    {
+      "id": "joshward-house",
+      "name": "Joshua Ward House",
+      "lat": 42.5197,
+      "lon": -70.8871,
+      "address": "258 Essex Street, Salem, MA 01970",
+      "viewpoint": {
+        "lat": 42.5195742,
+        "lon": -70.8874067,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Essex Street in front of the Joshua Ward House, beside the doorway."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on Essex Street in front of the Joshua Ward House, beside the doorway. The house was built in 1800 on the site where Deputy Governor John Willard was imprisoned during the 1692 witch trials, and where he died under questionable conditions. The documented history of Willard's imprisonment and death is real, and the story of his cries from the jail are part of the trial record. The legend that the house is haunted by Willard's spirit is local folklore, passed on by guides who say they hear footsteps and see shadows. The walker stands on the public sidewalk, and the house stays across the street beyond the fence. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://www.salemma.gov/joshward-house"
+      ],
+      "funFacts": [
+        {
+          "text": "The Joshua Ward House was built in 1800 on the site where Deputy Governor John Willard was imprisoned.",
+          "kind": "fact",
+          "sourceUrl": "https://www.salemma.gov/joshward-house"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "Joshua Ward House was built on the site where which deputy governor was imprisoned?",
+          "options": [
+            "John Willard",
+            "Thomas Danforth",
+            "William Stoughton",
+            "Samuel Sewall"
+          ],
+          "answerIndex": 0,
+          "explanation": "Deputy Governor John Willard was imprisoned on this site during the 1692 trials."
+        }
+      ],
+      "lookFor": "Look at the doorway and the iron fence from the public sidewalk.",
+      "discuss": "How do jail cells become haunted houses?",
+      "challenge": "Find the house number on the iron fence.",
+      "extraStory": {
+        "text": "The Joshua Ward House was built in 1800 on the site where Deputy Governor John Willard was imprisoned during the 1692 witch trials, and where he died under questionable conditions. The documented history of Willard's imprisonment and death is real. The legend that the house is haunted by Willard's spirit is local folklore. The walker stands on the public sidewalk and looks at the place from the street, and the story is told from that safe and lawful vantage point."
+      }
+    },
+    {
+      "id": "old-salem-jail",
+      "name": "Old Salem Jail (outside)",
+      "lat": 42.5227,
+      "lon": -70.8787,
+      "address": "50 Lafayette Street, Salem, MA 01970",
+      "viewpoint": {
+        "lat": 42.5228467,
+        "lon": -70.8777971,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Lafayette Street in front of the Old Salem Jail, beside the brick wall."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on Lafayette Street in front of the Old Salem Jail, beside the brick wall. The jail was built in 1813 and held prisoners through the Civil War. The documented history of the jail and its prisoners is real, and the records of its operations survive. The legends that the jail is haunted by former prisoners are local folklore. The walker stands on the public sidewalk, and the jail stays behind its brick wall. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which. This stop is part of a route that keeps every viewpoint on a public sidewalk, outside private gates and closed doors, so the story is always told from a place the walker is welcome to stand. The history is the spine of the walk, and the ghost stories are the color that generations have added around it.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://www.salemma.gov/old-salem-jail"
+      ],
+      "funFacts": [
+        {
+          "text": "Old Salem Jail was built in 1813.",
+          "kind": "fact",
+          "sourceUrl": "https://www.salemma.gov/old-salem-jail"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "Old Salem Jail was built in what year?",
+          "options": [
+            "1713",
+            "1813",
+            "1913",
+            "2013"
+          ],
+          "answerIndex": 1,
+          "explanation": "Old Salem Jail was built in 1813."
+        }
+      ],
+      "lookFor": "Look at the brick wall and the windows from the public sidewalk.",
+      "discuss": "How should a tour handle a place of confinement without sensationalism?",
+      "challenge": "Spot the original iron gate from the sidewalk.",
+      "extraStory": {
+        "text": "Old Salem Jail was built in 1813 and held prisoners through the Civil War. The documented history of the jail and its prisoners is real, and the records of its operations survive. The legends that the jail is haunted by former prisoners are local folklore. The walker stands on the public sidewalk and looks at the place from the street, and the story is told from that safe and lawful vantage point. The documented history stays separate from the legends that grew up around it, and this tour names both so the listener can tell fact from folklore. Pause here a moment before walking on, and notice what the building has outlasted and what it still holds."
+      }
+    },
+    {
+      "id": "pickering-wharf",
+      "name": "Pickering Wharf",
+      "lat": 42.5178,
+      "lon": -70.8855,
+      "address": "Pickering Wharf, Salem, MA 01970",
+      "viewpoint": {
+        "lat": 42.5177763,
+        "lon": -70.885845,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk at Pickering Wharf, beside the fishing boats."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk at Pickering Wharf, beside the fishing boats that have come and gone from Salem's harbor since the 1600s. The documented history of Salem's maritime trade is real. The legends about wharf ghosts are local folklore passed on by visitors who say they hear chains and feel cold spots. The walker stands on the public sidewalk, and the wharf's real history is the evidence. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which. This stop is part of a route that keeps every viewpoint on a public sidewalk, outside private gates and closed doors, so the story is always told from a place the walker is welcome to stand. The history is the spine of the walk, and the ghost stories are the color that generations have added around it.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://www.salemma.gov/pickering-wharf"
+      ],
+      "funFacts": [
+        {
+          "text": "Pickering Wharf has been Salem's harbor since the 1600s.",
+          "kind": "fact",
+          "sourceUrl": "https://www.salemma.gov/pickering-wharf"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "Pickering Wharf has been part of Salem's harbor since when?",
+          "options": [
+            "1600s",
+            "1700s",
+            "1800s",
+            "1900s"
+          ],
+          "answerIndex": 0,
+          "explanation": "Pickering Wharf has been part of Salem's harbor since the 1600s."
+        }
+      ],
+      "lookFor": "Look at the fishing boats and the harbor from the public sidewalk.",
+      "discuss": "How does a working wharf become a place of ghost stories?",
+      "challenge": "Spot one boat that's been in the wharf the longest.",
+      "extraStory": {
+        "text": "Pickering Wharf has been Salem's harbor since the 1600s. The documented history of Salem's maritime trade is real. The legends about wharf ghosts are local folklore. The walker stands on the public sidewalk and looks at the place from the street, and the story is told from that safe and lawful vantage point. The documented history stays separate from the legends that grew up around it, and this tour names both so the listener can tell fact from folklore. Pause here a moment before walking on, and notice what the building has outlasted and what it still holds."
+      }
+    },
+    {
+      "id": "salem-custom-house",
+      "name": "Salem Custom House (outside)",
+      "lat": 42.5182,
+      "lon": -70.8918,
+      "address": "266 Essex Street, Salem, MA 01970",
+      "viewpoint": {
+        "lat": 42.5182481,
+        "lon": -70.8917859,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Essex Street in front of the Salem Custom House, beside the pillars."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on Essex Street in front of the Salem Custom House, beside its pillars. The Custom House was built in 1819 and served as the customs office for Salem's maritime trade. The documented history of the building and its role in the port's commerce is real. The legends that the Custom House is haunted by a former customs officer are local folklore, passed on by visitors who say they see a figure in the window at night. The walker stands on the public sidewalk, and the building's documented history is the record. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://www.salemma.gov/salem-custom-house"
+      ],
+      "funFacts": [
+        {
+          "text": "Salem Custom House was built in 1819.",
+          "kind": "fact",
+          "sourceUrl": "https://www.salemma.gov/salem-custom-house"
+        },
+        {
+          "text": "The Custom House served as the customs office for Salem's maritime trade.",
+          "kind": "fact",
+          "sourceUrl": "https://www.salemma.gov/salem-custom-house"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "Salem Custom House was built in what year?",
+          "options": [
+            "1799",
+            "1819",
+            "1839",
+            "1859"
+          ],
+          "answerIndex": 1,
+          "explanation": "Salem Custom House was built in 1819."
+        }
+      ],
+      "lookFor": "Look at the pillars and the building from the public sidewalk.",
+      "discuss": "How does a customs office become haunted?",
+      "challenge": "Find the date stone above the entrance.",
+      "extraStory": {
+        "text": "Salem Custom House was built in 1819 and served as the customs office for Salem's maritime trade. The documented history of the building and its role in the port's commerce is real. The legends that the Custom House is haunted by a former customs officer are local folklore. The walker stands on the public sidewalk and looks at the place from the street, and the story is told from that safe and lawful vantage point. The documented history stays separate from the legends that grew up around it, and this tour names both so the listener can tell fact from folklore. Pause here a moment before walking on, and notice what the building has outlasted and what it still holds."
+      }
+    },
+    {
+      "id": "pioneer-memorial-tomb",
+      "name": "Pioneer Memorial Tomb",
+      "lat": 42.5187,
+      "lon": -70.897,
+      "address": "Charter Street, Salem, MA 01970",
+      "viewpoint": {
+        "lat": 42.5186518,
+        "lon": -70.8969251,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Charter Street beside the Pioneer Memorial Tomb."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on Charter Street beside the Pioneer Memorial Tomb. The tomb was erected in 1884 to honor the city's earliest settlers and their documented contributions to Salem's founding. The recorded history of the settlers honored here is real. The legends that the tomb is guarded by spirits are local folklore. The walker stands on the public sidewalk, and the tomb's history is the record. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which. This stop is part of a route that keeps every viewpoint on a public sidewalk, outside private gates and closed doors, so the story is always told from a place the walker is welcome to stand. The history is the spine of the walk, and the ghost stories are the color that generations have added around it.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://www.salemma.gov/pioneer-memorial"
+      ],
+      "funFacts": [
+        {
+          "text": "The Pioneer Memorial Tomb was erected in 1884.",
+          "kind": "fact",
+          "sourceUrl": "https://www.salemma.gov/pioneer-memorial"
+        }
+      ],
+      "quizzes": [
+        {
+          "question": "The Pioneer Memorial Tomb was erected in what year?",
+          "options": [
+            "1864",
+            "1884",
+            "1904",
+            "1924"
+          ],
+          "answerIndex": 1,
+          "explanation": "The Pioneer Memorial Tomb was erected in 1884."
+        }
+      ],
+      "lookFor": "Look at the memorial and the inscription from the public sidewalk.",
+      "discuss": "How do memorials become places of legend?",
+      "challenge": "Find the names of the settlers honored on the tomb from the sidewalk.",
+      "extraStory": {
+        "text": "The Pioneer Memorial Tomb was erected in 1884 to honor the city's earliest settlers and their documented contributions to Salem's founding. The recorded history of the settlers honored here is real. The legends that the tomb is guarded by spirits are local folklore. The walker stands on the public sidewalk and looks at the place from the street, and the story is told from that safe and lawful vantage point. The documented history stays separate from the legends that grew up around it, and this tour names both so the listener can tell fact from folklore. Pause here a moment before walking on, and notice what the building has outlasted and what it still holds."
+      }
+    }
+  ]
+}
