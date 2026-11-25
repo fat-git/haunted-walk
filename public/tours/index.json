@@ -48,6 +48,12 @@
       "name": "Salem Ghosts",
       "defaultTour": "salem-ma-ghosts",
       "description": "A self-guided walking tour of documented 1692 witch trial history and the ghost legends attached to downtown Salem."
+    },
+    {
+      "id": "san-antonio",
+      "name": "San Antonio Ghosts",
+      "defaultTour": "san-antonio-ghosts",
+      "description": "A self-guided walking ghost tour through the legends and lost landmarks of San Antonio's historic downtown."
     }
   ]
 }

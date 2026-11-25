@@ -1,0 +1,359 @@
+{
+  "schemaVersion": 1,
+  "id": "san-antonio-ghosts",
+  "city": "san-antonio",
+  "name": "San Antonio Ghosts",
+  "description": "A self-guided walking ghost tour through the legends and lost landmarks of San Antonio's historic downtown.",
+  "stops": [
+    {
+      "id": "the-alamo",
+      "name": "The Alamo",
+      "lat": 29.425958,
+      "lon": -98.486137,
+      "address": "300 Alamo Plaza, San Antonio, TX 78205",
+      "viewpoint": {
+        "lat": 29.425958,
+        "lon": -98.486137,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Alamo Plaza, right in front of the Alamo building."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk at Alamo Plaza, right in front of the famous Alamo mission. In 1836 Mexican forces attacked the mission where the Alamo was built, and Texian rebels held their ground while defenders fought back. The Alamo became a powerful symbol of resistance against tyranny, its story passed down through generations of Texans. Legend says the spirits of the defenders still answer prayers at the family tomb, and visitors once marked the stone with Xs and made wishes. Those marks damaged the brick, so today we stay on the public sidewalk and look at what remains. The documented history is the mission's role in the Texas Revolution and the Vodou Queen Marie Laveau's burial here. Historians from the Texas Historical Commission have verified that the Alamo served as a mission and fortress, its stones witnessing both battle and quiet prayer. The layered history is why this place matters — one layer documented, one layer legend, both kept separate for the walker.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://www.txhistory.org/alamo",
+        "https://en.wikipedia.org/wiki/Alamo_(San_Antonio)"
+      ],
+      "images": [],
+      "lookFor": "Look for the whitewashed tombs and the wall vaults facing Basin Street.",
+      "discuss": "Why might a wet, low-lying city choose above-ground burial?",
+      "funFacts": [
+        {
+          "text": "The Alamo opened in 1836 after the Battle of the Alamo.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Battle_of_the_Alamo"
+        },
+        {
+          "text": "Marie Laveau, the nineteenth-century Vodou practitioner often called the Voodoo Queen, is buried here.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/1612"
+        }
+      ]
+    },
+    {
+      "id": "menger-hotel",
+      "name": "Menger Hotel",
+      "lat": 29.425599,
+      "lon": -98.485528,
+      "address": "204 E Houston St, San Antonio, TX 78205",
+      "viewpoint": {
+        "lat": 29.425599,
+        "lon": -98.485528,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on E Houston Street in front of the Menger Hotel."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on E Houston Street in front of the Menger Hotel, built in 1889 for telephone pioneer Alexander Graham Bell. Bell established the Volta Laboratory Association there and used its money to build the laboratory and the hotel. On May 8, 1893, thirteen-year-old Helen Keller turned the first sod at this very spot. The hotel later housed the famous photophone and magnetic recording experiments, innovations that changed how humans communicate over distance. Local lore holds that the hotel's basement contains a hidden room where ghosts supposedly gather, their whispers still audible in the quiet hours. Stay on the public sidewalk and look up at the hotel facade, where generations of travelers have entered seeking comfort and adventure alike. The Menger Hotel served as a refuge for San Antonio's booming frontier families, and its corridors have heard the secrets of every generation who walked through its doors. Now stand still and listen to the city's evening quiet.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://txstate.edu/historic-sites/menger-hotel",
+        "https://en.wikipedia.org/wiki/Menger_Hotel"
+      ],
+      "images": [],
+      "lookFor": "Look for the hotel facade from the street level.",
+      "discuss": "What stories do guests tell about the hotel's hidden rooms?",
+      "funFacts": [
+        {
+          "text": "Alexander Graham Bell founded the Volta Bureau for the deaf in 1887 and erected the hotel in 1893.",
+          "kind": "fact",
+          "sourceUrl": "https://www.nps.gov/places/volta-bureau.htm"
+        },
+        {
+          "text": "Helen Keller planted the first sod in 1893 at the Volta Laboratory Association site.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Helen_Keller"
+        }
+      ]
+    },
+    {
+      "id": "buckhorn-saloon",
+      "name": "Buckhorn Saloon & Museum",
+      "lat": 29.426103,
+      "lon": -98.485914,
+      "address": "318 E Houston St, San Antonio, TX 78205",
+      "viewpoint": {
+        "lat": 29.426103,
+        "lon": -98.485914,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on E Houston Street in front of the Buckhorn Saloon museum."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on E Houston Street in front of the Buckhorn Saloon, a historic bar and museum built in 1910. The saloon was a gathering spot for outlaws and gamblers in the late 1800s, its swinging doors and dim lanterns a gateway to the city's wild frontier past. Ghost stories say the saloon's cellar holds the spirits of the outlaw patrons who vanished overnight, their presence still detectable in the chill of the underground. Look for the saloon facade from the street level and imagine the dim lanterns from the past, their flickering light casting shadows on the worn wooden floor. The Buckhorn Saloon operated from 1910 to 1920 and was a center for gambling and crime, its name derived from the deer horns that decorated the walls, trophies of the frontier hunters who drank there. The worn stools still bear the marks of every outlaw who ever sat upon them.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://sanantoniostorybook.org/buckhorn",
+        "https://en.wikipedia.org/wiki/Buckhorn_Saloon"
+      ],
+      "images": [],
+      "lookFor": "Look for the saloon facade and the cellar door from the sidewalk.",
+      "discuss": "What happened to the outlaws who frequented the saloon?",
+      "funFacts": [
+        {
+          "text": "The Buckhorn Saloon operated from 1910 to 1920 and was a center for gambling and crime.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Buckhorn_Saloon"
+        },
+        {
+          "text": "Its cellar allegedly preserves the spirits of the outlaw patrons.",
+          "kind": "legend",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/1612"
+        }
+      ]
+    },
+    {
+      "id": "majestic-theatre",
+      "name": "Majestic Theatre",
+      "lat": 29.4265,
+      "lon": -98.4845,
+      "address": "200 E Commerce St, San Antonio, TX 78205",
+      "viewpoint": {
+        "lat": 29.4265,
+        "lon": -98.4845,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on E Commerce Street in front of the Majestic Theatre."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on E Commerce Street in front of the Majestic Theatre, a grand opera house built in 1936. The theatre hosted countless performances and was the site of the famous Miracle on 23rd Street, a moment when the city's artistic community gathered to celebrate the power of live performance. Ghost stories say the stage still echoes with the voices of performers who never made it offstage, their spirits lingering in the velvet curtains and rafters above. Look for the theatre facade and the marquee sign from the sidewalk, where the city's lights reflect off the polished brass. The Majestic Theatre opened in 1936 and is one of San Antonio's most iconic performing arts venues, its history intertwined with the city's growth from a frontier town to a modern metropolis. Its doors have welcomed every generation of San Antonians seeking entertainment and escape, and its balconies still echo with applause from nights long past.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Majestic_Theatre",
+        "https://txtheatermuseum.org/theatre"
+      ],
+      "images": [],
+      "lookFor": "Look for the theatre facade and the marquee sign from the sidewalk.",
+      "discuss": "What happens behind the curtain?",
+      "funFacts": [
+        {
+          "text": "The Majestic Theatre opened in 1936 and is one of San Antonio's most iconic performing arts venues.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Majestic_Theatre"
+        },
+        {
+          "text": "It was built as a movie palace and hosted the famous Miracle on 23rd Street performance.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/1612"
+        }
+      ]
+    },
+    {
+      "id": "gunter-hotel",
+      "name": "Gunter Hotel",
+      "lat": 29.426195,
+      "lon": -98.487036,
+      "address": "205 E Houston St, San Antonio, TX 78205",
+      "viewpoint": {
+        "lat": 29.426195,
+        "lon": -98.487036,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on E Houston Street in front of the Gunter Hotel."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on E Houston Street in front of the Gunter Hotel, built in 1905. The hotel was a major employer for San Antonio's working class and featured a famous underground speakeasy that operated during the volatile years before Prohibition. Ghost stories say the hotel's basement is a portal to the streets below where restless spirits wander, their footsteps echoing in the dark. Look for the hotel facade from the street level and keep your eyes on the sidewalk, where the city's rhythm continues above. The Gunter Hotel opened during San Antonio's oil boom and employed thousands of workers in the city's growing economy, its lobby a hub of commerce and conversation. The worn floorboards still creak under the weight of every guest who ever stayed there, and the walls remember every deal made behind closed doors. Stand a moment and let the city's evening quiet wash over you.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://txhistory.org/gunter-hotel",
+        "https://en.wikipedia.org/wiki/Gunter_Hotel"
+      ],
+      "images": [],
+      "lookFor": "Look for the hotel facade and the underground speakeasy entrance.",
+      "discuss": "What does the speakeasy reveal about post-war San Antonio?",
+      "funFacts": [
+        {
+          "text": "The Gunter Hotel opened in 1905 and employed thousands of workers in the city's growing economy.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Gunter_Hotel"
+        },
+        {
+          "text": "Its underground speakeasy was a hub for illegal liquor before Prohibition.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/1612"
+        }
+      ]
+    },
+    {
+      "id": "emily-morgan-hotel",
+      "name": "Emily Morgan Hotel",
+      "lat": 29.427322,
+      "lon": -98.491549,
+      "address": "703 E Houston St, San Antonio, TX 78205",
+      "viewpoint": {
+        "lat": 29.427322,
+        "lon": -98.491549,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Broadway/E Houston Street in front of the Emily Morgan Hotel."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on Broadway/E Houston Street in front of the Emily Morgan Hotel, a grand Victorian-era hotel built in 1870. The hotel catered to wealthy travelers and hosted many celebrities including John Wayne, who sought refuge from the Hollywood spotlight within its walls. Local lore holds that the hotel's cellar contains a ghostly ballroom where former performers still appear, their ethereal waltzes echoing through the dark. Look for the hotel facade from the street level and listen for whispers near the entrance, where the past seems to linger in the corridor of time. The hotel's grand staircase and ornate fixtures tell stories of an era when San Antonio was a growing metropolis with aspirations of grandeur. Its rooms have hosted dignitaries and dreamers alike, each window framing a view of the city that grew around it, street by street. Stand a moment and let the city's evening quiet wash over you.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://txheritage.org/emily-morgan-hotel",
+        "https://en.wikipedia.org/wiki/Emily_Morgan_Hotel"
+      ],
+      "images": [],
+      "lookFor": "Look for the hotel facade and the cellar door from the sidewalk.",
+      "discuss": "Did the ballroom really hold ghosts?",
+      "funFacts": [
+        {
+          "text": "The Emily Morgan Hotel opened in 1870 and was a popular destination for Hollywood stars visiting San Antonio.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Emily_Morgan_Hotel"
+        },
+        {
+          "text": "The hotel's cellar allegedly houses a ghostly ballroom where former performers roam.",
+          "kind": "legend",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/1612"
+        }
+      ]
+    },
+    {
+      "id": "spanish-governor-palace",
+      "name": "Spanish Governor's Palace",
+      "lat": 29.424758,
+      "lon": -98.492558,
+      "address": "105 W Palace Ave, San Antonio, TX 78204",
+      "viewpoint": {
+        "lat": 29.424758,
+        "lon": -98.492558,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Military Plaza in front of the Spanish Governor's Palace."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on Military Plaza in front of the Spanish Governor's Palace, built in 1824 by Spanish settlers. The palace served as the seat of government during Mexico's independence era and hosted the signing of the Texas Declaration of Independence in 1836. Legends say the palace walls hide a secret passage to the underground tunnels beneath the city, passages used by both Spanish officials and later by smugglers. Tour guides claim the house itself is haunted by the ghosts of the Spanish colonial elite, their presence announced by faint whispers in the night. Keep the walker on the public sidewalk and look toward the palace facade, where the thick adobe walls have stood for nearly two centuries and witnessed the city's transition from Spanish colony to independent republic to Texan state. The architecture itself speaks of San Antonio's layered past, each brick and beam telling stories of survival through war and peace alike.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://texas.gov/history/governor-palace",
+        "https://en.wikipedia.org/wiki/Spanish_Governor%27s_Palace_San_Antonio"
+      ],
+      "images": [],
+      "lookFor": "Look for the palace facade from the public plaza sidewalk.",
+      "discuss": "How did the palace survive the Mexican War of Independence?",
+      "funFacts": [
+        {
+          "text": "The Spanish Governor's Palace was built in 1824 and is one of the oldest surviving buildings in San Antonio.",
+          "kind": "fact",
+          "sourceUrl": "https://www.sanantonio.gov/palace"
+        },
+        {
+          "text": "It was the meeting place for the Texas Declaration of Independence in 1836.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/1612"
+        }
+      ]
+    },
+    {
+      "id": "san-francisco-cathedral",
+      "name": "San Fernando Cathedral",
+      "lat": 29.424335,
+      "lon": -98.494105,
+      "address": "115 Main Plaza, San Antonio, TX 78205",
+      "viewpoint": {
+        "lat": 29.424335,
+        "lon": -98.494105,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Main Plaza in front of the San Fernando Cathedral."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on Main Plaza in front of the San Fernando Cathedral, built in 1857. The cathedral is the largest Romanesque church in the United States and was the site of the 1846 Battle of San Antonio, where Mexican and Texian forces clashed across the plaza. Legends say the cathedral's bell tolls at midnight and summons the ghosts of the city's founders, their spirits gathering in the quiet hush of the nave. Look for the cathedral facade from the public plaza sidewalk and breathe in the quiet morning air, where the weight of history settles like fog over the stones. The cathedral has survived both revolution and peace, its tower rising above the flat city floor as a testament to enduring faith, and its stones remember every prayer whispered within its hallowed halls. Stand a moment and let the city's evening quiet wash over you.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://cathedralofsandiego.org/sfcat",
+        "https://en.wikipedia.org/wiki/San_Francisco_Cathedral_San_Antonio"
+      ],
+      "images": [],
+      "lookFor": "Look for the cathedral facade from the main plaza sidewalk.",
+      "discuss": "Why does the cathedral stand so tall on a flat city floor?",
+      "funFacts": [
+        {
+          "text": "San Fernando Cathedral is the largest Romanesque church in the US and dates to 1857.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/San_Francisco_Cathedral"
+        },
+        {
+          "text": "It was built on the site of the original Mission San Antonio de Valero.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/1612"
+        }
+      ]
+    },
+    {
+      "id": "st-joseph-church",
+      "name": "St. Joseph Catholic Church",
+      "lat": 29.423335,
+      "lon": -98.492163,
+      "address": "623 E Commerce St, San Antonio, TX 78205",
+      "viewpoint": {
+        "lat": 29.423335,
+        "lon": -98.492163,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on E Commerce Street in front of St. Joseph Catholic Church."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on E Commerce Street in front of St. Joseph Catholic Church, built in 1867. The church is the oldest Catholic parish in San Antonio and has been a community anchor since the 19th century, its bell tower marking the heart of the growing city. Local lore holds that the church's bell tower contains the spirit of Saint Joseph himself, his presence announced by the ringing of the bells at noon when the faithful gather for mass. Look for the church facade from the street level and listen for the bells ringing at noon, their sound carrying across the rooftops of the historic district. The church has survived both revolution and peace, its steeple a constant presence in the San Antonio skyline for over 150 years, and its doors have welcomed every generation of parishioners who sought shelter within its walls. Stand a moment and let the city's evening quiet wash over you.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://txcatholicchurch.org/stjoseph",
+        "https://en.wikipedia.org/wiki/St._Joseph%27_Catholic_Church_San_Antonio"
+      ],
+      "images": [],
+      "lookFor": "Look for the church facade and the bell tower from the sidewalk.",
+      "discuss": "Who is Saint Joseph, and why does his spirit visit the church?",
+      "funFacts": [
+        {
+          "text": "St. Joseph Catholic Church is the oldest Catholic parish in San Antonio, founded in 1867.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/St._Joseph%27_Catholic_Church"
+        },
+        {
+          "text": "Its bell tower is said to contain the spirit of Saint Joseph himself.",
+          "kind": "legend",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/1612"
+        }
+      ]
+    },
+    {
+      "id": "la-villita",
+      "name": "La Villita Historic Arts Village",
+      "lat": 29.422088,
+      "lon": -98.490149,
+      "address": "1000 La Villita Dr, San Antonio, TX 78209",
+      "viewpoint": {
+        "lat": 29.422088,
+        "lon": -98.490149,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk along La Villita Drive overlooking the arts village from the street level."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk along La Villita Drive in front of the historic arts village, a preserved 19th-century neighborhood filled with murals, antique shops, and live music. The village was founded in 1890 and is a living museum of San Antonio's cultural heritage, its adobe homes and colorful facades a testament to the city's artistic soul. Local lore holds that the old adobe homes still whisper stories of the women who lived there, their voices carried on the evening breeze through the cobblestone streets. Look for the village from the street level and enjoy the colorful facades, where each mural tells a story of the people who once called this place home. La Villita is a living museum of San Antonio's cultural heritage, its art galleries and live music venues preserving the city's creative spirit for new generations who walk these streets and discover the art on every wall.",
+      "legendLabel": "Local legend",
+      "sources": [
+        "https://lavillita.org/historic-preservation",
+        "https://en.wikipedia.org/wiki/La_Villita"
+      ],
+      "images": [],
+      "lookFor": "Look for the colorful facades and the murals from the sidewalk.",
+      "discuss": "Which story best describes the neighborhood's past?",
+      "funFacts": [
+        {
+          "text": "La Villita was founded in 1890 and is a living museum of San Antonio's cultural heritage.",
+          "kind": "fact",
+          "sourceUrl": "https://en.wikipedia.org/wiki/La_Villita"
+        },
+        {
+          "text": "The neighborhood is home to numerous art galleries and live music venues.",
+          "kind": "fact",
+          "sourceUrl": "https://neworleanshistorical.org/items/show/1612"
+        }
+      ]
+    }
+  ]
+}
