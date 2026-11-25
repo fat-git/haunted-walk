@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "id": "washington-dc-georgetown-ghosts",
+  "city": "washington-dc-georgetown",
+  "name": "Georgetown Ghosts",
+  "description": "A self-guided walking tour of Georgetown's documented history and the ghost legends attached to it, staying on public sidewalks.",
+  "stops": [
+    {
+      "id": "exorcist-steps",
+      "name": "Exorcist Steps",
+      "lat": 38.905544,
+      "lon": -77.070164,
+      "address": "Exorcist Steps, 36th Street NW at Prospect Street NW, Washington, DC 20007",
+      "viewpoint": {
+        "lat": 38.905544,
+        "lon": -77.070164,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on M Street NW at the base of the Exorcist Steps, beside the Georgetown Car Barn."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on M Street NW at the base of the famous Exorcist Steps, a long concrete staircase that descends from the corner of Prospect Street and 36th Street NW. The steps were built in 1895 during construction of the adjacent Capital Traction Company cable car barn, serving as a lightwell and public right of way. They became a cinematic landmark in 1973 when William Friedkin filmed Father Damien Karras's fatal fall down these stairs for The Exorcist. The production padded the steps with half inch rubber and built a false front on the house above to match the set. Local lore has long attached eerie stories to the stairs, calling them the Hitchcock steps before the film, and tourists still gather at Halloween to recount the scene. The walker stays on the public sidewalk at the foot of the stairs; the steps themselves are public property but steep and slippery when wet. The documented history is a utilitarian lightwell turned horror icon. The legends are what the city added afterward, and both layers belong in a walk that keeps stories framed as stories.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Exorcist_steps",
+        "https://www.nps.gov/places/exorcist-steps.htm"
+      ]
+    },
+    {
+      "id": "volta-bureau",
+      "name": "Volta Bureau",
+      "lat": 38.909878,
+      "lon": -77.068982,
+      "address": "1537 35th Street NW, Washington, DC 20007",
+      "viewpoint": {
+        "lat": 38.909878,
+        "lon": -77.068982,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on 35th Street NW in front of the Volta Bureau building."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on 35th Street NW in front of the Volta Bureau, a neoclassical yellow brick building constructed in 1893 for Alexander Graham Bell. Bell, best known for the telephone, devoted much of his life to the education of the deaf, as his mother and wife were deaf and his father and grandfather were teachers of speech. In 1880 the French government awarded him the Volta Prize of 50,000 francs for the telephone, and he used the money to establish the Volta Laboratory Association with his cousin Chichester Bell and Charles Sumner Tainter. The laboratory pioneered the photophone, magnetic recording, and the Graphophone. In 1887 Bell founded the Volta Bureau for the increase and diffusion of knowledge relating to the deaf, and in 1893 this building was erected to house it. On May 8, 1893, thirteen year old Helen Keller turned the first sod. The bureau merged with the American Association for the Promotion of the Teaching of Speech to the Deaf in 1908 and evolved into today s Alexander Graham Bell Association for the Deaf and Hard of Hearing. The documented history is Bell s scientific work and philanthropic legacy. No legend is narrated at this stop.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Volta_Laboratory_and_Bureau",
+        "https://www.nps.gov/places/volta-bureau.htm"
+      ]
+    },
+    {
+      "id": "old-stone-house",
+      "name": "Old Stone House",
+      "lat": 38.90556,
+      "lon": -77.06056,
+      "address": "3051 M Street NW, Washington, DC 20007",
+      "viewpoint": {
+        "lat": 38.90556,
+        "lon": -77.06056,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on M Street NW in front of the Old Stone House, outside the property gate."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on M Street NW in front of the Old Stone House, the oldest structure still standing in Washington, DC. Built in 1765 by Christopher and Rachel Layman, the house began as a one room vernacular dwelling and was expanded by subsequent owners, most notably Cassandra Chew, who added a rear kitchen and second floor by 1775 and a third floor by 1790. For generations a local legend held that George Washington and Pierre L Enfant met here in March 1791 to plan the new capital. National Park Service research later showed the meeting actually took place at Suter's Tavern near 31st and K Streets, but the folklore was so cherished that a sign once proclaimed this as Washington s Headquarters, and it helped spare the house from demolition. The building was acquired by the federal government in 1953, restored by the National Park Service, and opened as a house museum in 1960. The documented record is the house architecture and ownership chain. The Washington meeting is a legend retold by guides. Keep the two separate, and let the stones speak for themselves.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Old_Stone_House_(Washington,_D.C.)",
+        "https://www.nps.gov/places/old-stone-house.htm"
+      ]
+    },
+    {
+      "id": "healy-hall",
+      "name": "Healy Hall (Georgetown University)",
+      "lat": 38.9065,
+      "lon": -77.062,
+      "address": "Healy Hall, Georgetown University, 3700 O Street NW, Washington, DC 20057",
+      "viewpoint": {
+        "lat": 38.9065,
+        "lon": -77.062,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on O Street NW at the Georgetown University campus entrance near Healy Hall."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on O Street NW at the Georgetown University campus entrance, looking toward Healy Hall, the university s iconic Flemish Romanesque centerpiece. Chartered in 1789, Georgetown is the nation s oldest Catholic and Jesuit university; Healy Hall was constructed between 1877 and 1879 and named for Patrick Francis Healy, the university president from 1874 to 1882 and the first African American to earn a PhD in the United States. The building houses Gaston Hall, where presidents, prime ministers, and Nobel laureates have spoken. The Dahlgren Chapel of the Sacred Heart, tucked behind Healy Hall, dates to 1893 and is the spiritual heart of campus. The documented history is the university founding, Healy s presidency, and the architecture. No ghost story is narrated at this stop. The walker stays on the public sidewalk, with the campus beyond the gates. additi Georgetown layered history makes this stop a key part of the walk, and the story is best read from the public sidewalk.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Healy_Hall",
+        "https://www.georgetown.edu/about/history"
+      ]
+    },
+    {
+      "id": "suters-tavern-site",
+      "name": "Suter s Tavern Site",
+      "lat": 38.9055,
+      "lon": -77.061,
+      "address": "Suter s Tavern Site, 31st Street NW at K Street NW, Washington, DC 20007",
+      "viewpoint": {
+        "lat": 38.9055,
+        "lon": -77.061,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on K Street NW at 31st Street NW, near the former site of Suter s Tavern."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on K Street NW at 31st Street, where Suter s Tavern once stood. In March 1791, George Washington and Pierre L Enfant met here with local landowners including Benjamin Stoddert and Uriah Forrest to negotiate the land transfers that created the new federal district. The tavern was a hub of Georgetown commercial and political life; Washington himself frequented it during his visits to the port. The original building is gone, replaced by later development, but the Forrest Marbury House on M Street, a short walk uphill, survives as the Embassy of Ukraine and marks the dinner where the final land deal was struck on March 28, 1791. The documented record comes from Washington s diaries, L Enfant s papers, and the land deeds themselves. No ghost story is told here; the history is the tavern s role in founding the capital. ad Georgetown layered history makes this stop a key part of the walk, and the story is best read from the public sidewalk.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Suter%27s_Tavern",
+        "https://en.wikipedia.org/wiki/Forrest-Marbury_House"
+      ]
+    },
+    {
+      "id": "c-and-o-canal",
+      "name": "C&O Canal Towpath (Georgetown)",
+      "lat": 38.905,
+      "lon": -77.059,
+      "address": "Chesapeake & O Canal Towpath, 30th Street NW, Washington, DC 20007",
+      "viewpoint": {
+        "lat": 38.905,
+        "lon": -77.059,
+        "access": "public-sidewalk",
+        "description": "Public towpath sidewalk along the Chesapeake & Ohio Canal on the west side of the waterway, Georgetown Waterfront Park area."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public towpath beside the Chesapeake and Ohio Canal, where mules once pulled boats laden with coal, flour, and grain between Georgetown and Cumberland, Maryland. Construction began on July 4, 1828, with President John Quincy Adams turning the first spade, but the canal was soon outpaced by the Baltimore and Ohio Railroad, reaching Cumberland eight years later and at a cost of over seventy seven million dollars. The canal operated until 1924, when a devastating flood ended commercial traffic, and the Baltimore and Ohio Railroad sold it to the National Park Service in 1938. Today the towpath is a linear park popular with walkers and cyclists. The documented history is the canal architecture, its brief commercial life, and its preservation as a national historical park. No ghost story is told at this stop; the water and stone carry their own quiet past. addi Georgetown layered history makes this stop a key part of the walk, and the story is best read from the public sidewalk.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Chesapeake_and_Ohio_Canal",
+        "https://www.nps.gov/caco/index.htm"
+      ]
+    },
+    {
+      "id": "washington-harbour",
+      "name": "Washington Harbour Waterfront",
+      "lat": 38.9042,
+      "lon": -77.0575,
+      "address": "Washington Harbour, K Street NW, Washington, DC 20007",
+      "viewpoint": {
+        "lat": 38.9042,
+        "lon": -77.0575,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on K Street NW at the Potomac waterfront, facing the Washington Harbour complex."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on K Street NW at the Georgetown waterfront, looking across the Potomac River toward the Kennedy Center and Arlington. For more than two centuries this shore was a working port: tobacco hogsheads, flour barrels, and later coal barges docked here, and the Georgetown waterfront buzzed with warehouses, a flour mill, and a meat rendering plant. The Whitehurst Freeway, completed in 1949, lifted traffic above the shore but cast the waterfront into shadow for decades. In the early 2000s the Washington Harbour complex brought restaurants, offices, and a public promenade back to the river s edge. The documented history is the rise, fall, and revival of a commercial harbor. The walker reads it from the public sidewalk where the railings meet the water. No legend is attached to this stop; the river tells its own story. addition Georgetown layered history makes this stop a key part of the walk, and the story is best read from the public sidewalk.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Washington_Harbour",
+        "https://www.nps.gov/caco/planyourvisit/georgetown-waterfront-park.htm"
+      ]
+    },
+    {
+      "id": "mount-zion-church",
+      "name": "Mount Zion United Methodist Church",
+      "lat": 38.90778,
+      "lon": -77.05861,
+      "address": "1334 29th Street NW, Washington, DC 20007",
+      "viewpoint": {
+        "lat": 38.90778,
+        "lon": -77.05861,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on 29th Street NW in front of Mount Zion United Methodist Church."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on 29th Street NW in front of Mount Zion United Methodist Church, the oldest African American congregation in Washington, DC. Founded in 1816 as a splinter group from the segregated Dumbarton Methodist Church, where Black worshippers were relegated to a hot crowded balcony, the congregation built this Gothic Revival church in 1876. Across the street lies the Mount Zion Cemetery and the adjacent Female Union Band Cemetery, which together offered free burials for Washington s early Black community. Enslaved and free Black families worshipped, organized, and were laid to rest here through the Civil War, Reconstruction, and Jim Crow. Local legend holds that the spirits of those buried across the road sometimes visit the church, and visitors have reported hearing hymns when the building is empty. The documented history is the congregation founding, its building, and the cemeteries records. The ghostly hymns are legend, retold by neighbors and guides. Keep the two in their proper lanes.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Mount_Zion_United_Methodist_Church_(Washington,_D.C.)",
+        "https://www.loc.gov/item/2004683652/"
+      ]
+    },
+    {
+      "id": "dumbarton-house",
+      "name": "Dumbarton House",
+      "lat": 38.910833,
+      "lon": -77.056111,
+      "address": "2715 Q Street NW, Washington, DC 20007",
+      "viewpoint": {
+        "lat": 38.910833,
+        "lon": -77.056111,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on Q Street NW in front of Dumbarton House."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on Q Street NW in front of Dumbarton House, a Federal style mansion completed around 1800 by Philadelphia merchant Samuel Jackson. Its first resident was Joseph Nourse, the first Register of the Treasury, who purchased the property in 1804. In August 1814, as British troops burned the President s House, Dolley Madison fled here to the home of her friend Charles Carroll of Belle Vue, waiting until the Gilbert Stuart portrait of George Washington was secured before leaving the city. The house was moved fifty feet north in 1915 to make way for the Q Street bridge over Rock Creek, jacked onto rollers and hauled by a single animal. The National Society of the Colonial Dames of America acquired it in 1928 and opened it as a museum in 1932. The documented history is the house architecture, the Nourse and Carroll families, the Madison episode, and the 1915 move. No legend is narrated at this final stop.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Dumbarton_House",
+        "https://dumbartonhouse.org/"
+      ]
+    },
+    {
+      "id": "oak-hill-cemetery",
+      "name": "Oak Hill Cemetery",
+      "lat": 38.9115,
+      "lon": -77.0565,
+      "address": "Oak Hill Cemetery, 3001 R Street NW, Washington, DC 20007",
+      "viewpoint": {
+        "lat": 38.9115,
+        "lon": -77.0565,
+        "access": "public-sidewalk",
+        "description": "Public sidewalk on R Street NW outside the Oak Hill Cemetery gate."
+      },
+      "geofenceRadiusM": 30,
+      "narration": "You are standing on the public sidewalk on R Street NW outside the gates of Oak Hill Cemetery, founded in 1848 on the rural cemetery model popularized by Mount Auburn. The Gothic Revival chapel, designed by James Renwick Jr. and completed in 1850, anchors the twenty two acre grounds where more than twenty thousand people are buried. Among them are Edwin Stanton, Lincoln s Secretary of War, Ben Bradlee the Washington Post editor, and many Civil War soldiers and Georgetown families. The cemetery is an active burial ground and a National Historic Landmark. Local legend says that on certain evenings a woman in white walks among the older sections near the Renwick Chapel, and that the chapel bell has been heard tolling with no one inside. The documented history is the cemetery design, its notable interments, and its continuing operation. The woman in white and the phantom bell are legend, told by groundskeepers and visitors. The walker remains on the public sidewalk, respecting the active cemetery beyond the gate.",
+      "legendLabel": "Legend",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Oak_Hill_Cemetery_(Washington,_D.C.)",
+        "https://www.nps.gov/nr/travel/wash/dc17.htm"
+      ]
+    }
+  ]
+}
