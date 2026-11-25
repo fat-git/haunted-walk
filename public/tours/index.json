@@ -48,6 +48,12 @@
       "name": "Salem Ghosts",
       "defaultTour": "salem-ma-ghosts",
       "description": "A self-guided walking tour of documented 1692 witch trial history and the ghost legends attached to downtown Salem."
+    },
+    {
+      "id": "washington-dc-georgetown",
+      "name": "Georgetown Ghosts",
+      "defaultTour": "washington-dc-georgetown-ghosts",
+      "description": "A self-guided walking tour of Georgetown's documented history and the ghost legends attached to it, staying on public sidewalks and out of secured federal property."
     }
   ]
 }
