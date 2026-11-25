@@ -30,6 +30,24 @@
       "name": "Gettysburg Borough",
       "defaultTour": "gettysburg-borough-ghosts",
       "description": "A self-guided walking tour of Gettysburg borough's documented history and the ghost legends attached to it, staying on public sidewalks and out of the National Military Park."
+    },
+    {
+      "id": "savannah-ga",
+      "name": "Savannah Ghosts",
+      "defaultTour": "savannah-ga-ghosts",
+      "description": "A self-guided evening walk through the documented history and ghost legends of Savannah's Historic District."
+    },
+    {
+      "id": "charleston-sc",
+      "name": "Charleston Ghosts",
+      "defaultTour": "charleston-sc-ghosts",
+      "description": "A self-guided evening walk through the documented history and ghost legends of Charleston's Historic District."
+    },
+    {
+      "id": "salem-ma",
+      "name": "Salem Ghosts",
+      "defaultTour": "salem-ma-ghosts",
+      "description": "A self-guided walking tour of documented 1692 witch trial history and the ghost legends attached to downtown Salem."
     }
   ]
 }
