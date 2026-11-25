@@ -26,6 +26,12 @@
       "description": "A self-guided walking tour of Chicago Loop history and ghost legends."
     },
     {
+      "id": "gettysburg-borough",
+      "name": "Gettysburg Borough",
+      "defaultTour": "gettysburg-borough-ghosts",
+      "description": "A self-guided walking tour of Gettysburg borough's documented history and the ghost legends attached to it, staying on public sidewalks and out of the National Military Park."
+    },
+    {
       "id": "savannah-ga",
       "name": "Savannah Ghosts",
       "defaultTour": "savannah-ga-ghosts",
