@@ -20,9 +20,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on East Battery Street along White Point Garden, where cannon from the Civil War era still point out toward the harbor. The battery was built as a defensive wall and later became the city's grand seafront promenade. During the Civil War, the fortification was an active Confederate defense line, and families watched shells pass over their homes while sheltering in basements across the street. The documented history of the wall and its guns is real and well recorded. The stories told around this stretch are legend, whispered by families who say they hear drums and marching feet on foggy evenings. Keep the walker on the public sidewalk, and keep the legend labeled as legend. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which.",
       "legendLabel": "Legend",
-      "sources": [
-        "https://www.charlestoncitysc.gov/history"
-      ],
+      "sources": ["https://www.charlestoncitysc.gov/history"],
       "funFacts": [
         {
           "text": "The Battery was built as a defensive wall and later became Charleston's grand seafront promenade.",
@@ -38,12 +36,7 @@
       "quizzes": [
         {
           "question": "The Battery was built as what kind of structure?",
-          "options": [
-            "A promenade",
-            "A defensive wall",
-            "A lighthouse",
-            "A marketplace"
-          ],
+          "options": ["A promenade", "A defensive wall", "A lighthouse", "A marketplace"],
           "answerIndex": 1,
           "explanation": "The Battery was built as a defensive wall before becoming Charleston's seafront promenade."
         }
@@ -70,9 +63,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on East Battery Street, beside the iron gate of the Edmondston-Alston House. The house was built in the 1820s and was home to Charles Edmondston, a Scottish merchant whose family were among Charleston's leading merchants. During the Civil War, the family's sons fought in the conflict, and the house became a place where the war came home in letters and in loss. The documented history of the house and its letters is real. The stories told by visitors who say they see figures at the window are local legend, passed on by guides and by those who lived nearby. The walker keeps to the public sidewalk, and the house stays behind its gate. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which.",
       "legendLabel": "Local legend",
-      "sources": [
-        "https://www.charlestoncitysc.gov/history"
-      ],
+      "sources": ["https://www.charlestoncitysc.gov/history"],
       "funFacts": [
         {
           "text": "The Edmondston-Alston House was built in the 1820s.",
@@ -83,12 +74,7 @@
       "quizzes": [
         {
           "question": "The Edmondston-Alston House was built in what decade?",
-          "options": [
-            "1720s",
-            "1820s",
-            "1920s",
-            "2020s"
-          ],
+          "options": ["1720s", "1820s", "1920s", "2020s"],
           "answerIndex": 1,
           "explanation": "The house dates to the 1820s."
         }
@@ -115,9 +101,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on Meeting Street, in front of St. Michael's Church and beside its churchyard fence. St. Michael's is one of Charleston's oldest churches, begun in 1751, and its steeple has guided ships into the harbor for more than two centuries. The documented history of the church, including its construction and its bells, is real and well sourced. The churchyard holds graves of the city's early citizens, and visitors sometimes say they hear footsteps among the gravestones after dark. Those stories are local legend, not documented fact. The walker stands on the public sidewalk, and the churchyard stays behind its fence. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which.",
       "legendLabel": "Local legend",
-      "sources": [
-        "https://www.charlestoncitysc.gov/history"
-      ],
+      "sources": ["https://www.charlestoncitysc.gov/history"],
       "funFacts": [
         {
           "text": "St. Michael's Church was begun in 1751.",
@@ -133,12 +117,7 @@
       "quizzes": [
         {
           "question": "St. Michael's Church was begun in what year?",
-          "options": [
-            "1721",
-            "1751",
-            "1781",
-            "1811"
-          ],
+          "options": ["1721", "1751", "1781", "1811"],
           "answerIndex": 1,
           "explanation": "St. Michael's Church was begun in 1751."
         }
@@ -165,9 +144,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on East Bay Street, in front of the Old Exchange Building beside its grand columns. The Exchange was built in 1771 as Charleston's customs house, town hall, and slave market—a place where the city's commerce and its cruelty met. Enslaved people were sold here, and the documented record of that trade is part of Charleston's history that cannot be softened. During the Revolution, the Exchange held American prisoners, and later its cellars held gunpowder. Visitors who say they hear chains in the basement are telling local legend. The walker stays on the public sidewalk, where the history speaks for itself without needing ghosts. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which.",
       "legendLabel": "Local legend",
-      "sources": [
-        "https://www.charlestoncitysc.gov/history"
-      ],
+      "sources": ["https://www.charlestoncitysc.gov/history"],
       "funFacts": [
         {
           "text": "The Old Exchange Building was built in 1771 as Charleston's customs house.",
@@ -183,12 +160,7 @@
       "quizzes": [
         {
           "question": "The Old Exchange Building was built in what year?",
-          "options": [
-            "1751",
-            "1771",
-            "1791",
-            "1811"
-          ],
+          "options": ["1751", "1771", "1791", "1811"],
           "answerIndex": 1,
           "explanation": "The Exchange was built in 1771 as Charleston's customs house, town hall, and slave market."
         }
@@ -215,9 +187,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on East Bay Street, facing Rainbow Row. The row of pastel-colored houses was built in the 1700s as storefronts with homes above, and they were restored in the twentieth century into the colorful facades seen today. The documented history of the row is real, including its role as commercial property for Charleston's merchants. The stories told around Rainbow Row are local legend, passed on by guides who say they see lights in empty windows and hear voices from empty rooms. The walker keeps to the public sidewalk, and the row keeps its colors behind it. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which.",
       "legendLabel": "Local legend",
-      "sources": [
-        "https://www.charlestoncitysc.gov/history"
-      ],
+      "sources": ["https://www.charlestoncitysc.gov/history"],
       "funFacts": [
         {
           "text": "Rainbow Row houses were built in the 1700s as storefronts with homes above.",
@@ -228,12 +198,7 @@
       "quizzes": [
         {
           "question": "Rainbow Row houses were built in what century?",
-          "options": [
-            "1600s",
-            "1700s",
-            "1800s",
-            "1900s"
-          ],
+          "options": ["1600s", "1700s", "1800s", "1900s"],
           "answerIndex": 1,
           "explanation": "Rainbow Row houses were built in the 1700s as storefronts with homes above."
         }
@@ -260,9 +225,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on Church Street, beside the gate of the Heyward-Washington House. The house was built in 1772 and was home to Thomas Heyward Jr., a signer of the Declaration of Independence. George Washington visited here during his 1791 tour of the South, and the documented record of that visit is real. The stories told around the house are local legend, shared by guides who say they hear footsteps and see shadows in rooms where no one stands. The walker keeps to the public sidewalk, and the house stays behind its gate. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which.",
       "legendLabel": "Local legend",
-      "sources": [
-        "https://www.charlestoncitysc.gov/history"
-      ],
+      "sources": ["https://www.charlestoncitysc.gov/history"],
       "funFacts": [
         {
           "text": "The Heyward-Washington House was built in 1772.",
@@ -278,12 +241,7 @@
       "quizzes": [
         {
           "question": "George Washington visited Charleston in what year?",
-          "options": [
-            "1776",
-            "1781",
-            "1791",
-            "1801"
-          ],
+          "options": ["1776", "1781", "1791", "1801"],
           "answerIndex": 2,
           "explanation": "George Washington visited Charleston during his 1791 tour of the South."
         }
@@ -310,9 +268,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on Church Street, in front of the Dock Street Theatre beside its entrance. The theatre was built in 1937 on the site of the old Planter's Hotel, which itself dated to 1809. The documented history of the theatre and its predecessor is real. Performers who say they hear applause in empty seats are telling local legend, part of a theatre's old habit of believing every curtain has an audience. The walker stays on the public sidewalk, where the streetlights light both the building and the story. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which. This stop is part of a route that keeps every viewpoint on a public sidewalk, outside private gates and closed doors, so the story is always told from a place the walker is welcome to stand. The history is the spine of the walk, and the ghost stories are the color that generations have added around it.",
       "legendLabel": "Local legend",
-      "sources": [
-        "https://www.charlestoncitysc.gov/history"
-      ],
+      "sources": ["https://www.charlestoncitysc.gov/history"],
       "funFacts": [
         {
           "text": "The Dock Street Theatre was built in 1937 on the site of the old Planter's Hotel.",
@@ -323,12 +279,7 @@
       "quizzes": [
         {
           "question": "The Dock Street Theatre was built in what year?",
-          "options": [
-            "1809",
-            "1909",
-            "1937",
-            "1957"
-          ],
+          "options": ["1809", "1909", "1937", "1957"],
           "answerIndex": 2,
           "explanation": "The Dock Street Theatre was built in 1937 on the site of the old Planter's Hotel, which dated to 1809."
         }
@@ -355,9 +306,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on Church Street, in front of St. Philip's Church beside its churchyard gate. St. Philip's is Charleston's oldest Anglican congregation, founded in 1680, and its current church dates to the 1830s. The documented history of the congregation and its building is real. The churchyard holds graves of early Charlestonians, including Revolutionary figures. Visitors sometimes say they see figures walking among the gravestones after dark. Those stories are local legend. The walker stands on the public sidewalk, and the churchyard stays behind its fence. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which. This stop is part of a route that keeps every viewpoint on a public sidewalk, outside private gates and closed doors, so the story is always told from a place the walker is welcome to stand. The history is the spine of the walk, and the ghost stories are the color that generations have added around it.",
       "legendLabel": "Local legend",
-      "sources": [
-        "https://www.charlestoncitysc.gov/history"
-      ],
+      "sources": ["https://www.charlestoncitysc.gov/history"],
       "funFacts": [
         {
           "text": "St. Philip's is Charleston's oldest Anglican congregation, founded in 1680.",
@@ -368,12 +317,7 @@
       "quizzes": [
         {
           "question": "St. Philip's Church congregation was founded in what year?",
-          "options": [
-            "1680",
-            "1751",
-            "1830",
-            "1870"
-          ],
+          "options": ["1680", "1751", "1830", "1870"],
           "answerIndex": 0,
           "explanation": "St. Philip's congregation was founded in 1680."
         }
@@ -400,9 +344,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on Broad Street, in front of Charleston City Hall beside its columns. City Hall was built in 1801 as a bank, and it has housed the city's government since 1818. The documented history of the building is real, including its service as a Civil War hospital for wounded soldiers. Visitors who say they see figures in the windows at night are telling local legend. The walker stands on the public sidewalk, where the city's business happens in daylight. The documented history here is clear and well sourced, and the stories that surround it are folklore, told by visitors and by the people who live nearby. The walker who pauses on the public sidewalk can take in both layers at once, the record and the legend, and can leave knowing which is which. This stop is part of a route that keeps every viewpoint on a public sidewalk, outside private gates and closed doors, so the story is always told from a place the walker is welcome to stand. The history is the spine of the walk, and the ghost stories are the color that generations have added around it.",
       "legendLabel": "Local legend",
-      "sources": [
-        "https://www.charlestoncitysc.gov/history"
-      ],
+      "sources": ["https://www.charlestoncitysc.gov/history"],
       "funFacts": [
         {
           "text": "Charleston City Hall was built in 1801 as a bank.",
@@ -418,12 +360,7 @@
       "quizzes": [
         {
           "question": "Charleston City Hall was built in what year?",
-          "options": [
-            "1781",
-            "1801",
-            "1821",
-            "1841"
-          ],
+          "options": ["1781", "1801", "1821", "1841"],
           "answerIndex": 1,
           "explanation": "City Hall was built in 1801 as a bank."
         }

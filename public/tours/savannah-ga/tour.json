@@ -20,9 +20,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on East Gaston Street along the southern edge of Forsyth Park, looking toward the white cast-iron fountain that has watched over the park since 1858. The fountain was gifted to the city by the city council and funded by a local merchant, and it became the beating heart of Savannah's public life. In the nineteenth century the park was the terminus of a long promenade that stretched from the river to the cemetery, and families came here to walk, hear bands play, and children chase pigeons around the fountain. The park's live oaks predate the park itself, and their moss has been the backdrop for everything from wartime nurses to peacocks, which once roamed free. The history here is documented and the stories around it are legend, told by families who kept passing down what they saw on summer evenings. No haunting is claimed as fact; the fountain simply kept doing its work while the city around it changed. Look closely at how the fountain is oriented toward the park rather than the street, and you will understand how much this green space meant to the people who built it and the people who still gather beneath the oaks.",
       "legendLabel": "Legend",
-      "sources": [
-        "https://www.savannahga.gov/parks-recreation/forsyth-park"
-      ],
+      "sources": ["https://www.savannahga.gov/parks-recreation/forsyth-park"],
       "funFacts": [
         {
           "text": "The Forsyth Park fountain dates to 1858 and was funded by the city council.",
@@ -38,12 +36,7 @@
       "quizzes": [
         {
           "question": "In what year was the Forsyth Park fountain installed?",
-          "options": [
-            "1850",
-            "1858",
-            "1862",
-            "1870"
-          ],
+          "options": ["1850", "1858", "1862", "1870"],
           "answerIndex": 1,
           "explanation": "The cast-iron fountain was installed in 1858 and has been the park's centerpiece since."
         }
@@ -70,9 +63,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on East Gaston Street, looking at the Confederate monument standing in the heart of Forsyth Park. The monument has been part of the landscape since the 1870s, and it has been a quiet site of civic memory for more than a century. The walk you are on is not about the monument's bronze; it is about the people who passed this corner with it in view. After the Civil War, Savannah's families had to reckon with what the war meant for the living as much as for the dead, and this square was where that reckoning happened in open air. The documented record is clear about dates and facts; the stories told here are about memory, not verified sightings. Keep your visit respectful, and treat every plaque as history and every whisper as a story. Savannah's public memory has always been layered, and the plaza around the monument is one place where the layers sit side by side in plain view.",
       "legendLabel": "Legend",
-      "sources": [
-        "https://www.savannahga.gov/parks-recreation/forsyth-park"
-      ],
+      "sources": ["https://www.savannahga.gov/parks-recreation/forsyth-park"],
       "funFacts": [
         {
           "text": "The Confederate monument in Forsyth Park was erected in the 1870s.",
@@ -83,12 +74,7 @@
       "quizzes": [
         {
           "question": "The Forsyth Park fountain was installed in what year?",
-          "options": [
-            "1850",
-            "1858",
-            "1862",
-            "1870"
-          ],
+          "options": ["1850", "1858", "1862", "1870"],
           "answerIndex": 1,
           "explanation": "The cast-iron fountain was installed in 1858."
         }
@@ -115,9 +101,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on the north side of Monterey Square, the second of Savannah's original squares. The square was laid out in the original 1733 planning of James Oglethorpe's city and named for the Scottish financier and merchant John Monro, though Savannah records show the name was later changed to honor the ship's captain who brought it to the colony. The square is bordered by residential and civic buildings, and it holds the Mercer-Williams House on its eastern edge, where local legend says the spirits of Civil War-era residents still walk. The walk you are leading is a story about a place and its people, and the documented history of the square is well recorded; the haunting stories told from this corner belong to folklore and to memory. Keep them labeled as stories, and keep your footing on the public sidewalk. The square is one of the prettiest public rooms in Savannah, and it is easy to see why people have told stories about it for generations.",
       "legendLabel": "Legend",
-      "sources": [
-        "https://www.savannahga.gov/parks-recreation/monterey-square"
-      ],
+      "sources": ["https://www.savannahga.gov/parks-recreation/monterey-square"],
       "funFacts": [
         {
           "text": "Monterey Square was laid out in Savannah's original 1733 planning by James Oglethorpe.",
@@ -160,9 +144,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on Oglethorpe Avenue, looking at the whitewashed wall of Colonial Park Cemetery across the street. The cemetery has served Savannah since the 1750s and holds graves of many of the city's earliest colonists, including records of the dead from the wars and epidemics of the eighteenth century. The documented history is well supported by the cemetery's records, and the legends that surround it, about restless spirits and unexplained visits, are stories told by the living. The cemetery is a working burial ground and a public park, and the walker stands on the public sidewalk while reading what the cemetery keeps. Treat the rest as folklore, labeled and clear. The wall you see is a record of a city that buried its people close to the center of daily life, and the graves inside belong to the families who built the squares and houses we have been walking past all evening.",
       "legendLabel": "Legend",
-      "sources": [
-        "https://www.savannahga.gov/parks-recreation/colonial-park-cemetery"
-      ],
+      "sources": ["https://www.savannahga.gov/parks-recreation/colonial-park-cemetery"],
       "funFacts": [
         {
           "text": "Colonial Park Cemetery has served Savannah since the 1750s.",
@@ -178,12 +160,7 @@
       "quizzes": [
         {
           "question": "In what decade did Colonial Park Cemetery begin serving Savannah?",
-          "options": [
-            "1650s",
-            "1750s",
-            "1850s",
-            "1950s"
-          ],
+          "options": ["1650s", "1750s", "1850s", "1950s"],
           "answerIndex": 1,
           "explanation": "The cemetery opened in the 1750s, long before Savannah grew into the city it is today."
         }
@@ -210,9 +187,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on Abercorn Street, across from the iron gate of the Sorrel-Weed House. The house was built in the 1850s and later served as the home of the artist and writer Cornelia Sorrel Weems, whose family gave the house its name. The documented history is rich and real, including the family's letters and the house's place in the city's art life. The legends attached to Savannah homes often come from the city's habit of layering one story over another, and the whispers about this house are part of that tradition rather than a verified haunting. The walker should keep the house on the far side of the public street, and the story in view from the sidewalk. The iron gate is closed, and the house is private property, so the walker's place is here on the public sidewalk where the story can be told without trespass or trouble. Savannah has always loved a house with a story, and this one has more than its share, each story adding a little color to the next.",
       "legendLabel": "Local legend",
-      "sources": [
-        "https://www.savannahga.gov/parks-recreation/monterey-square"
-      ],
+      "sources": ["https://www.savannahga.gov/parks-recreation/monterey-square"],
       "funFacts": [
         {
           "text": "The Sorrel-Weed House was built in the 1850s.",
@@ -223,12 +198,7 @@
       "quizzes": [
         {
           "question": "The Sorrel-Weed House was built in what decade?",
-          "options": [
-            "1750s",
-            "1850s",
-            "1950s",
-            "2050s"
-          ],
+          "options": ["1750s", "1850s", "1950s", "2050s"],
           "answerIndex": 1,
           "explanation": "The house dates to the 1850s and was later home to Cornelia Sorrel Weems."
         }
@@ -255,9 +225,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on Abercorn Street, across from the iron gate of the Andrew Low House. The house was built in the 1850s and was home to Andrew Low, a cotton merchant and philanthropist whose family were among Savannah's most prominent families. The documented history of the house, including its letters and its place in the city's mercantile life, is real and well sourced. The legends that grew around Savannah's great houses are stories told by visitors and by the families who stayed, and they are folklore, not evidence. The walker stands on the public sidewalk, and the house stands across it, and the story moves between them. The Andrew Low House is a place of real letters and real business, and the tour honors the family who lived there while keeping the ghostly whispers at a polite distance. The sidewalk is the walker's place, and the house is private, so the walker stays put and lets the story do the visiting.",
       "legendLabel": "Local legend",
-      "sources": [
-        "https://www.savannahga.gov/parks-recreation/monterey-square"
-      ],
+      "sources": ["https://www.savannahga.gov/parks-recreation/monterey-square"],
       "funFacts": [
         {
           "text": "The Andrew Low House was built in the 1850s and was home to Andrew Low.",
@@ -268,12 +236,7 @@
       "quizzes": [
         {
           "question": "The Andrew Low House was built in what decade?",
-          "options": [
-            "1750s",
-            "1850s",
-            "1950s",
-            "2050s"
-          ],
+          "options": ["1750s", "1850s", "1950s", "2050s"],
           "answerIndex": 1,
           "explanation": "The house dates to the 1850s."
         }
@@ -300,9 +263,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on East State Street, across from the iron gate of the Davenport House. The house dates to the 1820s and was home to Dorothy and William Davenport, who were early collectors of what would become the city's folklore. The documented history of the house is real, and the legends attached to Savannah's historic homes are real in their telling, even when they are not in their fact. The walk here is a reminder that a tour can hold both: the letters and records that support a story, and the story itself. Keep the walker on the public sidewalk, and keep the legend where it belongs. The Davenport House is one of the earliest and most carefully documented houses in the Historic District, and it was the family who lived here that helped turn Savannah's everyday life into the stories the city tells about itself today.",
       "legendLabel": "Local legend",
-      "sources": [
-        "https://www.savannahga.gov/parks-recreation/monterey-square"
-      ],
+      "sources": ["https://www.savannahga.gov/parks-recreation/monterey-square"],
       "funFacts": [
         {
           "text": "The Davenport House dates to the 1820s.",
@@ -313,12 +274,7 @@
       "quizzes": [
         {
           "question": "The Davenport House dates to what decade?",
-          "options": [
-            "1720s",
-            "1820s",
-            "1920s",
-            "2020s"
-          ],
+          "options": ["1720s", "1820s", "1920s", "2020s"],
           "answerIndex": 1,
           "explanation": "The house dates to the 1820s."
         }
@@ -345,9 +301,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on East Broad Street, in front of the Pirates' House. The building dates to the early nineteenth century and was long known as a tavern and boarding house where sailors and pirates were said to have met. The documented history of the building's use is real, and the pirate stories are legend, told by tavern keepers and by visitors who came for a good story. The walk keeps the two apart: what the building was, and what people said it was. The walker stands on the public sidewalk, and the story stands on the far side of the door. The Pirates' House is one of Savannah's oldest buildings and one of its most storied, and the tour is careful to say what the building really was while letting the pirate legends remain legends. The walker is on the sidewalk, the tavern is private, and the story is told from where the walker stands.",
       "legendLabel": "Legend",
-      "sources": [
-        "https://www.savannahga.gov/parks-recreation/monterey-square"
-      ],
+      "sources": ["https://www.savannahga.gov/parks-recreation/monterey-square"],
       "funFacts": [
         {
           "text": "The Pirates' House building dates to the early nineteenth century.",
@@ -358,12 +312,7 @@
       "quizzes": [
         {
           "question": "The Pirates' House dates to what century?",
-          "options": [
-            "1700s",
-            "1800s",
-            "1900s",
-            "2000s"
-          ],
+          "options": ["1700s", "1800s", "1900s", "2000s"],
           "answerIndex": 1,
           "explanation": "The building dates to the early 1800s."
         }
@@ -390,9 +339,7 @@
       "geofenceRadiusM": 30,
       "narration": "You are standing on the public sidewalk on the edge of Wright Square, the largest of Savannah's original squares, laid out in 1801. The square was named for Martha Wright, who donated the land for the city's first orphanage. The documented history of the square and its uses is clear, and the legends attached to Savannah's squares are part of the city's storytelling tradition. This is the last stop of the walk, and the walker has come full circle through the Historic District. The documented history is the spine; the legends are the color. Both are welcome on a walk that keeps the walker on public sidewalks and the stories honest. The square is a place where Savannah's civic life has played out for two centuries, and the walker who stands here can see the whole district in a new light, knowing how much history and how much storytelling share the same public ground.",
       "legendLabel": "Legend",
-      "sources": [
-        "https://www.savannahga.gov/parks-recreation/monterey-square"
-      ],
+      "sources": ["https://www.savannahga.gov/parks-recreation/monterey-square"],
       "funFacts": [
         {
           "text": "Wright Square was laid out in 1801 and named for Martha Wright.",
@@ -403,12 +350,7 @@
       "quizzes": [
         {
           "question": "Wright Square was laid out in what year?",
-          "options": [
-            "1733",
-            "1801",
-            "1858",
-            "1870"
-          ],
+          "options": ["1733", "1801", "1858", "1870"],
           "answerIndex": 1,
           "explanation": "The square was laid out in 1801."
         }
