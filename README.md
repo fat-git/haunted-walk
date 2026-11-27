@@ -95,3 +95,4 @@ short version:
 Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors, used
 under the Open Database License. Attribution is displayed in the app as the ODbL
 requires.
+Site Critic task opened for inter-site navigation review
